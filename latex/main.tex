@@ -1,0 +1,98 @@
+%% Clear sans, courier
+
+% Klasa:
+\documentclass[12pt]{mwart}
+
+% Kodowanie:
+\usepackage[utf8]{inputenc}
+
+% Czcionki:
+\usepackage[sfdefault]{ClearSans} %% option 'sfdefault' activates Clear Sans as the default text font
+\usepackage[T1]{fontenc}
+\usepackage{courier}
+\usepackage[T1]{polski}
+
+% Geometria i style
+%\usepackage{showframe} % debug
+\usepackage{geometry}
+\geometry{a4paper,twoside=true,top=20mm,bottom=30mm,inner=35mm,outer=20mm}
+\pagestyle{plain}
+\usepackage{float}
+\usepackage{afterpage}
+
+% Grafika
+\usepackage{graphicx}
+
+% Dane:
+\title{Uniwersalny inteligentny sterownik silników do zastosowań przemysłowych}
+\author{Łukasz Przeniosło}
+
+% Zmienne srodowiskowe:
+\newcommand{\paperTitlePl}{UNIWERSALNY INTELIGENTNY STEROWNIK SILNIKÓW DO ZASTOSOWAŃ PRZEMYSŁOWYCH}
+\newcommand{\paperTitleEn}{UNIVERSAL INTELIGENT MOTOR DRIVER FOR INDUSTRIAL APPLICATIONS}
+\newcommand{\topicChooseDate}{01.08.2015 r.}
+\newcommand{\topicAcceptationDate}{01.06.2016 r.}
+\newcommand{\tocLessLeft}[1]{\textsc{\textbf{\large \flushleft{#1}}} \vspace{3mm} \\ \indent }
+\newcommand{\tocLessCenter}[1]{\textsc{\textbf{\large \centerline{#1}}} \vspace{3mm} \\ \indent }
+
+% Indeksowanie w pdfie wyjsciowym
+\usepackage{hyperref}
+
+% START:
+\begin{document}
+\thispagestyle{empty} % usun nr strony ze strony tytulowej
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[height=18mm]{grafiki/logo_zut.pdf}
+	\hspace{5mm}
+	\includegraphics[height=18mm]{grafiki/logo_zut_we.pdf} \\
+	\vspace{20mm}
+
+
+	{\bf \large Łukasz Przeniosło} \\ 
+	\vspace{5mm}
+
+	nr albumu: 21789 \\
+	kierunek studiów: Elektrotechnika \\
+	specjalność: urządzenia i instalacje elektryczne \\
+	forma studiów: studia niestacjonarne \\
+	\vspace{20mm}
+
+	\textsc{\textbf{\large \paperTitlePl}} \\
+	\vspace{5mm}
+
+	{\bf \large \paperTitleEn} \\
+	\vspace{45mm}
+	
+	
+	Praca dyplomowa magisterska \\
+	napisana pod kierunkiem: \\
+	\vspace{2mm}
+	
+	{\bf \large dr inż. Michała Bonisławskiego} \\
+	\vspace{2mm}
+	
+	Katedra Elektroenergetyki i Napędów Elektrycznych
+	\vspace{5mm}
+	
+\end{figure}
+
+\begin{flushleft}
+	{\footnotesize Data wydania tematu pracy: \topicChooseDate} \\
+	{\footnotesize Data złożenia tematu pracy: \topicAcceptationDate} 
+\end{flushleft}
+
+\vspace{\fill \centerline{Szczecin 2016}}
+\clearpage
+
+\afterpage{\null \thispagestyle{empty} \newpage}
+\clearpage
+
+\input{statement.tex}
+\input{abstract.tex}
+\input{tableofcontents.tex}
+\input{intro.tex}
+
+\end{document}
+
