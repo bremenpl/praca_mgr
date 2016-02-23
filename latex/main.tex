@@ -23,6 +23,19 @@
 % Grafika
 \usepackage{graphicx}
 
+% kody
+\usepackage{listings}
+
+% matma
+\usepackage{amssymb,amsmath}
+
+% Numerowanie obiektow wedlug rozdzialow
+\usepackage{chngcntr}
+\counterwithin{figure}{section}
+
+% Linki
+\usepackage{url}
+
 % Dane:
 \title{Uniwersalny inteligentny sterownik silników do zastosowań przemysłowych}
 \author{Łukasz Przeniosło}
@@ -34,6 +47,13 @@
 \newcommand{\topicAcceptationDate}{01.06.2016 r.}
 \newcommand{\tocLessLeft}[1]{\textsc{\textbf{\large \flushleft{#1}}} \vspace{3mm} \\ \indent }
 \newcommand{\tocLessCenter}[1]{\textsc{\textbf{\large \centerline{#1}}} \vspace{3mm} \\ \indent }
+\newcommand{\insertImg}[3]{
+\begin{figure}[h]
+	\centering
+	\includegraphics[height=50mm]{#1}
+	\caption{#2} \flushleft{Źródło: Na podstawie \cite{#3}}
+\end{figure}
+}
 
 % Indeksowanie w pdfie wyjsciowym
 \usepackage{hyperref}
@@ -102,9 +122,14 @@
 \input{intro.tex}
 
 %Start czesci teoretycznej
+\input{electromagnetism.tex}
+
 % Opis silnikow (podrozdzialy beda includowane w rozdzialach)
 \input{motors.tex}
 
+% --------------------------------------------------------------------
+% Bibliografia
+\input{bibliography.tex}
 
 \end{document}
 
