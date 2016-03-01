@@ -29,12 +29,21 @@
 % matma
 \usepackage{amssymb,amsmath}
 
+% theoremy
+\usepackage{amsthm}
+
 % Numerowanie obiektow wedlug rozdzialow
 \usepackage{chngcntr}
 \counterwithin{figure}{section}
+\numberwithin{equation}{section}
 
 % Linki
 \usepackage{url}
+
+% Listy
+\usepackage[ampersand]{easylist}
+\ListProperties(Hide=100, Hang=true, Progressive=3ex, Style*=-- ,
+Style2*=$\bullet$ ,Style3*=$\circ$ ,Style4*=\tiny$\blacksquare$ )
 
 % Dane:
 \title{Uniwersalny inteligentny sterownik silników do zastosowań przemysłowych}
@@ -52,8 +61,12 @@
 	\centering
 	\includegraphics[height=50mm]{#1}
 	\caption{#2} \flushleft{Źródło: Na podstawie \cite{#3}}
+	\label{#1}
 \end{figure}
 }
+
+% twierdzenia
+\input{theorems.tex}
 
 % Indeksowanie w pdfie wyjsciowym
 \usepackage{hyperref}

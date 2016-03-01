@@ -4,9 +4,49 @@ Aby zrozumieć zasadę działania większości silników elektrycznych, należy 
 
 \subsection{Natężenie pola magnetycznego}
 
+Pole magnetyczne wytwarza się wokół przewodnika przez który płynie prąd elektryczny. Pole to charakteryzują wektory natężenia, które w każdym punkcie są styczne do okręgów linii sił pola. Środek każdego z okręgów jest zbieżny z osią geometryczną przewodu (przewodnika). Stosując regułę prawej dłoni (Rysunek \ref{grafiki/right_hand_rule.pdf}), palce wskazują zwrot wektorów, a kciuk zwrot i kierunek płynącego prądu.
+
 \insertImg{grafiki/right_hand_rule.pdf}
 	   {Reguła prawej dłoni - sposób wyznaczania zwrotu linii sił pola magnetycznego wokół przewodnika w którym jest prąd elektryczny}
 	   {wikiRegPrawDlon}
+	   
+Do wyznaczenia natężenia pola magnetycznego w dowolnym punkcie na zewnątrz przewodu należy posłużyć się rysunkiem \ref{grafiki/zwrot_wektora_nat_pola.pdf}
+
+\insertImg{grafiki/zwrot_wektora_nat_pola.pdf}
+	   {Zwrot wektora natężenia pola magnetycznego w przestrzeni wokół przewodu przez który płynie prąd elektryczny (Zwrot za płaszczyznę rysunku od strony obserwatora)}
+	   {oprWlasne}
+	   
+\begin{easylist}
+	& K: punkt w przestrzeni wokół przewodnika,
+	& g: Okrąg na którym leży punkt K,
+	& r: promień okręgu g,
+	& H: wektor natężenia pola.
+	\\
+\end{easylist} 
+
+W przypadku linii pola, która przechodzi przez punkt K, przepływ przez powierzchnię o brzegu g równa się prądowi i. Na podstawie prawa przepływu można zapisać że:
+
+\begin{equation} \label{eq:natpol1}
+	\oint\limits_C H dl = i
+\end{equation}
+
+Natężenie pola H jest stałe na całym obwodzie okręgu g (Pole jest symetryczne)
+
+\begin{equation} \label{eq:natpol2}
+	\oint\limits_C H dl = H \int\limits_C dl = H 2 \pi r
+\end{equation}
+
+Porównując stronami równania (\ref{eq:natpol1}) i (\ref{eq:natpol2}) natężenie pola w punkcie K można obliczyć ze wzoru:
+
+\begin{equation} \label{eq:natpol3}
+	H = \frac{i}{2 \pi r}
+\end{equation}
+
+Jednostka natężenia pola magnetycznego to amper na metr [$ \frac{A}{m} $], a jego definicja to:
+	   
+\begin{defn}
+	Amper na metr jest to pole magnetyczne, jakie występuje na powierzchni bocznej walca kołowego o obwodzie 1 m, stycznie do powierzchni bocznej tego walca i prostopadle do jego tworzącej, gdy przez znajdujący się w osi tego walca przewód prostoliniowy nieskończenie długi o przekroju kołowym znikomo małym płynie nie zmieniający się prąd 1 A \cite{kaluszko}.
+\end{defn}
 
 
 
