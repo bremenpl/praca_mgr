@@ -112,8 +112,175 @@ Jednostką indukcji magnetycznej jest tesla [T]. Definicja tej jednostki jest na
 	1 T = \frac{1 Wb}{1 m^2} = \frac{1 kg}{1 s^2 \cdot 1 A}
 \end{equation}
 
+\subsection{Strumień indukcji magnetycznej}
 
+Strumień magnetyczny, który przepływa przez powierzchnię S, definiowany jest jako iloczyn skalarny wektora indukcji magnetycznej i wektora normalnego do powierzchni S. Jeśli pole magnetyczne $ B = const $ i przechodzi przez płaszczyznę S prostopadłą do lini pola, to iloczyn indukcji magnetycznej B i powierzchni pola S to strumień indukcji magnetycznej (rys. \ref{grafiki/strumien_ind_prost.jpg}). W magnetyzmie strumień indukcji jest odpowiednikiem natężenia prądu w elektryczności. 
 
+\insertImg{grafiki/strumien_ind_prost.jpg}
+	   {Strumień indukcji magnetycznej wywołany równomiernym polem magnetycznych o indukcji B prostopadłym do płaszczyzny S}
+	   {jaszczuk}
+	   
+Wyraża się go wzorem:
+
+\begin{equation} \label{eq:strindmag1}
+	\Phi = B S
+\end{equation}
+
+W przypadku kiedy płaszczyzna S nie jest prostopadła do linii sił pola magnetycznego, to należy wziąć pod uwagę wartość $ \alpha $, która wyraża kąt pochylenia płaszczyzny S do linii pola:
+
+\begin{equation} \label{eq:strindmag2}
+	\Phi = B S \cos{\alpha}
+\end{equation}
+
+Całkowity strumień indukcji przenikający powierzchnię S będzie całką powierzchniową liczoną po całej powierzchni S.
+
+\insertImg{grafiki/strumien_ind_dow.jpg}
+	   {Strumień indukcji magnetycznej przepływający przez dowolną powierzchnię}
+	   {jaszczuk}
+	   
+\begin{equation} \label{eq:strindmag3}
+	\Phi = \int\limits_S B dS \cos{\alpha}
+\end{equation}
+	   
+Jednostką strumienia magnetycznego jest weber $ [Wb] $.
+
+\begin{defn}
+	Weber jest to strumień magnetyczny, który malejąc jednostajnie do zera w czasie 1 s indukuje siłę elektromotoryczną 1 V w obejmującym ten strumień magnetyczny obwodzie zamkniętym jednozwojowym wykonanym z przewodu o przekroju kołowym znikomo małym \cite{kaluszko}.
+\end{defn}   
+
+\begin{equation} \label{eq:strindmag4}
+	1 Wb = 1 V \cdot 1 s = \frac{1 kg \cdot 1 m^2}{1 s^2 \cdot 1 A}
+\end{equation}
+
+\subsection{Siła elektrodynamiczna}
+
+W przestrzeni wokół przewodnika z prądem wytwarzane jest pole magnetyczne. Jeśli umieścić w tej przestrzeni drugi przewodnik z prądem, który wytwarza własne pole magnetyczne to przewodniki te będą się przyciągały lub odpychały. Siły z którymi oddziałują na siebie oba przewody nazywane są siłami elektrodynamicznymi. Na rysunku \ref{grafiki/sily_elek_przewodniki_z_pradem.jpg} przedstawiono dwa nieskończenie długie, równoległe do siebie przewody z prądami $ i_1 $ i $ i_2 $, które znajdują się w środowisku jednorodnym. Linie pola magnetycznego wytworzonego przez prąd $ i_1 $ to okręgi o środkach na osi przewodu pierwszego i są prostopadłe do osi obu przewodów. Siła działająca na odcinek o długości l przewodu drugiego to:
+
+\begin{equation} \label{eq:silapola1}
+	F = B_1 i_2 l
+\end{equation}
+
+$ B_1 $ to indukcja magnetyczna pola wytworzonego przez prąd $ i_1 $ (wzór \ref{eq:natpol3}).
+
+\begin{equation} \label{eq:silapola2}
+	B_1 = \mu_0 H_1 = \mu_0 \frac{i_1}{2 \pi a}
+\end{equation} 
+
+$ a $ to odległość analizowanych przewodów. 
+
+\insertImgSetSize{grafiki/sily_elek_przewodniki_z_pradem.jpg}
+		{80}
+	   	{Siły działające na równoległe przewodniki z prądem}
+	   	{jaszczuk}
+	   	
+Po podstawieniu wzorów \ref{eq:silapola1} i \ref{eq:silapola2} otrzymuje się:
+
+\begin{equation} \label{eq:silapola3}
+	F = B_1 i_2 l = \mu_0 \frac{i_1}{2 \pi a} i_2 l = \mu_0 \frac{i_1 i_2 l}{2 \pi a}	
+\end{equation}
+	
+W przypadku rysunku \ref{grafiki/sily_elek_przewodniki_z_pradem.jpg} zwroty prądów są zgodne, więc przewodniki będą się przyciągać. Jeśli były by przeciwne- odpychały by się. 
+Jednostką natężenia prądu elektrycznego jest amper $ [A] $.
+
+\begin{defn}
+	Amper jest to prąd elektryczny nie zmieniający się, który płynąc w dwóch róznoległych prostoliniowych, nieskończenie długich przewodach o przekroju kołowym znikomo małym, umieszczonych w próżni w odległości 1 m od siebie wytwarza między tymi przewodami siłę $ 2 \cdot 10^{-7} N $ na każdy metr długości \cite{kaluszko}.
+\end{defn}  
+	
+Wartość siły elektrodynamicznej działającej na przewodnik z prądem, który jest umieszczony w polu magnetycznym wytwarzanym przez magnes trwały można obliczyć ze wzoru:
+
+\begin{equation} \label{eq:silapola4}
+	F = B i l
+\end{equation}
+
+\begin{easylist}
+	& B: indukcja wytwarzana przez magnes trwały,
+	& i: natężenia prądu w przewodniku,
+	& l: długość przewodnika w zasięgu indukcji B.
+	\\
+\end{easylist} 
+
+\insertImg{grafiki/sily_elek_magnes.jpg}
+	   {Siła elektrodynamiczna działająca na przewodnik z prądem umieszczony w stałym polu magnetycznym magnesu trwałego}
+	   {jaszczuk}
+	   
+Zjawisko z rysunku \ref{grafiki/sily_elek_magnes.jpg} jest wykorzystywane do budowy elektrodynamicznych silników prądu stałego.
+Kierunek działania siły elektrodynamicznej można wyznaczyć posługując się regułą trzech palców lewej dłoni (Reguła Flemminga).
+	   
+\subsection{Samoindukcja} 
+	
+Indukowana w obwodzie elektrycznym siła elektromotoryczna (SEM) jest równa prędkości, z jakązmienia się strumień magnetyczny przechodzący przez ten obwód. Powstawanie indukowanej siły elektromotorycznej zachodzi pod wpływem względnego ruchu źródła pola magnetycznego i obwodu.
+
+\begin{equation} \label{eq:samoind1}
+	\varepsilon = - \frac{d \Phi}{d t}
+\end{equation}
+
+\begin{easylist}
+	& $ \varepsilon $: indukowane napięcie,
+	& $ \Phi $: strumień indukcji magnetycznej B,
+	& t: czas.
+	\\
+\end{easylist} 
+	
+Minus we wzorze bierze się z zasady zachowania energii- oznacza że SEM jest skierowana tak, aby przeciwdziałać przyczynie jej powstawania (Zasada przekory Lenza).
+
+Indukcja własna (samoindukcja) jest szczególnym przypadkiem zjawiska indukcji elektromagnetycznej i występuje, gdy SEM wytwarzana jest w tym samym obwodzie, w którym jest prąd. Zachodzi, gry prąd zmienia swoją wartość, przez co zmienia się pole magnetyczne przez niego wytwarzane. Powstająca siła elektromotoryczna samoindukcji przeciwstawia się natężeniu prądu płynącego dotychczas. Samoindukcja spowalnia narastanie prądu i opadanie prądu w obwodzie, odpowiednio przy załączeniu i odłączeniu zasilania od obwodu. SEM samoindukcji $ \varepsilon_L $ opisuje wzór:
+
+\begin{equation} \label{eq:samoind2}
+	\varepsilon_L = - L \frac{d i(t)}{d t}
+\end{equation}
+
+Wartość SEM samoindukcji zależy od prędkości zmian prądu w obwodzie i od indukcyjności obwodu L. Gdy w otoczeniu obwodu nie ma obiektów ferromagnetycznych, to przenikalność magnetyczna ośrodka $ \mu_r = 1 $, a indukcyjność w równaniu \ref{eq:samoind2} jest stała i zależy tylko od geometrii obwodu. Indukcyjność obwodu określa jego zdolność do wytwarzania strumienia pola magnetycznego $ \Phi_L $, powstającego w wyniku przepływu przez obwód prądu elektrycznego i:
+
+\begin{equation} \label{eq:samoind3}
+	\Phi_L = L i
+\end{equation}
+
+Jednostką indukcyjności jest henr $ [H] $.
+\begin{defn}
+	Henr jest to indukcyjność obwodu, w którym indukuje się siła elektromotoryczna 1 V, gdy prąd elektryczny płynący w tym obwodzie zmienia się jednostajnie o 1 A w czasie 1 s \cite{kaluszko}.
+\end{defn}  
+
+\begin{equation} \label{eq:samoind3}
+	1 H = \frac{1 kg \cdot 1 m^2}{1 s^2 \cdot 1 A} = \frac{1 Wb}{1 A}
+\end{equation}
+
+W obecności ferromagnetyków w otoczeniu przewodnika z prądem zmiana natężenia prądu, która powoduje zmianę natężenia pola magnetycznego, powoduje z kolei zmianę przenikalności magnetycznej. Oznacza to, że indukcyjność obwodu elektrycznego z prądem jest wówczas funkcją natężenia prądu płynącego w tym obwodzie.
+
+\begin{equation} \label{eq:samoind4}
+	\Phi_L = L(i) i
+\end{equation}
+
+Zależność siły elektromotorycznej samoindukcji $ \varepsilon_L $ od zmian natężenia prądu przyjmuje postać:
+
+\begin{equation} \label{eq:samoind5}
+	\varepsilon_L = - \frac{d \Phi_L}{d t} = - (L \frac{di}{dt} + i \frac{dL}{dt})
+\end{equation}
+
+\subsection{Reluktancja}
+	
+Dla obwodu magnetycznego obowiązuje podobna zależność jak dla obwodu elektrycznego i prawa Ohma: napięcie magnetyczne $ U_\mu $ wzdłuż odcinka obwodu magnetycznego równa się iloczynowi oporu magnetycznego $ R_\mu $ i strumienia magnetycznego $ \Phi $ w tym odcinku i jest spowodowane przepływem tego strumienia. Napięcie magnetyczne dla całego obwodu jest równe sumie napięć dla jego fragmentów, jeśli płynie przez nie ten sam strumień magnetyczny:
+
+\begin{equation} \label{eq:reluk1}
+	U_\mu = \Phi R_\mu
+\end{equation}
+
+Reluktancja jest odpowiednikiem magnetycznym rezystancji, czyli jest to inaczej opór magnetyczny.
+
+\begin{equation} \label{eq:reluk2}
+	R_\mu = \frac{l}{\mu S} = \frac{l}{\mu_r \mu_0 S}
+\end{equation}
+
+\begin{easylist}
+	& $ l $: długość obwodu $ [m] $,
+	& $ \mu $: przenikalność magnetyczna materiału $ [\frac{H}{m}] $,
+	& $ \mu_r $: względna przenikalność magnetyczna materiału (bezwymiarowa),
+	& $ \mu_0 $: przenikalność magnetyczna próżni $ [\frac{H}{m}] $,
+	& $ S $: przekrój poprzeczny obwodu $ [m] $.
+	\\
+\end{easylist} 
+	 	
+\clearpage
+	   
 
 
 
