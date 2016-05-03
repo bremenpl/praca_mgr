@@ -48,6 +48,70 @@ Jednostka natężenia pola magnetycznego to amper na metr [$ \frac{A}{m} $], a j
 	Amper na metr jest to pole magnetyczne, jakie występuje na powierzchni bocznej walca kołowego o obwodzie 1 m, stycznie do powierzchni bocznej tego walca i prostopadle do jego tworzącej, gdy przez znajdujący się w osi tego walca przewód prostoliniowy nieskończenie długi o przekroju kołowym znikomo małym płynie nie zmieniający się prąd 1 A \cite{kaluszko}.
 \end{defn}
 
+\subsection{Indukcja magnetyczna}
+
+Do opisu pola magnetycznego po za natężeniem pola magnetycznego H, potrzebna jest jeszcze jedna wielkość wektorowa- Indukcja magnetyczna B. W środowisku izotropowym\footnote{Jednakowe własności fizyczne we wszystkich kierunkach.} H i B są do siebie proporcjonalne. Współczynnik proporcjonalności to przenikalność magnetyczna środowiska $ \mu $. Indukcję magnetyczną można zapisać równaniem:
+
+\begin{equation} \label{eq:indmag1}
+	B = \mu H
+\end{equation}
+
+Wielkość $ \mu $, która określa własności magnetyczne środowiska przedstawia się zależnością:
+
+\begin{equation} \label{eq:indmag2}
+	\mu = \mu_0 \mu_r
+\end{equation}
+
+\begin{easylist}
+	& $ \mu_0 $: przenikalność magnetyczna próżni, która wynosi:
+	
+	\begin{equation} \label{eq:indmag3}
+		\mu_0 = 4 \pi 10^{-7} \frac{H}{m}
+	\end{equation}
+	
+	& $ \mu_r $: względna przenikalność magnetyczna środowiska.
+	\\
+\end{easylist} 
+
+Jednostką przenikalności magnetycznej jest Henr na metr [$ \frac{H}{m} $], a jej definicja to:
+
+\begin{defn}
+	Henr na metr jest to przenikalność magnetyczna bezwzględna środowiska izotropowego w którym polu magnetycznemu 1 [$ \frac{A}{m} $] odpowiada indukcja magnetyczna 1 T (tesla) \cite{kaluszko}.
+	
+	\begin{equation} \label{eq:indmag4}
+		1 \frac{H}{m} = \frac{1 T}{1 \frac{A}{m}}
+	\end{equation}
+\end{defn}
+
+Wyrażając to w innych jednostkach:
+
+\begin{equation} \label{eq:indmag4}
+	1 \frac{H}{m} = 1 \frac{N}{A^2}
+\end{equation}
+
+Równanie w którym występuje jednostka siły jest szczególnie przydatne w sytuacjach, w których analizowane są siły wytwarzane przez pole magnetyczne towarzyszące przepływowi prądu (np. Aplikacje z udziałem silników elektrycznych).
+
+\subsubsection{Materiały ferromagnetyczne} 
+
+Materiały ferromagnetyczne dzieli się na miękkie i twarde magnetycznie. W maszynach elektrycznych stosowane są obwody magnetyczne, które wykonane są z materiałów magnetycznie miękkich. Nie dotyczy to magnesów trwałych stosowanych w niektórych maszynach, które są wykonane z materiałów magnetycznie twardych. Magnetycznie miękkie materiały są łatwe do magnesowania przy użyciu zewnętrznego pola magnetycznego. Po zaniku tego pola magnesowanie także zanika. Właściwości magnetyczne ferromagnetyków określają krzywe magnesowania. Wyróżniamy pierwotną krzywą magnesowania i krzywą zamkniętą pełnego przemagnesowania (pętla histerezy magnetycznej \ref{grafiki/petla_histerezy_mag.png}).
+
+\insertImgSetSize{grafiki/petla_histerezy_mag.png}	
+		{80}   
+	   	{Krzywa magnesowania przykładowego materiału twardego magnetycznie. Przy natężeniu koercji indukcja magnetyczna jest równa zeru.}
+	   	{oprWlasne}
+	   
+Krzywą magnesowania pierwotną, otrzymuje się dla ferromagnetyka magnesowanego po raz pierwszy od stanu $ H = 0 $ i $ B = 0 $ przy monotonicznie rosnącym natężeniu pola H, aż do nasycenia materiału magnetycznego. Przy przemagnesowaniu ferromagnetyka od $ -H_{max} $ do $ +H_{max} $ i odwrotnie od $ +H_{max} $ do $ -H_{max} $ otrzymujemy symetryczną krzywą zamkniętą, inaczej pętlę histerezy magnesowania. Kształt pętli zależy od wielu czynników, między innymi od składu ferromagnetyka i sposobu jego obróbki. \\
+
+Jednostką indukcji magnetycznej jest tesla [T]. Definicja tej jednostki jest następująca:
+
+\begin{defn}
+	Tesla jest to indukcja magnetyczna pola magnetycznego równomiernego, przy której na przekrój poprzeczny $ 1 m^2 $ przypada strumień magnetyczny $ 1 Wb $ (weber) \cite{kaluszko}.
+\end{defn}
+
+\begin{equation} \label{eq:indmag5}
+	1 T = \frac{1 Wb}{1 m^2} = \frac{1 kg}{1 s^2 \cdot 1 A}
+\end{equation}
+
 
 
 
