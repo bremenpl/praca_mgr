@@ -1,6 +1,108 @@
-\section{Silniki elektryczne}
+\section{Podstawowe informacje o silnikach}
 
-\input{motors_dc.tex}
+Rozdział ten przedstawia podział maszyn elektrycznych ze względu na ich różne parametry, oraz opis tych silników, które są (i które jeszcze nie są, ale będą) wspierane przez skonstruowany sterownik. 
+Rozdział został opracowany na podstawie źródła \cite{przepiorkowski}
+
+\subsection{Podział silników elektrycznych}
+
+Istnieje bardzo wiele rodzajów silników, a ponadto cały czas powstają nowe konstrukcje, które trudno jest sklasyfikować standardowymi przy pomocy klasycznych definicji. Podział na silniki AC i DC nie wystarczy- w przypadku zastosowania elektronicznego modułu sterującego rodzaj zasilania silnika nie ma tak dużego znaczenia. Nie można także jednoznacznie stwierdzić czy maszyna z wirującymi magnesami to silnik prądu stałego czy przemiennego. Biorąc to pod uwagę, silniki elektryczne można podzielić na trzy podstawowe grupy:
+
+\tocLessLeftNorm{Silniki prądu stałego - DC} 
+
+Zaliczane są tu silniki komutatorowe:
+\begin{easylist}
+	& z magnesem trwałym (PMDC),
+	& szeregowe,
+	& bocznikowe,
+	& szeregowo-bocznikowe.
+\end{easylist} 
+
+\tocLessLeftNorm{Silniki prądu przemiennego - AC}
+
+Do tej grupy  zaliczane są silniki zasilane bezpośrednio z sieci prądu przemiennego. W tym przypadku podział jest bardziej skomplikowany, ze względu na większą ilość kryteriów.
+\begin{easylist}
+	& \underline{Silniki asynchroniczne} - Charakteryzuje je tzw. "poślizg". Rotor takiego silnika wiruje z niższą prędkością od prędkości wirowania pola magnetycznego. Najpopularniejszymi silnikami z tej grupy są silniki klatkowe:
+	
+		&& 1-fazowe kondensatorowe, 
+		&& 1-fazowe ze zwartą fazą rozruchową, 
+		&& 1-fazowe z odłączanym uzwojeniem rozruchowym, 
+		&& 1-fazowe trójfazowe, 
+	
+	& \underline{Silniki synchroniczne} - Rotor wiruje z prędkością równą prędkości wirowania pola magnetycznego. Mogą być jednofazowe lub trójfazowe. Ze względu na konstrukcję, silniki te dzielą się na reluktancyjne lub z wirującym magnesem.
+	& \underline{Silniki komutatorowe uniwersalne} - Komutatorowe silniki szeregowe przystosowane konstrukcyjnie do zasilania z jednej fazy prądu przemiennego.
+\end{easylist} 
+
+\tocLessLeftNorm{Silniki z komutacją elektroniczną}
+
+Do tej grupy zalicza się silniki, których działanie nie było by możliwe bez elektronicznego układu sterującego (sterowanie impulsowe). Najpopularniejsze z nich to:
+\begin{easylist}
+	& \underline{Silniki krokowe} - Ze względu na konstrukcję wyróżnia się silniki:
+		&& o zmiennej reluktancji,
+		&& z magnesem trwałym,
+		&& hybrydowe.
+\end{easylist} 
+Ze względu na sposób sterowania uzwojeniami:
+\begin{easylist}
+		&& Silniki unipolarne,
+		&& Silniki bipolarne.
+\end{easylist} 
+	Daje to sześć różnych kombinacji konstrukcyjnych silników krokowych.
+	
+\insertImg{grafiki/stepper_nema17.png}
+	{Przykładowy silnik krokowy hybrydowy ST4118 w standardzie Nema17, produkowany przez firmę Nanotec}
+	{nanotec}	
+	
+Nema ({\em National Electrical Manufacturers Association}) to stowarzyszenie producentów urządzeń elektrycznych, którego siedziba mieści się w USA. Standard Nema określa między innymi wymiary silników krokowych. Numer 17 oznacza szerokość i wysokośc silnika 1.7 x 1.7 cala (43.2 x 43.2 mm).
+
+\insertImg{grafiki/bldc_db42.png}
+	{Przykładowy silnik BLDC (model DB42), produkowany przez firmę Nanotec}
+	{nanotec}
+
+\begin{easylist}
+	& \underline{Silniki bezszczotkowe z wirującym magnesem (BLDC)} - W literaturze angielskiej silniki te są opisywane jako prądu stałego ({\em BrushLess DC}). W przypadku silników dwubiegunowych z czujnikami Halla (np. tego typu, które są używane w małych wentylatorach do chłodzenia radiatorów) może to być uzasadnione. Nie można jednak jednoznacznie zaliczyć do grupy DC silników wielobiegunowych trójfazowych z wirującym magnesem \cite{przepiorkowski}. Mylne może być także to, że w przypadku silników z wbudowanym sterownikiem nie różnią się one z punktu użytkownika od silnika komutatorowego z magnesem trwałym. Maszyny BLDC charakteryzują się bardzo wysoką prędkością obrotową, w szczególności w porównaniu do silników krokowych.	
+	
+	& \underline{Silniki liniowe} - Wynikiem działania takiej maszyny jest przemieszczenie liniowe, a nie ruch obrotowy. Konstrukcja takiego silnika w dużym uproszczeniu polega na ,,rozwinięciu'' wirnika i stojana na płaszczyźnie. Nazwa silnik liniowy lub {\em Linear Actuator} bardzo często dotyczy zwykłego silnika krokowego z wbudowaną przekładnią śrubową zamieniającą ruch obrotowy na posuwisto-zwrotny, co bardzo często wprowadza niejasności i wątpliwości podczas projektowanie systemów napędowych.
+	
+	\insertImg{grafiki/linear_actuator_l35.png}
+		{Przykładowy silnik krokowy hybrydowy L35 z przekładnią śrubową, produkowany przez firmę Nanotec}
+		{nanotec}
+	
+	& \underline{Silniki liniowe VCM} - Zasada działania silnika VCM ({\em Voice Coil Motor}) lub VCA ({\em Voice Coil Actuator}) jest bardzo zbliżona do zasady działania cewki głośnikowej w szczelinie magnesu. Przesunięcie liniowe tych silników nie przekracza najczęściej 50 mm.		
+	
+\end{easylist} 
+
+\insertImg{grafiki/vcm_moticont.png}
+	{Przykładowy silnik liniowy VCM (model GVCM-051-051-01), produkowany przez firmę Moticont}
+	{moticont}
+	
+\subsection{Parametry silników}
+
+Podstawowe parametry silnika są czasami podawane na jego tablicy znamionowej. Pozostałe należy odszukać w jego karcie katalogowej lub oszacować według właściwości poszczególnych rodzajów silników.
+\\
+
+\begin{easylist}
+
+	& Moc znamionowa: Podawana jest moc elektryczna w watach pobierana przez silnik przy pracy z normalną prędkością obrotową. Moc mechaniczna jest mniejsza i zależy od sprawności silnika (typowo od 40 do 80 \%).
+	\\
+	& Napięcie zasilania: Znamionowa wartość napięcia zasilającego (stałego lub zmiennego), przy której określane są pozostałe parametry. Najczęściej silniki mogą być zasilane napięciem niższym. Nie należy stosować napięć dużo wyższych od znamionowego (max. +15 \%).
+	\\
+	& Moment obrotowy: Siła z jaką silnik potrafi obracać obciążeniem. Parametr ten jest podawany w Niutono-metrach $ [Nm] $. Typowe wartości dla małych silników: od 0.01 do 50 Nm. Dla większości rodzajów silników występuje zależność momentu obrotowego i natężenia prądu pobieranego przez maszynę.
+	\\
+	& Moment rozruchowy: Ważny parametr informujący o tym czy silnik jest w stanie wystartować pod obciążeniem. Podawany w Nm lub w procentach momentu obrotowego. W zależności od rodzaju silnika moment może być mały (do 150 \%), średni (150 - 250 \%) lub duży (> 250 \%).
+	\\
+	& Obroty znamionowe: Wyrażane w RPM-ach ({\em Revolutions per minute}. Zawsze podawane są przy znamionowym obciążeniu i napięciu zasilania, lub podana jest charakterystyka obrotów w funkcji obciążenia. Obroty silników zawierają się w granicach od 100 do 100000 RPM, ale najczęściej spotykane wartości to od 1000 do 4000 RPM. Dla maszyn prądu przemiennego podawane są obroty przy określonej częstotliwości napięcia sieciowego (50 lub 60 Hz). Dla silników krokowych obroty znamionowe nie są podawane. Zamiast tego występują obroty maksymalne lub dopuszczalna częstotliwość impulsów.
+	\\
+	& Prąd znamionowy i rozruchowy: Czyli pobór prądu w normalnych warunkach pracy i w czasie rozpędzania silnika. Ten drugi może być nawet 2 - 8 krotnie większy od znamionowego (największe prądy rozruchowe mają silniki indukcyjne). Prąd rozruchowy nie występuje w silnikach sterowanych impulsowo.
+	\\
+	& Kierunek obrotów: Parametr dotyczący przede wszystkim silników komutatorowych szeregowych i niektórych silników indukcyjnych jedno fazowych. Dla tych silników kierunek obrotów jest wymuszony przez konstrukcję silnika. W pozostałych maszynach kierunek zależy od polaryzacji przyłożonego do ich zacisków napięcia lub w przypadku maszyn ze sterowaniem impulsowym- od kolejności podawanie impulsów na poszczególne uzwojenia.
+	\\
+	& Konstrukcja mechaniczna: Wymiary, ciężar, średnica wału, mocowania, rodzaj łożysk wirnika itp.
+	\\
+	& Konstrukcja obudowy, chłodzenie: Spotykane są silniki o konstrukcji otwartej w której uzwojenia są dostępne z zewnątrz lub zamkniętej w której silnik jest całkowicie obudowany. W silnikach otwartych często wymagane jest chłodzenie strumieniem powietrza- np. silniki odkurzaczy czy wiertarek. 
+
+\end{easylist} 
+
 \input{motors_vcm.tex}
-\input{motors_bldc.tex}
-\input{motors_step.tex}
+%\input{motors_step.tex}
+%\input{motors_bldc.tex}
+%\input{motors_dc.tex}

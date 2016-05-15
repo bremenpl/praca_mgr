@@ -1,10 +1,52 @@
-\subsection{Silniki liniowe (VCM)}
+\subsection{Silnik liniowy (VCM)}
 
-\subsubsection{Budowa}
+Pierwszym z silników obsługiwanych przez projektowany sterownik jest silnik liniowy VCM. Jego konstrukcja jest bardzo prosta, aczkolwiek sam proces technologiczny wymagany do jego wytworzenia już nie. Z tego właśnie powodu VCM nawet bardzo małej mocy są drogie (Cena od \$100 za pojedyncze sztuki). Ciężko jest tak naprawdę stwierdzić czy jest to silnik czy siłownik, bo zakres jego ruchu nie przekracza kilku centymetrów.
 
-\subsubsection{Zasada działania}
+\insertImg{grafiki/vcm_budowa.png}
+	{Budowa cylindrycznego silnika VCM}
+	{przepiorkowski}
 
-\subsubsection{Sterowanie}
+Nazwa silnika pochodzi od jego zasady działania- identycznie jak w zwykłym głośniku jest to cewka poruszająca się w szczelinie magnesu. Zgodnie z regułą Lorentza:
+
+\begin{defn}
+	Jeżeli przez cewkę znajdującą się w polu magnetycznym przepływa prąd, to na cewkę działa siła proporcjonalna do natężenia prądu, a napięcie samoindukcji jest proporcjonalne do szybkości poruszania się cewki. \cite{przepiorkowski}.
+\end{defn}
+
+Podstawowe części składowe silnika VCM to:
+\begin{easylist}
+	& dwa magnesy trwałe skierowane tak, aby były skierowane tym samym biegunem w stronę cewki,
+	& cewka poruszająca się w szczelinie między magnesami,
+	& obudowa z miękkiego żelaza zamykająca obwód magnetyczny.
+	\\
+\end{easylist}
+
+Zmieniając natężenie i polaryzację przepływającego prądu, możliwe jest bardzo precyzyjne sterowanie położeniem cewki. Ze względu na to układ elektroniczny sterujący silnikiem nie wymaga wielu komponentów, a algorytm sterowania nie jest skomplikowany. VCM ma jednak jeszcze jedną zaletę, która sprawia że jest on wybierany do niektórych aplikacji zamiast np. tańszego silnika krokowego z przekładnią śrubową- pozwala wykonywać bardzo dynamiczne ruchy i posiada wysoką zwrotność. ,,Liniowy'' silnik krokowy o podobnej mocy nawet z zastosowaniem śruby o dużym skoku, nie będzie w stanie osiągnąć podobnych prędkości przy zachowaniu dobrego momentu. Brak konieczności zamiany ruchu obrotowego na posuwisto-zwrotny eliminuje błędy pozycji (które mogą wynikać np. z luzów w przekładni). Silniki VCM stosowane są wszędzie tam, gdzie potrzebne jest precyzyjne i szybkie ustawienie pozycji, np. w precyzyjnych urządzeniach mechanicznych i optycznych. \\
+
+Aby efektywnie i bezpiecznie korzystać z silników VCM w danej aplikacji, należy mieć na uwadze kilka ważnych cech tych silników:
+
+\begin{easylist}
+	& Korpus cewki nie jest w żaden sposób przymocowany do obudowy silnika. Oznacza to że to projektant musi zadbać o to, aby korpus wsuwał i wysuwał się z cylindra równolegle, stosując odpowiednie mocowanie mechaniczne obu części. Nie zapewniwszy tego uzwojenie silnika jest narażone na starcie się lakieru izolacyjnego, poprzez ocieranie się o obudowę. 
+	
+	& W zależności od aktualnego położenia (wysunięcia) korpusu, zależność między siłą a przepływającym przez uzwojenie prądem jest zmienna.
+	
+	\insertImgSetSize{grafiki/vcm_force_current_plot.png}
+		{80}
+		{Przykładowy przebieg siły pchającej/ ciągnącej w funkcji wysunięcia korpusu dla silnika liniowego VCM 019-048-02, firmy Moticont.}
+		{moticont}
+	
+Graf \ref{grafiki/vcm_force_current_plot.png} prezentuje zależność między siłą silnika a położeniem jego cewki. Jak widać największa i stała siła ($ 2 \frac{N}{A} $) występuje dopiero kiedy korpus jest trochę wysunięty, i zaczyna lawinowo spadać przy końcowym wysuwie. Jeżeli układ mechaniczny, którego częścią jest silnik nie zostanie wyposażony w odpowiednią blokadę, korpus może wypaść z cylindra ponieważ silnik nie będzie już w stanie go utrzymać.
+
+	& Producent w karcie katalogowej silnika podaje parametr maksymalnej ciągłej mocy ({\em Max continuous power}) i odpowiada ona zazwyczaj prądowi, który płynie przez cewkę w momencie niepełnego wysunięcia (należy oczywiście wziąć pod uwagę fizyczne obciążenie części ruchomej- masę obudowy lub korpusu, w zależności od tego co jest przymocowane, a co ,,jeździ''). Przy dużym wysunięciu zależność siły do płynącego przez cewkę prądu drastycznie spada i utrzymując cylinder długo w takiej pozycji można w bardzo łatwy sposób spalić uzwojenie silnika. \\
+	
+\end{easylist}
+
+Przy zastosowaniu odpowiedniej konstrukcji układu napędowego (zachowana równoległość części mechanicznych) i sterowania zapewniającego ochronę przed zbyt dużym prądem płynącym przez cewkę, silnik VCM z czasem nie ulega właściwie żadnej degradacji i długość jego działania jest ograniczona żywotnością części mechanicznych układu.
 
 \clearpage
+
+
+
+
+
+
 
