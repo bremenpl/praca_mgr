@@ -80,6 +80,9 @@ Style2*=$\bullet$ ,Style3*=$\circ$ ,Style4*=\tiny$\blacksquare$ )
 % Indeksowanie w pdfie wyjsciowym
 \usepackage{hyperref}
 
+% Naprawienie referencji do figur
+\renewcommand{\theHfigure}{figure.section.thesection.\thefigure}
+
 % START:
 \begin{document}
 \thispagestyle{empty} % usun nr strony ze strony tytulowej
