@@ -1,3 +1,89 @@
 \subsection{Silnik krokowy}
 
+Silniki krokowe są maszynami elektrycznymi bez komutatorowymi. Zazwyczaj wszystkie uzwojenia silnika są częścią stojana, podczas gdy rotor jest magnesem trwałym lub w przypadku silników VRM ({\em Variable Reluctance Motor}) zębatym blokiem z materiału magnetycznie miękkiego (patrz sekcja \ref{subsec:materialy_fer}). Komutacja (czyli zmiana kierunku/ uzwojenia w którym następuje przepływ prądu elektrycznego) musi być wymuszona poprzez zewnętrzne urządzenie sterujące maszyną- takie sterowniki są zazwyczaj projektowane w taki sposób, aby zapewnić możliwość utrzymania wirnika w niemal dowolnej pozycji kątowej, oraz obracać nim w obu kierunkach. 
+
+\subsubsection{Rodzaje silników krokowych}
+
+Silniki krokowe ze względu na konstrukcję można podzielić na trzy główne grupy: 
+\begin{easylist}
+	& silniki o zmiennej reluktancji,
+	& z magnesem trwałym,
+	& hybrydowe.
+\end{easylist}
+
+\insertImg{grafiki/reluctance_moment.png}
+		{Powstawanie reluktancyjnego momentu obrotowego.}
+		{przepiorkowski}
+
+Reluktancja jest parametrem analogicznym do rezystancji elektrycznej, lecz odniesionym do strumienia magnetycznego- jest to inaczej ,,rezystancja magnetyczna'' (patrz sekcja \ref{subsec:reluktancja}). Podobnie jak prąd płynie drogą o najmniejszej rezystancji, tak linie sił pola skupiają się w obszarze o najmniejszej reluktancji. Rysunek \ref{grafiki/reluctance_moment.png} przedstawia powstawanie reluktancyjnego momentu obrotowego. Strumień indukcji $ \Phi $ to funkcja prądu uzwojenia $ I $ i reluktancji obwodu magnetycznego $ Rm $. 
+
+\begin{equation} \label{eq:steper1}
+	\Phi = \frac{I}{Rm}
+\end{equation}
+
+Obrócenie ruchomego elementu o kąt $ \alpha $ spowoduje że będzie on próbował powrócić do położenia $ \alpha = 0 $, w którym reluktancja obwodu jest najmniejsza. W silnikach VRM przepływ prądu stałego przez uzwojenia powoduje, że zęby wirnika ustawiają się naprzeciw zasilanego uzwojenia.
+
+\insertImg{grafiki/vrm_przekroj.png}
+		{Silnik o zmiennej reluktancji (VRM)- Przekrój.}
+		{przepiorkowski}
+
+W odróżnieniu do VRM, wirnik silnika krokowego PM ({\em Permanent Magnet}- Magnes trwały) nie posiada zębów. Jest wykonany w postaci walca naprzemiennie namagnesowanego biegunami N i S. Specyficzny rodzaj zębów ma rdzeń stojana. W zależności od kierunku przepływu prądu w uzwojeniu przyciągane są odpowiednie bieguny wirnika (resunek \ref{grafiki/pm_stepper.png}).
+
+\insertImg{grafiki/pm_stepper.png}
+		{Zasada działania silnika PM.}
+		{ni}
+		
+Główną zaletą silnika krokowego PM jest zastosowanie magnesów trwałych w stojanie, dzięki czemu nie ma potrzeby stosowanie szczotek jak w silnikach DC oraz jego niska cena. Wadą tego typu maszyny jest relatywnie niski moment obrotowy i brak możliwości rozwijania dużych prędkości obrotowych. \\
+
+Silnik hybrydowy łączy w sobie cechy obu rozwiązań, dzięki czemu zostały poprawione takie parametry jak:
+\begin{easylist}
+	& moment obrotowy, 
+	& maksymalna prędkość obrotowa, 
+	& rozdzielczość kroku.
+	\\
+\end{easylist}
+
+Niestety silniki hybrydowe są około 2-3 razy droższe od silników PM. Wirnik silnika HB ({\em Hybrid Motor}) jest zbudowany z uzębionych nabiegunników i magnesu trwałego, powodującego naprzemienne magnesowanie zębów biegunami N i S. Uzębiony stojan konstrukcją przypomina ten z silnika VRM. 
+
+\insertImgSetSize{grafiki/stepper_budowa.png}
+		{70}
+		{Konstrukcja dwufazowego silnika krokowego hybrydowego.}
+		{enggarage}
+		
+W silniku HB wirujące pole stojana ,,przerzuca'' wirnik z jednego położenia do drugiego na zasadzie jak w silniku VRM. Jest to możliwe dzięki przesunięciu ,,północnej'' i ,,południowej'' części wirnika o pół ząbka. Silniki HB dzięki poprawionym parametrom są obecnie najbardziej popularnymi silnikami krokowymi, pomimo niskiej ceny silników PM.
+		
+\insertImgSetSize{grafiki/stepper_rotor.png}
+		{70}
+		{Budowa wirnika silnika krokowego hybrydowego dwufazowego.}
+		{edw_sierpien_2002}
+
+\subsubsection{Sterowanie}
+
+W pierwszej kolejności należy rozróżnić sposób zasilania silnika krokowego, który może być unipolarny lub bipolarny (rys. \ref{grafiki/stepper_zasilanie_uni_bi.png}).
+
+\insertImg{grafiki/stepper_zasilanie_uni_bi.png}
+		{Sposób sterowania (zasilania) silnika krokowego dwufazowego- z lewej unipolarnie, z prawej bipolarnie.}
+		{hackaday}
+
+Przy zasilaniu unipolarnym, dla pojedynczego uzwojenia na zewnątrz silnika wyprowadzone są trzy przewody- Oba końce cewki i odczep w połowie jej długości. Podłączając do odczepu ,,+'' zasilania można sterować połówkami uzwojeń zwierając w odpowiedniej kolejności i na odpowiedni czas do masy. W zasilaniu bipolarnym, prąd płynie zawsze przez całe uzwojenie (z silnika wyprowadzone są tylko dwa przewody na cewkę). Zaletą wariantu unipolarnego jest możliwość znacznego uproszczenia układu sterowania. Poważną wadą natomiast jest to, że prąd podawany jest zawsze tylko na połowę danego uzwojenia, co ma bezpośrednie, negatywne przełożenie na moment obrotowy. 
+
+\insertImg{grafiki/stepper_simple.png}
+		{Uproszczony silnik krokowy dwufazowy.}
+		{howtomecha}
+
+Oddzielną sprawą jest sposób/ sekwencja podawania impulsów prądowych do uzwojeń silnika. Sterowanie pod tym względem dzieli się na:
+
+\begin{easylist}
+	& Falowe, 
+	& Pełnokrokowe, 
+	& Półkrokowe,
+	& Mikrokrokowe.
+	\\
+\end{easylist}
+
+Do pomocy w wyjaśnieniu poszczególnych typów sterowania posłuży rysunek \ref{grafiki/stepper_simple.png}, prezentujący uproszczony silnik krokowy. Maszyna składa się z wirnika zbudowanego jak na rys. \ref{grafiki/stepper_rotor.png} tyle że z ilością zębów (na wirniku i stojanie) pozwalającą osiągnąć pełen obrót w czterech pełnych komutacjach. 
+
+TODO: opisac po kolei sposoby sterowania
+
+\clearpage
 

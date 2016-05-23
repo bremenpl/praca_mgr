@@ -85,13 +85,14 @@ Jednostką przenikalności magnetycznej jest Henr na metr [$ \frac{H}{m} $], a j
 
 Wyrażając to w innych jednostkach:
 
-\begin{equation} \label{eq:indmag4}
+\begin{equation} \label{eq:indmag5}
 	1 \frac{H}{m} = 1 \frac{N}{A^2}
 \end{equation}
 
 Równanie w którym występuje jednostka siły jest szczególnie przydatne w sytuacjach, w których analizowane są siły wytwarzane przez pole magnetyczne towarzyszące przepływowi prądu (np. Aplikacje z udziałem silników elektrycznych).
 
 \subsubsection{Materiały ferromagnetyczne} 
+\label{subsec:materialy_fer}
 
 Materiały ferromagnetyczne dzieli się na miękkie i twarde magnetycznie. W maszynach elektrycznych stosowane są obwody magnetyczne, które wykonane są z materiałów magnetycznie miękkich. Nie dotyczy to magnesów trwałych stosowanych w niektórych maszynach, które są wykonane z materiałów magnetycznie twardych. Magnetycznie miękkie materiały są łatwe do magnesowania przy użyciu zewnętrznego pola magnetycznego. Po zaniku tego pola magnesowanie także zanika. Właściwości magnetyczne ferromagnetyków określają krzywe magnesowania. Wyróżniamy pierwotną krzywą magnesowania i krzywą zamkniętą pełnego przemagnesowania (pętla histerezy magnetycznej \ref{grafiki/petla_histerezy_mag.png}).
 
@@ -108,7 +109,7 @@ Jednostką indukcji magnetycznej jest tesla [T]. Definicja tej jednostki jest na
 	Tesla jest to indukcja magnetyczna pola magnetycznego równomiernego, przy której na przekrój poprzeczny $ 1 m^2 $ przypada strumień magnetyczny $ 1 Wb $ (weber) \cite{kaluszko}.
 \end{defn}
 
-\begin{equation} \label{eq:indmag5}
+\begin{equation} \label{eq:indmag6}
 	1 T = \frac{1 Wb}{1 m^2} = \frac{1 kg}{1 s^2 \cdot 1 A}
 \end{equation}
 
@@ -240,23 +241,25 @@ Jednostką indukcyjności jest henr $ [H] $.
 	Henr jest to indukcyjność obwodu, w którym indukuje się siła elektromotoryczna 1 V, gdy prąd elektryczny płynący w tym obwodzie zmienia się jednostajnie o 1 A w czasie 1 s \cite{kaluszko}.
 \end{defn}  
 
-\begin{equation} \label{eq:samoind3}
+\begin{equation} \label{eq:samoind4}
 	1 H = \frac{1 kg \cdot 1 m^2}{1 s^2 \cdot 1 A} = \frac{1 Wb}{1 A}
 \end{equation}
 
 W obecności ferromagnetyków w otoczeniu przewodnika z prądem zmiana natężenia prądu, która powoduje zmianę natężenia pola magnetycznego, powoduje z kolei zmianę przenikalności magnetycznej. Oznacza to, że indukcyjność obwodu elektrycznego z prądem jest wówczas funkcją natężenia prądu płynącego w tym obwodzie.
 
-\begin{equation} \label{eq:samoind4}
+\begin{equation} \label{eq:samoind5}
 	\Phi_L = L(i) i
 \end{equation}
 
 Zależność siły elektromotorycznej samoindukcji $ \varepsilon_L $ od zmian natężenia prądu przyjmuje postać:
 
-\begin{equation} \label{eq:samoind5}
+\begin{equation} \label{eq:samoind6}
 	\varepsilon_L = - \frac{d \Phi_L}{d t} = - (L \frac{di}{dt} + i \frac{dL}{dt})
 \end{equation}
 
 \subsection{Reluktancja}
+\label{subsec:reluktancja}
+
 	
 Dla obwodu magnetycznego obowiązuje podobna zależność jak dla obwodu elektrycznego i prawa Ohma: napięcie magnetyczne $ U_\mu $ wzdłuż odcinka obwodu magnetycznego równa się iloczynowi oporu magnetycznego $ R_\mu $ i strumienia magnetycznego $ \Phi $ w tym odcinku i jest spowodowane przepływem tego strumienia. Napięcie magnetyczne dla całego obwodu jest równe sumie napięć dla jego fragmentów, jeśli płynie przez nie ten sam strumień magnetyczny:
 

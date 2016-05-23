@@ -39,6 +39,7 @@
 
 % Linki
 \usepackage{url}
+\usepackage{fancyref}
 
 % Listy
 \usepackage[ampersand]{easylist}
@@ -57,7 +58,7 @@ Style2*=$\bullet$ ,Style3*=$\circ$ ,Style4*=\tiny$\blacksquare$ )
 \newcommand{\tocLessLeft}[1]{\textsc{\textbf{\large \flushleft{#1}}} \vspace{3mm} \\ \indent }
 \newcommand{\tocLessLeftNorm}[1]{\textsc{\textbf{\normalsize \flushleft{#1}}} \vspace{0mm} \\ \indent }
 \newcommand{\tocLessCenter}[1]{\textsc{\textbf{\large \centerline{#1}}} \vspace{3mm} \\ \indent }
-\newcommand{\insertImg}[3]{
+\newcommand{\insertImg}[3]{%
 \begin{figure}[h]
 	\centering
 	\includegraphics[height=50mm]{#1}
@@ -65,7 +66,7 @@ Style2*=$\bullet$ ,Style3*=$\circ$ ,Style4*=\tiny$\blacksquare$ )
 	\label{#1}
 \end{figure}
 }
-\newcommand{\insertImgSetSize}[4]{
+\newcommand{\insertImgSetSize}[4]{%
 \begin{figure}[h]
 	\centering
 	\includegraphics[height=#2mm]{#1}
