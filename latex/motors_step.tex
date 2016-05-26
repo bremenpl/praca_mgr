@@ -65,10 +65,10 @@ W pierwszej kolejności należy rozróżnić sposób zasilania silnika krokowego
 		{Sposób sterowania (zasilania) silnika krokowego dwufazowego- z lewej unipolarnie, z prawej bipolarnie.}
 		{hackaday}
 
-Przy zasilaniu unipolarnym, dla pojedynczego uzwojenia na zewnątrz silnika wyprowadzone są trzy przewody- Oba końce cewki i odczep w połowie jej długości. Podłączając do odczepu ,,+'' zasilania można sterować połówkami uzwojeń zwierając w odpowiedniej kolejności i na odpowiedni czas do masy. W zasilaniu bipolarnym, prąd płynie zawsze przez całe uzwojenie (z silnika wyprowadzone są tylko dwa przewody na cewkę). Zaletą wariantu unipolarnego jest możliwość znacznego uproszczenia układu sterowania. Poważną wadą natomiast jest to, że prąd podawany jest zawsze tylko na połowę danego uzwojenia, co ma bezpośrednie, negatywne przełożenie na moment obrotowy. 
+Przy zasilaniu unipolarnym, dla pojedynczego uzwojenia na zewnątrz silnika wyprowadzone są trzy przewody- Oba końce cewki i odczep w połowie jej długości. Podłączając do odczepu ,,+'' zasilania można sterować połówkami uzwojeń zwierając w odpowiedniej kolejności i na odpowiedni czas końcówki do masy. W zasilaniu bipolarnym, prąd płynie zawsze przez całe uzwojenie (z silnika wyprowadzone są tylko dwa przewody na cewkę). Zaletą wariantu unipolarnego jest możliwość znacznego uproszczenia układu sterowania. Poważną wadą natomiast jest to, że prąd podawany jest zawsze tylko na połowę danego uzwojenia, co ma negatywne przełożenie na moment obrotowy. 
 
 \insertImg{grafiki/stepper_simple.png}
-		{Uproszczony silnik krokowy dwufazowy.}
+		{Uproszczony model silnika krokowego dwufazowego o kroku 90\degree.}
 		{howtomecha}
 
 Oddzielną sprawą jest sposób/ sekwencja podawania impulsów prądowych do uzwojeń silnika. Sterowanie pod tym względem dzieli się na:
@@ -81,9 +81,45 @@ Oddzielną sprawą jest sposób/ sekwencja podawania impulsów prądowych do uzw
 	\\
 \end{easylist}
 
-Do pomocy w wyjaśnieniu poszczególnych typów sterowania posłuży rysunek \ref{grafiki/stepper_simple.png}, prezentujący uproszczony silnik krokowy. Maszyna składa się z wirnika zbudowanego jak na rys. \ref{grafiki/stepper_rotor.png} tyle że z ilością zębów (na wirniku i stojanie) pozwalającą osiągnąć pełen obrót w czterech pełnych komutacjach. 
+Do pomocy w wyjaśnieniu poszczególnych typów sterowania posłuży rysunek \ref{grafiki/stepper_simple.png}, prezentujący uproszczony silnik krokowy. Maszyna składa się z wirnika zbudowanego jak na rys. \ref{grafiki/stepper_rotor.png} tyle że z ilością zębów (na wirniku i stojanie) pozwalającą osiągnąć pełen obrót w czterech pełnych komutacjach. Silnik posiada 2 uzwojenia A i B nawinięte w taki sposób, że pary A/A' i B/B' są ze sobą połączone (uzwojenie podzielone na dwie sekcje). Przykładając napięcie do cewki A, w zależności od polaryzacji tego napięcia, prąd będzie wpływał przez uzwojenie A i wypływał z uzwojenia A' lub na odwrót. Tak samo ma się sytuacja w przypadku cewki B.
 
-TODO: opisac po kolei sposoby sterowania
+\tocLessLeftNorm{Sterowanie falowe}
+
+W przypadku braku zasilania, wirnik silnika ustawi się w jednej z czterech spoczynkowych pozycji (0\degree, 90\degree, 180\degree lub 270\degree). Dzieje się tak dlatego, że namagnesowany wirnik usiłuje zająć taką pozycję, aby reluktancja obwodu magnetycznego była jak najmniejsza, tzn. aby namagnesowane zęby wirnika były ustawione w jednej linii z dowolną parą zębów stojana. Znikomy moment obrotowy powodujący takie pozycjonowanie to inaczej moment bezprądowy (spoczynkowy). 
+
+\insertImgSetSize{grafiki/stepper_sterowanie_falowe.eps}
+		{100}
+		{Sekwencja zasilania uzwojeń przy sterowaniu falowym (obrót wirnika z rys. \ref{grafiki/stepper_simple.png} według wskazówek zegara).}
+		{oprWlasne}
+
+Rysunek \ref{grafiki/stepper_sterowanie_falowe.eps} prezentuje sekwencję dzięki której wirnik obróci się o trzy pełne obroty w prawo przy zastosowaniu sterowania falowego. Na osi odciętych znajdują się kolejne chwile w czasie, a na osi rzędnych wartość potencjału przyłożonego do danego zacisku (wartości 1 i 0 prezentujące stan wysoki lub niski potencjału). Aby wirnik obracał się w przeciwnym kierunku, sekwencję należy odtworzyć w odwrotnej kolejności. Jak widać na przebiegach, w danym momencie w czasie prąd znajduje się zawsze tylko w jednym z uzwojeń, co nie umożliwia uzyskania maksymalnego dla danej maszyny momentu obrotowego. Pomimo że sterowanie falowe nie zapewnia uzyskania optymalnego momentu obrotowego, to przy zastosowaniu w niektórych aplikacjach jest wystarczające, a ponadto jest jest najprostsze do zaimplementowania.
+
+\tocLessLeftNorm{Sterowanie pełnokrokowe}
+
+W trybie sterowania pełnokrokowego prąd płynie przez oba uzwojenia jednocześnie. Nie ma to wpływu na prędkość obrotową wirnika, ale ma znaczący wpływ na moment obrotowy, który jest dwa razy większy niż w trybie falowym. Pełny obrót wirnika dalej jest osiągany w czterech "ruchach", ale absolutna pozycja kątowa w każdym z nich jest względem trybu falowego przesunięta o 45\degree.
+
+\insertImgSetSize{grafiki/stepper_sterowanie_krokowe.eps}
+		{100}
+		{Sekwencja zasilania uzwojeń przy sterowaniu pełnokrokowym (obrót wirnika z rys. \ref{grafiki/stepper_simple.png} według wskazówek zegara).}
+		{oprWlasne}
+		
+Rysunek \ref{grafiki/stepper_sterowanie_krokowe.eps} przedstawia przebiegi dla 3 obrotów, sterując pełnokrokowo. Kolejne pozycje wirnika są następujące: 45\degree w pierwszym interwale czasowym, 135\degree w drugim, 225\degree w kolejnym i 315\degree w ostatnim (dla danego obrotu). Potem cykl się powtarza. Tryb pełnokrokowy pozwala osiągnąć optymalny dla danego silnika moment obrotowy, ale niestety rozdzielczość obrotu jest ograniczona do ilości kroków na obrót danego modelu maszyny. Typowe wartości kroków na obrót w silnikach krokowych hybrydowych to 100 (krok o rozdzielczości 3.6\degree), 200 (1.8\degree) i 400 (0.9\degree). Aby uzyskać większą rozdzielczość kroku, należy zastosować sterowanie półkrokowe lub mikrokrokowe.
+
+\tocLessLeftNorm{Sterowanie półkrokowe}
+
+Tryb półkrokowy jest połączeniem sterowania falowego i pełnokrokowego. Rozdzielczość obrotowa względem poprzednich trybów jest dwa razy większa, dlatego że uzwojenia naprzemiennie zasilane są pojedynczo/ oba jednocześnie.
+
+\insertImgSetSize{grafiki/stepper_sterowanie_polkrokowe.eps}
+		{100}
+		{Sekwencja zasilania uzwojeń przy sterowaniu półkrokowym (obrót wirnika z rys. \ref{grafiki/stepper_simple.png} według wskazówek zegara).}
+		{oprWlasne}
+		
+Wadą takiego rozwiązania jest zmienny moment obrotowy- co drugi krok będzie "słabszy". Może to spowodować szarpanie wirnika przy dużych obrotach. Przy niskich prędkościach i obciążeniach natomiast, efekt ten rzadko występuje i można uzyskać polepszoną płynność ruchu, w porównaniu do poprzednich trybów. Aby uniknąć efektu zmiennego momentu, można zastosować sterowanie półkrokowe ze zmiennym prądem (rys. \ref{grafiki/stepper_sterowanie_polkrokowe_zmienne.eps}). Na rysunku widać że w momentach kiedy różnica potencjałów występuje tylko na jednym z uzwojeń, jest ona dwa razy większa niż w przypadku kiedy zasilane są obie cewki. Prąd płynący w uzwojeniach jest proporcjonalny do przyłożonego do te nich napięcia, dlatego moment się wyrównuje i silnik nie jest narażony na szarpanie. Rozwiązanie te także nie pozostaje bez wad- Zakładając że dla momentu w czasie, w którym przez oba uzwojenia płynie prąd, wartość tego prądu jest maksymalna dla danego modelu silnika w każdym z uzwojeń, oznacza to że w chwilach kiedy kiedy napięcie jest podawane na tylko jedno uzwojenie, prąd w nim płynący jest większy od nominalnego (tak jak na rys. \ref{grafiki/stepper_sterowanie_polkrokowe_zmienne.eps}). To naraża silnik na nadmierne grzanie, a nawet na uszkodzenie. Z drugiej strony można założyć że nominalny prąd ma płynąć w momencie zasilania jednego uzwojenia, a dwa razy mniejszy przy zasilaniu dwóch. Ten tryb jest bezpieczny, ale optymalny moment obrotowy nie jest uzyskiwany.
+
+\insertImgSetSize{grafiki/stepper_sterowanie_polkrokowe_zmienne.eps}
+		{100}
+		{Sekwencja zasilania uzwojeń przy sterowaniu półkrokowym ze zmiennym prądem (obrót wirnika z rys. \ref{grafiki/stepper_simple.png} według wskazówek zegara).}
+		{oprWlasne}
 
 \clearpage
 
