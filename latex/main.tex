@@ -6,6 +6,10 @@
 % Kodowanie:
 \usepackage[utf8]{inputenc}
 
+% odstep w listach
+\usepackage[titles]{tocloft}
+\addtolength{\cftfignumwidth}{10pt}
+
 % Czcionki:
 \usepackage[sfdefault]{ClearSans} %% option 'sfdefault' activates Clear Sans as the default text font
 \usepackage[T1]{fontenc}
@@ -36,9 +40,21 @@
 % Stopnie
 \usepackage{gensymb}
 
+% Opisy
+\usepackage{caption}
+\captionsetup[table]{singlelinecheck=off}
+
+% Tabele
+\usepackage{float}
+\floatstyle{plaintop}
+\restylefloat{table}
+\usepackage{array}
+\usepackage{makecell}
+
 % Numerowanie obiektow wedlug rozdzialow
 \usepackage{chngcntr}
 \counterwithin{figure}{section}
+\counterwithin{table}{section}
 \numberwithin{equation}{section}
 
 % Linki
@@ -78,6 +94,19 @@ Style2*=$\bullet$ ,Style3*=$\circ$ ,Style4*=\tiny$\blacksquare$ )
 	\label{#1}
 \end{figure}
 }
+\newcommand{\insertTab}[5]{%
+\begin{table}[h]
+	\flushleft{Źródło: Na podstawie \cite{#4}} \\
+	\vspace{2mm}
+	\centering
+	\begin{tabular}{#1} 
+	#2
+	\end{tabular}
+	\caption{#3}  
+	\label{#5}
+	\floatstyle{plaintop}
+\end{table}
+}
 
 % twierdzenia
 \input{theorems.tex}
@@ -85,7 +114,7 @@ Style2*=$\bullet$ ,Style3*=$\circ$ ,Style4*=\tiny$\blacksquare$ )
 % Indeksowanie w pdfie wyjsciowym
 \usepackage{hyperref}
 
-% Naprawienie referencji do figur
+% Naprawienie referencji do figur i tabel
 \renewcommand{\theHfigure}{figure.section.thesection.\thefigure}
 
 % START:
