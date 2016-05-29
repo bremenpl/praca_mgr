@@ -1,6 +1,30 @@
-\subsection{Silnik bezszczotkowy prądu stałego (BLDC)}
+\subsection{Silnik bezszczotkowy z wirującym magnesem (BLDC)}
 
+Konstrukcja silnika BLDC ({\it Brushless DC Motor}) jest odwrotnością silnika komutatorowego z magnesem trwałym: uzwojenia znajdują się w stojanie, a wirnik jest wykonany z odpowiednio ukształtowanego magnesu. Maszyny te są zaliczane do grupy silników prądu stałego, ale w praktyce pradem stałym zasilany jest jedynie falownik sterujący silnikiem, a sama maszyna zasilana jest falą prostokątną lub przebiegiem impulsowym przypominającym sinusoidę. 
 
+\insertImgSetSize{grafiki/bldc_przekroj.jpg}
+		{50}
+		{Przekrój typowego silnika PM BLDC: a) z wirnikiem wewnętrznym, b) z wirnikiem zewnętrznym, 1- jarzmo stojana (twornika), 2- zęby stojana, 3- żłobek z uzwojeniami, 4- wirnik, 5- magnes trwały}
+		{krykowski}
+		
+Silniki BLDC są konstrukcyjnie bardzo podobne do silników krokowych- można przyjąć że silniki BLDC są pewną podgrupą silników krokowych o kroku 180\degree (silniki 2-fazowe) lub 120\degree (3-fazowe). Kryterium odróżniające silniki krokowe od BLDC może być takie, że w większości aplikacji dla poprawnej silnika BLDC jego sterownik musi dysponować sygnałem zwrotnym o aktualnym położeniu kątowym wirnika (np. z czujników Halla). Silniki krokowe natomiast mogą pracować w otwartej pętli sprzężenia zwrotnego.
+
+\insertImgSetSize{grafiki/bldc_gwiazda.jpg}
+		{50}
+		{Konfiguracja uzwojeń trójfazowego silnika BLDC w gwiazdę}
+		{przepiorkowski}
+		
+Uzwojenia silnika BLDC dla maszyny 3-fazowej są układane w gwiazdę (rys. \ref{grafiki/bldc_gwiazda.jpg}). Prąd z układu sterującego jest doprowadzany do wyprowadzeń A1, B1 i C1 podczas gdy pozostałe końce uzwojeń (A2, B2, C2) są ze sobą zwarte. Oznacza to że w tym rodzaju maszyny, prąd przepływa zawsze przez co najmniej dwa uzwojenia, w jednym z dwóch możliwych kierunków (np. kiedy wyższy potencjał jest na C1, a niższy na A1 wtedy od C1 do A1). Rysunek \ref{grafiki/bldc_sterowanie.eps} przedstawia tą zależność.
+
+\insertImgSetSize{grafiki/bldc_sterowanie.eps}
+		{100}
+		{Uproszczone przebiegi prądów w uzwojeniach silnika 3-fazowego sterowanego bipolarnie}
+		{oprWlasne}
+		
+Zmiany momentu obrotowego w funkcji kąta obrotu są w silniku trójfazowym niewielkie i można je jeszcze bardziej zredukować stosując impulsy prądowe o kształcie trapezowym. W celu uzyskania idealnie stałego momentu obrotowego nalezy zapewnić sinusoidalny przebieg prądu w uzwojeniach. 
+Tak jak zaprezentowano na rys. \ref{grafiki/bldc_przekroj.jpg} silniki bezszczotkowe mogą mieć różną konstrukcję wirnika. W przypadku budowy ,,klasycznej'' wirnik w kształcie walca jest umieszczony wewnątrz stojana z uzwojeniami. W silniku z wirnikiem zewnętrznym magnetyczny wirnik ma kształt kubka i obraca się wokół nieruchomego stojana. \\
+
+Do głównych zalet silników BLDC należy zaliczyć to że zjawisko rezonansu mechanicznego jest o wiele mniejsze niż w przypadku silników krokowych, dzięki czemu mogą one uzyskiwać prędkości obrotowe o wiele większe te pierwsze (powyżej 10000 RPM). Ponadto, przy tej samej wartości momentu obrotowego silnik BLDC może być mniejszy i lżejszy od krokowego. Z racji tego że BLDC nie posiada komutatora, a co za tym idzie szczotek, jego żywotność jest bardzo długa i jest praktycznie ograniczona żywotnością mechaniki układu napędowego. Największą niedogodnością jest natomiast to, że z silnikiem bezszczotkowym z wirującym magnesem nie da się w praktyce pracować w otwartej pętli sprzężenia zwrotnego.
 
 \clearpage
 
