@@ -1,0 +1,25 @@
+\subsection{Tryby pracy}
+
+Obserwując kierunek przepływu energii w maszynie elektrycznej, można na tej podstawie wyróżnić jej dwa tryby pracy: silnikową oraz generatorową. W stanach ustalonych układu napędowego zjawiska te można zobrazować za pomocą charakterystyk mechanicznych (rys. \ref{grafiki/ch_statyczne.eps}), pokazujących zależność momentu $ M $ od prędkości $ \Omega $. Kształt charakterystyk zależy przede wszystkim od struktury i parametrów układów regulacyjnych i pomiarowych, a w pewnym zakresie również od charakterystyk przekształtnika oraz od typu i parametrów silnika \cite{zawirski}.
+
+\insertImgSetSize{grafiki/ch_statyczne.eps}
+	{100}
+	{Charakterystyki statyczne silnika: $ \Omega $ - prędkość obrotowa, $ M $ - moment obrotowy}
+	{oprWlasne}
+	
+Moc pobierana przez maszynę jest wyrażana wzorem:
+
+\begin{equation} \label{eq:chs1}
+	P = \Omega M
+\end{equation}
+
+Kiedy jest dodatnia (kwadrant I i III) oznacza to że maszyna pobiera ją z sieci i pracuje jako silnik napędzając element będący obciążeniem. W przypadku kiedy moc jest ujemna (kwadrant II i IV) silnik hamuje obciążenie pracując jako prądnica (praca generatorowa), która poprzez przekształtnik oddaje energię do sieci \cite{ecn_luty_2012}. Jest to związane z faktem że w uzwojeniu silnika powstaje siła elektromotoryczna ({\it Back EMF}), gdy wirnik obraca się z prędkością inną niż prędkość wirowania pola magnetycznego (samoindukcja, wzór \ref{eq:samoind1}). Innymi słowy w kwadrantach I i III silnik zamienia energię elektryczną na mechaniczną, a w pozostałych dwóch jest na odwrót. \\
+W zależności od topologii układu przekształtnikowego i zastosowanych algorytmów sterowania, maszyna elektryczna może mieć możliwość pracy tylko w części kwadrantów (kiedy pracuje z prostym przekształtnikiem), lub we wszystkich (w tych bardziej zaawansowanych). Nie zawsze wszystkie tryby są potrzebne i dla prostych aplikacji, np. kiedy silnik ma pracować obracając się jedynie w jednym kierunku i nie ma potrzeby odprowadzania energii do sieci, może być używany tylko tryb z pierwszego lub trzeciego kwadrantu.
+
+
+
+
+
+
+
+

@@ -1,13 +1,13 @@
 \section{Zasilanie silników}
 
-Z praktycznego punktu widzenia najwygodniej było by, aby wyprowadzenia silnika były zasilane z idealnych źródeł prądowych. Tym sposobem, możliwe było by wymuszenie przepływ prądu w uzwojeniu o dowolnym natężeniu bez większego problemu. W praktyce niestety zbudowanie takie falownika było by bardzo trudne, w szczególności jeśli miałby on pracować z silnikami dużej mocy. Dlatego właśnie do sterowania silnikami stosuje się najczęściej metodę modulacji szerokości impulsów napięciowych ({\it Pulse width modulation}). Dzięki temu, uzwojenia maszyny są zasilane ze źródła napięciowego (które są tanie w budowie, np. wszelkiego rodzaju zasilacze lub baterie), do którego dostęp jest włączany i wyłączany w odpowiednim czasie i na określony czas.
+Z praktycznego punktu widzenia najwygodniej było by, aby wyprowadzenia silnika były zasilane z idealnych źródeł prądowych. Tym sposobem, możliwe było by wymuszenie przepływ prądu w uzwojeniu o dowolnym natężeniu bez większego problemu. W praktyce niestety zbudowanie takiego falownika było by bardzo trudne, w szczególności jeśli miałby on pracować z silnikami dużej mocy. Dlatego właśnie do sterowania silnikami stosuje się najczęściej metodę modulacji szerokości impulsów napięciowych ({\it Pulse width modulation}). Dzięki temu, uzwojenia maszyny są zasilane ze źródła napięciowego (które są tanie w budowie, np. wszelkiego rodzaju zasilacze lub baterie), do którego dostęp jest włączany i wyłączany w odpowiednim czasie i na określony czas.
 
 \insertImgSetSize{grafiki/mostek_h_pn.eps}
 	{80}
 	{Mostek typu ,,H'' zbudowany z czterech tranzystorów polowych z izolowaną bramką ({\it Mosfet})}
 	{oprWlasne}
 
-Kwestią pozostaje dobranie odpowiednich ,,przełączników'' które doprowadzały by i odcinały napięcie od uzwojenia. Rys. \ref{grafiki/mostek_h_pn.eps} prezentuje przykładowy mostek typu H, zbudowane z czterech tranzystorów polowych. Tak zbudowany układ może posłużyć do wymuszenia przepływu prądu w uzwojeniu silnika (które symbolizuje gałąź z rezystorem R1 i cewką L1) w dowolnym kierunku, w zależności od tego które z tranzystorów są aktualnie otwarte/ zamknięte. Jedna połowa mostka (półmostek) tworzy układ {\it Push-Pull}, który może w punkcie połączenie dwóch tranzystorów (V1 i V2) zapewnić potenciał o wartości VCC lub GND. Nie zawsze jako klucze są wykorzystywane tranzystory typu Mosfet, w zależności od aplikacji są to też inne półprzewodniki takie jak tranzystory bipolarne, triaki czy tranzystory IGBT ({\it Insulated-gate bipolar transistor}). W komercyjnych sterownikach małej mocy jednak, najczęściej są to właśnie tranzystory polowe, z tą różnicą że górne tranzystory mostka są także tranzystorami typu N ze względu na ich lepsze względem typu P właściwości (Mobilność elektronów jest większa niż dziur, a to te pierwsze są nośnikami ładunków w tranzystorze typu N \cite{tietze}). W takim wypadku jednak do wysterowania górnych tranzystorów potrzebne są dodatkowe układy elektroniczne, lub dodatkowe źródło zasilania, ze względu na to że napięcie na bramce musi być wyższe od napięcia na źródle tranzystora, w celu jego pełnego wysterowania. Diody połączone równolegle do tranzystorów są niezbędne- w przypadku ich braku prąd uzwojenia usiłowałby zaniknąć w czasie równym 0, co jest niemożliwe, ale napięcie samoindukcji osiągneło by wartość od kilkuset woltów do kliku kV. Wtedy energia zgromadzona na indukcyjności może rozładować się na dwa sposoby: 
+Kwestią pozostaje dobranie odpowiednich ,,przełączników'' które doprowadzały by i odcinały napięcie od uzwojenia. Rys. \ref{grafiki/mostek_h_pn.eps} prezentuje przykładowy mostek typu H, zbudowany z czterech tranzystorów polowych. Tak zbudowany układ może posłużyć do wymuszenia przepływu prądu w uzwojeniu silnika (które symbolizuje gałąź z rezystorem R1 i cewką L1) w dowolnym kierunku, w zależności od tego które z tranzystorów są aktualnie otwarte/ zamknięte. Jedna połowa mostka (półmostek) tworzy układ {\it Push-Pull}, który może w punkcie połączenie dwóch tranzystorów (V1 i V2) zapewnić potenciał o wartości przybliżonej do VCC lub GND. Nie zawsze jako klucze są wykorzystywane tranzystory typu Mosfet, w zależności od aplikacji są to też inne półprzewodniki takie jak tranzystory bipolarne, triaki czy tranzystory IGBT ({\it Insulated-gate bipolar transistor}). W komercyjnych sterownikach małej mocy jednak, najczęściej są to właśnie tranzystory polowe, z tą różnicą że górne tranzystory mostka są także tranzystorami typu N ze względu na ich lepsze względem typu P właściwości (Mobilność elektronów jest większa niż dziur, a to te pierwsze są nośnikami ładunków w tranzystorze typu N \cite{tietze}). W takim wypadku jednak do wysterowania górnych tranzystorów potrzebne są dodatkowe układy elektroniczne, lub dodatkowe źródło zasilania, ze względu na to że napięcie na bramce musi być wyższe od napięcia na źródle tranzystora, w celu jego pełnego wysterowania. Diody połączone równolegle do tranzystorów są niezbędne- w przypadku ich braku prąd uzwojenia usiłowałby zaniknąć w czasie równym 0, co jest niemożliwe, ale napięcie samoindukcji osiągneło by wartość od kilkuset woltów do kliku kV. Wtedy energia zgromadzona na indukcyjności może rozładować się na dwa sposoby: 
 
 \begin{easylist}
 	& nastąpi przebicie tranzystora lub izolacji uzwojenia z wyładowaniem iskrowym,
@@ -15,7 +15,7 @@ Kwestią pozostaje dobranie odpowiednich ,,przełączników'' które doprowadza�
 	\\
 \end{easylist}
 
-Dzięki indukcyjnej naturze uzwojeń silników, kluczując napięcie zasilania możliwe jest wymuszenie przepływu prądu w uzwojeniu o wartości bliskiej z góry założonej w sterowniku.
+Dzięki indukcyjnej naturze uzwojeń silników, kluczując napięcie zasilania (w określonych interwałach czasowych) możliwe jest wymuszenie przepływu prądu w uzwojeniu o wartości bliskiej z góry założonej w sterowniku, bez względu na to że maszyna jest zasilana ze źródła napięciowego.
 
 \insertImgSetSize{grafiki/indukcyjnosc.eps}
 	{90}
@@ -40,9 +40,11 @@ Spadek napięcia na cewce podczas ładowania i rozładowywania cewki wyrażany j
 	U_L = - L \frac{dI_L}{dt}
 \end{equation}
 
+
+\input{ch_statyczne.tex}
+\input{sterowanie_mostka.tex}
+
 \clearpage
-
-
 
 
 

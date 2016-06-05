@@ -1,0 +1,65 @@
+\section{Rozwiązania komercyjne i Open Source}
+
+Na rynku dostępnych jest bardzo wiele rozwiązań pozwalających w szybki sposób zacząć sterować konkretnym rodzajem silnika. Ceny poszczególnych sterowników różnią się od siebie znacząco, w taki sam sposób jak różni się ich funkcjonalność. Są też dostępne projekty bezpłatne ({\it Open Source i Open Hardware}) w rozumieniu konkretnych rozwiązań technologicznych, czy też {\it ,,Know How''}. Innymi słowy schematy elektryczne i mechaniczne, dane {\it CAD'owskie} i oprogramowanie są udostępnione za darmo, a samo urządzenie trzeba fizycznie wykonać samemu. W przypadku tych drugich należy także dokładnie zaznajomić się z licencją na zasadach jakiej są udostępnione, gdyż bardzo często zdarza się że nie można ich stosować bezpłatnie do zastosowań komercyjnych. 
+
+\subsection{Sterowniki jedno-układowe}
+
+Pierwszą grupą sterowników są urządzenia, które dostarczają użytkownikowi jedynie część funkcjonalności związanej ze sterowaniem silnikiem- najczęściej tą która jest najtrudniejsza do zaimplementowania programowo lub sprzętowo na płytce PCB ({\it Printer Circuit Board}) urządzenia. Ich cena w porównaniu do układów zapewniających pełne sterowanie jest wielokrotnie niższa, a ponadto niejednokrotnie są one częścią tych układów. 
+
+\insertImgSetSize{grafiki/smt_packages.png}
+	{80}
+	{Przykładowe typy obudów w jakich są produkowane układy scalone do sterowania silnikami. Na górze obudowy TSSOP ({\it Thin Shrink Small Outline Package}) i SSOP ({\it Shrink small outline package}) na dole}
+	{oprWlasne}
+
+Funkcjonalność danego układu mocno zależy od jego ceny- wraz z jej wzrostem algorytmy zaimplementowane w sterowniku są coraz lepsze, a dodatkowych potrzebnych komponentów elektronicznych do ich poprawnego działania potrzeba coraz mniej (np. końcówki mocy takie jak mostki H są zintegrowane w układzie). Ogólnie rzecz ujmując, urządzenia te stają się coraz bardziej ,,samodzielne''. Ponadto sterowniki do obsługi silników, które wymagają bardziej skomplikowanego sterowania (np. Krokowe lub BLDC) są droższe od tych, które służą do zasilania prostych maszyn (np. silniki komutatorowe DC). 
+
+\subsubsection{AD3950 - Allegro MicroSystems}
+\label{ss:allegro}
+
+Układ AD3950 produkowany przez firmę Allegro MicroSystems jest urządzeniem służącym do sterowania silnikami komutatorowymi DC, aczkolwiek nadaje się też do silników VCM. Najwyższe napięcie przy jakim może pracować to 36 V, a chwilowy prąd szczytowy który może dostarczyć do uzwojenia to $ \pm2.8 A $.
+
+\insertImgSetSize{grafiki/A3950_FBD.eps}
+	{120}
+	{Funkcjonalny schemat blokowy układu A3950}
+	{allegro}
+
+Układ posiada w swojej obudowie mostek H oraz ,,logikę'' pozwalającą na sterowanie nim używając pojedynczego sygnału PWM w celu ustalenia prędkości obrotowej/ momentu i kilku lini typu I/O ({\it Input/ Output}), które służą między innymi do zmiany kierunku obrotów (poprzez zmianę kwadrantów pomiędzy pierwszym, a trzecim) i trybu hamowania ({\it Slow Decay} jak w sterowaniu unipolarnym lub {\it Fast Decay} w celu szybkiego hamowania, tak jak przy sterowaniu bipolarnym, tyle że sterownik dodatkowo nie pozwala na wejście silnika w tryb generatorowy zamykając odpowiednie klucze). \\
+
+Urządzenie jak na swoją cenę detaliczną wynoszącą \$3.9 (\cite{digikey}) posiada naprawdę duże możliwości- Zbudowanie w tej cenie podobnego urządzenia z komponentów dyskretnych było by niemożliwe. W prostych aplikacjach w których potrzebne jest sterowanie silnikiem DC niskiej mocy układ sprawdza się znakomicie.
+
+\subsubsection{DRV8825 - Texas Instruments}
+
+Kontroler DRV8825 firmy Texas Instruments jest bardzo popularnym układem zarówno wśród hobbystów jak i profesjonalnych użytkowników. Urządzenie służy do  zasilania pojedynczego silnika krokowego bipolarnego lub dwóch silników DC.
+
+\insertImgSetSize{grafiki/drv8825_FBD.eps}
+	{150}
+	{Funkcjonalny schemat blokowy układu DRV8825}
+	{ti}
+
+Ze względu na dużą ilość wyprowadzeń układ może wydawać się skomplikowany w obsłudze, lecz po wstępnej konfiguracji jego obsługa jest podobna do układu A3950 (sekcja \ref{ss:allegro}). Sterowanie układem polega na podawaniu na wejście STEP impulsów napięciowych, gdzie w zależności od dokonanej za pomocą linii I/O, każdy taki impuls sprawia że silnik robi pełen krok lub mikrokrok (możliwość ustawienia ziarnistości od $ \frac{1}{2} $ do $ \frac{1}{32} $ kroku). Zmieniając częstotliwość podawania impulsów i stany linii MODE0 - MODE2 możliwe jest w miarę płynne sterowanie prędkością obrotową silnika krokowego. W urządzeniach takich jak skanery czy drukarki, w których prędkość obrotowa jest zazwyczaj stała, a wymagana dokładność pozycji wysoka, kontroler DRV8825 sprawdza się bardzo dobrze. Gorzej radzi sobie w aplikacjach w których należy dynamicznie zmieniać tryby pracy silnika (sekcja \ref{sss:sterowanie_krokowy}), a rozdzielczość wymaganego kroku jest bardzo duża, np $ \frac{1}{64} $ kroku. \\
+
+Największa zaleta urządzenia jest taka, że odciąża on sterujący nim układ nadrzędny od rygorystycznego, wykonywanego w czasie rzeczywistym sterowania silnikiem krokowym. Znacząca wada jest natomiast taka, że pomimo że możliwe jest zadanie maksymalnego prądu jakim mają być zasilane uzwojenia, to nie ma możliwości jego bezpośredniego pomiaru przez układ nadrzędny.
+
+\subsubsection{TMCC160 - Trinamic}
+
+Trzecim prezentowanym układem jest sterownik do zasilania silników BLDC i PMSM firmy Trinamic- TMCC160. Poziom integracji tego urządzenia jest o wiele wyższy niż w przypadku dwóch pozostałych chipów (jest tak duży sklasyfikowanie go jako pełnowymiarowego pewnie nie było by błędem). W jego strukturze znajduje się potężny mikrokontroler typu Cortex M4 z rodziny ARM, dzięki czemu komunikacja z może odbywać się poprzez jeden z dostępnych protokołów szeregowych. Na pokładzie jest także przetwornica DC-DC więc dodatkowe zewnetrzne przetworniki napięcia także nie są wymagane do zasilania logiki układu. 
+
+\insertImgSetSize{grafiki/TMCC160_SBD.eps}
+	{80}
+	{Ogólny schemat blokowy układu TMCC160}
+	{trinamic}
+
+Urządzenie jest jedynie tzw. {\it Gate Driver'em}, co oznacza że do pracy potrzebuje zewnętrznych końcówek mocy (co może być, gdyż dzięki temu można go dostosować do aplikacji niskiej i dużej mocy). TMCC160 potrafi nawet współpracować z czujnikami Hall'a i enkoderami inkrementalnymi, ponieważ ma zaimplementowane algorytmy sterowania w zamkniętej pętli sprzężenia zwrotnego. \\
+
+Po dodaniu kilku elementów pasywnych i złącz do płytki PCB z TMCC160, użytkownik otrzymuje funkcjonalny serwo-mechanizm, który może być sterowany zarówno z mikrokontrolera o bardzo niskich zasobach (wysoki poziom integracji) jak i z komputera, dzięki mnogości dostępnych interfejsów szeregowych (np. RS232 lub CAN).
+
+\subsection{Sterowniki pełnowymiarowe}
+
+
+
+
+
+
+\clearpage
+
+
