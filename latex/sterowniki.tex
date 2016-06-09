@@ -1,4 +1,5 @@
 \section{Rozwiązania komercyjne i Open Source}
+\label{s:sterowniki}
 
 Na rynku dostępnych jest bardzo wiele rozwiązań pozwalających w szybki sposób zacząć sterować konkretnym rodzajem silnika. Ceny poszczególnych sterowników różnią się od siebie znacząco, w taki sam sposób jak różni się ich funkcjonalność. Są też dostępne projekty bezpłatne ({\it Open Source i Open Hardware}) w rozumieniu konkretnych rozwiązań technologicznych, czy też {\it ,,Know How''}. Innymi słowy schematy elektryczne i mechaniczne, dane {\it CAD'owskie} i oprogramowanie są udostępnione za darmo, a samo urządzenie trzeba fizycznie wykonać samemu. W przypadku tych drugich należy także dokładnie zaznajomić się z licencją na zasadach jakiej są udostępnione, gdyż bardzo często zdarza się że nie można ich stosować bezpłatnie do zastosowań komercyjnych. 
 
@@ -111,17 +112,51 @@ Niezaprzeczalną zaletą urządzenia jest otwartość kodu, dzięki czemu można
 
 \subsubsection{Sterowniki firmy Technosoft}
 
-Technosoft jest wiodącą firmą w zakresie opracowywania specjalizowanych rozwiązań i produkcji układów napędowych. Ilość sterowników dostępnych w ofercie firmy jest bardzo duża, dlatego w tej sekcji zostanie opisana tylko jedna rodzina, która była inspiracją do stworzenia prezentowanego dalej w pracy sterownika do silników.
+Technosoft jest wiodącą firmą w zakresie opracowywania specjalizowanych rozwiązań i produkcji systemów napędowych. Ilość sterowników dostępnych w ofercie firmy jest bardzo duża, dlatego w tej sekcji zostanie opisana tylko jedna rodzina, która była inspiracją do stworzenia prezentowanego dalej w pracy sterownika do silników.
 
 \insertImgSetSize{grafiki/PIM2403.jpg}
 	{80}
-	{Przykładowy sterownik z rodziny {\it Plug-in Intelligent Servo Drives}, PIM2403. firma Technosoft}
+	{Przykładowy sterownik z rodziny {\it Plug-in Intelligent Servo Drives}, PIM2403. Firma Technosoft}
 	{technosoft}
+	
+Płytki {\it Plug-in} są urządzeniami o wysokim poziomie integracji, ale inaczej niż poprzednio przedstawione sterowniki nie posiadają zintegrowanego silnika. Na pokładzie znajduje się jednostka centrala- szybki mikrokontroler zmiennoprzecinkowy, który odpawiada za całe sterowanie. Na PCB nie ma żadnych sterowników pośredniczących, wszystkie algorytmy związane ze sterowaniem silnikiem są wykonywane w mikrokontrolerze. Rodzaje silników obsługiwanych przez kontroler to:
 
+\begin{easylist}
+	& Krokowy,
+	& BLDC,
+	& PMSM,
+	& DC, 
+	& VCM.
+	\\
+\end{easylist}
 
+Sama płytka sterownika nie wystarczy jednak do rozpoczęcia pracy, bo znajdują się na niej tylko pośrednie peryferia i brakuje odpowiednich wyprowadzeń. 
 
+\insertImgSetSize{grafiki/PIM2403_wboard.jpg}
+	{80}
+	{Kontroler PIM2403 zamontowany na płytce bazowej MS02-06-31 firmy Mechatronic Systems}
+	{oprWlasne}
 
+Rysunek \ref{grafiki/PIM2403_wboard.jpg} prezentuje sterownik {\it Plug-in} zamontowany na przykładowej płytce bazowej, która umożliwia komunikację oraz podłączenie do sterownika jako całości wielu końcowych peryferiów potrzebnych do działania. Poprzez złącza można podłączyć:
 
+\begin{easylist}
+	& zasilanie, 
+	& silnik,
+	& enkoder inkrementalny,
+	& czujnik Hall'a działający jako krańcówka,
+	& interfejsy CAN i RS232,
+	\\
+\end{easylist}
+
+Jest to przykładowa konfiguracja, która została przystosowana do konkretnej aplikacji- Firma Technosoft udostępnia aplikację PC-ową {\it Easy Motion Studio}, dzięki której możliwe jest nie tylko ustawianie parametrów regulatorów itd., ale nawet zaprogramowanie sterownika w niemal dowolny sposób, używając opracowanego przez firmę języka skryptowego {\it Motion Programming Language}. \\
+
+Rozwiązania oferowane przez tego producenta cechuje możliwość naprawdę szybkiego wdrożenia do projektu. Za tą zaletę trzeba dużo zapłacić, a cena rośnie wraz ze wzrostem możliwości ,,mocowych'' sterowników pod względem zasilania silników. Skala wzrostu jest niestety nieuwarunkowana, bo jedyne co zmienia się na sterownikach to końcówki mocy i czasami rozmiar PCB, a mimo wszystko cena potrafi wzrosnąć nawet o 60 \euro{} (różnica w cenie między sterownikiem 3 i 5-cio amperowym). 
+
+\tocLessLeftNorm{Podsumowanie}
+
+Na rynku jest dostępnych bardzo wiele rozwiązań pozwalających na sterowanie wszelkiego rodzaju silnikami elektrycznymi. Przedstawione przykładowe kontrolery stanowią tylko małą część dostępnych na rynku produktów, ale ukazują formy w jakich buduje się sterowniki. Najtańszymi układami są jedno-chipowe urządzenia, które do poprawnej pracy potrzebują bardzo wielu elementów dodatkowych. Wraz z poziomem integracji cena rośnie, a dodatkowo trzeba dopłacić za możliwość szybkiego wdrożenia produktu do swojej aplikacji i uniwersalność (pod względem wykonywanych programów i obsługi silników). \\
+
+Pomimo wszystkich zalet jakie posiadają zaprezentowane w rozdziale \ref{s:sterowniki} urządzenia, żadne z nich nie jest idealne- najmniejsze układy mają za małe możliwości, a wysoko zintegrowane sterowniki są za drogie (i jak na swoją cenę, także mają za małe możliwości). Z tych właśnie powodów powstaje uniwersalny sterownik do silników, którego dokładny opis znajduje się w dalszych rozdziałach pracy.
 
 
 
