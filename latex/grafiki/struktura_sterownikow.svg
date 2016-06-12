@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="96.407867mm"
+   height="163.814mm"
+   viewBox="0 0 341.60268 580.44329"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="struktura_sterownikow.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.42488555"
+     inkscape:cx="977.40807"
+     inkscape:cy="-296.38835"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1571"
+     inkscape:window-height="1028"
+     inkscape:window-x="1701"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-186.17574,-35.300506)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Verdana;-inkscape-font-specification:Verdana;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="212.18918"
+       y="56.321247"
+       id="text4138"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4140"
+         x="212.18918"
+         y="56.321247" /></text>
+    <g
+       id="g4633">
+      <rect
+         y="36.350506"
+         x="187.22574"
+         height="264.6124"
+         width="339.50269"
+         id="rect4136"
+         style="opacity:1;fill:#f6f393;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4.19999998, 2.09999999;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text4142"
+         y="59.649708"
+         x="356.84464"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Verdana;-inkscape-font-specification:Verdana"
+           y="59.649708"
+           x="356.84464"
+           id="tspan4144"
+           sodipodi:role="line">Obecna struktura napędowa maszyny</tspan></text>
+      <g
+         transform="translate(8.7684945,24.547376)"
+         id="g4233">
+        <rect
+           style="opacity:1;fill:#eea55e;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect4146"
+           width="99.853737"
+           height="64.904922"
+           x="208.82942"
+           y="203.18945" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="259.07123"
+           y="221.39098"
+           id="text4142-2"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             x="259.07123"
+             y="221.39098"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+             id="tspan4166">Sterownik 4</tspan></text>
+        <rect
+           style="opacity:1;fill:#ee5ed0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect4146-0"
+           width="67.197884"
+           height="36.662022"
+           x="224.65149"
+           y="227.73665" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="258.07831"
+           y="252.09183"
+           id="text4142-2-5"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             x="258.07831"
+             y="252.09183"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+             id="tspan4166-9">Oś X</tspan></text>
+      </g>
+      <g
+         transform="translate(179.76801,24.547376)"
+         id="g4233-8">
+        <rect
+           style="opacity:1;fill:#eea55e;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect4146-02"
+           width="99.853737"
+           height="64.904922"
+           x="208.82942"
+           y="203.18945" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="259.07123"
+           y="221.39098"
+           id="text4142-2-7"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             x="259.07123"
+             y="221.39098"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+             id="tspan4166-3">Sterownik 5</tspan></text>
+        <rect
+           style="opacity:1;fill:#ee5ed0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect4146-0-0"
+           width="67.197884"
+           height="36.662022"
+           x="224.65149"
+           y="227.73665" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="258.07831"
+           y="252.09183"
+           id="text4142-2-5-8"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             x="258.07831"
+             y="252.09183"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+             id="tspan4166-9-6">Oś Y</tspan></text>
+      </g>
+      <g
+         transform="translate(8.7684945,-127.72957)"
+         id="g4233-2">
+        <rect
+           style="opacity:1;fill:#eea55e;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect4146-00"
+           width="99.853737"
+           height="64.904922"
+           x="208.82942"
+           y="203.18945" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="259.07123"
+           y="221.39098"
+           id="text4142-2-58"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             x="259.07123"
+             y="221.39098"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+             id="tspan4166-5">Sterownik 0</tspan></text>
+        <rect
+           style="opacity:1;fill:#ee5ed0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect4146-0-6"
+           width="67.197884"
+           height="36.662022"
+           x="224.65149"
+           y="227.73665" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="258.07831"
+           y="252.09183"
+           id="text4142-2-5-3"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             x="258.07831"
+             y="252.09183"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+             id="tspan4166-9-7">Oś Z1</tspan></text>
+        <flowRoot
+           transform="translate(1.2168782,129.3938)"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           id="flowRoot4307"
+           xml:space="preserve"><flowRegion
+             id="flowRegion4309"><rect
+               y="74.211708"
+               x="154.35722"
+               height="22.883146"
+               width="43.686008"
+               id="rect4311" /></flowRegion><flowPara
+             id="flowPara4313"></flowPara></flowRoot>      </g>
+      <g
+         transform="translate(179.76801,-127.72957)"
+         id="g4233-2-8">
+        <rect
+           style="opacity:1;fill:#eea55e;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect4146-00-1"
+           width="99.853737"
+           height="64.904922"
+           x="208.82942"
+           y="203.18945" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="259.07123"
+           y="221.39098"
+           id="text4142-2-58-1"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             x="259.07123"
+             y="221.39098"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+             id="tspan4166-5-2">Sterownik 1</tspan></text>
+        <rect
+           style="opacity:1;fill:#ee5ed0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect4146-0-6-6"
+           width="67.197884"
+           height="36.662022"
+           x="224.65149"
+           y="227.73665" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="258.07831"
+           y="252.09183"
+           id="text4142-2-5-3-0"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             x="258.07831"
+             y="252.09183"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+             id="tspan4166-9-7-9">Oś R1</tspan></text>
+        <flowRoot
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           id="flowRoot4307-5"
+           xml:space="preserve"><flowRegion
+             id="flowRegion4309-6"><rect
+               y="74.211708"
+               x="154.35722"
+               height="22.883146"
+               width="43.686008"
+               id="rect4311-9" /></flowRegion><flowPara
+             id="flowPara4313-5" /></flowRoot>      </g>
+      <g
+         transform="translate(8.7684945,-52.423217)"
+         id="g4233-2-7">
+        <rect
+           style="opacity:1;fill:#eea55e;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect4146-00-2"
+           width="99.853737"
+           height="64.904922"
+           x="208.82942"
+           y="203.18945" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="259.07123"
+           y="221.39098"
+           id="text4142-2-58-5"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             x="259.07123"
+             y="221.39098"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+             id="tspan4166-5-8">Sterownik 2</tspan></text>
+        <rect
+           style="opacity:1;fill:#ee5ed0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect4146-0-6-8"
+           width="67.197884"
+           height="36.662022"
+           x="224.65149"
+           y="227.73665" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="258.07831"
+           y="252.09183"
+           id="text4142-2-5-3-6"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             x="258.07831"
+             y="252.09183"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+             id="tspan4166-9-7-5">Oś Z2</tspan></text>
+        <flowRoot
+           transform="translate(1.2168782,129.3938)"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           id="flowRoot4307-4"
+           xml:space="preserve"><flowRegion
+             id="flowRegion4309-2"><rect
+               y="74.211708"
+               x="154.35722"
+               height="22.883146"
+               width="43.686008"
+               id="rect4311-6" /></flowRegion><flowPara
+             id="flowPara4313-0" /></flowRoot>      </g>
+      <g
+         transform="translate(179.76801,-52.423217)"
+         id="g4233-2-8-9">
+        <rect
+           style="opacity:1;fill:#eea55e;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect4146-00-1-6"
+           width="99.853737"
+           height="64.904922"
+           x="208.82942"
+           y="203.18945" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="259.07123"
+           y="221.39098"
+           id="text4142-2-58-1-8"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             x="259.07123"
+             y="221.39098"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+             id="tspan4166-5-2-0">Sterownik 3</tspan></text>
+        <rect
+           style="opacity:1;fill:#ee5ed0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect4146-0-6-6-9"
+           width="67.197884"
+           height="36.662022"
+           x="224.65149"
+           y="227.73665" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="258.07831"
+           y="252.09183"
+           id="text4142-2-5-3-0-6"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             x="258.07831"
+             y="252.09183"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+             id="tspan4166-9-7-9-4">Oś R2</tspan></text>
+        <flowRoot
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           id="flowRoot4307-5-4"
+           xml:space="preserve"><flowRegion
+             id="flowRegion4309-6-2"><rect
+               y="74.211708"
+               x="154.35722"
+               height="22.883146"
+               width="43.686008"
+               id="rect4311-9-2" /></flowRegion><flowPara
+             id="flowPara4313-5-5" /></flowRoot>      </g>
+    </g>
+    <rect
+       style="opacity:1;fill:#a3f693;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4.19999999, 2.09999999;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4136-4"
+       width="339.50269"
+       height="292.85529"
+       x="187.22574"
+       y="321.83853" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="356.84464"
+       y="345.13776"
+       id="text4142-1"
+       sodipodi:linespacing="125%"><tspan
+         id="tspan4894"
+         sodipodi:role="line"
+         x="356.84464"
+         y="345.13776"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Verdana;-inkscape-font-specification:Verdana"> Struktura napędowa maszyny po</tspan><tspan
+         id="tspan4896"
+         sodipodi:role="line"
+         x="356.84464"
+         y="367.01276"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Verdana;-inkscape-font-specification:Verdana"> zastosowaniu nowych sterowników</tspan></text>
+    <flowRoot
+       transform="translate(9.9853727,315.15227)"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="flowRoot4307-2"
+       xml:space="preserve"><flowRegion
+         id="flowRegion4309-68"><rect
+           y="74.211708"
+           x="154.35722"
+           height="22.883146"
+           width="43.686008"
+           id="rect4311-4" /></flowRegion><flowPara
+         id="flowPara4313-7" /></flowRoot>    <flowRoot
+       transform="translate(359.66918,389.3538)"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="flowRoot4307-8"
+       xml:space="preserve"><flowRegion
+         id="flowRegion4309-9"><rect
+           y="74.211708"
+           x="154.35722"
+           height="22.883146"
+           width="43.686008"
+           id="rect4311-49" /></flowRegion><flowPara
+         id="flowPara4313-02" /></flowRoot>    <g
+       id="g5546"
+       transform="translate(-0.47440779,0)">
+      <g
+         transform="translate(-22,0)"
+         id="g5403">
+        <rect
+           style="opacity:1;fill:#eea55e;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect4146-00-3"
+           width="99.853737"
+           height="205.64931"
+           x="217.59792"
+           y="388.94791" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="267.83972"
+           y="407.14944"
+           id="text4142-2-58-2"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             x="267.83972"
+             y="407.14944"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+             id="tspan4166-5-81">Sterownik 0</tspan></text>
+        <g
+           id="g5173"
+           transform="translate(-341.85677,-140.03771)">
+          <g
+             id="g5215">
+            <rect
+               transform="translate(341.85677,140.03771)"
+               y="413.49512"
+               x="220.73022"
+               height="80.405365"
+               width="92.577377"
+               id="rect4146-0-6-3"
+               style="opacity:1;fill:#5ec8ee;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+            <text
+               transform="translate(341.85677,140.03771)"
+               sodipodi:linespacing="125%"
+               id="text4142-2-5-3-09"
+               y="427.85031"
+               x="266.8468"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+               xml:space="preserve"><tspan
+                 id="tspan4166-9-7-4"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+                 y="427.85031"
+                 x="266.8468"
+                 sodipodi:role="line">Wirualny</tspan><tspan
+                 id="tspan4972"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+                 y="446.60031"
+                 x="266.8468"
+                 sodipodi:role="line">sterownik 0</tspan></text>
+            <rect
+               style="opacity:1;fill:#ee5ed0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+               id="rect4146-0-6-33"
+               width="67.197884"
+               height="36.662022"
+               x="574.27783"
+               y="591.84235" />
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+               x="607.70465"
+               y="616.19751"
+               id="text4142-2-5-3-3"
+               sodipodi:linespacing="125%"><tspan
+                 sodipodi:role="line"
+                 x="607.70465"
+                 y="616.19751"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+                 id="tspan4166-9-7-90">Oś Z1</tspan></text>
+          </g>
+          <g
+             transform="translate(0,89.315469)"
+             id="g5215-4">
+            <rect
+               transform="translate(341.85677,140.03771)"
+               y="413.49512"
+               x="220.73022"
+               height="80.405365"
+               width="92.577377"
+               id="rect4146-0-6-3-0"
+               style="opacity:1;fill:#5ec8ee;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+            <text
+               transform="translate(341.85677,140.03771)"
+               sodipodi:linespacing="125%"
+               id="text4142-2-5-3-09-6"
+               y="427.85031"
+               x="266.8468"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+               xml:space="preserve"><tspan
+                 id="tspan4166-9-7-4-5"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+                 y="427.85031"
+                 x="266.8468"
+                 sodipodi:role="line">Wirualny</tspan><tspan
+                 id="tspan4972-6"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+                 y="446.60031"
+                 x="266.8468"
+                 sodipodi:role="line">sterownik 1</tspan></text>
+            <rect
+               style="opacity:1;fill:#ee5ed0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+               id="rect4146-0-6-33-8"
+               width="67.197884"
+               height="36.662022"
+               x="574.27783"
+               y="591.84235" />
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+               x="607.70465"
+               y="616.19751"
+               id="text4142-2-5-3-3-5"
+               sodipodi:linespacing="125%"><tspan
+                 sodipodi:role="line"
+                 x="607.70465"
+                 y="616.19751"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+                 id="tspan4166-9-7-90-2">Oś R1</tspan></text>
+          </g>
+        </g>
+      </g>
+      <g
+         transform="translate(89.926698,0)"
+         id="g5403-0">
+        <rect
+           style="opacity:1;fill:#eea55e;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect4146-00-3-9"
+           width="99.853737"
+           height="205.64931"
+           x="217.59792"
+           y="388.94791" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="267.83972"
+           y="407.14944"
+           id="text4142-2-58-2-1"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             x="267.83972"
+             y="407.14944"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+             id="tspan4166-5-81-6">Sterownik 1</tspan></text>
+        <g
+           id="g5173-4"
+           transform="translate(-341.85677,-140.03771)">
+          <g
+             id="g5215-2">
+            <rect
+               transform="translate(341.85677,140.03771)"
+               y="413.49512"
+               x="220.73022"
+               height="80.405365"
+               width="92.577377"
+               id="rect4146-0-6-3-08"
+               style="opacity:1;fill:#5ec8ee;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+            <text
+               transform="translate(341.85677,140.03771)"
+               sodipodi:linespacing="125%"
+               id="text4142-2-5-3-09-2"
+               y="427.85031"
+               x="266.8468"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+               xml:space="preserve"><tspan
+                 id="tspan4166-9-7-4-4"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+                 y="427.85031"
+                 x="266.8468"
+                 sodipodi:role="line">Wirualny</tspan><tspan
+                 id="tspan4972-0"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+                 y="446.60031"
+                 x="266.8468"
+                 sodipodi:role="line">sterownik 0</tspan></text>
+            <rect
+               style="opacity:1;fill:#ee5ed0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+               id="rect4146-0-6-33-5"
+               width="67.197884"
+               height="36.662022"
+               x="574.27783"
+               y="591.84235" />
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+               x="607.70465"
+               y="616.19751"
+               id="text4142-2-5-3-3-8"
+               sodipodi:linespacing="125%"><tspan
+                 sodipodi:role="line"
+                 x="607.70465"
+                 y="616.19751"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+                 id="tspan4166-9-7-90-22">Oś Z2</tspan></text>
+          </g>
+          <g
+             transform="translate(0,89.315469)"
+             id="g5215-4-6">
+            <rect
+               transform="translate(341.85677,140.03771)"
+               y="413.49512"
+               x="220.73022"
+               height="80.405365"
+               width="92.577377"
+               id="rect4146-0-6-3-0-3"
+               style="opacity:1;fill:#5ec8ee;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+            <text
+               transform="translate(341.85677,140.03771)"
+               sodipodi:linespacing="125%"
+               id="text4142-2-5-3-09-6-3"
+               y="427.85031"
+               x="266.8468"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+               xml:space="preserve"><tspan
+                 id="tspan4166-9-7-4-5-6"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+                 y="427.85031"
+                 x="266.8468"
+                 sodipodi:role="line">Wirualny</tspan><tspan
+                 id="tspan4972-6-8"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+                 y="446.60031"
+                 x="266.8468"
+                 sodipodi:role="line">sterownik 1</tspan></text>
+            <rect
+               style="opacity:1;fill:#ee5ed0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+               id="rect4146-0-6-33-8-2"
+               width="67.197884"
+               height="36.662022"
+               x="574.27783"
+               y="591.84235" />
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+               x="607.70465"
+               y="616.19751"
+               id="text4142-2-5-3-3-5-6"
+               sodipodi:linespacing="125%"><tspan
+                 sodipodi:role="line"
+                 x="607.70465"
+                 y="616.19751"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+                 id="tspan4166-9-7-90-2-6">Oś R2</tspan></text>
+          </g>
+        </g>
+      </g>
+      <g
+         transform="translate(201.85341,0)"
+         id="g5403-5">
+        <rect
+           style="opacity:1;fill:#eea55e;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect4146-00-3-98"
+           width="99.853737"
+           height="205.64931"
+           x="217.59792"
+           y="388.94791" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="267.83972"
+           y="407.14944"
+           id="text4142-2-58-2-7"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             x="267.83972"
+             y="407.14944"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+             id="tspan4166-5-81-0">Sterownik 2</tspan></text>
+        <g
+           id="g5173-7"
+           transform="translate(-341.85677,-140.03771)">
+          <g
+             id="g5215-47">
+            <rect
+               transform="translate(341.85677,140.03771)"
+               y="413.49512"
+               x="220.73022"
+               height="80.405365"
+               width="92.577377"
+               id="rect4146-0-6-3-09"
+               style="opacity:1;fill:#5ec8ee;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+            <text
+               transform="translate(341.85677,140.03771)"
+               sodipodi:linespacing="125%"
+               id="text4142-2-5-3-09-21"
+               y="427.85031"
+               x="266.8468"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+               xml:space="preserve"><tspan
+                 id="tspan4166-9-7-4-0"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+                 y="427.85031"
+                 x="266.8468"
+                 sodipodi:role="line">Wirualny</tspan><tspan
+                 id="tspan4972-05"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+                 y="446.60031"
+                 x="266.8468"
+                 sodipodi:role="line">sterownik 0</tspan></text>
+            <rect
+               style="opacity:1;fill:#ee5ed0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+               id="rect4146-0-6-33-9"
+               width="67.197884"
+               height="36.662022"
+               x="574.27783"
+               y="591.84235" />
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+               x="607.70465"
+               y="616.19751"
+               id="text4142-2-5-3-3-7"
+               sodipodi:linespacing="125%"><tspan
+                 sodipodi:role="line"
+                 x="607.70465"
+                 y="616.19751"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+                 id="tspan4166-9-7-90-9">Oś X</tspan></text>
+          </g>
+          <g
+             transform="translate(0,89.315469)"
+             id="g5215-4-0">
+            <rect
+               transform="translate(341.85677,140.03771)"
+               y="413.49512"
+               x="220.73022"
+               height="80.405365"
+               width="92.577377"
+               id="rect4146-0-6-3-0-5"
+               style="opacity:1;fill:#5ec8ee;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+            <text
+               transform="translate(341.85677,140.03771)"
+               sodipodi:linespacing="125%"
+               id="text4142-2-5-3-09-6-6"
+               y="427.85031"
+               x="266.8468"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+               xml:space="preserve"><tspan
+                 id="tspan4166-9-7-4-5-9"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+                 y="427.85031"
+                 x="266.8468"
+                 sodipodi:role="line">Wirualny</tspan><tspan
+                 id="tspan4972-6-6"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+                 y="446.60031"
+                 x="266.8468"
+                 sodipodi:role="line">sterownik 1</tspan></text>
+            <rect
+               style="opacity:1;fill:#ee5ed0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.0999999;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+               id="rect4146-0-6-33-8-1"
+               width="67.197884"
+               height="36.662022"
+               x="574.27783"
+               y="591.84235" />
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.5px;line-height:125%;font-family:Consolas;-inkscape-font-specification:Sans;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+               x="607.70465"
+               y="616.19751"
+               id="text4142-2-5-3-3-5-4"
+               sodipodi:linespacing="125%"><tspan
+                 sodipodi:role="line"
+                 x="607.70465"
+                 y="616.19751"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:Verdana;-inkscape-font-specification:Verdana"
+                 id="tspan4166-9-7-90-2-0">Oś Y</tspan></text>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
