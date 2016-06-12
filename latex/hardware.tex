@@ -1,6 +1,87 @@
 \section{Hardware}
 
+Tak jak zostało wspomniane w poprzednim rozdziale, pierwszym zastosowaniem projektowanego sterownika jest nowa, zoptymalizowana pod względem mechanicznym głowica układająca do automatów typu Pick and Place w firmie \firma{}. Na najbliższych stronach znajduje się opis poszczególnych modułów tej głowicy pozwalający zrozumieć jej zasadę działania, ze szczególnym uwzględnieniem części elektrycznej, gdyż to ona stanowi wkład autora w projekt tej głowicy.
+
+\insertImgSetSize{grafiki/glowica.png}
+	{140}
+	{Prototyp głowicy układającej z zastosowaniem projektowanego sterownika: a) Widok modelu 3D głowicy od boku z wsuniętą pinolą, b) ten sam model z pinolą wysuniętą, c) rzeczywiste zdjęcie głowicy. Wymiary przy wsuniętej pinoli A x B x C mm}
+	{mechsys3d}
+
+Rysunek \ref{grafiki/glowica.png} prezentuje sterownik zamontowany w miejscu pracy. Poszczególne elementy urzadzenia to:
+
+\begin{enumerate}
+	\item płytka sterownika główna,
+	\item płytka sterownika pośrednia zasilająca,
+	\item płytka sterownika z układem enkodera dla silnika w osi Z,
+	\item płytka sterownika z układem enkodera dla silnika w osi R,
+	\item silnik liniowy VCM odpowiedzialny za ruch posuwisto-zwrotny w osi Z,
+	\item silnik hybrydowy krokowy odpowiedzialny za obrót w osi R,
+	\item pinola głowicy służąca do podnoszenia i odkładania komponentów SMD.
+\end{enumerate}
+
+Ze względu na konstrukcję mechaniczną głowicy, w celu wykorzystania jak największej przestrzeni na PCB, kontroler jest ,,rozproszony'' na cztery osobne płytki PCB. Jak widać na rysunku \ref{grafiki/glowica.png} b), elementy 1, 3, 4, 6 i 7 znajdują się w części ruchomej głowicy, a 2 i 5 w części nieruchomej (korpus silnika VCM jest ruchomy, a jego cylinder statyczny- dokładna budowa tego silnika przedstawiona jest na rysunku \ref{grafiki/vcm_budowa.png}). Część ruchoma porusza się po prowadnicy, która zapewnia równoległy względem cylindra ruch korpusu. Zasilanie i sygnały magistrali komunikacyjnej do części ruchomej doprowadzane są elastyczną tasiemką typu {\it Flex} widoczną na zdjęciu głowicy bez obudowy (\ref{grafiki/glowica.png} c)). Silnik krokowy służy do obracania przyssanych do pinoli (podnoszenie przez podciśnienie) komponentów. \\
+
+Kolejne sekcje przedstawiają opis poszczególnych modułów znajdujących się na każdej z płytek PCB kontrolera. Wszystkie schematy ideowe (także ich części) i płytki PCB prezentowane dalej zostały w domyśle wykonane przez autora pracy w programie {\it Altium Designer} dla firmy \firma{}, chyba że zaznaczono inaczej. Niektóre części schematów zostały przeorganizowane w taki sposób, aby zajmowały jak najmniej miejsca w celu czytelnego wyświetlenia w tekście. Kompletny oryginalny schemat ideowy całego urządzenia znajduje się w załącznikach pracy.
+
+\subsection{Płytka zasilająca}
+
+Pierwsza z opisywanych płytek na rysunku \ref{grafiki/glowica.png} jest oznaczona numerem 2. Znajduje się na niej zaledwie kilka komponentów- pełni ona funkcję pośredniczącą między płytką główną sterownika a przewodami doprowadzającymi sygnały sterujące i zasilanie.
+
+\insertImgSetSize{grafiki/schemat_plytka_zasilajaca.eps}
+	{63}
+	{Schemat ideowy płytki zasilającej w głowicy układającej}
+	{mechsyspcb}
+	
+Poprzez przewód do złącza {\it CON1} do głowicy doprowadzane są:
+
+\begin{easylist}
+	& zasilanie ze źródła napięcia o amplitudzie 24 V prądu stałego,
+	& para różnicowa magistrali CAN,
+	& sygnał odbiorczy i nadawczy magistrali RS232.
+	\\
+\end{easylist} 
+
+Wszystkie powyższe sygnały są następnie przekazywane na złącze {\it CON2}, które poprzez tasiemkę typu {\it Premo-Flex} o pitch'u 0.5 mm (firma Molex) przewodzi je dalej do płytki głównej. Wytrzymałość prądowa pojedynczej żyły takiego złącza to tylko 0.5 A, dlatego sygnały zasilające używają ich aż 8 (po 4 dla zasilania i dla masy).
+
+\insertImgSetSize{grafiki/pcb3d_plytka_zasilajaca.png}
+	{70}
+	{Widok ortogonalny modelu 3D płytki zasilającej, a) z widokiem warstwy dolnej, b) z widokiem warstwy górnej}
+	{mechsyspcb}
+
+Kolejnymi elementami PCB są dwa kondensatory elektrolityczne o największej pojemności jaką tylko udało się dostać w obudowach, które mieszczą się na płytce. Służą po to, aby zwiększyć pojemność widzianą z zacisków zasilania układu, która z kolei jest potrzebną w celu utrzymania stabilnego napięcia w fazach wzmożonego poboru prądu przez urządzenie. Ostatni komponent to zworka zwierająca rezystor terminujący na magistrali CAN. W zależności od topologii magistrali można ją załączyć lub zostawić rozwartą. Terminator został umieszczony dosyć daleko od układu sterownika CAN, ze względu na to że inne miejsce było by zbyt trudno dostępna. Odległość ta jest jednak wystarczająco niska do poprawnego działania układu.
+
+\subsection{Płytka enkodera osi R}
+
+Płytka z enkoderem dla osi R jest zamontowana za silnikiem krokowym (numer 4 na rysunku \ref{grafiki/glowica.png}). Jako enkoder magnetyczny został zastosowany układ scalony AS5048A firmy AMS. Rozwiązanie to przypomina te wykorzystane przez Tropical Labs w swoim sterowniku Mechaduino (\ref{ss:mechaduino}). Należy jednak wspomnieć że koncept został zastosowany przed opublikowaniem wpisu o ich sterowniku na stronie \url{hackaday.io} i nie jest na nim wzorowany ani nim inspirowany. AS5048A jest enkoderem absolutnym, który dostarcza informację o aktualnej pozycji kątowej między innymi poprzez interfejs SPI {\it Serial Peripheral Interface}). Używając go można uzyskać pozycję z dokładnością do 0.05\degree{} po zastosowaniu algorytmów uśredniających (\cite{AS5048}). Więcej informacji o zastosowanych w sterowniku algorytmach uśredniających dla tego enkodera jest zawarte w sekcji <dodac referencje>.
+
+\insertImgSetSize{grafiki/AS5048A_diagram.eps}
+	{75}
+	{Schemat blokowy układu scalonego AS5048A}
+	{AS5048}
+	
+Obracając magnesem w sąsiedztwie układu scalonego, zmienne pole magnetyczne wpływa na matrycę czujników Hall'a która się w nim znajduje. Układ analogowo cyfrowy zawarty w urządzeniu przetwarza analogową informację w formie zmiennego natężenia pola magnetycznego na informację cyfrową o aktualnej pozycji kątowej.
+
+\insertImgSetSize{grafiki/schemat_enkoder_magnetyczny.eps}
+	{75}
+	{Schemat ideowy płytki z enkoderem magnetycznym dla osi R w głowicy układającej}
+	{mechsyspcb}
+	
 
 
 
 \clearpage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
