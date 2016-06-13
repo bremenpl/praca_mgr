@@ -36,11 +36,6 @@ Zostaną dalej przedstawione najważniejsze wymagania i warunki brzegowe, które
 {tab:maszyny_silniki}
 
 Na obecnym etapie, w części urządzeń stosowane są uniwersalne sterowniki Technosoft'u, które są odpowiednio zaprogramowane do pracy z określonym rodzajem silnika, lub własne proste sterowniki, dedykowane pod konkretną maszynę elektryczną (np. silnik komutatorowy DC).
-
-\insertImgSetSize{grafiki/maszyna_osie.png}
-	{60}
-	{Model 3D maszyny P30 typu Pick and Place z wbudowanym dyspenserem z oznaczonymi osiami}
-	{mechsys3d}
 	
 Rysunek \ref{grafiki/maszyna_osie.png} prezentuje automat P30 z oznaczonymi osiami. Poprzez pojedynczą oś należy rozumieć jeden układ napędowy w którym zastosowany jest jeden silnik i jeden sterujący nim kontroler. W tego rodzaju maszyny jest aż sześć układów napędowych, a co za tym idzie sześć zastosowanych sterowników typu Plug-in Technosoft'u.
 
@@ -59,7 +54,14 @@ Rysunek \ref{grafiki/maszyna_osie.png} prezentuje automat P30 z oznaczonymi osia
 {oprWlasne}
 {tab:maszyny_osie}
 
-Fakt zastosowania tak dużej ilości sterowników znacząco podwyższa koszt jednostkowy wyprodukowania maszyny. Chcąc użyć w napędach poszczególnych osi własnego kontrolera, musi mieć on możliwość sterowania ostatecznie wszystkimi tymi silnikami elektrycznymi, co obecnie sterowniki Technosoft'u. Dodatkowo, sterownikowi zostało postawione jeszcze jedno wymaganie, którego nie spełnia żaden z prezentowanych kontrolerów dostępnych na rynku- praca z dwoma dowolnymi silnikami równolegle (patrz sekcja \ref{ss:axis_virtualisation}). Ta cecha sprawia że gotowe rozwiązania pozostają daleko w tyle pod względem funkcjonalnym. Koszt jednostkowy maszyny obniży się nie tylko przez to że każdy ze sterowników zostanie zastąpiony własnym, ale dodatkowo dlatego że będzie trzeba zastosować dwa razy mniej kontrolerów. \\
+Fakt zastosowania tak dużej ilości sterowników znacząco podwyższa koszt jednostkowy wyprodukowania maszyny. Chcąc użyć w napędach poszczególnych osi własnego kontrolera, musi mieć on możliwość sterowania ostatecznie wszystkimi tymi silnikami elektrycznymi, co obecnie sterowniki Technosoft'u. 
+
+\insertImgSetSize{grafiki/maszyna_osie.png}
+	{110}
+	{Model 3D maszyny P30 typu Pick and Place z wbudowanym dyspenserem z oznaczonymi osiami, a) widok lufy i głowic od przodu maszyny, b) Cała maszyna w rzucie ortogonalnym}
+	{mechsys3d}
+
+Dodatkowo, sterownikowi zostało postawione jeszcze jedno wymaganie, którego nie spełnia żaden z prezentowanych kontrolerów dostępnych na rynku- praca z dwoma dowolnymi silnikami równolegle (patrz sekcja \ref{ss:axis_virtualisation}). Ta cecha sprawia że gotowe rozwiązania pozostają daleko w tyle pod względem funkcjonalnym. Koszt jednostkowy maszyny obniży się nie tylko przez to że każdy ze sterowników zostanie zastąpiony własnym, ale dodatkowo dlatego że będzie trzeba zastosować dwa razy mniej kontrolerów. \\
 
 Dodatkowo należy zaznaczyć że krótkoterminowo i w przypadku niewielu wyprodukowanych maszyn, projektowanie własnego kontrolera nie jest opłacalne, gdyż koszt {\it development'u} będzie przekraczać koszt zastosowania gotowego rozwiązania. Z perspektywy czasu jednak, sytuacja się odwraca. Cena za komponenty elektroniczne i wyprodukowanie PCB w zewnętrznej firmie jest niewielka przy zamówieniach w dużych ilościach- głównym kosztem jest praca wykonana przez projektanta PCB i programistę w celu opracowania rozwiązania. Zalet tego typu podejścia jest jeszcze więcej i zostaną one w większych szczegółach przytoczone w dalszych rozdziałach i sekcjach.
 
@@ -70,18 +72,16 @@ Budowany sterownik musi zastąpić niemal jeden do jednego kontroler Technosoft'
 \subsection{Wirtualizacja osi}
 \label{ss:axis_virtualisation}
 
-Ta cecha jest bezpośrednio powiązana z dwoma przedstawionymi wcześniej. Chcąc zastosować kontroler, który ma możliwość sterowania dwoma silnikami w miejsce takiego, który mógł pracować tylko z jednym, trzeba pójść na pewne ustępstwa. Mianowicie, pozostałe urządzenia muszą dalej postrzegać sterownik jako dwa osobne urządzenia.
-
-\insertImgSetSize{grafiki/struktura_sterownikow.eps}
-	{160}
-	{Struktura zastosowanych sterowników w maszynie P30 obecnie i w przyszłości po pełnej implementacji opracowywanego rozwiązania}
-	{oprWlasne}
-
-W tym celu kontroler musi ,,przedstawiać się'' na magistrali komunikacyjnej jako dwa osobne urządzenia, pomimo tego że posiada tylko jedno oprogramowanie i są do niego podłączone dwa silniki. Taki koncept wydaje się być rozwiązaniem typu {\it work-around} (na około), ale ma także swoje plusy z punktu widzenia architektury oprogramowania kontrolera (patrz rozdział \ref{s:oprogramowanie}). \\
+Ta cecha jest bezpośrednio powiązana z dwoma przedstawionymi wcześniej. Chcąc zastosować kontroler, który ma możliwość sterowania dwoma silnikami w miejsce takiego, który mógł pracować tylko z jednym, trzeba pójść na pewne ustępstwa. Mianowicie, pozostałe urządzenia muszą dalej postrzegać sterownik jako dwa osobne urządzenia. W tym celu kontroler musi ,,przedstawiać się'' na magistrali komunikacyjnej jako dwa osobne urządzenia, pomimo tego że posiada tylko jedno oprogramowanie i są do niego podłączone dwa silniki. Taki koncept wydaje się być rozwiązaniem typu {\it work-around} (na około), ale ma także swoje plusy z punktu widzenia architektury oprogramowania kontrolera (patrz rozdział \ref{s:oprogramowanie}). \\
 
 Na chwilę obecną, nowy sterownik jest ciągle w fazie projektowania. W jego pierwotnej formie jest wdrażany do zoptymalizowanej mechanicznie głowicy układającej w automatach Pick and Place. W dalszych rozdziałach i sekcjach, kontroler będzie opisywany w odniesieniu właśnie do tej implementacji w celu lepszego wytłumaczenia jego działania i rozwiązań w nim zastosowanych. Procedury programowe takie jak sterowanie konkretnym rodzajem silnika są wdrażane po kolei w ramach potrzebnych na daną chwilę funkcjonalności. W momencie zdawania niniejszej pracy urządzenie nie jest jeszcze w pełni funkcjonalne, aczkolwiek jego najważniejsze funkcjonalności dla pierwszego prototypu zostały już zaimplementowane. Lista kolejnych tematów w kolejce do implementacji w ramach projektu uniwersalnego sterownika do silników została przedstawiona w podsumowaniu pracy (rozdział \ref{s:podsumowanie}). \\
 
-Należy pamiętać rozpatrując ten projekt o tym, że pomimo tego że układ może przyjmować nieco zmienioną sprzętową formę w zależności zastosowania w różnych aplikacjach, to jego oprogramowanie i on sam dalej pozostaje uniwersalny. Porównaniem unaoczniającym ten koncept może być przyrównanie sterownika do różnych wersji samochodu tego samego samochodu- Ta sama wersja auta może być wyprodukowana w wersji sedan lub kombi, ale mimo to mechanika auta na pewnym poziomie i jego oprogramowanie nie różnią się od siebie. Producent nie musi budować od zera dwóch osobnych samochodów. Tak samo w przypadku uniwersalnego sterownika, w celu optymalizacji zajmowanego przez układ miejsca, hardware może być przystosowany np. tylko do silników krokowych lub tylko DC. Nie oznacza to jednak że potrzebne są jakiekolwiek zmiany w oprogramowaniu, lub duży wysiłek w przeprojektowaniu płytki PCB. \\
+Należy pamiętać rozpatrując ten projekt o tym, że pomimo tego że układ może przyjmować nieco zmienioną sprzętową formę w zależności zastosowania w różnych aplikacjach, to jego oprogramowanie i on sam dalej pozostaje uniwersalny. Porównaniem unaoczniającym ten koncept może być przyrównanie sterownika do różnych wersji samochodu tego samego samochodu- Ta sama wersja auta może być wyprodukowana w wersji sedan lub kombi, ale mimo to mechanika auta na pewnym poziomie i jego oprogramowanie nie różnią się od siebie. Producent nie musi budować od zera dwóch osobnych samochodów. Tak samo w przypadku uniwersalnego sterownika, w celu optymalizacji zajmowanego przez układ miejsca, hardware może być przystosowany np. tylko do silników krokowych lub tylko DC. Nie oznacza to jednak że potrzebne są jakiekolwiek zmiany w oprogramowaniu, lub duży wysiłek w przeprojektowaniu płytki PCB. 
+
+\insertImgSetSize{grafiki/struktura_sterownikow.eps}
+	{165}
+	{Struktura zastosowanych sterowników w maszynie P30 obecnie i w przyszłości po pełnej implementacji opracowywanego rozwiązania}
+	{oprWlasne}
 
 Dalsze rozdziały przedstawiają rozwiązania techniczne sprzętowe i programowe w formie mniej abstrakcyjnej, a bardziej szczegółowej.
 

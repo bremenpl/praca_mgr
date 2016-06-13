@@ -4,7 +4,7 @@ Tak jak zostało wspomniane w poprzednim rozdziale, pierwszym zastosowaniem proj
 
 \insertImgSetSize{grafiki/glowica.png}
 	{140}
-	{Prototyp głowicy układającej z zastosowaniem projektowanego sterownika: a) Widok modelu 3D głowicy od boku z wsuniętą pinolą, b) ten sam model z pinolą wysuniętą, c) rzeczywiste zdjęcie głowicy. Wymiary przy wsuniętej pinoli A x B x C mm}
+	{Prototyp głowicy układającej z zastosowaniem projektowanego sterownika: a) Widok modelu 3D głowicy od boku z wsuniętą pinolą, b) ten sam model z pinolą wysuniętą, c) rzeczywiste zdjęcie głowicy. Wymiary przy wsuniętej pinoli 34 x 38 x 184 mm}
 	{mechsys3d}
 
 Rysunek \ref{grafiki/glowica.png} prezentuje sterownik zamontowany w miejscu pracy. Poszczególne elementy urzadzenia to:
@@ -50,7 +50,7 @@ Wszystkie powyższe sygnały są następnie przekazywane na złącze {\it CON2},
 
 Kolejnymi elementami PCB są dwa kondensatory elektrolityczne o największej pojemności jaką tylko udało się dostać w obudowach, które mieszczą się na płytce. Służą po to, aby zwiększyć pojemność widzianą z zacisków zasilania układu, która z kolei jest potrzebną w celu utrzymania stabilnego napięcia w fazach wzmożonego poboru prądu przez urządzenie. Ostatni komponent to zworka zwierająca rezystor terminujący na magistrali CAN. W zależności od topologii magistrali można ją załączyć lub zostawić rozwartą. Terminator został umieszczony dosyć daleko od układu sterownika CAN, ze względu na to że inne miejsce było by zbyt trudno dostępna. Odległość ta jest jednak wystarczająco niska do poprawnego działania układu.
 
-\subsection{Płytka enkodera osi R}
+\subsection{Płytka enkodera magnetycznego}
 
 Płytka z enkoderem dla osi R jest zamontowana za silnikiem krokowym (numer 4 na rysunku \ref{grafiki/glowica.png}). Jako enkoder magnetyczny został zastosowany układ scalony AS5048A firmy AMS. Rozwiązanie to przypomina te wykorzystane przez Tropical Labs w swoim sterowniku Mechaduino (\ref{ss:mechaduino}). Należy jednak wspomnieć że koncept został zastosowany przed opublikowaniem wpisu o ich sterowniku na stronie \url{hackaday.io} i nie jest na nim wzorowany ani nim inspirowany. AS5048A jest enkoderem absolutnym, który dostarcza informację o aktualnej pozycji kątowej między innymi poprzez interfejs SPI {\it Serial Peripheral Interface}). Używając go można uzyskać pozycję z dokładnością do 0.05\degree{} po zastosowaniu algorytmów uśredniających (\cite{AS5048}). Więcej informacji o zastosowanych w sterowniku algorytmach uśredniających dla tego enkodera jest zawarte w sekcji <dodac referencje>.
 
@@ -59,13 +59,88 @@ Płytka z enkoderem dla osi R jest zamontowana za silnikiem krokowym (numer 4 na
 	{Schemat blokowy układu scalonego AS5048A}
 	{AS5048}
 	
-Obracając magnesem w sąsiedztwie układu scalonego, zmienne pole magnetyczne wpływa na matrycę czujników Hall'a która się w nim znajduje. Układ analogowo cyfrowy zawarty w urządzeniu przetwarza analogową informację w formie zmiennego natężenia pola magnetycznego na informację cyfrową o aktualnej pozycji kątowej.
+Obracając magnesem w sąsiedztwie układu scalonego, zmienne pole magnetyczne wpływa na matrycę czujników Hall'a która się w nim znajduje. Przetwornik analogowo cyfrowy zawarty w urządzeniu przetwarza analogową informację w formie zmiennego natężenia pola magnetycznego na informację cyfrową o aktualnej pozycji kątowej.
 
 \insertImgSetSize{grafiki/schemat_enkoder_magnetyczny.eps}
 	{75}
 	{Schemat ideowy płytki z enkoderem magnetycznym dla osi R w głowicy układającej}
 	{mechsyspcb}
 	
+Układ na schemacie ideowym \ref{grafiki/schemat_enkoder_magnetyczny.eps} oznaczony jest symbolem U1. Sygnały magistrali SPI są wyprowadzone na pionowe złącze CON1 o rastrze 1.27 mm, przez które dalej idą na płytkę główną kontrolera. Elementy oznaczone jako FID1 i FID2 to punkty referencyjne dla górnej kamery automatu Pick and Place (tzw. {\it Fidutial'e}). Są one widoczne na płytce PCB z rys. \ref{grafiki/pcb3d_plytka_encmag.png} a), w lewym górnym i prawym dolnym rogu. Ten sam rysunek (obiekt b)) przedstawia płytkę enkodera zamocowaną na elemencie aluminiowym frezowanym, który z kolei jest przykręcony do silnika krokowego. Duży czarny element to mikro zawór podciśnienia, o którym będzie mowa w sekcji \ref{sekcja}. \\
+
+Oś poprzeczna układu scalonego musi się idealnie pokrywać z osią obracającego się magnesu w celu jak najlepszego odczytu natężenia pola przez enkoder.
+
+\insertImgSetSize{grafiki/pcb3d_plytka_encmag.png}
+	{140}
+	{Widok płytki enkodera magnetycznego- a) dolna warstwa PCB, na której znajduje się AS5048A wraz z kondensatorami blokującymi, b) rzut ortogonalny płytki zamocowanej na elemencie wspólnym dla niej i silnika}
+	{mechsyspcb}
+	
+Na rysunku \ref{grafiki/przekroj_silnik.png} widać dokładnie co znajduje się w aluminiowej kostce do której zamocowana jest płytka:
+
+\begin{enumerate}
+	\item płytka z enkoderem magnetycznym AS5048A,
+	\item płytka sterownika główna, połączona przez CON1 (\ref{grafiki/schemat_enkoder_magnetyczny.eps}),
+	\item magnes trwały namagnesowany poprzecznie z otworem w środku, zamocowany na końcu wału silnika,
+	\item przelotowy wał silnika krokowego,
+	\item silnik krokowy hybrydowy,
+	\item element aluminiowy (na modelu przezroczysty) łączący wymienione komponenty.
+\end{enumerate}
+	
+\insertImgSetSize{grafiki/przekroj_silnik.png}
+	{100}
+	{Płytka z enkoderem magnetycznym zamocowana nad obracającym się, przelotowym magnesem trwałym, który z kolei jest zamocowany na przelotowym wale silnika krokowego}
+	{mechsys3d}
+	
+Do elementu łączącego jest także doprowadzone podciśnienie poprzez giętki przewód pneumatyczny- w ten sposób jest możliwe podnoszenie komponentów elektronicznych przez głowicę (przysysając je).
+	
+\subsection{Płytka enkodera optycznego}
+\label{ss:encmag}
+
+Podobnie jak silnik krokowy współpracuje z enkoderem magnetycznym w osi R, tak samo silnik VCM działa z enkoderem optycznym w osi Z i także posiada osobną płytkę PCB dla obwodu tego enkodera. W odróżnieniu do poprzedniej PCB jednak, ta wymaga o wiele więcej komponentów do poprawnej pracy. Pozycja nie jest już podawana absolutnie poprzez magistralę szeregową tylko musi być odczytana jako zmieniający się sygnał analogowy, który następnie poddawany jest interpolacji. Potem trafia do głównej płytki kontrolera w postaci 2 zmieniających się sygnałów zero-jedynkowych (sygnał kwadraturowy). W zależności od tego które zbocze jest wiodące, procesor może określić kierunek przesuwania się enkodera względem liniału. \\
+
+Rysunek \ref{grafiki/enkoder_liniowy_schemat1.eps} prezentuje większość schematu ideowego płytki enkodera. Elementem odczytującym pozycję jest AEDR-8320 (obiekt U2 na schemacie). Jest to enkoder optyczny w małej obudowie SMD, który generuje impulsy świetlne, które odbijając się od przeszkód są przez niego ,,łapane'' przy użyciu matrycy fotodiod.
+
+\insertImgSetSize{grafiki/enkoder_liniowy_schemat1.eps}
+	{72}
+	{Część schematu ideowego płytki enkodera liniowego osi Z}
+	{mechsyspcb}
+	
+W celu uzyskania najlepszego efektu i rozdzielczości, należy użyć specjalnego paska z mikro wpustkami jako powierzchni odbijającej światło (liniału). Zasada działania jest zobrazowana na rysunku \ref{grafiki/AEDR-8320.pdf}.
+
+\insertImgSetSize{grafiki/AEDR-8320.pdf}
+	{60}
+	{Schemat blokowy i zasada działania układu scalonego AEDR-8320 firmy Avago Technologies}
+	{aedr8320}
+	
+Sygnały analogowe o kształcie sinusoidy (sygnał wyjściowy A) i cosinusoidy (sygnał wyjściowy B) są podłączone do wejść interpolatora IC-TW (rys \ref{grafiki/ictw2_block_diagram.eps}). Jego zadaniem jest zamiana tych sygnałów na postać cyfrową, która może być odczytana przez mikrokontroler sterujący na głównej płytce urządzenia (połączenie przez złącze CON1). Poziom interpolacji i wzmocnienie ustawia się zwierając odpowiednia wyprowadzenia chip'a do masy lub potencjału zasilającego. Z racji tego że urządzenie jest dopiero prototypem, na PCB enkodera komponenty zostały umieszczony w taki sposób, aby konfigurację można było zmodyfikować przy niewielkim nakładzie pracy- za pomocą zworek, które widoczne są na drugiej części schematu ideowego \ref{grafiki/enkoder_liniowy_schemat1.eps} (rezystorów 0 $ \Omega $).
+
+\insertImgSetSize{grafiki/ictw2_block_diagram.eps}
+	{100}
+	{Schemat blokowy 8-bitowego interpolatora IC-TW2 firmy IC-HAUS}
+	{ictw2}
+	
+Należy pamiętać o tym aby w danym momencie przylutowany był tylko jeden z rezystorów dla danej lini konfiguracyjnej (zwierający do GND lub 5V). W przeciwnym wypadku połączenie spowoduje zwarcie w układzie.
+
+\insertImgSetSize{grafiki/enkoder_liniowy_schemat2.pdf}
+	{40}
+	{Część schematu ideowego płytki enkodera liniowego osi Z, prezentująca zworki konfiguracyjne}
+	{mechsyspcb}
+	
+Ostatnim elementem pozostałym do omówienia na schemacie jest U1. SFH9245 to układ elektroniczny działający w podobny sposób do AEDR-8313 (\ref{grafiki/AEDR-8320.pdf}), który jest jednak o wiele prostszy i tańszy. Składa się on z diody emitującej światło podczerwone i z fototranzystora z przerzutnikiem Shmitt'a (\ref{grafiki/sfh9245_schemat_blokowy.pdf}). Światło zamiast odbijać się od liniału, odbija się od wydrukowanego na drukarce laserowej paska, przyklejonego koło liniału. Pasek składa się z dwóch ,,stref''- czarnej i białej.
+
+\insertImgSetSize{grafiki/sfh9245_schemat_blokowy.pdf}
+	{50}
+	{Schemat blokowy układu scalonego SFH9245 firmy Osram}
+	{sfh9245}
+
+Kiedy układ znajduje się nad czarną strefą, światło nie odbija się dobrze i na wyjściu OUT układu jest stan wysoki (wyjście typu {\it Open-Collector}). W strefie białej światło odbija się bardzo dobrze i stan OUT zmienia się na niski. Mechanizm ten jest używany w głowicy do odnajdowania przez silnik liniowy VCM pozycji odniesienia ({\it Homing position}). Jest to niezbędne, dlatego że skonstruowany enkoder jest liniowy, a nie absolutny czyli potrafi dostarczać jedynie informację o zmianie pozycji, a nie ją samą jak poprzedni enkoder (sekcja \ref{ss:encmag}).
+
+\insertImgSetSize{grafiki/enkoder_optyczny_pcb.png}
+	{60}
+	{Model 3D płytki drukowanej enkodera liniowego silnika VCM. Po lewej warstwa górna, po prawej dolna}
+	{mechsyspcb}
+
+Rozdzielczość możliwa do uzyskania w prezentowanym układzie zależy głównie od dwóch czynników: gęstości umiejscowienia rowków na liniale i możliwości interpolatora. W tym przypadku rozdzielczość ogranicza układ IC-TW2, którego maksymalny poziom interpolacji to x64. Przy zastosowaniu liniału <podac model> daje to rozdzielczość 0.45354325 impulsu na mikron.
 
 
 
