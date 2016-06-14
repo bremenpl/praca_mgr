@@ -1,0 +1,102 @@
+\subsection{Płytka główna sterownika}
+\label{ss:mainboard}
+
+Czwarta opisywana płytka drukowana była o wiele większym wyzwaniem projektowym, ze względu na dostępne wymiary i dużą ilośc pożądanych elementów. Najważniejsze dane liczbowe płytki:
+
+\begin{easylist}
+	& wymiary: 109.1 x 25.6 mm,
+	& końcowa grubość laminatu: 1.55 mm,
+	& ilość warstw: 4,
+	& ilość przelotek: 411,
+	& liczba komponentów na warstwie górnej: 145,
+	& liczba komponentów na warstwie dolnej: 34.
+	\\
+\end{easylist} 
+
+Kształt i rozmiar PCB został wybrany tak, aby wykorzystać maksymalnie całą dostępną przestrzeń w obudowie głowicy. Rysunek \ref{grafiki/plytka_glowna_foto.jpg} prezentuję poglądowe zdjęcie płytki niezamontowanej w urządzeniu. 
+
+\insertImgSetSize{grafiki/plytka_glowna_foto.jpg}
+	{45}
+	{Zdjęcie głównej płytki sterującej głowicy układającej (warstwa górna)}
+	{oprWlasne}
+
+Dwie wewnętrzne warstwy płytki to tzw. {\it Plane Layers} i służą głównie do doprowadzania zasilania do układów znajdujących się na płytce. Na warstwie górnej ({\it Component layer}) jest ułożonych ok. 80\% komponentów. Pozostałe znajdują się na warstwie dolnej ({\it Solder side}) tylko dlatego że nie zmieściły się na górze. W momencie kiedy wszystkie komponenty elektroniczne znajdują się tylko po jednej stronie płytki, znacząco upraszcza się jej technologia produkcji. W tym wypadku, aby ,,ułożyć płytkę'' przy pomocy automatu typu Pick and Place, należy po za pastą lutowniczą użyć też kleju (dozowanego np. z dyspensera) aby przykleić komponenty po jednej stronie płytki. Dzięki temu kiedy ta trafi do pieca rozpływowego w celu zlutowania, elementy po dolnej stronie nie pospadają. Taka forma projektowania ma jeszcze jedną zaletę- można użyć jednej z warstw tylko do prowadzenia ścieżek, które inaczej było by trudno doprowadzić w niektóre miejsca. W tym wypadku jednak trzeba było pójść na kompromis; ścieżki (prowadzone lokalnie ,,na krzyż'') i komponenty musiały się znaleźć po obu stronach. Ścieżki sygnałowe nie są prowadzone na wewnętrznych warstwach, aby uniknąć pojemności które mogły by się pojawiać pomiędzy nimi. Warstwy zasilania je od siebie pod względem pojemnościowym izolują.  \\
+
+Elementy THD (przewlekane- {\it Through Hole Device}) zostały ograniczone do minimum w celu optymalizacji czasu montażu. Są to:
+
+\begin{easylist}
+	& złącze łączące płytkę główną z płytką enkodera magnetycznego (\ref{ss:encmag}),
+	& złącze programatora (\ref{mcusekcja_dodac}),
+	& czujnik podciśnienia (\ref{czujnik_podcisnienia_dodac}).
+	\\
+\end{easylist}
+
+Na górnej warstwie pomiędzy złączami znajduje się dużo wolnej przestrzeni na której nie ma umiejscowionych żadnych komponentów. Jest to obszar rozbiegowy dla elastycznej tasiemki łączącej PCB z płytką zasilania (sekcja \ref{ss:power_board} i rysunek \ref{grafiki/glowica.png} c)).
+
+\insertImgSetSize{grafiki/plytka_glowna_warstwy.png}
+	{155}
+	{Poszczególne warstwy płytki głównej sterownika, od lewej górna, dolna, warstwa zasilania ({\it power plane}), warstwa masy ({\it ground plane})}
+	{mechsyspcb}
+
+W następnych sekcjach tego rozdziału zostaną szczegółowo opisane poszczególne moduły elektroniczne płytki głównej. Podobnie jak w wypadku PCB, schematy ideowe tej płytki są o wiele obszerniejsze niż prezentowane wcześniej. Dlatego zostaną zaprezentowane tylko kawałki schematów niezbędne do opisu poszczególnych funkcjonalności. Kompletny schemat płytki znajduję się w załączniku \ref{dac zalacznik}. 
+
+\insertImgSetSize{grafiki/top_level.pdf}
+	{115}
+	{Schemat ideowy najwyższego poziomu łączący ze sobą poszczególne moduły w projekcie płytki, w programie Altium Designer}
+	{mechsyspcb}
+	
+Struktura schematu ideowego ma charakter obiektowy- podobnie jak w programowaniu wysokopoziomowym, zdeklarowane są klasy i tworzone są ich egzemplarze. Pozwala to na enkapsulacje modułów niskiego poziomu i powielanie ich w prosty sposób tylko na PCB, co przyspiesza projektowanie i zwiększa czytelność schematów.
+
+\subsubsection{Zasilanie}
+
+W układzie sterownika potrzebne jest wiele poziomów napięć ze względu na różnorodność zastosowanych układów scalonych. Aby je wszystkie uzyskać zostały zastosowane różne rozwiązania, zarówno bazujące na regulatorach impulsowych jak i liniowych. Wszystkie tory napięciowe są poprowadzone na jednej z warstw wewnętrznych PCB. \\
+
+Do głowicy jest doprowadzone tylko jedno napięcie, z którego uzyskiwane są wszystkie pozostałe, niższe poziomy. To napięcie o amplitudzie 24 V samo w sobie jest także używane jeszcze przed redukcją do zasilania uzwojeń obu silników. ,,Logika'' urządzenia jest na poziomie 3.3 V i z tego względu większość elementów na płytce zasilana jest właśnie tym napięciem. Część układów natomiast wymaga do działania napięcia 5 V- W celu efektywnego uzyskania obu napięć został użyty obwód z rys. \ref{grafiki/power_5v_3v.pdf}.
+
+\insertImgSetSize{grafiki/power_5v_3v.pdf}
+	{52}
+	{Część schematu zasilania prezentująca sposób uzyskania napięć 5 i 3.3V na płytce sterownika}
+	{mechsyspcb}
+
+W pierwszej kolejności napięcie główne trafia na przetwornicę A8498 (Allegro Microsystems) typu {\it Buck-converter}, która redukuje je do 5V na wyjściu. Układ jest w stanie dostarczyć prąd nawet do 3A, ale ze względu na niewielką przestrzeń dostępna na płytce elementy mocy przetwornicy (Cewka L1 i dioda D6) zostały dobrane tak, aby być w stanie dostarczyć tylko 400 mA prądu. Natężenie to jest w zupełności wystarczające do zasilania układów logicznych i analogowych sterownika, także tych pracujących przy napięciu 3.3 V- do wyjścia przetwornicy podłączony jest liniowy stabilizator napięcia LM3940 (Texas Instruments), który też pobiera prąd z przetwornicy.
+
+\insertImgSetSize{grafiki/power_12_25.pdf}
+	{60}
+	{Źródła napięcia odniesienia dla obwodu analogowego sterownika}
+	{mechsyspcb}
+	
+Urządzenia LM4040 i LM4041 (rys. \ref{grafiki/power_12_25.pdf}) to diody zenera pracujące jako precyzyjne układy napięcia odniesienia, których napięcie wyjściowe jest odporne na wpływ zmian temperatury otoczenia. Są używane do zasilania układów analogowych stosowanych w obwodzie sterowania silnikami. Więcej na ten temat jest zawarte w sekcji \ref{referencja}. Ostatnie napięcie to 12V, które jest także uzyskiwane z przetwornicy A8498, w nieco zmienionej konfiguracji (rys. \ref{grafiki/power_12v.pdf}).
+
+\insertImgSetSize{grafiki/power_12v.pdf}
+	{60}
+	{Przetwornica typu Buck-converter dająca na wyjściu 12V, zasilająca sterowniki typu {\it High-Side}}
+	{mechsyspcb}
+
+Zmianie względem poprzedniego obwodu z tą przetwornicą uległy wartości rezystorów tworzących dzielnik napięcia między wyjściem przetwornicy a jej wejściem FB ({\it Feedback}), oraz połączenie do wejścia VBIAS, którego na tym schemacie już nie ma. Rezystory R9/ R11 na schemacie \ref{grafiki/power_12v.pdf} i R1/ R3 na schemacie \ref{grafiki/power_5v_3v.pdf} ustalają wartość napięcia wyjściowego głowicy. Zwierając VBIAS do wyjścia można zasilić układ logiczny w środku A8498. Wtedy wewnętrzny układ zasilający logikę może być wyłączony i chip wydziela mniej ciepła. Niestety można tak zrobić tylko do napięcia 5 V. \\
+
+Napięcie wyjściowe przetwornicy jest potrzebne do zasilania bramek górnych tranzystorów tworzących mostki H w obwodach silników (sekcja \ref{dacref}). Amplituda tego napięcia może wynosić od 10 do 20 V, gdyż jest to wartość $ V_{GS} $ (Napięcie między bramką a źródłem) zastosowanych tranzystorów mocy przy której ich $ R_{DS(ON)} $ (Rezystancja przewodzenia między drenem a źródłem) jest bardzo niskie. Przyłożenie powyżej 20 V do bramki tranzystora może spowodować jego uszkodzenie. Dużą szkodą jest toz że napięcie doprowadzane do głowicy nie jest mniejsze bądź równe 20 V- w tym wypadku można by zrezygnować z tej przetwornicy i zasilać obwód sterujący silnikami bezpośrednio. Wartość tego napięcia wynika z doboru pozostałych elementów w maszynie. \\
+
+Jeśli w przyszłych wersjach sterownika zajdzie potrzeba wygospodarowania dodatkowego miejsca na płytce głównej, to obwód z rys. \ref{power_12v.pdf} będzie można zastąpić stabilizatorem liniowym, dającym na wyjściu ok trochę poniżej 20 V. Taki stabilizator zajmowałby fizycznie mniej miejsca, ale w zamian wydzielała by się na nim większa moc, przez co generowałby więcej ciepła:
+
+\begin{equation} \label{eq:zasilanie1}
+	P = (V_{we} - V_{out})I
+\end{equation}
+
+
+
+
+\clearpage
+
+
+
+
+
+
+
+
+
+
+
+
+
+

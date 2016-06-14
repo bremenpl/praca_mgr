@@ -24,6 +24,7 @@ Ze względu na konstrukcję mechaniczną głowicy, w celu wykorzystania jak najw
 Kolejne sekcje przedstawiają opis poszczególnych modułów znajdujących się na każdej z płytek PCB kontrolera. Wszystkie schematy ideowe (także ich części) i płytki PCB prezentowane dalej zostały w domyśle wykonane przez autora pracy w programie {\it Altium Designer} dla firmy \firma{}, chyba że zaznaczono inaczej. Niektóre części schematów zostały przeorganizowane w taki sposób, aby zajmowały jak najmniej miejsca w celu czytelnego wyświetlenia w tekście. Kompletny oryginalny schemat ideowy całego urządzenia znajduje się w załącznikach pracy.
 
 \subsection{Płytka zasilająca}
+\label{ss:power_board}
 
 Pierwsza z opisywanych płytek na rysunku \ref{grafiki/glowica.png} jest oznaczona numerem 2. Znajduje się na niej zaledwie kilka komponentów- pełni ona funkcję pośredniczącą między płytką główną sterownika a przewodami doprowadzającymi sygnały sterujące i zasilanie.
 
@@ -51,6 +52,7 @@ Wszystkie powyższe sygnały są następnie przekazywane na złącze {\it CON2},
 Kolejnymi elementami PCB są dwa kondensatory elektrolityczne o największej pojemności jaką tylko udało się dostać w obudowach, które mieszczą się na płytce. Służą po to, aby zwiększyć pojemność widzianą z zacisków zasilania układu, która z kolei jest potrzebną w celu utrzymania stabilnego napięcia w fazach wzmożonego poboru prądu przez urządzenie. Ostatni komponent to zworka zwierająca rezystor terminujący na magistrali CAN. W zależności od topologii magistrali można ją załączyć lub zostawić rozwartą. Terminator został umieszczony dosyć daleko od układu sterownika CAN, ze względu na to że inne miejsce było by zbyt trudno dostępna. Odległość ta jest jednak wystarczająco niska do poprawnego działania układu.
 
 \subsection{Płytka enkodera magnetycznego}
+\label{ss:encmag}
 
 Płytka z enkoderem dla osi R jest zamontowana za silnikiem krokowym (numer 4 na rysunku \ref{grafiki/glowica.png}). Jako enkoder magnetyczny został zastosowany układ scalony AS5048A firmy AMS. Rozwiązanie to przypomina te wykorzystane przez Tropical Labs w swoim sterowniku Mechaduino (\ref{ss:mechaduino}). Należy jednak wspomnieć że koncept został zastosowany przed opublikowaniem wpisu o ich sterowniku na stronie \url{hackaday.io} i nie jest na nim wzorowany ani nim inspirowany. AS5048A jest enkoderem absolutnym, który dostarcza informację o aktualnej pozycji kątowej między innymi poprzez interfejs SPI {\it Serial Peripheral Interface}). Używając go można uzyskać pozycję z dokładnością do 0.05\degree{} po zastosowaniu algorytmów uśredniających (\cite{AS5048}). Więcej informacji o zastosowanych w sterowniku algorytmach uśredniających dla tego enkodera jest zawarte w sekcji <dodac referencje>.
 
@@ -66,7 +68,7 @@ Obracając magnesem w sąsiedztwie układu scalonego, zmienne pole magnetyczne w
 	{Schemat ideowy płytki z enkoderem magnetycznym dla osi R w głowicy układającej}
 	{mechsyspcb}
 	
-Układ na schemacie ideowym \ref{grafiki/schemat_enkoder_magnetyczny.eps} oznaczony jest symbolem U1. Sygnały magistrali SPI są wyprowadzone na pionowe złącze CON1 o rastrze 1.27 mm, przez które dalej idą na płytkę główną kontrolera. Elementy oznaczone jako FID1 i FID2 to punkty referencyjne dla górnej kamery automatu Pick and Place (tzw. {\it Fidutial'e}). Są one widoczne na płytce PCB z rys. \ref{grafiki/pcb3d_plytka_encmag.png} a), w lewym górnym i prawym dolnym rogu. Ten sam rysunek (obiekt b)) przedstawia płytkę enkodera zamocowaną na elemencie aluminiowym frezowanym, który z kolei jest przykręcony do silnika krokowego. Duży czarny element to mikro zawór podciśnienia, o którym będzie mowa w sekcji \ref{sekcja}. \\
+Układ na schemacie ideowym \ref{grafiki/schemat_enkoder_magnetyczny.eps} oznaczony jest symbolem U1. Sygnały magistrali SPI są wyprowadzone na pionowe złącze CON1 o rastrze 1.27 mm, przez które dalej idą na płytkę główną kontrolera. Elementy oznaczone jako FID1 i FID2 to punkty referencyjne dla górnej kamery automatu Pick and Place (tzw. {\it Fidutial'e}). Są one widoczne na płytce PCB z rys. \ref{grafiki/pcb3d_plytka_encmag.png} a), w lewym górnym i prawym dolnym rogu. Ten sam rysunek (obiekt b)) przedstawia płytkę enkodera zamocowaną na elemencie aluminiowym frezowanym, który z kolei jest przykręcony do silnika krokowego. Duży czarny element to mikro zawór doprowadzający podciśnienie, sterowany z głównej płytki kontrolera (opis w sekcji \ref{ss:mainboard}). \\
 
 Oś poprzeczna układu scalonego musi się idealnie pokrywać z osią obracającego się magnesu w celu jak najlepszego odczytu natężenia pola przez enkoder.
 
@@ -94,7 +96,7 @@ Na rysunku \ref{grafiki/przekroj_silnik.png} widać dokładnie co znajduje się 
 Do elementu łączącego jest także doprowadzone podciśnienie poprzez giętki przewód pneumatyczny- w ten sposób jest możliwe podnoszenie komponentów elektronicznych przez głowicę (przysysając je).
 	
 \subsection{Płytka enkodera optycznego}
-\label{ss:encmag}
+\label{ss:encopt}
 
 Podobnie jak silnik krokowy współpracuje z enkoderem magnetycznym w osi R, tak samo silnik VCM działa z enkoderem optycznym w osi Z i także posiada osobną płytkę PCB dla obwodu tego enkodera. W odróżnieniu do poprzedniej PCB jednak, ta wymaga o wiele więcej komponentów do poprawnej pracy. Pozycja nie jest już podawana absolutnie poprzez magistralę szeregową tylko musi być odczytana jako zmieniający się sygnał analogowy, który następnie poddawany jest interpolacji. Potem trafia do głównej płytki kontrolera w postaci 2 zmieniających się sygnałów zero-jedynkowych (sygnał kwadraturowy). W zależności od tego które zbocze jest wiodące, procesor może określić kierunek przesuwania się enkodera względem liniału. \\
 
@@ -140,7 +142,9 @@ Kiedy układ znajduje się nad czarną strefą, światło nie odbija się dobrze
 	{Model 3D płytki drukowanej enkodera liniowego silnika VCM. Po lewej warstwa górna, po prawej dolna}
 	{mechsyspcb}
 
-Rozdzielczość możliwa do uzyskania w prezentowanym układzie zależy głównie od dwóch czynników: gęstości umiejscowienia rowków na liniale i możliwości interpolatora. W tym przypadku rozdzielczość ogranicza układ IC-TW2, którego maksymalny poziom interpolacji to x64. Przy zastosowaniu liniału <podac model> daje to rozdzielczość 0.45354325 impulsu na mikron.
+Rozdzielczość możliwa do uzyskania w prezentowanym układzie zależy głównie od dwóch czynników: gęstości umiejscowienia rowków na liniale i możliwości interpolatora. W tym przypadku rozdzielczość ogranicza układ IC-TW2, którego maksymalny poziom interpolacji to x64. Przy zastosowaniu liniału 180 LPI ({\it Lines per inch}) daje to rozdzielczość dokładnie 0.45354325 impulsu na mikron.
+
+\input{mainboard.tex}
 
 
 
