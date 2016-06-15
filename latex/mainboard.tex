@@ -82,6 +82,76 @@ Jeśli w przyszłych wersjach sterownika zajdzie potrzeba wygospodarowania dodat
 	P = (V_{we} - V_{out})I
 \end{equation}
 
+Rys. \ref{grafiki/pcb_zasilanie.png} prezentuje model 3D części płytki na której widać oba omówione obwody zasilania. Aby maksymalnie wykorzystać dostępną przestrzeń na PCB, moduły zostały między sobą przedzielone obwodem sterowania silnikami.
+
+\insertImgSetSize{grafiki/pcb_zasilanie.png}
+	{36}
+	{Rozmieszczenie modułów zasilania na płytce głównej, A: obwód \ref{grafiki/power_12v.pdf}, B: obwód \ref{grafiki/power_5v_3v.pdf}}
+	{mechsyspcb}
+	
+\subsubsection{Jednostka centralna}
+
+Głównym elementem sterującym peryferiami w urządzeniu jest 32 bitowy mikrokontroler STM32407VGT6 z rodziny Cortex® M4 (rodzina ARM) produkowany przez firmę ST Microelectronics. Kluczowymi parametrami decydującymi o doborze układu sterującego były:
+
+\begin{easylist}
+	& częstotliwość taktowania,
+	& posiadanie jednostki zmiennoprzecinkowej ({\it FPU}- Floating Point Unit),
+	& peryferia wewnętrzne pozwalające na sterowanie dwoma silnikami krokowymi (najwięcej końcówek mocy),
+	& cena.
+	\\
+\end{easylist} 
+
+Używając wspomnianego mikrokontrolera udało się zaimplementować wszystkie dotychczasowo działające funkcjonalności i na razie nie są znane żadne przeciwwskazania, które mogłyby by się pojawić w przyszłości. Nie było to jednak prostym zadaniem- urządzenie jest typowym procesorem ,,ogólnego użytku'' i nie posiada zaawansowanych peryferiów tak bardzo przydatnych przy sterowaniu silnikami, jak procesory ku temu dedykowane. 
+
+\insertImgSetSize{grafiki/stm32f407vgt6.png}
+	{45}
+	{Mikrokontroler STM32F407VGT6 w obudowie TQFP100 o wymiarach 14 x 14 mm}
+	{xiawu}
+	
+W dalszej części tego rozdziału zostały opisane w szczegółach sposoby w jaki poradzono sobie z ograniczeniami mikrokontrolera. 
+
+\insertTab{|c|c|c|}
+{%
+\hline Mikrokontroler & STM32F407VGT6 & TMS320F28377S  \\
+\hline Rodzina & ARM & C28x/ CLA    \\
+\hline Architektura & RISC\footnote{{\it Reduced instruction set computing}} & RISC \\
+\hline FPU & Single point & Single point \\
+\hline \makecell{Maksymalna \\ częstotliwość \\ taktowania} & 168 Mhz & 200 Mhz \\
+\hline MIPS \footnote{{\it Million Instructions Per Second}} & 210 & 400 \\
+\hline \makecell{Pamięć \\ flash} & 1 MB & 1 MB \\
+\hline \makecell{Pamięć \\ RAM} & 194 KB & 164 KB \\
+\hline Ilość rdzeni &  1 &  2 \footnote{1 główny + {\it ,,control co-processor''} do obsługi procedur sterowania}  \\
+\hline Cena \footnote{Przy zamówieniu 100 sztuk w hurtowni Digi-key} & \$ 9.34 & \$ 22.15 \\
+\hline
+}
+{Porównanie mikrokontrolerów STM32F407VGT6 (ST Microelectronics) i TMS320F28377S  (Texas Instruments)}
+{oprWlasne}
+{tab:mcu_porownanie}
+
+W tabeli \ref{tab:mcu_porownanie} przedstawiono porównanie zastosowanego układu z mikrokontrolerem dedykowanym pod sterowanie silnikami z najwyższej półki. 
+
+\insertImgSetSize{grafiki/pcb_mcu.png}
+	{65}
+	{Widok 3D mikrokontrolera sterującego i otaczających go komponentów}
+	{mechsyspcb}
+
+Mimo że STM pod względem wymienionych parametrów zdecydowanie przegrywa, to ma jedną ważną zaletę, przez którą zadecydowano o jego wyborze- Jego współczynnik ceny do możliwości jakie posiada jest bardzo wysoki, możliwe że nawet jest jednym z najwyższych na rynku wśród mikrokontrolerów podobnej mocy. Ponadto jest łatwo dostępny, w większości przypadków ,,od ręki''. Jest to spowodowane tym że na jego bazie powstała płytka ewaluacyjna {\it STM32-DISCOVERY}, która cieszy się bardzo wysoką popularnością wśród hobbystów i profesjonalistów. \\
+
+Układy STM32 są bardzo proste w programowaniu i debugowaniu dzięki dostępnym interfejsom {\it JTAG} i {\it SWD} (złącze CON3 na rys. \ref{grafiki/pcb_mcu.png}). JTAG jest interfejsem szybszym i bardziej stabilnym od SWD, ale wymaga większej ilości połączeń. W tym projekcie nie mógł zostać zastosowany gdyż część z pinów, które są potrzebne do jego pracy została użyta przy innych modułach. Źródłem zegarowym dla układu jest zewnętrzny mikro oscylator (Y1) o częstotliwości 16 Mhz. Używając wewnętrznych pętli PLL ({\it Phase Locked Loop}) uzyskiwana jest główna częstotliwość taktowania procesora 168 Mhz. Rysunek \ref{grafiki/clock_pll.png} przedstawia konfigurację wewnętrznych zegarów w mikrokontrolerze. Szybkie działanie mikrokontrolera jest parametrem kluczowym dla konstruowanego sterownika ze względu na to że silniki są maszynami wymagającymi obsługi w czasie rzeczywistym, a ponadto procesor musi jeszcze dodatkowo wykonywać setki obliczeń.
+
+\insertImgSetSize{grafiki/clock_pll.png}
+	{65}
+	{Konfiguracja pętli PLL dla częstotliwości maksymalnej 168 Mhz}
+	{oprWlasne}
+
+W celu zapewnienia filtracji zakłóceń na liniach zasilania powodowanych głównie pracą silników, każde z wejść zasilających mikrokontrolera jest odprzęgnięte poprzez kondensator 100 nF (w obudowach 0402 tak jak większość komponentów pasywnych na płytce). \\
+
+Dodatkowo na rysunku \ref{grafiki/pcb_mcu.png} widać złącza CON4 (z lewej) i CON7 (na dole), które łączą płytkę główną kolejno z enkoderem magnetycznym (\ref{ss:encmag}) i optycznym (\ref{ss:encopt}). Połączenie z tym drugim jest zrealizowane tasiemką tego samego typu co doprowadzane jest zasilanie do głównej PCB.
+
+
+
+
+
 
 
 

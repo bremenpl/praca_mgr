@@ -53,12 +53,19 @@
 \restylefloat{table}
 \usepackage{array}
 \usepackage{makecell}
+%\usepackage{xcolor,colortbl}
+
+% Footnoty
+\usepackage{footnote}
+\usepackage{perpage} %the perpage package
+\MakePerPage{footnote} %the perpage package command
 
 % Numerowanie obiektow wedlug rozdzialow
 \usepackage{chngcntr}
 \counterwithin{figure}{section}
 \counterwithin{table}{section}
 \numberwithin{equation}{section}
+
 
 % Linki
 \usepackage{url}
@@ -98,21 +105,24 @@ Style2*=$\bullet$ ,Style3*=$\circ$ ,Style4*=\tiny$\blacksquare$ )
 \end{figure}
 }
 \newcommand{\insertTab}[5]{%
-\begin{table}[h]
-	\flushleft{Źródło: Na podstawie \cite{#4}} \\
-	\vspace{2mm}
-	\centering
-	\begin{tabular}{#1} 
-	#2
-	\end{tabular}
-	\caption{#3}  
-	\label{#5}
-	\floatstyle{plaintop}
-\end{table}
+\begin{savenotes}
+	\begin{table}[h]
+		\flushleft{Źródło: Na podstawie \cite{#4}} \\
+		\vspace{2mm}
+		\centering
+		\begin{tabular}{#1} 
+		#2
+		\end{tabular}
+		\caption{#3}  
+		\label{#5}
+		\floatstyle{plaintop}
+	\end{table}
+\end{savenotes}
 }
 
 % Zmienic jesli jednak Engineering -.- ...
 \newcommand{\firma}{{Mechatronic Systems}}
+
 
 % twierdzenia
 \input{theorems.tex}
