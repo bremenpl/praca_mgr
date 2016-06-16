@@ -148,11 +148,37 @@ W celu zapewnienia filtracji zakłóceń na liniach zasilania powodowanych głó
 
 Dodatkowo na rysunku \ref{grafiki/pcb_mcu.png} widać złącza CON4 (z lewej) i CON7 (na dole), które łączą płytkę główną kolejno z enkoderem magnetycznym (\ref{ss:encmag}) i optycznym (\ref{ss:encopt}). Połączenie z tym drugim jest zrealizowane tasiemką tego samego typu co doprowadzane jest zasilanie do głównej PCB.
 
+\subsubsection{Komunikacja}
 
+Do urządzenia poprzez gniazdo w płytce zasilającej podłączanych jest razem sześć przewodów (CON6 na schemacie \ref{grafiki/schemat_plytka_zasilajaca.eps}). Cztery z nich służą do komunikacji ze sterownikiem poprzez dwie magistrale szeregowe: CAN ({\it Controller Area Network}) i RS232.
 
+\insertImgSetSize{grafiki/rs232_schemat.pdf}
+	{70}
+	{Zastosowany w kontrolerze układ MAX331 firmy Maxim, służący do translacji poziomów logicznych RS232 na TTL/ CMOS}
+	{mechsyspcb}
 
+W większości aplikacji w celu uzyskania poziomów logicznych odpowiednich dla tego typu komunikacji (+12/ -12 V) stosowane są tanie układy typu MAX3232 lub MAX232 (oraz ich klony). Najmniejsza obudowa w jakiej są produkowane te chipy to TSSOP16 (typ. 5 x 4.4 mm). Dla płytki głównej sterownika jest to za dużo, dlatego został zastosowany mniejszy   MAX3311 (rys. \ref{grafiki/rs232_schemat.pdf}) w obudowie UMAX10 o wymiarach 3 x 3 mm. Układ jest trochę droższy od wspominanych chipów i mniej dostępny u popularnych dystrybutorów. Ponadto, musi być zasilany z napięcia 5V, a nie z 3.3 V. Wejścia zastosowanego mikrokontrolera jednak są zabezpieczone przed napięciami na tym poziomie (tzw. {\it 5V compatible}), więc pod tym względem nie ma problemu z jego zastosowaniem. Wyjściowe 3.3 V z mikrokontrolera wystarczy też do zmiany stanu w układzie (TTL).
 
+\insertImgSetSize{grafiki/pcb_rs232.png}
+	{60}
+	{Komponenty używane przez moduł RS232 zajmują jedynie ok. $ 20 mm^2 $}
+	{mechsyspcb}
 
+Obwód magistrali RS232 pełni w sterowniku rolę drugorzędną. Główną drogą dla komend sterujących jest CAN, którego zaletą jest to że bazując na LVDS ({\it Low-voltage differential signaling}) jest odporny na zakłócenia. W celu jeszcze jeszcze większej izolacji, od strony sieci został zastosowany dławik (L3 na schemacie \ref{grafiki/can_schemat.pdf}). Ponadto, korzystając z tej magistrali sterownik można podpiąć pod istniejącą sieć, bez potrzeby odłączania pracujących na niej urządzeń.
+
+\insertImgSetSize{grafiki/can_schemat.pdf}
+	{40}
+	{Moduł CAN korzystający z {\it Transceiver'a} SN65HVD230D (Texas Instruments) w celu translacji sygnałów z magistrali}
+	{mechsyspcb}
+	
+Etykietą $ DIFF_{CAN1} $ (rys. \ref{grafiki/can_schemat.pdf}) oznaczone są linie będące parą różnicową. Daje to możliwość projektując płytkę PCB na prowadzenie ścieżek danej pary w taki sposób, aby miały tą samą, lub bardzo podobną długość.
+
+\insertImgSetSize{grafiki/pcb_can.png}
+	{50}
+	{Widok 3D na moduł CAN}
+	{mechsyspcb}
+	
+\subsubsection{Czujnik podciśnienia}
 
 
 \clearpage
