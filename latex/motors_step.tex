@@ -1,6 +1,6 @@
 \subsection{Silnik krokowy}
 
-Silniki krokowe są maszynami elektrycznymi bez komutatorowymi. Zazwyczaj wszystkie uzwojenia silnika są częścią stojana, podczas gdy rotor jest magnesem trwałym lub w przypadku silników VRM ({\em Variable Reluctance Motor}) zębatym blokiem z materiału magnetycznie miękkiego (patrz sekcja \ref{subsec:materialy_fer}). Komutacja (czyli zmiana kierunku/ uzwojenia w którym następuje przepływ prądu elektrycznego) musi być wymuszona poprzez zewnętrzne urządzenie sterujące maszyną- takie sterowniki są zazwyczaj projektowane w taki sposób, aby zapewnić możliwość utrzymania wirnika w niemal dowolnej pozycji kątowej, oraz obracać nim w obu kierunkach. 
+Silniki krokowe są maszynami elektrycznymi bez komutatorowymi. Zazwyczaj wszystkie uzwojenia silnika są częścią stojana, podczas gdy rotor jest magnesem trwałym lub w przypadku silników VRM ({\em Variable Reluctance Motor}) zębatym blokiem z materiału magnetycznie miękkiego (patrz sekcja \ref{subsec:materialy_fer}). Komutacja (czyli zmiana kierunku/ uzwojenia w którym następuje przepływ prądu elektrycznego) musi być wymuszona poprzez zewnętrzne urządzenie sterujące maszyną. Takie sterowniki są zazwyczaj projektowane w taki sposób, aby zapewnić możliwość utrzymania wirnika w niemal dowolnej pozycji kątowej, oraz obracać nim w obu kierunkach. 
 
 \subsubsection{Rodzaje silników krokowych}
 
@@ -15,11 +15,7 @@ Silniki krokowe ze względu na konstrukcję można podzielić na trzy główne g
 		{Powstawanie reluktancyjnego momentu obrotowego.}
 		{przepiorkowski}
 
-Reluktancja jest parametrem analogicznym do rezystancji elektrycznej, lecz odniesionym do strumienia magnetycznego- jest to inaczej ,,rezystancja magnetyczna'' (patrz sekcja \ref{subsec:reluktancja}). Podobnie jak prąd płynie drogą o najmniejszej rezystancji, tak linie sił pola skupiają się w obszarze o najmniejszej reluktancji. Rysunek \ref{grafiki/reluctance_moment.png} przedstawia powstawanie reluktancyjnego momentu obrotowego. Strumień indukcji $ \Phi $ to funkcja prądu uzwojenia $ I $ i reluktancji obwodu magnetycznego $ Rm $. 
-
-\begin{equation} \label{eq:steper1}
-	\Phi = \frac{I}{Rm}
-\end{equation}
+Reluktancja jest parametrem analogicznym do rezystancji elektrycznej, lecz odniesionym do strumienia magnetycznego. Jest to inaczej ,,rezystancja magnetyczna''.
 
 Obrócenie ruchomego elementu o kąt $ \alpha $ spowoduje że będzie on próbował powrócić do położenia $ \alpha = 0 $, w którym reluktancja obwodu jest najmniejsza. W silnikach VRM przepływ prądu stałego przez uzwojenia powoduje, że zęby wirnika ustawiają się naprzeciw zasilanego uzwojenia.
 
@@ -27,13 +23,14 @@ Obrócenie ruchomego elementu o kąt $ \alpha $ spowoduje że będzie on próbow
 		{Silnik o zmiennej reluktancji (VRM)- Przekrój.}
 		{przepiorkowski}
 
-W odróżnieniu do VRM, wirnik silnika krokowego PM ({\em Permanent Magnet}- Magnes trwały) nie posiada zębów. Jest wykonany w postaci walca naprzemiennie namagnesowanego biegunami N i S. Specyficzny rodzaj zębów ma rdzeń stojana. W zależności od kierunku przepływu prądu w uzwojeniu przyciągane są odpowiednie bieguny wirnika (resunek \ref{grafiki/pm_stepper.png}).
+W odróżnieniu od VRM, wirnik silnika krokowego PM ({\em Permanent Magnet}- Magnes trwały) nie posiada zębów. Jest wykonany w postaci walca naprzemiennie namagnesowanego biegunami N i S. Specyficzny rodzaj zębów ma rdzeń stojana. \newline
+W zależności od kierunku przepływu prądu w uzwojeniu przyciągane są odpowiednie bieguny wirnika (resunek \ref{grafiki/pm_stepper.png}).
 
 \insertImg{grafiki/pm_stepper.png}
 		{Zasada działania silnika PM.}
 		{ni}
 		
-Główną zaletą silnika krokowego PM jest zastosowanie magnesów trwałych w stojanie, dzięki czemu nie ma potrzeby stosowanie szczotek jak w silnikach DC oraz jego niska cena. Wadą tego typu maszyny jest relatywnie niski moment obrotowy i brak możliwości rozwijania dużych prędkości obrotowych. \\
+Główną zaletą silnika krokowego PM jest zastosowanie magnesów trwałych w stojanie, dzięki czemu nie ma potrzeby stosowanie szczotek (jak w silnikach DC) oraz jego niska cena. Wadą tego typu maszyny jest relatywnie niski moment obrotowy i brak możliwości rozwijania dużych prędkości obrotowych. \\
 
 Silnik hybrydowy łączy w sobie cechy obu rozwiązań, dzięki czemu zostały poprawione takie parametry jak:
 \begin{easylist}
@@ -50,7 +47,7 @@ Niestety silniki hybrydowe są około 2-3 razy droższe od silników PM. Wirnik 
 		{Konstrukcja dwufazowego silnika krokowego hybrydowego.}
 		{enggarage}
 		
-W silniku HB wirujące pole stojana ,,przerzuca'' wirnik z jednego położenia do drugiego na zasadzie jak w silniku VRM. Jest to możliwe dzięki przesunięciu ,,północnej'' i ,,południowej'' części wirnika o pół ząbka. Silniki HB dzięki poprawionym parametrom są obecnie najbardziej popularnymi silnikami krokowymi, pomimo niskiej ceny silników PM.
+W silniku HB wirujące pole stojana obraca wirnik z jednego położenia do drugiego na zasadzie jak w silniku VRM. Jest to możliwe dzięki przesunięciu ,,północnej'' i ,,południowej'' części wirnika o pół ząbka. Silniki HB dzięki poprawionym parametrom są obecnie najbardziej popularnymi silnikami krokowymi, pomimo niskiej ceny silników PM.
 		
 \insertImgSetSize{grafiki/stepper_rotor.png}
 		{70}
@@ -95,6 +92,8 @@ W przypadku braku zasilania, wirnik silnika ustawi się w jednej z czterech spoc
 
 Rysunek \ref{grafiki/stepper_sterowanie_falowe.eps} prezentuje sekwencję dzięki której wirnik obróci się o trzy pełne obroty w prawo przy zastosowaniu sterowania falowego. Na osi odciętych znajdują się kolejne chwile w czasie, a na osi rzędnych wartość potencjału przyłożonego do danego zacisku (wartości 1 i 0 prezentujące stan wysoki lub niski potencjału). Aby wirnik obracał się w przeciwnym kierunku, sekwencję należy odtworzyć w odwrotnej kolejności. Jak widać na przebiegach, w danym momencie w czasie prąd znajduje się zawsze tylko w jednym z uzwojeń, co nie umożliwia uzyskania maksymalnego dla danej maszyny momentu obrotowego. Pomimo że sterowanie falowe nie zapewnia uzyskania optymalnego momentu obrotowego, to przy zastosowaniu w niektórych aplikacjach jest wystarczające, a ponadto jest jest najprostsze do zaimplementowania.
 
+\clearpage
+
 \tocLessLeftNorm{Sterowanie pełnokrokowe}
 
 W trybie sterowania pełnokrokowego prąd płynie przez oba uzwojenia jednocześnie. Nie ma to wpływu na prędkość obrotową wirnika, ale ma znaczący wpływ na moment obrotowy, który jest dwa razy większy niż w trybie falowym. Pełny obrót wirnika dalej jest osiągany w czterech "ruchach", ale absolutna pozycja kątowa w każdym z nich jest względem trybu falowego przesunięta o 45\degree.
@@ -104,7 +103,9 @@ W trybie sterowania pełnokrokowego prąd płynie przez oba uzwojenia jednocześ
 		{Sekwencja zasilania uzwojeń przy sterowaniu pełnokrokowym (obrót wirnika z rys. \ref{grafiki/stepper_simple.png} według wskazówek zegara).}
 		{oprWlasne}
 		
-Rysunek \ref{grafiki/stepper_sterowanie_krokowe.eps} przedstawia przebiegi dla 3 obrotów, sterując pełnokrokowo. Kolejne pozycje wirnika są następujące: 45\degree w pierwszym interwale czasowym, 135\degree w drugim, 225\degree w kolejnym i 315\degree w ostatnim (dla danego obrotu). Potem cykl się powtarza. Tryb pełnokrokowy pozwala osiągnąć optymalny dla danego silnika moment obrotowy, ale niestety rozdzielczość obrotu jest ograniczona do ilości kroków na obrót danego modelu maszyny. Typowe wartości kroków na obrót w silnikach krokowych hybrydowych to 100 (krok o rozdzielczości 3.6\degree), 200 (1.8\degree) i 400 (0.9\degree). Aby uzyskać większą rozdzielczość kroku, należy zastosować sterowanie półkrokowe lub mikrokrokowe.
+Rysunek \ref{grafiki/stepper_sterowanie_krokowe.eps} przedstawia przebiegi dla 3 obrotów, przy sterowaniu pełnokrokowym. Kolejne pozycje wirnika są następujące: 45\degree w pierwszym interwale czasowym, 135\degree w drugim, 225\degree w kolejnym i 315\degree w ostatnim (dla danego obrotu). Potem cykl się powtarza. Tryb pełnokrokowy pozwala osiągnąć optymalny dla danego silnika moment obrotowy, ale niestety rozdzielczość obrotu jest ograniczona do ilości kroków na obrót danego modelu maszyny. Typowe wartości kroków na obrót w silnikach krokowych hybrydowych to 100 (krok o rozdzielczości 3.6\degree), 200 (1.8\degree) i 400 (0.9\degree). Aby uzyskać większą rozdzielczość kroku, należy zastosować sterowanie półkrokowe lub mikrokrokowe.
+
+\clearpage
 
 \tocLessLeftNorm{Sterowanie półkrokowe}
 
@@ -115,7 +116,7 @@ Tryb półkrokowy jest połączeniem sterowania falowego i pełnokrokowego. Rozd
 		{Sekwencja zasilania uzwojeń przy sterowaniu półkrokowym (obrót wirnika z rys. \ref{grafiki/stepper_simple.png} według wskazówek zegara).}
 		{oprWlasne}
 		
-Wadą takiego rozwiązania jest zmienny moment obrotowy- co drugi krok będzie "słabszy". Może to spowodować szarpanie wirnika przy dużych prędkościach obrotowych. Przy niskich prędkościach i obciążeniach natomiast, efekt ten rzadko występuje i można uzyskać polepszoną płynność ruchu, w porównaniu do poprzednich trybów. Aby uniknąć efektu zmiennego momentu, można zastosować sterowanie półkrokowe ze zmiennym prądem (rys. \ref{grafiki/stepper_sterowanie_polkrokowe_zmienne.eps}). Na rysunku widać że w momentach kiedy różnica potencjałów występuje tylko na jednym z uzwojeń, jest ona dwa razy większa niż w przypadku kiedy zasilane są obie cewki. Prąd płynący w uzwojeniach jest proporcjonalny do przyłożonego do nich napięcia, dlatego moment się wyrównuje i silnik nie jest narażony na szarpanie. Rozwiązanie te także nie pozostaje bez wad- Zakładając że dla momentu w czasie, w którym przez oba uzwojenia płynie prąd, wartość tego prądu jest maksymalna (nominalna) dla danego modelu silnika w każdym z uzwojeń, oznacza to że w chwilach kiedy kiedy napięcie jest podawane na tylko jedno uzwojenie, prąd w nim płynący jest większy od nominalnego (tak jak na rys. \ref{grafiki/stepper_sterowanie_polkrokowe_zmienne.eps}). To naraża silnik na nadmierne grzanie, a nawet na uszkodzenie. Z drugiej strony można założyć że nominalny prąd ma płynąć w momencie zasilania jednego uzwojenia, a mniejszy przy zasilaniu dwóch. Ten tryb jest bezpieczny, ale optymalny moment obrotowy nie jest uzyskiwany.
+Wadą takiego rozwiązania jest mniejszy moment obrotowy. Może to spowodować szarpanie wirnika przy dużych prędkościach obrotowych. Przy niskich prędkościach i obciążeniach natomiast, efekt ten rzadko występuje i można uzyskać polepszoną płynność ruchu, w porównaniu do poprzednich trybów. Aby uniknąć efektu zmiennego momentu, można zastosować sterowanie półkrokowe ze zmiennym prądem (rys. \ref{grafiki/stepper_sterowanie_polkrokowe_zmienne.eps}). Na rysunku widać że w momentach kiedy różnica potencjałów występuje tylko na jednym z uzwojeń, jest ona dwa razy większa niż w przypadku kiedy zasilane są obie cewki. Prąd płynący w uzwojeniach jest proporcjonalny do przyłożonego do nich napięcia, dlatego moment się wyrównuje i silnik nie jest narażony na szarpanie. Rozwiązanie te także nie pozostaje bez wad- Zakładając że dla momentu w czasie, w którym przez oba uzwojenia płynie prąd, wartość tego prądu jest maksymalna (nominalna) dla danego modelu silnika w każdym z uzwojeń, oznacza to że w chwilach kiedy kiedy napięcie jest podawane na tylko jedno uzwojenie, prąd w nim płynący jest większy od nominalnego (tak jak na rys. \ref{grafiki/stepper_sterowanie_polkrokowe_zmienne.eps}). To naraża silnik na nadmierne grzanie, a nawet na uszkodzenie. Z drugiej strony można założyć że nominalny prąd ma płynąć w momencie zasilania jednego uzwojenia, a mniejszy przy zasilaniu dwóch. Ten tryb jest bezpieczny, ale optymalny moment obrotowy nie jest uzyskiwany.
 
 \insertImgSetSize{grafiki/stepper_sterowanie_polkrokowe_zmienne.eps}
 		{100}
@@ -136,16 +137,14 @@ Równanie \ref{eq:stepper2} prezentuje wzór na jedynkę trygonometryczną. Moż
 		{Ćwiartki okręgu i funkcji $ \sin x $ w kartezjańskim układzie współrzędnych}
 		{wikimedia}
 		
-Tak więc, podając na uzwojenia silnika prąd o kształcie funkcji {\it sinus} (na pierwsze uzwojenie) i {\it cosinus} (na drugie) sumaryczny prąd w uzwojeniach zawsze będzie stały (wzór \ref{eq:stepper2}), a co za tym idzie stały będzie także moment obrotowy.
+Tak więc, podając na uzwojenia silnika prąd o kształcie funkcji {\it sinus} (na pierwsze uzwojenie) i {\it cosinus} (na drugie) sumaryczny prąd w uzwojeniach teoretycznie powinien być stały (wzór \ref{eq:stepper2}), a co za tym idzie stały powinien być także moment obrotowy.
 
 \insertImgSetSize{grafiki/stepper_sin_cos.eps}
 		{85}
 		{Kształt prądów podawanych na uzwojenia A i B w celu uzyskania optymalnej płynności obrotu w silniku krokowym hybrydowym dwufazowym.}
 		{oprWlasne}
 		
-Prezentowane przebiegi z rys. \ref{grafiki/stepper_sin_cos.eps} obrócą wał silnika o 360\degree magnetycznych. Maksymalna amplituda po znormalizowaniu reprezentuje wartość natężenia nominalnego prądu dla danego modelu silnika.
-Ze względu na opisywane własności, silniki krokowe mogą być sterowane częstotliwościami audio, takimi samymi jakie są podawane na głośniki (po odpowiednim wzmocnieniu), lub z napięcia sieciowego o odpowiednim przesunięciu międzyfazowym (np. dla silnika dwufazowego o 90\degree, a dla silnika trójfazowego o 60\degree).
-Zazwyczaj jednak silniki krokowe są sterowane z przekształtników, które same są zasilane napięciem stałym. Oznacza to że te przekształtniki muszą wytworzyć w ,,cyfrowy'' sposób napięcie zmienne, o odpowiednim kształcie i zmiennej częstotliwości, aby poprawnie sterować silnikiem. W tym wypadku uzyskanie prądu w kształcie idealnej sinusoidy jest niemal niemożliwe i trzeba pogodzić się z określoną dla danego sterownika rozdzielczością mikrokroków, która rośnie wraz z ceną przekształtnika. Rozdzielczości uzyskiwane w typowych sterownikach wynoszą od 8 do 32 mikrokroków na pełen krok. 
+Prezentowane przebiegi z rys. \ref{grafiki/stepper_sin_cos.eps} obrócą wał silnika o 360\degree magnetycznych. Maksymalna amplituda po znormalizowaniu reprezentuje wartość natężenia nominalnego prądu dla danego modelu silnika. Zazwyczaj silniki krokowe są sterowane z przekształtników, które same są zasilane napięciem stałym. Rozdzielczości uzyskiwane w typowych sterownikach wynoszą od 8 do 32 mikrokroków na pełen krok.  \\
 
 \insertImgSetSize{grafiki/stepper_sin_cos_8.eps}
 		{85}
@@ -177,17 +176,17 @@ Możliwość sterowania silnikiem krokowym za pomocą impulsów jest dużą zale
 		{Wykres czasowy ilusytujący położenie wirnika podczas wykonywania skoku}
 		{edw_sierpien_2002}
 		
-W przypadkach kiedy wymagana jest duża precyzja sterowania, tak duże drgania są bardzo niekorzystne. Nie ma prostych sposobów ich ograniczenia, niektóre z nich to:
+W przypadkach kiedy wymagana jest duża precyzja sterowania, tak duże drgania są bardzo niekorzystne. Wybrane sposoby eliminacji tych problemów to:
 
 \begin{easylist}
 	& Tłumienie mechaniczne poprzez zwiększenie momentu tarcia.
 	& Sprzęgła elastyczne i przekładnie paskowe zastosowane w układzie napędowym, w celu redukcji przenoszonych drgań do obciążenia.
 	& Wybór pracy półkrokowej lub mikrokrokowej- Im bardziej przebieg prądu jest zbliżony do sinusoidalnego, tym ciszej i stabilniej pracuje silnik krokowy.
-	& Zastosowanie silnika krokowego o mniejszym skoku. Razem z krokiem zmniejszają się oscylacje.
+	& Zastosowanie silnika krokowego o mniejszym skoku.
 	\\
 \end{easylist} 
 
-Należy pamiętać że o wielkości i częstotliwości oscylacji decyduje głównie masa wirnika oraz wielkość i rodzaj obciążenia.
+Należy pamiętać o wielkości i częstotliwości oscylacji decyduje głównie masa wirnika oraz wielkość i rodzaj obciążenia.
 
 
 \clearpage

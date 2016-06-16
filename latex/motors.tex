@@ -1,6 +1,6 @@
 \section{Podstawowe informacje o silnikach}
 
-Rozdział ten przedstawia podział maszyn elektrycznych ze względu na ich różne parametry, oraz opis tych silników, które są (i które jeszcze nie są, ale będą) wspierane przez skonstruowany sterownik. 
+Rozdział ten przedstawia podział maszyn elektrycznych ze względu na ich różne parametry, oraz opis tych silników, które są (i mogą być) wspierane przez skonstruowany sterownik. 
 Rozdział został opracowany głównie na podstawie źródeł \cite{przepiorkowski} i \cite{jones}.
 
 \subsection{Podział silników elektrycznych}
@@ -59,7 +59,7 @@ Nema ({\em National Electrical Manufacturers Association}) to stowarzyszenie pro
 	{nanotec}
 
 \begin{easylist}
-	& \underline{Silniki bezszczotkowe z wirującym magnesem (BLDC)} - W literaturze angielskiej silniki te są opisywane jako prądu stałego ({\em BrushLess DC}). W przypadku silników dwubiegunowych z czujnikami Halla (np. tego typu, które są używane w małych wentylatorach do chłodzenia radiatorów) może to być uzasadnione. Nie można jednak jednoznacznie zaliczyć do grupy DC silników wielobiegunowych trójfazowych z wirującym magnesem \cite{przepiorkowski}. Mylne może być także to, że w przypadku silników z wbudowanym sterownikiem nie różnią się one z punktu użytkownika od silnika komutatorowego z magnesem trwałym. Maszyny BLDC charakteryzują się bardzo wysoką prędkością obrotową, w szczególności w porównaniu do silników krokowych.	
+	& \underline{Silniki bezszczotkowe z wirującym magnesem (BLDC)} - W literaturze angielskiej silniki te są opisywane jako prądu stałego ({\em BrushLess DC}). W przypadku silników dwubiegunowych z czujnikami Halla (np. tego typu, które są używane w małych wentylatorach do chłodzenia radiatorów) taki opis może być uzasadniony. Nie można jednak jednoznacznie zaliczyć do grupy DC silników wielobiegunowych trójfazowych z wirującym magnesem \cite{przepiorkowski}. Mylne może być także to, że w przypadku silników z wbudowanym sterownikiem nie różnią się one z punktu użytkownika od silnika komutatorowego z magnesem trwałym. Maszyny BLDC charakteryzują się bardzo wysoką prędkością obrotową, w szczególności w porównaniu do silników krokowych.	
 	
 	& \underline{Silniki liniowe} - Wynikiem działania takiej maszyny jest przemieszczenie liniowe, a nie ruch obrotowy. Konstrukcja takiego silnika w dużym uproszczeniu polega na ,,rozwinięciu'' wirnika i stojana na płaszczyźnie. Nazwa silnik liniowy lub {\em Linear Actuator} bardzo często dotyczy zwykłego silnika krokowego z wbudowaną przekładnią śrubową zamieniającą ruch obrotowy na posuwisto-zwrotny, co bardzo często wprowadza niejasności i wątpliwości podczas projektowanie systemów napędowych.
 	
@@ -86,15 +86,16 @@ Podstawowe parametry silnika są czasami podawane na jego tablicy znamionowej. P
 	\\
 	& Napięcie zasilania: Znamionowa wartość napięcia zasilającego (stałego lub zmiennego), przy której określane są pozostałe parametry. Najczęściej silniki mogą być zasilane napięciem niższym. Nie należy stosować napięć dużo wyższych od znamionowego (max. +15 \%).
 	\\
-	& Moment obrotowy: Siła z jaką silnik potrafi obracać obciążeniem. Parametr ten jest podawany w Niutono-metrach $ [Nm] $. Typowe wartości dla małych silników: od 0.01 do 50 Nm. Dla większości rodzajów silników występuje zależność momentu obrotowego i natężenia prądu pobieranego przez maszynę.
+	& Moment obrotowy: Parametr ten jest podawany w Niutono-metrach $ [Nm] $. Typowe wartości dla małych silników: od 0.01 do 50 Nm. Dla większości rodzajów silników występuje zależność momentu obrotowego i natężenia prądu pobieranego przez maszynę.
 	\\
 	& Moment rozruchowy: Ważny parametr informujący o tym czy silnik jest w stanie wystartować pod obciążeniem. Podawany w Nm lub w procentach momentu obrotowego. W zależności od rodzaju silnika moment może być mały (do 150 \%), średni (150 - 250 \%) lub duży (> 250 \%).
 	\\
 	& Obroty znamionowe: Wyrażane w RPM-ach ({\em Revolutions per minute}. Zawsze podawane są przy znamionowym obciążeniu i napięciu zasilania, lub podana jest charakterystyka obrotów w funkcji obciążenia. Obroty silników zawierają się w granicach od 100 do 100000 RPM, ale najczęściej spotykane wartości to od 1000 do 4000 RPM. Dla maszyn prądu przemiennego podawane są obroty przy określonej częstotliwości napięcia sieciowego (50 lub 60 Hz). Dla silników krokowych obroty znamionowe nie są podawane. Zamiast tego występują obroty maksymalne lub dopuszczalna częstotliwość impulsów.
 	\\
-	& Prąd znamionowy i rozruchowy: Czyli pobór prądu w normalnych warunkach pracy i w czasie rozpędzania silnika. Ten drugi może być nawet 2 - 8 krotnie większy od znamionowego (największe prądy rozruchowe mają silniki indukcyjne). Prąd rozruchowy nie występuje w silnikach sterowanych impulsowo.
+	& Prąd znamionowy i rozruchowy: pobór prądu w normalnych warunkach pracy i w czasie rozpędzania silnika. Ten drugi może być nawet 2 - 8 krotnie większy od znamionowego (największe prądy rozruchowe mają silniki indukcyjne). Prąd rozruchowy nie występuje w silnikach sterowanych impulsowo.
 	\\
-	& Kierunek obrotów: Parametr dotyczący przede wszystkim silników komutatorowych szeregowych i niektórych silników indukcyjnych jedno fazowych. Dla tych silników kierunek obrotów jest wymuszony przez konstrukcję silnika. W pozostałych maszynach kierunek zależy od polaryzacji przyłożonego do ich zacisków napięcia lub w przypadku maszyn ze sterowaniem impulsowym- od kolejności podawanie impulsów na poszczególne uzwojenia.
+	& Kierunek obrotów: Parametr dotyczący przede wszystkim silników komutatorowych szeregowych i niektórych silników indukcyjnych jedno fazowych. Dla tych silników kierunek obrotów jest wymuszony przez konstrukcję silnika. \newline 
+	W pozostałych maszynach kierunek zależy od polaryzacji przyłożonego do ich zacisków napięcia lub w przypadku maszyn ze sterowaniem impulsowym- od kolejności podawanie impulsów na poszczególne uzwojenia.
 	\\
 	& Konstrukcja mechaniczna: Wymiary, ciężar, średnica wału, mocowania, rodzaj łożysk wirnika itp.
 	\\
