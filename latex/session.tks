@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TexmakerSession quickmode="12">
-    <document bookmark3="0" hasfocus="false" file="M:/Github/praca_mgr/latex/ch_statyczne.tex" line="0" master="false" bookmark1="0" bookmark2="0"/>
-    <document bookmark3="0" hasfocus="false" file="M:/Github/praca_mgr/latex/abstract.tex" line="3" master="false" bookmark1="0" bookmark2="0"/>
-    <document bookmark3="0" hasfocus="false" file="M:/Github/praca_mgr/latex/tableofcontents.tex" line="0" master="false" bookmark1="0" bookmark2="0"/>
-    <document bookmark3="0" hasfocus="false" file="M:/Github/praca_mgr/latex/bib_database.bib" line="203" master="false" bookmark1="0" bookmark2="0"/>
-    <document bookmark3="0" hasfocus="false" file="M:\Github\praca_mgr\latex\main.tex" line="163" master="true" bookmark1="0" bookmark2="0"/>
-    <document bookmark3="0" hasfocus="false" file="M:/Github/praca_mgr/latex/acm-i.bst" line="189" master="false" bookmark1="0" bookmark2="0"/>
-    <document bookmark3="0" hasfocus="false" file="M:/Github/praca_mgr/latex/motors.tex" line="96" master="false" bookmark1="0" bookmark2="0"/>
-    <document bookmark3="0" hasfocus="false" file="M:\Github\praca_mgr\latex\motors_vcm.tex" line="38" master="false" bookmark1="0" bookmark2="0"/>
-    <document bookmark3="0" hasfocus="false" file="M:/Github/praca_mgr/latex/statement.tex" line="0" master="false" bookmark1="0" bookmark2="0"/>
-    <document bookmark3="0" hasfocus="false" file="M:/Github/praca_mgr/latex/bibliography.tex" line="0" master="false" bookmark1="0" bookmark2="0"/>
-    <document bookmark3="0" hasfocus="false" file="M:/Github/praca_mgr/latex/motors_step.tex" line="171" master="false" bookmark1="0" bookmark2="0"/>
-    <document bookmark3="0" hasfocus="false" file="M:/Github/praca_mgr/latex/software.tex" line="6" master="false" bookmark1="0" bookmark2="0"/>
-    <document bookmark3="0" hasfocus="false" file="M:/Github/praca_mgr/latex/electromagnetism.tex" line="18" master="false" bookmark1="0" bookmark2="0"/>
-    <document bookmark3="0" hasfocus="false" file="M:\Github\praca_mgr\latex\sterowanie.tex" line="17" master="false" bookmark1="0" bookmark2="0"/>
-    <document bookmark3="0" hasfocus="false" file="M:/Github/praca_mgr/latex/concept.tex" line="55" master="false" bookmark1="0" bookmark2="0"/>
-    <document bookmark3="0" hasfocus="false" file="M:/Github/praca_mgr/latex/sterowniki.tex" line="113" master="false" bookmark1="0" bookmark2="0"/>
-    <document bookmark3="0" hasfocus="false" file="M:/Github/praca_mgr/latex/hardware.tex" line="30" master="false" bookmark1="0" bookmark2="0"/>
-    <document bookmark3="0" hasfocus="true" file="M:/Github/praca_mgr/latex/mainboard.tex" line="187" master="false" bookmark1="0" bookmark2="0"/>
-    <document bookmark3="0" hasfocus="false" file="M:/Github/praca_mgr/latex/motors_dc.tex" line="15" master="false" bookmark1="0" bookmark2="0"/>
-    <document bookmark3="0" hasfocus="false" file="M:/Github/praca_mgr/latex/intro.tex" line="3" master="false" bookmark1="0" bookmark2="0"/>
-    <document bookmark3="0" hasfocus="false" file="M:/Github/praca_mgr/latex/motors_bldc.tex" line="21" master="false" bookmark1="0" bookmark2="0"/>
+    <document hasfocus="false" bookmark1="0" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/ch_statyczne.tex" line="0" master="false"/>
+    <document hasfocus="false" bookmark1="0" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/bib_database.bib" line="203" master="false"/>
+    <document hasfocus="false" bookmark1="0" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/tableofcontents.tex" line="0" master="false"/>
+    <document hasfocus="false" bookmark1="0" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/abstract.tex" line="3" master="false"/>
+    <document hasfocus="false" bookmark1="0" bookmark2="0" bookmark3="0" file="M:\Github\praca_mgr\latex\main.tex" line="163" master="true"/>
+    <document hasfocus="false" bookmark1="0" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/acm-i.bst" line="189" master="false"/>
+    <document hasfocus="false" bookmark1="0" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/statement.tex" line="0" master="false"/>
+    <document hasfocus="false" bookmark1="0" bookmark2="0" bookmark3="0" file="M:\Github\praca_mgr\latex\motors_vcm.tex" line="38" master="false"/>
+    <document hasfocus="false" bookmark1="0" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/motors.tex" line="96" master="false"/>
+    <document hasfocus="false" bookmark1="0" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/electromagnetism.tex" line="18" master="false"/>
+    <document hasfocus="false" bookmark1="0" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/motors_step.tex" line="171" master="false"/>
+    <document hasfocus="false" bookmark1="0" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/bibliography.tex" line="0" master="false"/>
+    <document hasfocus="false" bookmark1="0" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/software.tex" line="6" master="false"/>
+    <document hasfocus="false" bookmark1="0" bookmark2="0" bookmark3="0" file="M:\Github\praca_mgr\latex\sterowanie.tex" line="17" master="false"/>
+    <document hasfocus="false" bookmark1="0" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/concept.tex" line="55" master="false"/>
+    <document hasfocus="false" bookmark1="0" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/sterowniki.tex" line="113" master="false"/>
+    <document hasfocus="false" bookmark1="0" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/motors_dc.tex" line="15" master="false"/>
+    <document hasfocus="false" bookmark1="0" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/hardware.tex" line="30" master="false"/>
+    <document hasfocus="false" bookmark1="0" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/intro.tex" line="3" master="false"/>
+    <document hasfocus="false" bookmark1="0" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/motors_bldc.tex" line="21" master="false"/>
+    <document hasfocus="true" bookmark1="0" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/mainboard.tex" line="321" master="false"/>
 </TexmakerSession>
