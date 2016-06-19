@@ -244,14 +244,14 @@ Schemat blokowy \ref{grafiki/tim18.pdf} prezentuje architekturę pojedynczego za
 
 \insertImgSetSize{grafiki/high_side_hwdt.pdf}
 	{70}
-	{Schemat ideowy modułu HH ({\it High Side driver} ze sprzętowym czasem martwym i kanałem komplementarnym}
+	{Schemat ideowy modułu HH ({\it High Side driver}) ze sprzętowym czasem martwym i kanałem komplementarnym}
 	{mechsyspcb}
 
 Aby zapewnić czas martwy i dodatkowy kanał komplementarny na kanale czwartym został zastosowany obwód ze schematu \ref{grafiki/high_side_hwdt.pdf}. Sygnał z etykietą HIN jest opisywanym czwartym kanałem. Aby utworzyć z niego dodatkowy sygnał komplementarny została zastosowana bramka XOR (U6) na której jedno z wejść wchodzi HIN. Na drugie wejście U6 jest doprowadzane wyjście z bramki AND (U7). Jej wejścia to z kolei sygnał odblokowujący moduł (etykieta $ VLIN_{EN} $) i {\it BREAK}, który zmienia stan na niski w przypadku wystąpienia przeciążenia prądowego (dokładniejszy opis w sekcji \ref{dodac}).
 
 \insertImgSetSize{grafiki/bramki.png}
 	{40}
-	{Część PCB w której znajdują się bramki U7 i U6 tworzące kanał komplementarny}
+	{Część PCB w której znajdują się dyskretne bramki U7 i U6 tworzące kanał komplementarny}
 	{mechsyspcb}
 	
 Bramka AND zapewnia możliwość całkowitego wyłączenia danego pół-mostka, a czas martwy jest generowany w samym driverze, który w obwodzie HH został zamieniony z IR2101 na IR25601 tego samego producenta. 
@@ -305,23 +305,58 @@ Kiedy prąd płynący w uzwojeniach danego silnika (i jednocześnie przez rezyst
 
 \tocLessLeftNorm{CSHS - Obwód pomiaru prądu}
 
-Każdy z mostków H posiada jeden moduł CSLS (dwa w obwodzie silnika krokowego i jeden w VCM). 
+Każdy z mostków H posiada jeden moduł CSLS (dwa w obwodzie silnika krokowego i jeden w VCM). Moduł służy to cyklicznego pomiaru spadku napięcia na rezystorze pomiarowym znajdującym się w dolnej części mostka. Po przeliczeniu daje to dokładną informację o natężeniu prądu znajdującym się w uzwojeniu, która jest używana w celu programowego zabezpieczenia przed przeciążeniem (zanim zadziała zabezpieczenie krytyczne) i w procedurze regulacji prądu w sterowaniu momentem obrotowym. \\
 
+Rysunek \ref{grafiki/cursens_ls.pdf} przedstawia schemat ideowy obwodu CSLS. Do pomiaru spadku na rezystorze pomiarowym został zastosowany specjalizowany wzmacniacz pomiarowy INA826 firmy Texas Instruments. Do regulacji wzmocnienia używany jest rezystor $ 1 k\Omega $ o dokładności 0.1 \% podłączony do zacisków RG. W prezentowanej aplikacji wzmocnienie wynosi $ G = 50.4 $. Napięcie odniesienia 1.2 V (schemat \ref{grafiki/power_12_25.pdf}) jest używane do ustawienia punktu pracy wzmacniacza ({\it Bias voltage}). W tej konfiguracji napięcie spoczynkowe na wyjściu wzmacniacza wynosi 1.2 V i obniża się (min. 0 V) lub wzrasta (max 3.3 V) w zależności od kierunku przepływu prądu przez rezystor pomiarowy R13. Użyteczny zakres na przetwornika ADC mikrokontrolera to od 0 do 2.5 V (napięcie odniesienia ADC).
 
 \insertImgSetSize{grafiki/cursens_ls.pdf}
-	{70}
+	{65}
 	{Schemat ideowy modułu CSLS ({\it Current Sense at Low Side}) służącego do pomiaru prądu w uzwojeniach}
 	{mechsyspcb}
+	
+Schematy blokowe \ref{grafiki/mostki_krokowy.pdf} i \ref{grafiki/mostki_vcm.pdf} obrazują konfigurację opisanych modułów w odniesieniu do obwodów obu silników.
 
 \insertImgSetSize{grafiki/mostki_krokowy.pdf}
-	{85}
+	{75}
 	{Schemat blokowy obwodu silnika krokowego}
 	{oprWlasne}
 	
+Silnik krokowy wymaga pomiaru natężenia prądu w dwóch miejscach ze względu na to że posiada dwa uzwojenia. Bezpiecznik prądu jest wymagany tylko jeden, gdyż liczy się dla niego tylko prąd całkowity, bez względu na to w którym uzwojeniu nastąpiło przeciążenie. \\
+
+Na rysunku \ref{grafiki/moduly_top.png} widać ułożenie tych z opisywanych modułów, które znajdują się po górnej stronie płytki głównej. Złączami CON1, CON2 i CON5 połączane są kolejno silnik krokowy, silnik VCM i zawór podciśnienia.
+	
 \insertImgSetSize{grafiki/mostki_vcm.pdf}
-	{85}
+	{75}
 	{Schemat blokowy obwodu silnika VCM}
 	{oprWlasne}
+	
+Obiekty CSHS nie zmieściły się na górze i zostały przeniesione na dolną warstwę (rys. \ref{grafiki/moduly_bot.png}). W celu uzyskania jak najlepszych, bezzakłóceniowych odczytów spadków napięć na rezystorze pomiarowym, potencjał pomiędzy R13 a R19 (schemat \ref{grafiki/cursens_ls.pdf}) jest odłączony od ,,wylanej'' na dolnej warstwie masy, i jest połączony jedynie przelotkami z warstwą środkową (patrz rys. \ref{grafiki/masa_rmeas.png}). 	
+	
+\insertImgSetSize{grafiki/moduly_top.png}
+	{77}
+	{Wyszczególnione moduły obwodu silników po stronie górnej PCB}
+	{mechsyspcb}
+
+Dokładne procedury pomiaru prądu w uzwojeniach i sterowania silnikiem zostały opisane w rozdziale \ref{s:oprogramowanie}. \\
+
+Podsumowując, udało się zbudować kompletny sterownik do dwóch silników działających w pętli ze sprzężeniem zwrotnym używając przy tym bardzo ograniczonej przestrzeni. 
+
+\insertImgSetSize{grafiki/moduly_bot.png}
+	{77}
+	{Wyszczególnione moduły obwodu silników po stronie dolnej PCB}
+	{mechsyspcb}
+	
+Nie udało się jednak umieścić wszystkich modułów na jednym PCB i dlatego poszczególne obwody są rozproszone na cztery płytki. Mimo to, złożenie prototypu nie stanowi problemu i jest to czynność powtarzalna.
+
+\insertImgSetSize{grafiki/masa_rmeas.png}
+	{60}
+	{Zaznaczony niedostępny obszar dla propagacji masy po dolnej stronie PCB}
+	{mechsyspcb}
+
+
+
+
+
 
 
 
