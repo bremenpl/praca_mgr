@@ -137,7 +137,7 @@ Równanie \ref{eq:stepper2} prezentuje wzór na jedynkę trygonometryczną. Moż
 		{Ćwiartki okręgu i funkcji $ \sin x $ w kartezjańskim układzie współrzędnych}
 		{wikimedia}
 		
-Tak więc, podając na uzwojenia silnika prąd o kształcie funkcji {\it sinus} (na pierwsze uzwojenie) i {\it cosinus} (na drugie) sumaryczny prąd w uzwojeniach teoretycznie powinien być stały (wzór \ref{eq:stepper2}), a co za tym idzie stały powinien być także moment obrotowy.
+Tak więc, podając na uzwojenia silnika prąd o kształcie funkcji {\it sinus} (na pierwsze uzwojenie) i {\it cosinus} (na drugie), suma ich kwadratów powinna zawsze wynosić jeden. 
 
 \insertImgSetSize{grafiki/stepper_sin_cos.eps}
 		{85}
@@ -146,10 +146,10 @@ Tak więc, podając na uzwojenia silnika prąd o kształcie funkcji {\it sinus} 
 		
 Prezentowane przebiegi z rys. \ref{grafiki/stepper_sin_cos.eps} obrócą wał silnika o 360\degree magnetycznych. Maksymalna amplituda po znormalizowaniu reprezentuje wartość natężenia nominalnego prądu dla danego modelu silnika. Zazwyczaj silniki krokowe są sterowane z przekształtników, które same są zasilane napięciem stałym. Rozdzielczości uzyskiwane w typowych sterownikach wynoszą od 8 do 32 mikrokroków na pełen krok.  \\
 
-\insertImgSetSize{grafiki/stepper_sin_cos_8.eps}
-		{85}
+\insertImgSetSize{grafiki/stepper_sin_cos_8.png}
+		{70}
 		{Kształt prądów podawanych na uzwojenia A i B przy sterowaniu mikrokrokowym z rozdzielczością $ \frac{1}{8} $ kroku.}
-		{oprWlasne}
+		{lab_boni_holub}
 		
 Tabela \ref{tab:stepper_sterowanie} prezentuje podsumowanie omówionych trybów sterowania silnikami krokowymi dla zasilania bipolarnego i unipolarnego.
 
@@ -169,12 +169,7 @@ Tabela \ref{tab:stepper_sterowanie} prezentuje podsumowanie omówionych trybów 
 
 \subsubsection{Zalety i wady silników krokowych}
 
-Możliwość sterowania silnikiem krokowym za pomocą impulsów jest dużą zaletą- Przy odpowiednio dobranym układzie napędowym, do pracy w ograniczonym obszarze dokładności silnik krokowy nie potrzebuje żadnego sprzężenia zwrotnego (praca w otwartej pętli sprzężenia zwrotnego). Teoretycznie pozycja wirnika jest znana po każdej komutacji wykonanej przez układ sterujący. Niestety, wirnik i jego obciążenie posiadają pewną bezwładność co sprawia że przed osiągnięciem ustalonej pozycji występują drgania.
-
-\insertImgSetSize{grafiki/stepper_drgania.png}
-		{60}
-		{Wykres czasowy ilusytujący położenie wirnika podczas wykonywania skoku}
-		{edw_sierpien_2002}
+Możliwość sterowania silnikiem krokowym za pomocą impulsów jest dużą zaletą- Przy odpowiednio dobranym układzie napędowym, do pracy w ograniczonym obszarze dokładności silnik krokowy nie potrzebuje żadnego sprzężenia zwrotnego (praca w otwartej pętli sprzężenia zwrotnego). Teoretycznie pozycja wirnika jest znana po każdej komutacji wykonanej przez układ sterujący. Niestety, wirnik i jego obciążenie posiadają pewną bezwładność co sprawia że przed osiągnięciem ustalonej pozycji występują drgania. \\
 		
 W przypadkach kiedy wymagana jest duża precyzja sterowania, tak duże drgania są bardzo niekorzystne. Wybrane sposoby eliminacji tych problemów to:
 
@@ -186,8 +181,13 @@ W przypadkach kiedy wymagana jest duża precyzja sterowania, tak duże drgania s
 	\\
 \end{easylist} 
 
+\insertImgSetSize{grafiki/stepper_drgania.png}
+		{60}
+		{Wykres czasowy ilusytujący położenie wirnika podczas wykonywania skoku}
+		{edw_sierpien_2002}
+
 Należy pamiętać o wielkości i częstotliwości oscylacji decyduje głównie masa wirnika oraz wielkość i rodzaj obciążenia.
 
 
-\clearpage
+
 
