@@ -1,6 +1,38 @@
 \section{Oprogramowanie}
 \label{s:oprogramowanie}
 
+Kod wykonywany w mikroprocesorze sterującym został napisany w języku c i w nielicznych częściach w assemblerze. Jądrem całej architektury jest system operacyjny czasu rzeczywistego FreeRTOS™. Wszystkie procedury wysokiego poziomu wykonywane w kodzie są umieszczone w wątkach o odpowiednich priorytetach, które porozumiewają się między sobą za pomocą kolejek, semaforów oraz obszarów pamięci współdzielonej. Zadania najniższego poziomu są wykonywane w procedurach obsługi przerwań, np. komutacja lub wkładanie przychodzących ramek CAN do kolejki. \\
+
+Rysunek \ref{grafiki/Soft_architecture.pdf} przedstawia poglądowy schemat blokowy architektury systemu. Pomarańczowymi blokami zostały oznaczone procedury wykonywane na poziomie sprzętowym, lub programowym na warstwie znajdującej się niżej od wątków systemu FreeRTOS™. Kolor zielony oznacza wątki/ procesy w systemie FreeRTOS™. Strzałki z paskami symbolizują komunikaty przychodzące do kontrolera ze świata zewnętrznego, a bez nich komunikaty wewnątrz systemowe. Dokładniejszy opis poszczególnych bloków znajduje się w korespondujących z nimi sekcjach.
+
+\insertImgSetSize{grafiki/peryferia.png}
+	{110}
+	{Widok wstępnie skonfigurowanych peryferiów w programie mxCube firmy ST Microelectronics}
+	{oprWlasne}
+	
+Do wygenerowania kodu zawierającego wstępną konfigurację peryferiów służy program mxCube firmy ST Microelectronics.
+	
+\insertImgSetSize{grafiki/Soft_architecture.pdf}
+	{220}
+	{Schemat blokowy architektury oprogramowania sterownika}
+	{oprWlasne}
+	
+\clearpage
+
+Jego możliwości konfiguracyjne są bardzo podstawowe, ale pozwala on w graficzny sposób zobrazować używane moduły i wyprowadzenia (rys. \ref{grafiki/peryferia.png}). Dla bardziej skomplikowanych algorytmów przed implementacją zostały wykonane symulacje w programie MATLAB, który posłużył także do zobrazowania danych.
+
+\input{soft_comm.tex}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

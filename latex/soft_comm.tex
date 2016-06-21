@@ -1,0 +1,38 @@
+\subsection{Komunikacja}
+
+Gotowe do obsługi programowej w urządzeniu są gotowe dwie magistrale szeregowe (patrz \ref{sss:hardware_komunikacja}). W tej sekcji znajduje się opis zastosowania każdej z nich na obecnym poziomie rozwoju.
+
+\subsubsection{Magistrala CAN}
+
+Ze sprzętowego punktu widzenia, magistrala pracuje w protokole CAN 2.0B (rozszerzona ramka: 29 bitowy identyfikator i 64 bitowe pole danych) z prędkością 1 Mbit/s. Patrząc od strony oprogramowania używany protokół to TML CAN, który jest używany przed dotychczas używane w maszynach sterowniki firmy Technosoft. Jak zostało wcześniej wspomniane, projektowane urządzenie ma za zadanie zastąpić w maszynie dwa dotychczasowe, dlatego z punktu widzenia sieci są to dwa kontrolery (rys. \ref{grafiki/can_nodes.pdf}).
+
+\insertImgSetSize{grafiki/can_nodes.pdf}
+	{60}
+	{Topologia sieci CAN. Sterownik przedstawia się jako dwa osobne urządzenia}
+	{st}
+	
+W rzeczywistości kontroler jest tylko jeden. Mikrokontroler STM32F07VTG6 posiada dwie sprzętowe kolejki typu FIFO ({\it First In First Out}) do odbierania ramek CAN, które są współdzielone przez moduły CAN1 i CAN2. Urządzenie korzysta tylko z jednego peryferia, więc obie kolejki mogą być zastosowane przez nie. Filtry ramek przychodzących są skonfigurowane w taki sposób, aby przepuszczać tylko te ramki, które posiadają w swoim identyfikatorze numer osi Z lub R (odpowiednio 5 i 6). Po odebraniu wiadomości dla osi Z, ramka trafia do pierwszej kolejki FIFO, jeśli wiadomość jest dla osi R, to do drugiej. Taka architektura zapewnia bardzo dobre odseparowanie wirtualnych modułów odbiorczych sterowników już na poziomie sprzętowym. Bufory FIFO mają jednak ograniczoną pojemność-- mieszczą tylko 3 ramki. Z tego względu wiadomości do nich wpadające muszą być jak najszybciej odczytane i ulokowane w programowej kolejce o rozmiarze 32 ramek, w której mogą oczekiwać na interpretację przez dłuższy okres czasu. \\
+
+Dostęp do zmiennych (obszarów pamięci) w sterownikach Technosoft'u odbywa się poprzez zapis do i odczyt z rejestrów. Architektura konstruowanego kontrolera nie wspiera w natywny sposób takiego programowania, dlatego w celu poprawnej pracy potrzebna jest dodatkowa warstwa (rys. \ref{grafiki/tml_can_trans.pdf}).
+
+\insertImgSetSize{grafiki/tml_can_trans.pdf}
+	{35}
+	{Sposób tłumaczenia ramek TML CAN w kontrolerze. Przykładowy zapis prędkości ruchu w osi Z}
+	{oprWlasne}
+	
+W warstwie tłumaczenia ramek TML dokonywanych jest wiele różnych operacji. W zależności od komunikatu może to być zapis do zmiennej lub np. wywołanie funkcji. W przykładzie zaprezentowanym na rysunku \ref{grafiki/tml_can_trans.pdf} zewnętrzne urządzenia wysyła do kontrolera wiadomość TML, która po przeskalowaniu ustawia prędkość ruchu w osi Z.
+
+\subsubsection{Magistrala RS232}
+	
+
+
+\clearpage
+
+
+
+
+
+
+
+
+
