@@ -1,7 +1,7 @@
-\section{Rozwiązania komercyjne i Open Source}
-\label{s:sterowniki}
+\section{Przegląd wybranych rozwiązań sterowników silników}
+\label{s:sterowniki} 
 
-Na rynku dostępnych jest bardzo wiele rozwiązań pozwalających w szybki sposób zacząć sterować konkretnym rodzajem silnika. Ceny poszczególnych sterowników różnią się od siebie znacząco, w taki sam sposób jak różni się ich funkcjonalność. Są też dostępne projekty bezpłatne ({\it Open Source i Open Hardware}) w rozumieniu konkretnych rozwiązań technologicznych, czy też {\it ,,Know How''}. Innymi słowy schematy elektryczne i mechaniczne, dane {\it CAD'owskie} i oprogramowanie są udostępnione za darmo, a samo urządzenie trzeba fizycznie wykonać samemu. W przypadku tych drugich należy także dokładnie zaznajomić się z licencją na zasadach jakiej są udostępnione, gdyż bardzo często zdarza się że nie można ich stosować bezpłatnie do zastosowań komercyjnych. 
+Na rynku dostępnych jest bardzo wiele rozwiązań pozwalających w szybki sposób zacząć sterować konkretnym rodzajem silnika. Ceny poszczególnych sterowników różnią się od siebie znacząco, w taki sam sposób jak różni się ich funkcjonalność. Są też dostępne projekty bezpłatne ({\it Open Source i Open Hardware}) w rozumieniu konkretnych rozwiązań technologicznych, czy też {\it ,,Know How''}.
 
 \subsection{Sterowniki jedno-układowe}
 
@@ -12,7 +12,7 @@ Pierwszą grupą sterowników są urządzenia, które dostarczają użytkownikow
 	{Przykładowe typy obudów w jakich są produkowane układy scalone do sterowania silnikami. Na górze obudowy TSSOP ({\it Thin Shrink Small Outline Package}) i SSOP ({\it Shrink small outline package}) na dole}
 	{oprWlasne}
 
-Funkcjonalność danego układu mocno zależy od jego ceny- wraz z jej wzrostem algorytmy zaimplementowane w sterowniku są coraz lepsze, a dodatkowych potrzebnych komponentów elektronicznych do ich poprawnego działania potrzeba coraz mniej (np. końcówki mocy takie jak mostki H są zintegrowane w układzie). Ogólnie rzecz ujmując, urządzenia te stają się coraz bardziej ,,samodzielne''. Ponadto sterowniki do obsługi silników, które wymagają bardziej skomplikowanego sterowania (np. Krokowe lub BLDC) są droższe od tych, które służą do zasilania prostych maszyn (np. silniki komutatorowe DC). 
+Funkcjonalność danego układu mocno zależy od jego ceny- wraz z jej wzrostem algorytmy zaimplementowane w sterowniku są coraz lepsze, a dodatkowych potrzebnych komponentów elektronicznych do ich poprawnego działania potrzeba coraz mniej (np. końcówki mocy takie jak mostki H są zintegrowane w układzie). Ponadto sterowniki do obsługi silników, które wymagają bardziej skomplikowanego sterowania (np. krokowe lub BLDC) są droższe od tych, które służą do zasilania prostych maszyn (np. silniki komutatorowe DC). 
 
 \subsubsection{AD3950 - Allegro MicroSystems}
 \label{ss:allegro}
@@ -24,9 +24,7 @@ Układ AD3950 produkowany przez firmę Allegro MicroSystems jest urządzeniem s�
 	{Funkcjonalny schemat blokowy układu A3950}
 	{allegro}
 
-Układ posiada w swojej obudowie mostek H oraz ,,logikę'' pozwalającą na sterowanie nim używając pojedynczego sygnału PWM w celu ustalenia prędkości obrotowej/ momentu i kilku lini typu I/O ({\it Input/ Output}), które służą między innymi do zmiany kierunku obrotów (poprzez zmianę kwadrantów pomiędzy pierwszym, a trzecim) i trybu hamowania ({\it Slow Decay} jak w sterowaniu unipolarnym lub {\it Fast Decay} w celu szybkiego hamowania, tak jak przy sterowaniu bipolarnym, tyle że sterownik dodatkowo nie pozwala na wejście silnika w tryb generatorowy zamykając odpowiednie klucze). \\
-
-Urządzenie jak na swoją cenę detaliczną wynoszącą \$3.9 (\cite{digikey}) posiada naprawdę duże możliwości- Zbudowanie w tej cenie podobnego urządzenia z komponentów dyskretnych było by niemożliwe. W prostych aplikacjach w których potrzebne jest sterowanie silnikiem DC niskiej mocy układ sprawdza się znakomicie.
+Układ posiada w swojej obudowie mostek H i niezbędne podzespoły pozwalające na sterowanie nim używając pojedynczego sygnału PWM w celu ustalenia prędkości obrotowej/ momentu i kilku lini typu I/O ({\it Input/ Output}), które służą między innymi do zmiany kierunku obrotów (poprzez zmianę kwadrantów pomiędzy pierwszym, a trzecim) i trybu hamowania ({\it Slow Decay} jak w sterowaniu unipolarnym lub {\it Fast Decay} w celu szybkiego hamowania, tak jak przy sterowaniu bipolarnym, tyle że sterownik dodatkowo nie pozwala na wejście silnika w tryb generatorowy zamykając odpowiednie klucze). 
 
 \subsubsection{DRV8825 - Texas Instruments}
 
@@ -37,91 +35,74 @@ Kontroler DRV8825 firmy Texas Instruments jest bardzo popularnym układem zarów
 	{Funkcjonalny schemat blokowy układu DRV8825}
 	{ti}
 
-Ze względu na dużą ilość wyprowadzeń układ może wydawać się skomplikowany w obsłudze, lecz po wstępnej konfiguracji jego obsługa jest podobna do układu A3950 (sekcja \ref{ss:allegro}). Sterowanie układem polega na podawaniu na wejście STEP impulsów napięciowych, gdzie w zależności od dokonanej za pomocą linii I/O, każdy taki impuls sprawia że silnik robi pełen krok lub mikrokrok (możliwość ustawienia ziarnistości od $ \frac{1}{2} $ do $ \frac{1}{32} $ kroku). Zmieniając częstotliwość podawania impulsów i stany linii MODE0 - MODE2 możliwe jest w miarę płynne sterowanie prędkością obrotową silnika krokowego. W urządzeniach takich jak skanery czy drukarki, w których prędkość obrotowa jest zazwyczaj stała, a wymagana dokładność pozycji wysoka, kontroler DRV8825 sprawdza się bardzo dobrze. Gorzej radzi sobie w aplikacjach w których należy dynamicznie zmieniać tryby pracy silnika (sekcja \ref{sss:sterowanie_krokowy}), a rozdzielczość wymaganego kroku jest bardzo duża, np $ \frac{1}{64} $ kroku. \\
+Sterowanie układem polega na podawaniu na wejście STEP impulsów napięciowych, gdzie w zależności od dokonanej za pomocą linii I/O, każdy taki impuls sprawia że silnik robi pełen krok lub mikrokrok (możliwość ustawienia ziarnistości od $ \frac{1}{2} $ do $ \frac{1}{32} $ kroku). Zmieniając częstotliwość podawania impulsów i stany linii MODE0 - MODE2 możliwe jest w miarę płynne sterowanie prędkością obrotową silnika krokowego. W urządzeniach takich jak skanery czy drukarki, w których prędkość obrotowa jest zazwyczaj stała, a wymagana dokładność pozycji wysoka, kontroler DRV8825 sprawdza się bardzo dobrze. \\
 
 Największa zaleta urządzenia jest taka, że odciąża on sterujący nim układ nadrzędny od rygorystycznego, wykonywanego w czasie rzeczywistym sterowania silnikiem krokowym. Znacząca wada jest natomiast taka, że pomimo że możliwe jest zadanie maksymalnego prądu jakim mają być zasilane uzwojenia, to nie ma możliwości jego bezpośredniego pomiaru przez układ nadrzędny.
 
 \subsubsection{TMCC160 - Trinamic}
 
-Trzecim prezentowanym układem jest sterownik do zasilania silników BLDC i PMSM firmy Trinamic- TMCC160. Poziom integracji tego urządzenia jest o wiele wyższy niż w przypadku dwóch pozostałych chipów (jest tak duży sklasyfikowanie go jako pełnowymiarowego pewnie nie było by błędem). W jego strukturze znajduje się potężny mikrokontroler typu Cortex® M4 z rodziny ARM, dzięki czemu komunikacja z może odbywać się poprzez jeden z dostępnych protokołów szeregowych. Na pokładzie jest także przetwornica DC-DC więc dodatkowe zewnetrzne przetworniki napięcia także nie są wymagane do zasilania logiki układu. 
+Trzecim prezentowanym układem jest sterownik do zasilania silników BLDC i PMSM firmy Trinamic-- TMCC160. Poziom integracji tego urządzenia jest o wiele wyższy niż w przypadku dwóch pozostałych chipów. W jego strukturze znajduje się wydajny mikrokontroler typu Cortex® M4 z rodziny ARM, dzięki czemu komunikacja z może odbywać się poprzez jeden z dostępnych protokołów szeregowych. W układzie jest też zintegrowana przetwornica DC-DC przez co uproszoczona zostaje sekcja zasilania układu. 
 
 \insertImgSetSize{grafiki/TMCC160_SBD.eps}
 	{80}
 	{Ogólny schemat blokowy układu TMCC160}
 	{trinamic}
 
-Urządzenie jest jedynie tzw. {\it Gate Driver'em}, co oznacza że do pracy potrzebuje zewnętrznych końcówek mocy (co może być zaletą, gdyż dzięki temu można go dostosować do aplikacji niskiej i dużej mocy). TMCC160 potrafi nawet współpracować z czujnikami Hall'a i enkoderami inkrementalnymi- ma zaimplementowane algorytmy sterowania w zamkniętej pętli sprzężenia zwrotnego. \\
+Urządzenie nie posiada zintegrowanych kluczy tranzystorowych (co może być zaletą, gdyż dzięki temu można go dostosować do aplikacji niskiej i dużej mocy). TMCC160 potrafi nawet współpracować z czujnikami Hall'a i enkoderami inkrementalnymi oraz ma zaimplementowane algorytmy sterowania w zamkniętej pętli sprzężenia zwrotnego. \\
 
-Po dodaniu kilku elementów pasywnych i złącz do płytki PCB z TMCC160, użytkownik otrzymuje funkcjonalny serwo-mechanizm, który może być sterowany zarówno z mikrokontrolera o bardzo niskich zasobach (wysoki poziom integracji) jak i z komputera, dzięki mnogości dostępnych interfejsów szeregowych (np. RS232 lub CAN).
+Po dodaniu kilku elementów pasywnych i złącz do płytki PCB z TMCC160, użytkownik otrzymuje funkcjonalny moduł sterownika, który może być sterowany zarówno z mikrokontrolera o bardzo niskich zasobach (wysoki poziom integracji) jak i z komputera, dzięki mnogości dostępnych interfejsów szeregowych (np. RS232 lub CAN).
 
 \subsection{Sterowniki pełnowymiarowe}
 
-Druga grupa sterowników to urządzenia samodzielnie, które do pracy potrzebują jedynie podłączenia do źródła zasilania, sygnału sterującego z układu wyższego poziomu (najczęściej interfejs szeregowy) jeśli komunikacja nie jest bezprzewodowa i samego silnika. Jeśli układ pracuje jako serwomechanizm to wymagane jest jeszcze podłączenie urządzenia dostarczającego sygnał zwrotny, np enkodera. Istnieje wiele rodzajów kontrolerów tego typu, od takich do sterowania micro silnikami, po potężne falowniki do silników dużej mocy. 
+Druga grupa sterowników to urządzenia samodzielnie, które do pracy potrzebują jedynie podłączenia do źródła zasilania, sygnału sterującego z układu wyższego poziomu (najczęściej interfejs szeregowy) jeśli komunikacja nie jest bezprzewodowa i samego silnika. Jeśli układ pracuje jako serwomechanizm to wymagane jest jeszcze podłączenie urządzenia dostarczającego sygnał zwrotny, np enkodera. Istnieje wiele rodzajów kontrolerów tego typu w zakresie mocy od kilku watów do kilkunastu kilowatów. 
 
 \subsubsection{Simplexmotion 100A - Simplex Motion AB}
 \label{sss:simplex}
 
-Urządzenie Simplexmotion 100A jest sterownikiem o najwyższym poziomie integracji, ze względu na to że nawet sterowany silnik znajduje się w obudowie układu.
+Urządzenie Simplexmotion 100A jest sterownikiem o najwyższym poziomie integracji, ze względu na to że nawet sterowany silnik znajduje się w obudowie układu. Maszyna znajdująca się w urządzeniu to bezszczotkowy silnik BLDC prądu stałego o mocy 100 W (wartość szczytowa 400 W) i maksymalnej rozwijanej prędkości obrotowej 6000 rpm. Umieszczając w jednej obudowie silnik i układ sterowania, producent odciążył użytkownika z konieczności dokonywania wielu niezbędnych połączeń potrzebnych do poprawnej pracy samego silnika. Wyprowadzone na zewnątrz zostały jedynie zaciski:
+
+\begin{easylist}
+	& interfejs usb do zmiany nastaw kluczowych parametrów,
+	& interfejs RS485 działający w standardzie Modbus,
+	& wejście na kwadraturowy enkoder inkrementalny,
+	& wyprowadzenia ogólnego przeznaczenia (I/O, PWM, wejścia analogowe),
+	& zaciski zasilania (12 - 24 V),
+\end{easylist} 
 
 \insertImgSetSize{grafiki/SIMPLEXMOTION_100A.jpg}
 	{100}
 	{Inteligentny, wysoce zintegrowany serwo mechanizm Simplexmotion 100A szwedzkiej firmy Simplex Motion. Wymiary: 72 x 64 x 74 mm, waga: 660 gram. Cena: \$353}
 	{simplex}
 
-Maszyna znajdująca się w urządzeniu to bezszczotkowy silnik BLDC prądu stałego o mocy 100 W (400 W w ,,piku'') i maksymalnej rozwijanej prędkości obrotowej 6000 rpm. Zamykając w jednej obudowie silnik i układ sterowania, producent zwolnił użytkownika z dokonywania wielu niezbędnych połączeń potrzebnych do poprawnej pracy samego silnika, np. okablowanie do czujników Hall'a potrzebnych do poprawnej pracy BLDC. Wyprowadzone na zewnętrzne zaciski zostały jedynie:
-
-\begin{easylist}
-	& interfejs usb do wygodnego podłączenia układu do komputera w celu tuningu parametrów lub samego sterowania,
-	& interfejs RS485 działający w standardzie Modbus,
-	& wejście na kwadraturowy enkoder inkrementalny,
-	& iyprowadzenia ogólnego przeznaczenia (I/O, PWM, wejścia analogowe),
-	& zaciski zasilania (12 - 24 V),
-	\\
-\end{easylist} 
-
-Ponadto producent zapewnia API (.Net, Linux i LabView) dzięki któremu użytkownicy mogą w prosty sposób zaprojektować własną aplikację sterującą tym serwomechanizmem z komputera. Bez wątpienia wysoki poziom integracji Simplemotion 100A jest dużą zaletą w sytuacji kiedy zawarty w nim silnik odpowiada naszej aplikacji i czas na wdrożenie rozwiązania jest niewielki. Cecha ta jednak może wielokrotnie okazać się czynnikiem wykluczającym w danej aplikacji, ze względu na to że silnik nie odpowiada wymaganiom. Dodatkowo, pomimo że wymiary urządzenia są naprawdę kompaktowe (większość obudowy wypełnia silnik) to nie zmieści się ona wszędzie tam, gdzie zmieściłby się sterownik oddzielony od sterowanej maszyny.
+Ponadto producent zapewnia API (.Net, Linux i LabView) dzięki któremu użytkownicy mogą w prosty sposób zaprojektować własną aplikację sterującą tym serwomechanizmem z komputera. Wysoki poziom integracji Simplemotion 100A jest dużą zaletą w sytuacji kiedy zawarty w nim silnik odpowiada naszej aplikacji i czas na wdrożenie rozwiązania jest niewielki. Dodatkowo, pomimo że wymiary urządzenia są kompaktowe to nie zmieści się ona wszędzie tam, gdzie zmieściłby się sterownik oddzielony od sterowanej maszyny.
 
 \subsubsection{Mechaduino - Tropical Labs}
 \label{ss:mechaduino}
 
-Kolejny sterownik służy do sterowania silnikami krokowymi i jest projektem Open Source/ Hardware, udostępnionym na zasadach licencji {\it Creative Commons Attribution Share-Alike 4.0 License}, która mówi o tym że projekt może być używany i modyfikowany nawet w celach komercyjnych, o ile użytkownik w swoim produkcie umieści informacje o tym że bazuje na Mechaduino \cite{crcommons}.  
+Kolejny sterownik jest przykładem kompaktowego projektu udostępnionego na zasadach Open Source/ Hardware, służącego do sterowania silnikami krokowymi.  
 
 \insertImgSetSize{grafiki/mechaduino.JPG}
 	{80}
 	{Sterownik do silników krokowych Mechaduino firmy Tropical Labs, kompatybilny sprzętowo i programowo z platformą Arduino Zero}
 	{mechaduino}
 	
-Projekt bazuje na sprzęcie z platformy Arduino Zero, co oznacza że firmware pracujący na sterującym mikrokontrolerze ATSAMD21G18 (Rdzeń ARM Cortex® M0+) może być napisany w środowisku programistycznym Arduino. Oprogramowanie takie pisze się szybciej niż w C czy assemblerze dzięki wysokopoziomowemu framework'owi. Wydajność takiego kodu jednak pozostawia wiele do życzenia.
-
-\insertImgSetSize{grafiki/arduino_zero.jpg}
-	{70}
-	{Platforma Arduino Zero firmy Arduino}
-	{arduino_zero}
-	
-Podobnie jak sterownik przedstawiony w poprzedniej sekcji (\ref{sss:simplex}), to urządzenie także posiada płytkę sterownika połączoną z silnikiem (Pasuje do silników w standardzie NEMA17). PCB jest montowane za silnikiem, używając śrub na tulejkach dystansowych. Ze względu na otwartość konstrukcji jednak, nie jest problemem aby płytkę zdjąć i umieścić w innym miejscu, o ile w danej aplikacji sterowanie w otwartej pętli sprzężenia zwrotnego jest wystarczające. 
-
-\insertImgSetSize{grafiki/mechaduino_encoder.eps}
-	{70}
-	{Płytka Mechaduino z oznaczonym zielonym polem miejscem, w którym znajduje się magnetyczny, absolutny enkoder obrotowy AS5047 firmy AMS}
-	{mechaduino}
-	
-W przypadku kiedy praca w zamkniętej pętli jest niezbędna, płytka musi pozostać na silniku ze względu na to że na jej dolnej warstwie znajduje się enkoder magnetyczny (rys. \ref{grafiki/mechaduino_encoder.eps}), który współpracuje z magnesem przyklejonym na końcu wału silnika. W tym trybie, dokładność pozycjonowania wału silnika wynosi 0.1\degree po dokonaniu procedury kalibracji enkodera. \\
+Projekt bazuje na sprzęcie z platformy Arduino Zero, co oznacza że firmware pracujący na sterującym mikrokontrolerze ATSAMD21G18 (Rdzeń ARM Cortex® M0+) może być napisany w środowisku programistycznym Arduino. Cechą charakterystyczną przedstawionego rozwiązania jest montaż sterownika z tyłu silnika standardu NEMA 17. W dolnej warstwie sterownika znajduje się enkoder magnetyczny, który współpracuje z magnesem przyklejonym na końcu wału silnika. W zamkniętej pętli dokładność pozycjonowania wału silnika wynosi 0.1\degree po dokonaniu procedury kalibracji enkodera. \\
 
 Kompaktowa końcówka mocy znajdująca się na PCB to układ A4954 firmy Allegro Microsystems. Są to zintegrowane w układzie scalonym dwa pełne mostki H, które mogą dostarczyć do silnika prąd o natężeniu szczytowym 2 A. Komunikacja z urządzeniem odbywa się poprzez port szeregowy USB lub $ I^2C $ ({\it Inter-Integrated Circuit}). \\
 
-Niezaprzeczalną zaletą urządzenia jest otwartość kodu, dzięki czemu można dostosować sterownik do potrzeb swoich aplikacji na bardzo niskim poziomie. Mechaduino jest jednak projektem hobbystycznym, którego oprogramowanie i hardware  na dzień dzisiejszy nie są w pełni dopracowane, przez co nie nadaje się jeszcze do profesjonalnego zastosowania.
+Zaletą urządzenia jest otwartość kodu, dzięki czemu można dostosować sterownik do potrzeb swoich aplikacji. Mechaduino jest jednak projektem hobbystycznym, którego oprogramowanie i hardware jeszcze nie są w pełni dopracowane, przez co nie nadaje się jeszcze do profesjonalnego zastosowania.
 
 \subsubsection{Sterowniki firmy Technosoft}
 \label{technosoft}
 
-Technosoft jest wiodącą firmą w zakresie opracowywania specjalizowanych rozwiązań i produkcji systemów napędowych. Ilość sterowników dostępnych w ofercie firmy jest bardzo duża, dlatego w tej sekcji zostanie opisana tylko jedna rodzina, która była inspiracją do stworzenia prezentowanego dalej w pracy sterownika do silników.
+Technosoft jest wiodącą firmą w zakresie opracowywania specjalizowanych rozwiązań i produkcji systemów napędowych. Ilość sterowników dostępnych w ofercie firmy jest bardzo duża, dlatego w tej sekcji zostanie opisana tylko jedna rodzina, która była inspiracją do stworzenia prezentowanego dalej w pracy sterownika do silników. Płytki {\it Plug-in} są urządzeniami o wysokim poziomie integracji, ale inaczej niż poprzednio przedstawione sterowniki nie posiadają zintegrowanego silnika. Jednostką centralną jest szybki mikrokontroler zmiennoprzecinkowy, który odpawiada za całe sterowanie. 
 
 \insertImgSetSize{grafiki/PIM2403.jpg}
 	{80}
 	{Przykładowy sterownik z rodziny {\it Plug-in Intelligent Servo Drives}, PIM2403. Firma Technosoft}
 	{technosoft}
-	
-Płytki {\it Plug-in} są urządzeniami o wysokim poziomie integracji, ale inaczej niż poprzednio przedstawione sterowniki nie posiadają zintegrowanego silnika. Na pokładzie znajduje się jednostka centrala- szybki mikrokontroler zmiennoprzecinkowy, który odpawiada za całe sterowanie. Na PCB nie ma żadnych sterowników pośredniczących, wszystkie algorytmy związane ze sterowaniem silnikiem są wykonywane w mikrokontrolerze. Rodzaje silników obsługiwanych przez kontroler to:
+
+Na PCB nie ma żadnych sterowników pośredniczących, wszystkie algorytmy związane ze sterowaniem silnikiem są wykonywane w mikrokontrolerze. Rodzaje silników obsługiwanych przez kontroler to:
 
 \begin{easylist}
 	& Krokowy,
@@ -132,27 +113,25 @@ Płytki {\it Plug-in} są urządzeniami o wysokim poziomie integracji, ale inacz
 	\\
 \end{easylist}
 
-Sama płytka sterownika nie wystarczy jednak do rozpoczęcia pracy, bo znajdują się na niej tylko pośrednie peryferia i brakuje odpowiednich wyprowadzeń. 
-
-\insertImgSetSize{grafiki/PIM2403_wboard.jpg}
-	{80}
-	{Kontroler PIM2403 zamontowany na płytce bazowej MS02-06-31 firmy \firma{}}
-	{oprWlasne}
-
-Rysunek \ref{grafiki/PIM2403_wboard.jpg} prezentuje sterownik {\it Plug-in} zamontowany na przykładowej płytce bazowej, która umożliwia komunikację oraz podłączenie do sterownika jako całości wielu końcowych peryferiów potrzebnych do działania. Poprzez złącza można podłączyć:
+Sama płytka sterownika nie wystarczy jednak do rozpoczęcia pracy, bo znajdują się na niej tylko pośrednie peryferia i brakuje odpowiednich wyprowadzeń. Rysunek \ref{grafiki/PIM2403_wboard.jpg} prezentuje sterownik {\it Plug-in} zamontowany na przykładowej płytce bazowej, która umożliwia komunikację oraz podłączenie do sterownika jako całości wielu końcowych peryferiów potrzebnych do działania. Poprzez złącza można podłączyć:
 
 \begin{easylist}
 	& zasilanie, 
 	& silnik,
 	& enkoder inkrementalny,
 	& czujnik Hall'a działający jako krańcówka,
-	& interfejsy CAN i RS232,
+	& interfejsy CAN i RS232.
 	\\
 \end{easylist}
 
-Jest to przykładowa konfiguracja, która została przystosowana do konkretnej aplikacji- Firma Technosoft udostępnia aplikację PC-ową {\it Easy Motion Studio}, dzięki której możliwe jest nie tylko ustawianie parametrów regulatorów itd., ale nawet zaprogramowanie sterownika w niemal dowolny sposób, używając opracowanego przez firmę języka skryptowego {\it Motion Programming Language}. \\
+Jest to przykładowa konfiguracja, która została przystosowana do konkretnej aplikacji. Firma Technosoft udostępnia aplikację {\it Easy Motion Studio}, dzięki której możliwe jest nie tylko ustawianie parametrów regulatorów itd., ale nawet zaprogramowanie sterownika w niemal dowolny sposób, używając opracowanego przez firmę języka skryptowego {\it Motion Programming Language}. 
 
-Rozwiązania oferowane przez tego producenta cechuje możliwość naprawdę szybkiego wdrożenia do projektu. Za tą zaletę trzeba dużo zapłacić, a cena rośnie wraz ze wzrostem możliwości ,,mocowych'' sterowników pod względem zasilania silników. Skala wzrostu jest niestety nieuwarunkowana, bo jedyne co zmienia się na sterownikach to końcówki mocy i czasami rozmiar PCB, a mimo wszystko cena potrafi wzrosnąć nawet o 60 \euro{} (różnica w cenie między sterownikiem 3 i 5-cio amperowym). 
+\insertImgSetSize{grafiki/PIM2403_wboard.jpg}
+	{80}
+	{Kontroler PIM2403 zamontowany na płytce bazowej MS02-06-31 firmy \firma{}}
+	{oprWlasne}
+
+Rozwiązania oferowane przez tego producenta cechuje możliwość szybkiego wdrożenia do projektu. Cena takiego rozwiązania jest jednak wysoka. 
 
 \tocLessLeftNorm{Podsumowanie}
 
