@@ -119,6 +119,44 @@ Po doświadczalnym dostosowaniu parametrów $ v $ i $ w $ algorytm tłumi zakł�
 
 \subsubsection{Filtr dolnoprzepustowy}
 
+Drugim algorytmem stosowanym w celu minimalizacji wpływu szumów towarzyszących odczytywanej pozycji kątowej z enkodera magnetycznego jest rekursywny (lub też {\it NOI}-- o nieskończonej odpowiedzi impulsowej), jednobiegunowy filtr dolnoprzepustowy. Zastosowane zostały jedynie dwa współczynniki rekursywne $ a_0 $ i $ b1 $:
+
+\begin{equation} \label{eq:alg10}
+	a_0 = 1 - x
+\end{equation}
+
+\begin{equation} \label{eq:alg11}
+	b_1 = x
+\end{equation}
+
+Współczynnik $ x $ wskazuje jakie jest opadanie przebiegu mierzone między kolejnymi próbkami. Wartość ta jest obliczana na podstawie stałej czasowej filtru:
+
+\begin{equation} \label{eq:alg12}
+	x = \exp^{-2 \pi f_{CR}}
+\end{equation}
+
+$ f_{CR} $ jest częstotliwością odcięcia dobieraną w sterowniku doświadczalnie (obecnie 20 Hz). Kolejne próbki na wyjściu filtra obliczane są według wzoru \ref{eq:alg13}
+
+\begin{equation} \label{eq:alg13}
+	output(t) = input(t) a_0 + input(t - 1) b_1 
+\end{equation}
+
+\insertImgSetSize{grafiki/przebieg_lowpass_zoom.eps}
+	{110}
+	{Przebieg czasowy (powiększenie przy zmianie pozycji) prezentujący pozycję wału silnika krokowego: zadaną,   mierzoną nieprzefiltrowaną i mierzoną przefiltrowaną przez filtr dolnoprzepustowy trzeciego rzędu}
+	{oprWlasne}
+	
+Rząd filtru jest ustalany przez użytkownika. Rys. \ref{grafiki/przebieg_lowpass_zoom.eps} prezentuje odczyt pozycji wału silnika krokowego. Algorytm ten działa szybciej od zaimplementowanego filtru Kalmana-- obrót o 90\degree{} w ok. 250 ms przy zastosowaniu KF i ok. 100 ms przy filtrze dolnoprzepustowym trzeciego rzędu. Ponadto, algorytm jest bardzo prosty i kod potrzebny do jego wykonania nie wymaga dużej ilości zasobów mikrokontrolera (listing \ref{kody/low_pass.c}).
+
+\insertCode{kody/low_pass.c}
+		   {C}
+		   {Kod filtra dolnoprzepustowego wykonywany w pętli sterującej mikrokontrolera w interwale $ dt = 0.001 s $}
+		   {mechsyscode}
+		   
+Na chwilę obecną uśrednianie wraz z  filtrem dolnoprzepustowym są algorytmami dające najlepsze wyniki działania enkodera.
+
+
+
 
 
 
