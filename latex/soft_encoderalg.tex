@@ -1,0 +1,133 @@
+\subsection{Algorytmy enkodera magnetycznego}
+
+W odróżnieniu do enkodera liniowego, dane odczytywane ze skonstruowanego modułu enkodera magnetycznego bazującego na układzie AS5048A (rys. \ref{grafiki/AS5048A_diagram.eps}) są obarczone błędami związanymi z nieliniowością układu i typem enkodera. Bez zastosowania żadnych algorytmów uśredniających odczytaną pozycję kątową, dokładność systemu była by marna, a sam układ napędowy działał by niestabilnie. \\
+
+Aby umożliwić pracę enkodera z rozdzielczością do 0.05\degree{} w sterowniku zostały zaimplementowane następujące algorytmy:
+
+\begin{easylist}
+	& Uśrednianie bazujące na średniej arytmetycznej,
+	& Filtr Kalmana (opracowany na podstawie \cite{kalman} i \cite{forbot}),
+	& Filtr dolnoprzepustowy jednobiegunowy, rekursywny (opracowany na podstawie \cite{smith}).
+	\\
+\end{easylist} 
+
+\subsubsection{Uśrednianie}
+
+Pierwszy z wymienionych algorytmów wykonywany jest zawsze. Pozostałe dwa natomiast są uruchamiane naprzemiennie, w zależności od konfiguracji użytkownika. Uśrednianie działa na prostej zasadzie-- Wykonywanych jest kilka odczytów pozycji z enkodera (ilość odczytów zależy od konfiguracji, najczęściej cztery), z których następnie obliczana jest średnia arytmetyczna (wzór \ref{eq:alg1}). W kolejnym kroku odczyt jest normalizowany (wzór \ref{eq:alg2})-- mechanizm jest wymagany kiedy pozycja waha się między 359-tym a zerowym stopniem.
+
+\begin{equation} \label{eq:alg1}
+	pos = \frac{a_0 + a_1 + a_2 + ... + a_n}{n} 
+\end{equation}
+
+\begin{equation} \label{eq:alg2}
+pos = \left\{
+  \begin{array}{ll}
+    pos + 360 & : pos < 0 \\
+    pos - 360 & : pos > 360
+  \end{array}
+\right.
+\end{equation}
+
+\begin{easylist}
+	& $ pos $ : absolutna pozycja enkodera [deg],
+	& $ n $ : ilość próbek do uśrednienia.
+	\\
+\end{easylist} 
+
+Zbyt duża ilość odczytów nie jest opłacalna, gdyż błąd odczytu przestaje znacząco maleć (wzór \ref{eq:alg3}).
+
+\begin{equation} \label{eq:alg3}
+	x = \frac{1}{\sqrt{n}}
+\end{equation}
+
+\begin{easylist}
+	& $ x $ : szum enkodera (max. 0.06\degree{}),
+	& $ n $ : ilość próbek do uśrednienia.
+\end{easylist} 
+
+\subsubsection{Filtr Kalmana}
+
+Zastosowany algorytm jest metodą filtracji dynamicznej. Posługując się tym narzędziem, można wyznaczyć pomiarowo niedostępne zmienne jedynie na podstawie bieżących wartości wielkości pomiarowo dostępnych oraz znajomości modelu matematycznego łączącego ze sobą obydwie te grupy pomiarów. \\
+
+Proces można przedstawić za pomocą dyskretnego modelu w przestrzeni stanu:
+
+\begin{equation} \label{eq:alg4}
+	x(t + 1) = Ax(t) + Bu(t) + v(t)
+\end{equation}
+
+\begin{equation} \label{eq:alg5}
+	y(t) = Cx(t) + w(t) 
+\end{equation}
+
+Gdzie:
+\begin{easylist}
+	& $ x(t) $ : stan w chwili czasu $ t = 0, 1,... $,
+	& $ y(t) $ : wyjście układu,
+	& $ A $ : macierz stanu,
+	& $ B $ : macierz wejścia,
+	& $ C $ : macierz wyjścia,
+	& $ v(t) $ : szum procesowy,
+	& $ w(t) $ : szum pomiarowy,
+\end{easylist} 
+
+\insertImgSetSize{grafiki/przebieg_kf.eps}
+	{110}
+	{Przebieg czasowy prezentujący pozycję wału silnika krokowego: zadaną, mierzoną przefiltrowaną przez {\it KF} i  mierzoną nieprzefiltrowaną}
+	{oprWlasne}
+
+Zastosowany filtr jest dwuwymiarowy.Oznacza to że estymacji są poddawane dwa parametry: pozycja i prędkość. Model stanowy wygląda następująco:
+
+\begin{equation} \label{eq:alg6}
+	x = \begin{bmatrix}
+       	pos \\ 
+       	vel
+     	\end{bmatrix}
+\end{equation}
+
+\begin{equation} \label{eq:alg7}
+	A = \begin{bmatrix}
+       	1 & -dt \\ 
+       	0 & 1
+     	\end{bmatrix}
+\end{equation}
+
+\begin{equation} \label{eq:alg8}
+	B = \begin{bmatrix}
+       	dt \\ 
+       	0
+     	\end{bmatrix}
+\end{equation}
+
+\begin{equation} \label{eq:alg9}
+	C = \begin{bmatrix}
+       	1 & 0 
+     	\end{bmatrix}
+\end{equation}
+
+Implementacja dwuwymiarowa zapewnia dokładniejszą estymatę pozycji niż w przypadku kiedy pod uwagę brane było by tylko położenie. Jeszcze lepsze wyniki można by otrzymać stosując estymatę trójwymiarową (dodatkowo dodac parametr przyspieszenia). Niestety operacje na macierzach 3 x 3 pochłaniały za dużo zasobów procesora i z tego rozwiązania w sterowniku zrezygnowano. \\
+
+Rys. \ref{grafiki/przebieg_kf.eps} prezentuje różne pozycje kątowe w funkcji czasu odczytane ze sterownika w trybie CSV (patrz sekcja \ref{ss:hwrs232}). Wstępnie widać że algorytm działa poprawnie, lecz jego zalety i wady można dokładniej zaobserwować na przebiegu z rys. \ref{grafiki/przebieg_kf_zoom.eps}.
+
+\insertImgSetSize{grafiki/przebieg_kf_zoom.eps}
+	{110}
+	{Przebieg czasowy (powiększenie przy zmianie pozycji) prezentujący pozycję wału silnika krokowego: zadaną, mierzoną przefiltrowaną przez {\it KF} i  mierzoną nieprzefiltrowaną}
+	{oprWlasne}
+	
+Po doświadczalnym dostosowaniu parametrów $ v $ i $ w $ algorytm tłumi zakłócenia bardzo dobrze. Charakterystyczną cechą filtru Kalmana jest jednak to że wraz ze wzrostem poziomu filtracji rośnie także opóźnienie sygnału. Parametr ten diametralnie wpływa na działanie regulatorów pozycji i prędkości (sekcja <dodac sekcje>). Pomimo tego że estymowana pozycja jest bardzo blisko zadanej, to czas potrzebny na jej osiągnięcie (w końcowym odcinku) jest zbyt długi. Z tego powodu został zaimplementowany dodatkowy, szybszy algorytm stosowany w czasowo krytycznych sytuacjach.
+
+\clearpage
+
+\subsubsection{Filtr dolnoprzepustowy}
+
+
+
+
+
+
+
+
+
+
+
+
+
