@@ -1,0 +1,28 @@
+\subsection{Realizacja zadań}
+
+Wysunięcie się cylindra silnika VCM o odległość $ x $, zwrócenie wartości podciśnienia w głowicy czy obrót komponentu o 90\degree -- wszystko to jest przykładam wywołania funkcji, czy też realizacją zadania. Każda funkcja ma na wykonanie się określoną ilość czasu i jest zbudowana na zasadzie skryptu, który czeka na zajście konkretnych wydarzeń ({\it Events}), interpretuje je i wykonuje kolejne procedury w zależności od ich wyniku. W przypadku nie wykonania się którejkolwiek części skryptu w zadanym czasie, skrypt jest anulowany i do urządzenia wydającego komendę zostaje zwrócony kod błędu. System interpretuje obecnie 9 zdarzeń (listing \ref{kody/sys_triggers.h}).
+
+\insertCode{kody/sys_triggers.h}
+		   {C}
+		   {Obiekt typu {\it enum} prezentujący obsługiwane w sterowniku wydarzenia}
+		   {mechsyscode}
+
+Zdarzenia mogą zachodzić sekwencyjnie lub równolegle. Skrypt może oczekiwać na zajście kilku skryptów (operatory {\it AND} i {\it OR}), gdzie każdy z nich także posiada ustalony czas na wykonanie się. \\
+
+Rysunek \ref{grafiki/uml_homing.pdf} przedstawia przykładową procedurę (homing osi Z) w języku UML ({\it Unified Modeling Language}) wykonywaną przez system. W pierwszej kolejności zewnętrzne urządzenie (Kontroler systemowy automatu Pick and Place) wysyła poprzez magistralę CAN wywołanie funkcji Homing'u. Ramka trafia do kolejki odbiorczej CAN. Po interpretacji, zostaje wybrany odpowiedni skrypt ({\it JobDoHoming}) i rozpoczyna się jego egzekucja. \\
+
+Skrypt najpierw zamyka zawór podciśnienia. Następnie sprawdza na którym polu paska referencyjnego znajduje się część ruchoma głowicy (patrz sekcja \ref{ss:encopt}). Jeśli jest to pole czarne (cylinder silnika VCM wsunięty), następuje wejście w pierwsze rozwidlenie w skrypcie (Black strip). Procedura homing'u służy do kalibracji pozycji-- zanim zostanie wykonana, absolutna pozycja cylindra nie jest znana. Po włączeniu zasilania przyjmuje się że pozycja w której aktualnie znajduje się cylinder to zero. Wiedząc tylko że cylinder jest w polu czarnym paska, następuje wysuw cylindra według określonej trajektorii (sekcja \ref{dodac referencje}). Od razu po tym, funkcja oczekuje na zejście z czarnej strefy paska na białą (wiadomość {\it EXTI} na diagramie). Kiedy to nastąpi, zostaje ustalona absolutna pozycja cylindra. Od tej chwili można swobodnie sterować wysuwem głowicy. Na końcu cylinder wraca do ustalonej pozycji startowej.
+
+
+\insertImgSetSize{grafiki/uml_homing.pdf}
+	{150}
+	{Diagram interakcji prezentujący wykonanie przez system procedury homing'u w osi Z}
+	{oprWlasne}
+
+Jeśli z jakiegoś powodu podczas uruchomienia procedury homing'u cylinger nie jest wsunięty (np. rozciągnięta lub uszkodzona sprężyna) i głowica znajduje się nad polem białym, najpierw następuje jej wsunięcie, aby homing zawsze następował w ten sam sposób (zejście z pola czarnego na białe). Potwierdzenie wykonania zadania jest wysyłane do urządzenia wywołującego funkcję, w tym wypadku do kontrolera systemu. \\
+
+Wszystkie zadania obecnie obsługiwane przez sterownik są wykonywane na prezentowanej na rys. \ref{grafiki/uml_homing.pdf} zasadzie (np. podniesienie komponentu, położenie go lub obrócenie). 
+
+
+
+

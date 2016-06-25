@@ -31,9 +31,6 @@
 \usepackage{graphicx}
 \usepackage{epstopdf}
 
-% kody
-\usepackage{listings}
-
 % matma
 \usepackage{amssymb,amsmath}
 
@@ -53,15 +50,38 @@
 \restylefloat{table}
 \usepackage{array}
 \usepackage{makecell}
-%\usepackage{xcolor,colortbl}
+\usepackage{color}
 
 % Footnoty
 \usepackage{footnote}
 \usepackage{perpage} %the perpage package
 \MakePerPage{footnote} %the perpage package command
 
+% kody
+\usepackage{lipsum}
+\usepackage{listings}
+
+% kolory
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}	
+
+\lstset{ %
+  backgroundcolor=\color{white},   			% choose the background color
+  basicstyle=\ttfamily\footnotesize,        % size of fonts used for the code
+  breaklines=true,                 			% automatic line breaking only at whitespace
+  captionpos=t,                    			% sets the caption-position to top
+  commentstyle=\color{mygreen},    			% comment style
+  escapeinside={\%*}{*)},          			% if you want to add LaTeX within your code
+  keywordstyle=\color{blue},       			% keyword style
+  stringstyle=\color{mymauve},     			% string literal style
+  numbers=left,					   			% line numbers on
+  frame=/lines,								% frame box config
+}
+
 % Numerowanie obiektow wedlug rozdzialow
 \usepackage{chngcntr}
+\AtBeginDocument{\counterwithin{lstlisting}{section}}
 \counterwithin{figure}{section}
 \counterwithin{table}{section}
 \numberwithin{equation}{section}
@@ -90,42 +110,45 @@ Style2*=$\bullet$ ,Style3*=$\circ$ ,Style4*=\tiny$\blacksquare$ )
 \newcommand{\tocLessCenter}[1]{\textsc{\textbf{\large \centerline{#1}}} \vspace{3mm} \\ \indent }
 \newcommand{\insertImg}[3]{%
 \begin{figure}[h]
-	\centering
-	\includegraphics[height=50mm]{#1}
-	\caption{#2} \flushleft{Źródło: Na podstawie \cite{#3}}
-	\label{#1}
+    \centering
+    \includegraphics[height=50mm]{#1}
+    \caption{#2} \label{#1}
+    \raggedright Źródło: Na podstawie \cite{#3}
 \end{figure}
 }
 \newcommand{\insertImgSetSize}[4]{%
 \begin{figure}[h]
-	\centering
-	\includegraphics[height=#2mm]{#1}
-	\caption{#3} \flushleft{Źródło: Na podstawie \cite{#4}}
-	\label{#1}
+    \centering
+    \includegraphics[height=#2mm]{#1}
+    \caption{#3}\label{#1}
+    \raggedright Źródło: Na podstawie \cite{#4}
 \end{figure}
 }
 \newcommand{\insertTab}[5]{%
 \begin{savenotes}
-	\begin{table}[h]
-		\flushleft{Źródło: Na podstawie \cite{#4}} \\
-		\vspace{2mm}
-		\centering
-		\begin{tabular}{#1} 
-		#2
-		\end{tabular}
-		\caption{#3}  
-		\label{#5}
-		\floatstyle{plaintop}
-	\end{table}
+    \begin{table}[h]
+        \raggedright Źródło: Na podstawie \cite{#4}\\
+        \vspace{2mm}
+        \centering
+        \begin{tabular}{#1} 
+        #2
+        \end{tabular}
+        \caption{#3}  
+        \label{#5}
+        \floatstyle{plaintop}
+    \end{table}
 \end{savenotes}
+}
+\newcommand{\insertCode}[4]{%
+\lstinputlisting[language=#2,caption={#3},label=#1]{#1}
+Źródło: Na podstawie \cite{#4} \\
 }
 
 % Zmienic jesli jednak Engineering -.- ...
 \newcommand{\firma}{{Mechatronic Systems}}
 
-
 % twierdzenia
-\input{theorems.tex}
+\newtheorem{defn}{Definicja}[section]
 
 % Indeksowanie w pdfie wyjsciowym
 \usepackage{hyperref}

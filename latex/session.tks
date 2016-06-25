@@ -1,25 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TexmakerSession quickmode="12">
-    <document hasfocus="false" bookmark1="0" master="false" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/ch_statyczne.tex" line="0"/>
-    <document hasfocus="false" bookmark1="0" master="false" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/abstract.tex" line="3"/>
-    <document hasfocus="false" bookmark1="0" master="false" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/tableofcontents.tex" line="0"/>
-    <document hasfocus="false" bookmark1="0" master="false" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/bib_database.bib" line="151"/>
-    <document hasfocus="false" bookmark1="0" master="true" bookmark2="0" bookmark3="0" file="M:\Github\praca_mgr\latex\main.tex" line="163"/>
-    <document hasfocus="false" bookmark1="0" master="false" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/acm-i.bst" line="189"/>
-    <document hasfocus="false" bookmark1="0" master="false" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/statement.tex" line="0"/>
-    <document hasfocus="false" bookmark1="0" master="false" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/motors.tex" line="96"/>
-    <document hasfocus="false" bookmark1="0" master="false" bookmark2="0" bookmark3="0" file="M:\Github\praca_mgr\latex\motors_vcm.tex" line="38"/>
-    <document hasfocus="false" bookmark1="0" master="false" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/electromagnetism.tex" line="2"/>
-    <document hasfocus="false" bookmark1="0" master="false" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/motors_step.tex" line="171"/>
-    <document hasfocus="false" bookmark1="0" master="false" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/software.tex" line="1"/>
-    <document hasfocus="false" bookmark1="0" master="false" bookmark2="0" bookmark3="0" file="M:\Github\praca_mgr\latex\sterowanie.tex" line="17"/>
-    <document hasfocus="false" bookmark1="0" master="false" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/bibliography.tex" line="0"/>
-    <document hasfocus="false" bookmark1="0" master="false" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/hardware.tex" line="130"/>
-    <document hasfocus="true" bookmark1="0" master="false" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/sterowniki.tex" line="111"/>
-    <document hasfocus="false" bookmark1="0" master="false" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/concept.tex" line="69"/>
-    <document hasfocus="false" bookmark1="0" master="false" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/motors_dc.tex" line="15"/>
-    <document hasfocus="false" bookmark1="0" master="false" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/intro.tex" line="3"/>
-    <document hasfocus="false" bookmark1="0" master="false" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/motors_bldc.tex" line="21"/>
-    <document hasfocus="false" bookmark1="0" master="false" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/mainboard.tex" line="364"/>
-    <document hasfocus="false" bookmark1="0" master="false" bookmark2="0" bookmark3="0" file="M:/Github/praca_mgr/latex/sterowanie_mostka.tex" line="36"/>
+    <document file="M:\Github\praca_mgr\latex\main.tex" hasfocus="false" line="149" bookmark1="0" bookmark2="0" bookmark3="0" master="true"/>
+    <document file="M:/Github/praca_mgr/latex/bib_database.bib" hasfocus="false" line="180" bookmark1="0" bookmark2="0" bookmark3="0" master="false"/>
+    <document file="M:/Github/praca_mgr/latex/software.tex" hasfocus="false" line="25" bookmark1="0" bookmark2="0" bookmark3="0" master="false"/>
+    <document file="M:/Github/praca_mgr/latex/soft_system.tex" hasfocus="true" line="26" bookmark1="0" bookmark2="0" bookmark3="0" master="false"/>
+    <document file="M:/Github/praca_mgr/latex/soft_comm.tex" hasfocus="false" line="17" bookmark1="0" bookmark2="0" bookmark3="0" master="false"/>
 </TexmakerSession>

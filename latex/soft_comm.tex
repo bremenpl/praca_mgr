@@ -23,12 +23,19 @@ Dostęp do zmiennych (obszarów pamięci) w sterownikach Technosoft'u odbywa si�
 W warstwie tłumaczenia ramek TML dokonywanych jest wiele różnych operacji. W zależności od komunikatu może to być zapis do zmiennej lub np. wywołanie funkcji. W przykładzie zaprezentowanym na rysunku \ref{grafiki/tml_can_trans.pdf} zewnętrzne urządzenia wysyła do kontrolera wiadomość TML, która po przeskalowaniu ustawia prędkość ruchu w osi Z.
 
 \subsubsection{Magistrala RS232}
-	
+
+Docelowo interfejs RS232 ma umożliwiać alternatywną ścieżkę komunikacji z urządzeniem w celu programowania i sterowania. Na chwile obecną jest to kanał typowo serwisowy. Korzysta z niego moduł logera (rys. \ref{grafiki/Soft_architecture.pdf}) aby wysyłać do aplikacji komputerowej informacje o zdarzeniach w HRF ({\it Human Readable Format}). Typowa ramka tego typu zawiera informacje o czasie wystąpienia zdarzenia, poziomie logowanie (np. informacja o priorytecie normalnym lub krytycznym) oraz tekst dowolny (listing \ref{kody/rs232.txt}). 
+
+\insertCode{kody/rs232.txt}
+		   {}
+		   {Przykładowe logi informujące o wywołaniu funkcji poprzez CAN}
+		   {oprWlasne}
+		   
+Innym trybem logowania jest format CSV ({\it Comma Separated Values}), który pozwala na zbieranie danych w czasie rzeczywistym w celu ich dalszej analizy w programach MATLAB lub Excel. Obsługa modułu logera nie pochłania dużej ilości czasu procesora ze względu na to że wątek ściągający kolejne logi z kolejki, oraz kanał DMA przez które są one wysyłane mają najniższe priorytety-- procedury wykonują się tylko wtedy, kiedy pozostałe procesy są uśpione.
+
 
 
 \clearpage
-
-
 
 
 
