@@ -31,11 +31,11 @@ W celu zapewnienia zadanej pozycji (kątowej w przypadku silnika krokowego i lin
 Gdzie:
 
 \begin{easylist}
-	& $ s(t) $ : pozycja w danej chwili $ t $ wyrażona w metrach,
-	& $ e(t) $ : błąd pozycji $ e(t) = v(t) - v(t - 1) $, wyrażony w metrach,
-	& $ K_p  $ : współczynnik proporcjonalny bezwymiarowy,
-	& $ K_i  $ : współczynnik całkujący bezwymiarowy,
-	& $ K_d  $ : współczynnik różniczkujący bezwymiarowy.
+	& $ s(t) $ : pozycja w danej chwili $ t $ $ [m] $,
+	& $ e(t) $ : błąd pozycji $ e(t) = v(t) - v(t - 1) [m] $,
+	& $ K_p  $ : współczynnik proporcjonalny $ [m] $,
+	& $ K_i  $ : współczynnik całkujący $ [m \cdot s] $,
+	& $ K_d  $ : współczynnik różniczkujący $ [\frac{m}{s}] $.
 	\\
 \end{easylist} 
 
@@ -48,7 +48,33 @@ Implementację algorytmu w kodzie mikrokontrolera przedstawia listing \ref{kody/
 	
 Funkcja zawiera dodatkowo mechanizm zabezpieczający regulator przed zmagazynowaniem zbyt dużego błędu pozycji, co może spowodować przeregulowanie układu ({\it ,,Anti-Windup''}). Jako parametry wejściowe podawane są aktualna pozycja (odczytana z enkodera) i pozycja zadana. Wyjście regulatora pozycji jest następnie podawane na wejście regulatora prędkości (\ref{grafiki/pid_vcm.pdf}). \\
 
-Regulator prędkości działa w ten sam sposób co regulator pozycji, z tą różnicą że sygnał wyjściowy z regulatora jest wielkością tego samego typu co sygnał wejściowy. Suma (lub różnica w zależności od znaku zmiennej zwracanej z funkcji) tych dwóch sygnałów tworzy regulowaną prędkość zadaną. Zastosowanie oddzielnych regulatorów dla pozycji i prędkości pozwala w bardzo precyzyjny sposób konfigurować pracę danego silnika przy pomocy współczynników $ K_p $, $ K_i $ i $ K_d $ ({\it tunning}). Kolejne bloki różnią się w zależności od zastosowanego silnika.
+Regulator prędkości działa w ten sam sposób co regulator pozycji, z tą różnicą że sygnał wyjściowy z regulatora jest wielkością tego samego typu co sygnał wejściowy (w uproszczeniu, bo tylko regulator typu P daje na wyjściu sygnał tej samej wielkości co na wejściu). Suma (lub różnica w zależności od znaku zmiennej zwracanej z funkcji) tych dwóch sygnałów tworzy regulowaną prędkość zadaną. Zastosowanie oddzielnych regulatorów dla pozycji i prędkości pozwala w bardzo precyzyjny sposób konfigurować pracę danego silnika przy pomocy współczynników $ K_p $, $ K_i $ i $ K_d $ ({\it tunning}). Kolejne bloki różnią się w zależności od zastosowanego silnika.
+
+\subsubsection{Sterowanie prędkością kątową silnika krokowego}
+
+W modelu sterowania, który został zaimplementowany w oprogramowaniu sterownika, parametrami decydującymi o aktualnej prędkości kątowej silnika krokowego są:
+
+\begin{easylist}
+	& częstotliwość komutacji,
+	& tryb pracy (,,bieg'').
+\end{easylist} 
+
+\insertImgSetSize{grafiki/freq_gear_stepper.eps}
+	{100}
+	{Algorytm obliczający częstotliwość komutacji i bieg dla zadanej prędkości obrotowej wału}
+	{oprWlasne}
+
+Wartości wymienionych parametrów są automatycznie obliczane w pętli sterowania dla zadanej prędkości obrotowej. W celu  wstępnej inicjalizacji algorytmu, należy podać następujące parametry:
+
+\begin{easylist}
+	& ilość pełnych kroków na obrót w danym modelu silnika,
+	& ilość biegów (maksymalna dopuszczalna rozdzielczość pracy mikrokrokowej),
+	& maksymalna częstotliwość komutacji $ [Hz] $,
+	& maksymalna użyteczna prędkość kątowa dla danego silnika $ [RPM] $.
+	\\
+\end{easylist} 
+
+<dokonczyc>
 
 \subsubsection{Regulator prądu silnika VCM}
 
@@ -105,7 +131,7 @@ Ostatnim krokiem jest odczytanie stałej silnika VCM ($ F_c $ -- {\it force cons
 
 \insertImgSetSize{grafiki/vcm_current.eps}
 	{100}
-	{Przebieg teoretycznego prądu (oś Y) wymaganego w uzwojeniu do wysuwu cylindra na zadaną odległość (oś X}
+	{Przebieg teoretycznego prądu (oś Y) wymaganego w uzwojeniu do wysuwu cylindra na zadaną odległość (oś X)}
 	{oprWlasne}
 	
 Na rys. \ref{grafiki/vcm_current.eps} widać wynik symulacji w postaci prądu w funkcji wysuwu cylindra. Obliczenia zostały przeprowadzone przy rzeczywistych wartościach parametrów układu napędowego. Wykres wskazuje na to, że w stanie spoczynku część ruchoma głowicy jest wysunięta na odległość ok. 6.7 mm. Charakterystyka ma charakter liniowy w swojej środkowej części, ze względu na kształt charakterystyki prądowej silnika wprowadzonej do algorytmu jako parametr (\ref{grafiki/vcm_force.eps}).
@@ -115,11 +141,13 @@ Na rys. \ref{grafiki/vcm_current.eps} widać wynik symulacji w postaci prądu w 
 	{Charakterystyka prądowa zastosowanego silnika VCM odtworzona w programie używając charakterystyki z karty katalogowej}
 	{oprWlasne}
 
-Wyznaczony w zaprezentowany sposób prąd zadany trafia do właściwego regulatora prądu typu PI. jego realizacja różni się od poprzednich regulatorów tym, że nie ma już członu różniczkującego, który nie dał by wielu korzyści wartości regulowanej jaką jest prąd. Wartość prądu jest następnie zamieniana na odpowiednie wypełnienie impulsów w uzwojeniu-- więcej informacji na ten temat jest zawarte w sekcji \ref{sss:lowlevel}.
+Wyznaczony w zaprezentowany sposób prąd zadany trafia do właściwego regulatora prądu typu PI. jego realizacja różni się od poprzednich regulatorów tym, że nie ma już członu różniczkującego, który w przypadku regulacji prądu nie dał by wielu korzyści. Wartość prądu jest następnie zamieniana na odpowiednie wypełnienie impulsów w uzwojeniu-- więcej informacji na ten temat jest zawarte w sekcji \ref{sss:lowlevel}.
 
+\subsubsection{Regulator prądu silnika krokowego}
 
+Regulator prądu w przypadku silnika krokowego próbuje przez cały okres pracy maszyny utrzymywać w uzwojeniach taki prąd, aby spełnione było równanie \ref{eq:stepper2} (jako jedynkę podstawiany jest maksymalny prąd). W tym celu, sygnałem zadanym dla regulatora jest zawsze maksymalny prąd dla pojedynczego uzwojenia wprowadzony jako parametr do systemu przez użytkownika ({\it CUR MAX SET} na schemacie \ref{grafiki/pid_stepper.pdf}). \\
 
-
+Prąd płynący w uzwojeniach nie ma bezpośredniego wpływu na pozycję i prędkość kątową wirnika, a jedynie na moment obrotowy.
 
 
 
