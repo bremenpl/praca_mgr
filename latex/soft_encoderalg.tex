@@ -13,7 +13,7 @@ Aby umożliwić pracę enkodera z rozdzielczością do 0.05\degree{} w sterownik
 
 \subsubsection{Uśrednianie}
 
-Pierwszy z wymienionych algorytmów wykonywany jest zawsze. Pozostałe dwa natomiast są uruchamiane naprzemiennie, w zależności od konfiguracji użytkownika. Uśrednianie działa na prostej zasadzie-- Wykonywanych jest kilka odczytów pozycji z enkodera (ilość odczytów zależy od konfiguracji, najczęściej cztery), z których następnie obliczana jest średnia arytmetyczna (wzór \ref{eq:alg1}). W kolejnym kroku odczyt jest normalizowany (wzór \ref{eq:alg2})-- mechanizm jest wymagany kiedy pozycja waha się między 359-tym a zerowym stopniem.
+Pierwszy z wymienionych algorytmów wykonywany jest zawsze. Pozostałe dwa natomiast są uruchamiane naprzemiennie, w zależności od konfiguracji użytkownika. Uśrednianie działa na prostej zasadzie. Wykonywanych jest kilka odczytów pozycji z enkodera (ilość odczytów zależy od konfiguracji, najczęściej cztery), z których następnie obliczana jest średnia arytmetyczna (wzór \ref{eq:alg1}). W kolejnym kroku odczyt jest normalizowany (wzór \ref{eq:alg2})-- mechanizm jest wymagany kiedy pozycja waha się między 359-tym a zerowym stopniem.
 
 \begin{equation} \label{eq:alg1}
 	pos = \frac{a_0 + a_1 + a_2 + ... + a_n}{n} 
@@ -149,11 +149,11 @@ $ f_{CR} $ jest częstotliwością odcięcia dobieraną w sterowniku doświadcza
 Rząd filtru jest ustalany przez użytkownika. Rys. \ref{grafiki/przebieg_lowpass_zoom.eps} prezentuje odczyt pozycji wału silnika krokowego. Algorytm ten działa szybciej od zaimplementowanego filtru Kalmana-- obrót o 90\degree{} w ok. 250 ms przy zastosowaniu KF i ok. 100 ms przy filtrze dolnoprzepustowym trzeciego rzędu. Ponadto, algorytm jest bardzo prosty i kod potrzebny do jego wykonania nie wymaga dużej ilości zasobów mikrokontrolera (listing \ref{kody/low_pass.c}).
 
 \insertCode{kody/low_pass.c}
-		   {C}
-		   {Kod filtra dolnoprzepustowego wykonywany w pętli sterującej mikrokontrolera w interwale $ dt = 0.001 s $}
-		   {mechsyscode}
+	{C}
+	{Kod filtra dolnoprzepustowego wykonywany w pętli sterującej mikrokontrolera w interwale $ dt = 0.001 s $}
+	{mechsyscode}
 		   
-Na chwilę obecną uśrednianie wraz z  filtrem dolnoprzepustowym są algorytmami dające najlepsze wyniki działania enkodera.
+Na chwilę obecną uśrednianie wraz z  filtrem dolnoprzepustowym są algorytmami dającymi najlepsze wyniki działania enkodera.
 
 
 

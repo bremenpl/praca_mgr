@@ -1,4 +1,134 @@
-\subsection{Algorytmy sterowania wysokopoziomowego}
+\subsection{Procedury sterowania wysokopoziomowego}
+
+Sterowanie wyższego poziomu w kontrolerze polega na manipulacji, czy też operacjach na danych, które nie mają jeszcze bezpośredniego wpływu prąd w uzwojeniach czy pozycję kątową wału silnika. Odzwierciedlają one jedynie różne wielkości, które następnie są przekazywane do niższej warstwy oprogramowania, która ma steruje silnikami (\ref{sss:lowlevel}). \\
+
+Procedury sterowania wysokopoziomowego dla obu rodzajów silników (krokowy i VCM) w większości są identyczne. Odmiennie wyglądają moduły sterowania prądem w uzwojeniach, ze względu na odmienną konstrukcję silników. Rys. \ref{grafiki/pid_vcm.pdf} prezentuje poglądowy diagram sterowania silnika VCM, a rys. \ref{grafiki/pid_stepper.pdf} silnika krokowego.
+
+\clearpage
+
+\insertImgSetSize{grafiki/pid_vcm.pdf}
+	{200}
+	{Schemat blokowy sterowania wysokopoziomowego silnikiem VCM, zaimplementowanego w kodzie sterownika}
+	{oprWlasne}
+	
+\clearpage
+	
+\insertImgSetSize{grafiki/pid_stepper.pdf}
+	{220}
+	{Schemat blokowy sterowania wysokopoziomowego silnikiem krokowym, zaimplementowanego w kodzie sterownika}
+	{oprWlasne}
+	
+\clearpage
+	
+\subsubsection{Regulatory pozycji i prędkości}
+
+W celu zapewnienia zadanej pozycji (kątowej w przypadku silnika krokowego i liniowej przy VCM) w sterowniku został zastosowany regulator pozycji typu PID-- proporcjonalno-całkująco-różniczkujący ({\it proportional–integral–derivative}). Jego zasadę działania wyraża wzór \ref{eq:pid1}.
+
+\begin{equation} \label{eq:pid1}
+	s(t) = K_p e(t) + K_i \int_0^t e(t)dt + K_d \frac{de(t)}{dt}
+\end{equation}
+
+Gdzie:
+
+\begin{easylist}
+	& $ s(t) $ : pozycja w danej chwili $ t $ wyrażona w metrach,
+	& $ e(t) $ : błąd pozycji $ e(t) = v(t) - v(t - 1) $, wyrażony w metrach,
+	& $ K_p  $ : współczynnik proporcjonalny bezwymiarowy,
+	& $ K_i  $ : współczynnik całkujący bezwymiarowy,
+	& $ K_d  $ : współczynnik różniczkujący bezwymiarowy.
+	\\
+\end{easylist} 
+
+Implementację algorytmu w kodzie mikrokontrolera przedstawia listing \ref{kody/pid_PosController.c}.
+
+\insertCode{kody/pid_PosController.c}
+	{C}
+	{Kod regulatora pozycji zaimplementowany w  mikrokontrolerze, wywoływany w interwale $ dt = 0.001 s $}
+	{mechsyscode}
+	
+Funkcja zawiera dodatkowo mechanizm zabezpieczający regulator przed zmagazynowaniem zbyt dużego błędu pozycji, co może spowodować przeregulowanie układu ({\it ,,Anti-Windup''}). Jako parametry wejściowe podawane są aktualna pozycja (odczytana z enkodera) i pozycja zadana. Wyjście regulatora pozycji jest następnie podawane na wejście regulatora prędkości (\ref{grafiki/pid_vcm.pdf}). \\
+
+Regulator prędkości działa w ten sam sposób co regulator pozycji, z tą różnicą że sygnał wyjściowy z regulatora jest wielkością tego samego typu co sygnał wejściowy. Suma (lub różnica w zależności od znaku zmiennej zwracanej z funkcji) tych dwóch sygnałów tworzy regulowaną prędkość zadaną. Zastosowanie oddzielnych regulatorów dla pozycji i prędkości pozwala w bardzo precyzyjny sposób konfigurować pracę danego silnika przy pomocy współczynników $ K_p $, $ K_i $ i $ K_d $ ({\it tunning}). Kolejne bloki różnią się w zależności od zastosowanego silnika.
+
+\subsubsection{Regulator prądu silnika VCM}
+
+Wartość prądu zadanego dla uzwojenia maszyny VCM uzyskuje się poprzez jego estymatę, biorąc pod uwagę właściwości fizyczne układu napędowego (blok {\it VCM CURRENT ESTIMATOR} na schemacie \ref{grafiki/pid_vcm.pdf}). Na wejście estymatora trafia wartość absolutnego (względem obudowy), aktualnego wysuwu cylindra silnika. Zadana wartość wysuwu jest uzyskiwana poprzez pomnożenie stałej czasowej układu przez scałkowaną po czasie prędkość z jaką porusza się cylinder (\ref{eq:pid2}).
+
+\begin{equation} \label{eq:pid2}
+	stroke(t) = \int_0^t v(t) dt
+\end{equation}
+
+Do obliczenia zadanego prądu dla silnika VCM należy się posłużyć modelem fizycznym z rys. \ref{grafiki/sprezyna_vcm.eps}.
+
+\insertImgSetSize{grafiki/sprezyna_vcm.eps}
+	{50}
+	{Teoretyczny model układu napędowego modułu z silnikiem VCM}
+	{oprWlasne}
+	
+Obiekt $ A $ reprezentuje część ruchomą głowicy, czyli wszystkie komponenty znajdujące się po stronie cylindra (rys. \ref{grafiki/glowica.png}). $ B $ to część nieruchoma, po stronie której znajduje się obudowa silnika. W pierwszej kolejności należy obliczyć działającą na ciało $ A $ siłę sprężyny $ F_s $ (\ref{eq:pid3}):
+
+\begin{equation} \label{eq:pid3}
+	F_s = F_{s0} + R_s \cdot S \quad [ N = N + \frac{N}{m} \cdot m ]
+\end{equation}
+
+\begin{easylist}
+	& $ F_{s0} $ : siła początkowa sprężyny $ [N] $,
+	& $ R_s $ : stała sprężyny $ [\frac{N}{m}] $,
+	& $ S $ : wysuw cylindra $ [m] $.
+	\\
+\end{easylist} 
+
+Następnie należy obliczyć siłę $ F_m $ z jaką oddziałuje na ciało grawitacja (\ref{eq:pid4}):
+
+\begin{equation} \label{eq:pid4}
+	F_m = m_A \cdot g \cdot \sin \alpha \quad [ N = kg \cdot \frac{m}{s^2} \cdot 1 ]
+\end{equation}
+
+\begin{easylist}
+	& $ m_A $ : sumaryczna masa części ruchomej głowicy $ [kg] $,
+	& $ g $ : przyspieszenie ziemskie $ [\frac{m}{s^2}] $,
+	& $ \alpha $ : kąt ustawienia głowicy względem płaszczyzny (normalnie 90\degree{}) $ [deg] $.
+	\\
+\end{easylist} 
+
+Potem liczona jest wypadkowa siła $ F $ (\ref{eq:pid5}) działająca na ciało $ A $. Im cięższa jest część ruchoma głowicy, tym bardziej jest wysunięty cylinder w stanie spoczynku (bezprądowym). 
+
+\begin{equation} \label{eq:pid5}
+	F = F_s - F_m \quad [ N = N - N ]
+\end{equation}
+
+Ostatnim krokiem jest odczytanie stałej silnika VCM ($ F_c $ -- {\it force constant}) z charakterystyki dostarczonej przez producenta (np. \ref{grafiki/vcm_force_current_plot.eps}) i obliczenie prądu w uzwojeniu dla wymaganego wysuwu cylindra (\ref{eq:pid5}):
+
+\begin{equation} \label{eq:pid6}
+	I = \frac{F}{F_c} \quad [ A = \frac{N}{\frac{N}{A}} ]
+\end{equation}
+
+\insertImgSetSize{grafiki/vcm_current.eps}
+	{100}
+	{Przebieg teoretycznego prądu (oś Y) wymaganego w uzwojeniu do wysuwu cylindra na zadaną odległość (oś X}
+	{oprWlasne}
+	
+Na rys. \ref{grafiki/vcm_current.eps} widać wynik symulacji w postaci prądu w funkcji wysuwu cylindra. Obliczenia zostały przeprowadzone przy rzeczywistych wartościach parametrów układu napędowego. Wykres wskazuje na to, że w stanie spoczynku część ruchoma głowicy jest wysunięta na odległość ok. 6.7 mm. Charakterystyka ma charakter liniowy w swojej środkowej części, ze względu na kształt charakterystyki prądowej silnika wprowadzonej do algorytmu jako parametr (\ref{grafiki/vcm_force.eps}).
+
+\insertImgSetSize{grafiki/vcm_force.eps}
+	{100}
+	{Charakterystyka prądowa zastosowanego silnika VCM odtworzona w programie używając charakterystyki z karty katalogowej}
+	{oprWlasne}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
