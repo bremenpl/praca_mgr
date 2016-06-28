@@ -53,29 +53,40 @@ Regulator prędkości działa w ten sam sposób co regulator pozycji, z tą ró�
 
 \subsubsection{Sterowanie prędkością kątową silnika krokowego}
 
-W modelu sterowania, który został zaimplementowany w oprogramowaniu sterownika, parametrami decydującymi o aktualnej prędkości kątowej silnika krokowego są:
+W modelu sterowania, który został zaimplementowany w oprogramowaniu kontrolera, parametrami decydującymi o aktualnej prędkości kątowej silnika krokowego są:
 
 \begin{easylist}
 	& częstotliwość komutacji,
 	& tryb pracy (,,bieg'').
+	\\
 \end{easylist} 
 
-\insertImgSetSize{grafiki/freq_gear_stepper.eps}
-	{100}
-	{Algorytm obliczający częstotliwość komutacji i bieg dla zadanej prędkości obrotowej wału}
-	{oprWlasne}
-
-Wartości wymienionych parametrów są automatycznie obliczane w pętli sterowania dla zadanej prędkości obrotowej. W celu  wstępnej inicjalizacji algorytmu, należy podać następujące parametry:
+Wartości wymienionych parametrów są automatycznie obliczane w pętli sterowania dla zadanej prędkości obrotowej. W celu   inicjalizacji algorytmu, należy podać następujące parametry:
 
 \begin{easylist}
-	& ilość pełnych kroków na obrót w danym modelu silnika,
+	& ilość pełnych kroków na obrót dla danego silnika,
 	& ilość biegów (maksymalna dopuszczalna rozdzielczość pracy mikrokrokowej),
 	& maksymalna częstotliwość komutacji $ [Hz] $,
 	& maksymalna użyteczna prędkość kątowa dla danego silnika $ [RPM] $.
 	\\
 \end{easylist} 
 
-<dokonczyc>
+Relacja między ilością biegów i rozdzielczością przy pracy mikrokrokowej jest następująca:
+
+\begin{equation} \label{eq:pid7}
+	gearsNr = \log_2(resolution) + 1
+\end{equation}
+
+W pierwszej kolejności algorytm oblicza wartości progowe prędkości obrotowych dla których następuje ,,automatyczna zmiana biegu''. Wartości te są nieco inne dla przypadku w którym silnik jest rozpędzany i hamowany, dzięki czemu bieg nie jest zmieniany zbyt często przy wartościach skrajnych (działanie bazujące na histerezie, podobnie jak w przerzutniku {\it Shmitta}). \\
+
+Dla przypadku rozpędzania wirnika z bezruchu, wirtualna przekładnia rozpoczyna pracę przy największej rozdzielczości mikrokroków. Wraz ze wzrostem prędkości obrotowej częstotliwość komutacji jest zwiększana. Im większa częstotliwość komutacji, tym częściej system musi przerywać pozostałe prace, dlatego maksymalną częstotliwość należy dobrać w taki sposób, aby nie zagłodzić pozostałych procesów w systemie. Po osiągnięciu maksymalnej częstotliwości następuje zmiana biegu, czyli dwukrotne zmniejszenie rozdzielczości mikrokroków. Częstotliwość komutacji także dwukrotnie maleje. Działanie to jest powtarzane aż do osiągnięcia maksymalnej ustalonej prędkości obrotowej (i jednocześnie maksymalnego biegu i częstotliwości komutacji). Algorytm pozwala zoptymalizować pracę silnika poprzez korzystanie z największej rozdzielczości tylko wtedy, kiedy jest potrzebna (rozpędzanie wirnika i precyzyjne hamowanie). Rys. \ref{grafiki/freq_gear_stepper.eps} prezentuje w graficzny sposób działanie układu.
+
+\insertImgSetSize{grafiki/freq_gear_stepper.eps}
+	{100}
+	{Wizualizacja algorytmu obliczającego częstotliwość komutacji i bieg dla zadanej prędkości obrotowej wału}
+	{oprWlasne}
+	
+Można zauważyć że praca na najwyższym biegu (1 mikrokrok na 1 pełny krok) to tak naprawdę tryb falowy (sekcja \ref{sss:sterowanie_krokowy}, rys. \ref{grafiki/stepper_sterowanie_falowe.eps}). Układ przechodzi do niego w naturalny sposób z trybu mikrokrokowego. W aplikacji takiej jak głowica układająca duży moment obrotowy nie jest wymagany, dlatego nie ma potrzeby implementacji trybu pełnokrokowego na ostatnim biegu. Docelowo jednak, funkcjonalność ta będzie musiała być dodana (np. sterowanie ruchu portalu w osi X i Y).
 
 \subsubsection{Regulator prądu silnika VCM}
 
@@ -92,7 +103,14 @@ Do obliczenia zadanego prądu dla silnika VCM należy się posłużyć modelem f
 	{Teoretyczny model układu napędowego modułu z silnikiem VCM}
 	{oprWlasne}
 	
-Obiekt $ A $ reprezentuje część ruchomą głowicy, czyli wszystkie komponenty znajdujące się po stronie cylindra (rys. \ref{grafiki/glowica.png}). $ B $ to część nieruchoma, po stronie której znajduje się obudowa silnika. W pierwszej kolejności należy obliczyć działającą na ciało $ A $ siłę sprężyny $ F_s $ (\ref{eq:pid3}):
+Obiekt $ A $ reprezentuje część ruchomą głowicy, czyli wszystkie komponenty znajdujące się po stronie cylindra (rys. \ref{grafiki/glowica.png}). $ B $ to część nieruchoma, po stronie której znajduje się obudowa silnika. 
+
+\insertImgSetSize{grafiki/vcm_current.eps}
+	{100}
+	{Przebieg teoretycznego prądu (oś Y) wymaganego w uzwojeniu do wysuwu cylindra na zadaną odległość (oś X)}
+	{oprWlasne}
+
+W pierwszej kolejności należy obliczyć działającą na ciało $ A $ siłę sprężyny $ F_s $ (\ref{eq:pid3}):
 
 \begin{equation} \label{eq:pid3}
 	F_s = F_{s0} + R_s \cdot S \quad [ N = N + \frac{N}{m} \cdot m ]
@@ -124,41 +142,29 @@ Potem liczona jest wypadkowa siła $ F $ (\ref{eq:pid5}) działająca na ciało 
 	F = F_s - F_m \quad [ N = N - N ]
 \end{equation}
 
-Ostatnim krokiem jest odczytanie stałej silnika VCM ($ F_c $ -- {\it force constant}) z charakterystyki dostarczonej przez producenta (np. \ref{grafiki/vcm_force_current_plot.eps}) i obliczenie prądu w uzwojeniu dla wymaganego wysuwu cylindra (\ref{eq:pid5}):
-
-\begin{equation} \label{eq:pid6}
-	I = \frac{F}{F_c} \quad [ A = \frac{N}{\frac{N}{A}} ]
-\end{equation}
-
-\insertImgSetSize{grafiki/vcm_current.eps}
-	{100}
-	{Przebieg teoretycznego prądu (oś Y) wymaganego w uzwojeniu do wysuwu cylindra na zadaną odległość (oś X)}
-	{oprWlasne}
-	
-Na rys. \ref{grafiki/vcm_current.eps} widać wynik symulacji w postaci prądu w funkcji wysuwu cylindra. Obliczenia zostały przeprowadzone przy rzeczywistych wartościach parametrów układu napędowego. Wykres wskazuje na to, że w stanie spoczynku część ruchoma głowicy jest wysunięta na odległość ok. 6.7 mm. Charakterystyka ma charakter liniowy w swojej środkowej części, ze względu na kształt charakterystyki prądowej silnika wprowadzonej do algorytmu jako parametr (\ref{grafiki/vcm_force.eps}).
-
 \insertImgSetSize{grafiki/vcm_force.eps}
 	{100}
 	{Charakterystyka prądowa zastosowanego silnika VCM odtworzona w programie używając charakterystyki z karty katalogowej}
 	{oprWlasne}
 
-Wyznaczony w zaprezentowany sposób prąd zadany trafia do właściwego regulatora prądu typu PI. jego realizacja różni się od poprzednich regulatorów tym, że nie ma już członu różniczkującego, który w przypadku regulacji prądu nie dał by wielu korzyści. Wartość prądu jest następnie zamieniana na odpowiednie wypełnienie impulsów w uzwojeniu-- więcej informacji na ten temat jest zawarte w sekcji \ref{sss:lowlevel}.
+Ostatnim krokiem jest odczytanie stałej silnika VCM ($ F_c $ -- {\it force constant}) z charakterystyki dostarczonej przez producenta (np. \ref{grafiki/vcm_force_current_plot.eps}) i obliczenie prądu w uzwojeniu dla wymaganego wysuwu cylindra (\ref{eq:pid5}):
+
+\begin{equation} \label{eq:pid6}
+	I = \frac{F}{F_c} \quad [ A = \frac{N}{\frac{N}{A}} ]
+\end{equation}
+	
+Na rys. \ref{grafiki/vcm_current.eps} widać wynik symulacji w postaci prądu w funkcji wysuwu cylindra. Obliczenia zostały przeprowadzone przy rzeczywistych wartościach parametrów układu napędowego. Wykres wskazuje na to, że w stanie spoczynku część ruchoma głowicy jest wysunięta na odległość ok. 6.7 mm. Charakterystyka ma charakter liniowy w swojej środkowej części, ze względu na kształt charakterystyki prądowej silnika wprowadzonej do algorytmu jako parametr (\ref{grafiki/vcm_force.eps}). \\
+
+Wyznaczony prąd zadany trafia do właściwego regulatora prądu typu PI. jego realizacja różni się od poprzednich regulatorów tym, że nie ma już członu różniczkującego, który w przypadku regulacji prądu nie dał by wielu korzyści. Ponadto stała czasowa pętli prądowej wynosi $ 100 \mu s $. Wartość prądu jest następnie zamieniana na odpowiednie wypełnienie impulsów w uzwojeniu-- więcej informacji na ten temat jest zawarte w sekcji \ref{sss:lowlevel}.
 
 \subsubsection{Regulator prądu silnika krokowego}
 
-Regulator prądu w przypadku silnika krokowego próbuje przez cały okres pracy maszyny utrzymywać w uzwojeniach taki prąd, aby spełnione było równanie \ref{eq:stepper2}. W tym celu, sygnałem zadanym dla regulatora jest zawsze maksymalny prąd dla pojedynczego uzwojenia wprowadzony jako parametr do systemu przez użytkownika ({\it CUR MAX SET} na schemacie \ref{grafiki/pid_stepper.pdf}). \\
+Regulatory prądu (dla uzwojeń A i B) w przypadku silnika krokowego próbują przez cały okres pracy maszyny utrzymywać w uzwojeniach taki prąd, aby spełnione było równanie \ref{eq:stepper2}. Prąd maksymalny ($ \theta = 90\degree $) jest przemnażany przez odpowiednie współczynniki (zmienne dla danej pozycji) dla obu uzwojeń (rys. \ref{grafiki/pid_stepper.pdf}). Iloczynami są zadane prądy uzwojeń, które następnie trafiają do wspomnianych regulatorów. Poprawność działania układu potwierdza oscylogram \ref{grafiki/stepper_prady.png}.
 
-Prąd płynący w uzwojeniach nie ma bezpośredniego wpływu na pozycję i prędkość kątową wirnika, a jedynie na moment obrotowy.
-
-
-
-
-
-
-
-
-
-
+\insertImgSetSize{grafiki/stepper_prady.png}
+	{110}
+	{Oscylogramy mierzonych prądów w uzwojeniach silnika krokowego poruszającego się ze stałą zadaną prędkością kątową}
+	{oprWlasne}
 
 
 
