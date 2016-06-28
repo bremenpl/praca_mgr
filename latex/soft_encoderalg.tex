@@ -72,7 +72,7 @@ Gdzie:
 
 \insertImgSetSize{grafiki/przebieg_kf.eps}
 	{110}
-	{Przebieg czasowy prezentujący pozycję wału silnika krokowego: zadaną, mierzoną przefiltrowaną przez {\it KF} i  mierzoną nieprzefiltrowaną}
+	{Przebieg czasowy prezentujący pozycję wału silnika krokowego: zadaną, mierzoną i mierzoną przefiltrowaną przez {\it KF}}
 	{oprWlasne}
 
 Zastosowany filtr jest dwuwymiarowy.Oznacza to że estymacji są poddawane dwa parametry: pozycja i prędkość. Model stanowy wygląda następująco:
@@ -110,10 +110,10 @@ Rys. \ref{grafiki/przebieg_kf.eps} prezentuje różne pozycje kątowe w funkcji 
 
 \insertImgSetSize{grafiki/przebieg_kf_zoom.eps}
 	{110}
-	{Przebieg czasowy (powiększenie przy zmianie pozycji) prezentujący pozycję wału silnika krokowego: zadaną, mierzoną przefiltrowaną przez {\it KF} i  mierzoną nieprzefiltrowaną}
+	{Przebieg czasowy (powiększenie przy impulsie skokowym) prezentujący pozycję wału silnika krokowego: zadaną, mierzoną i mierzoną przefiltrowaną przez {\it KF}}
 	{oprWlasne}
 	
-Po doświadczalnym dostosowaniu parametrów $ v $ i $ w $ algorytm tłumi zakłócenia bardzo dobrze. Charakterystyczną cechą filtru Kalmana jest jednak to że wraz ze wzrostem poziomu filtracji rośnie także opóźnienie sygnału. Parametr ten diametralnie wpływa na działanie regulatorów pozycji i prędkości (sekcja <dodac sekcje>). Pomimo tego że estymowana pozycja jest bardzo blisko zadanej, to czas potrzebny na jej osiągnięcie (w końcowym odcinku) jest zbyt długi. Z tego powodu został zaimplementowany dodatkowy, szybszy algorytm stosowany w czasowo krytycznych sytuacjach.
+Po doświadczalnym dostosowaniu parametrów $ v $ i $ w $ algorytm tłumi zakłócenia bardzo dobrze. Charakterystyczną cechą filtru Kalmana jest jednak to że wraz ze wzrostem poziomu filtracji rośnie także opóźnienie sygnału. Parametr ten diametralnie wpływa na działanie regulatorów pozycji i prędkości (sekcja \ref{sss:posvelregs}). Pomimo tego że estymowana pozycja jest bardzo blisko zadanej, to czas potrzebny na jej osiągnięcie (w końcowym odcinku) jest zbyt długi. Z tego powodu został zaimplementowany dodatkowy, szybszy algorytm stosowany w czasowo krytycznych sytuacjach.
 
 \clearpage
 
@@ -143,10 +143,10 @@ $ f_{CR} $ jest częstotliwością odcięcia dobieraną w sterowniku doświadcza
 
 \insertImgSetSize{grafiki/przebieg_lowpass_zoom.eps}
 	{110}
-	{Przebieg czasowy (powiększenie przy zmianie pozycji) prezentujący pozycję wału silnika krokowego: zadaną,   mierzoną nieprzefiltrowaną i mierzoną przefiltrowaną przez filtr dolnoprzepustowy trzeciego rzędu}
+	{Przebieg czasowy (powiększenie przy impulsie skokowym) prezentujący pozycję wału silnika krokowego: zadaną,   mierzoną nieprzefiltrowaną i mierzoną przefiltrowaną przez filtr dolnoprzepustowy trzeciego rzędu}
 	{oprWlasne}
 	
-Rząd filtru jest ustalany przez użytkownika. Rys. \ref{grafiki/przebieg_lowpass_zoom.eps} prezentuje odczyt pozycji wału silnika krokowego. Algorytm ten działa szybciej od zaimplementowanego filtru Kalmana-- obrót o 90\degree{} w ok. 250 ms przy zastosowaniu KF i ok. 100 ms przy filtrze dolnoprzepustowym trzeciego rzędu. Ponadto, algorytm jest bardzo prosty i kod potrzebny do jego wykonania nie wymaga dużej ilości zasobów mikrokontrolera (listing \ref{kody/low_pass.c}).
+Rząd filtru jest ustalany przez użytkownika. Rys. \ref{grafiki/przebieg_lowpass_zoom.eps} prezentuje odczyt pozycji wału silnika krokowego. Algorytm ten działa szybciej od zaimplementowanego filtru Kalmana-- obrót o 18\degree{} w ok. 1 s przy zastosowaniu KF i ok. 170 ms przy filtrze dolnoprzepustowym trzeciego rzędu. Ponadto, algorytm jest bardzo prosty i kod potrzebny do jego wykonania nie wymaga dużej ilości zasobów mikrokontrolera (listing \ref{kody/low_pass.c}).
 
 \insertCode{kody/low_pass.c}
 	{C}

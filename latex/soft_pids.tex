@@ -14,13 +14,14 @@ Procedury sterowania wysokopoziomowego dla obu rodzajów silników (krokowy i VC
 \clearpage
 	
 \insertImgSetSize{grafiki/pid_stepper.pdf}
-	{220}
+	{180}
 	{Schemat blokowy sterowania wysokopoziomowego silnikiem krokowym, zaimplementowanego w kodzie sterownika}
 	{oprWlasne}
 	
 \clearpage
 	
 \subsubsection{Regulatory pozycji i prędkości}
+\label{sss:posvelregs}
 
 W celu zapewnienia zadanej pozycji (kątowej w przypadku silnika krokowego i liniowej przy VCM) w sterowniku został zastosowany regulator pozycji typu PID-- proporcjonalno-całkująco-różniczkujący ({\it proportional–integral–derivative}). Jego zasadę działania wyraża wzór \ref{eq:pid1}.
 
@@ -145,7 +146,7 @@ Wyznaczony w zaprezentowany sposób prąd zadany trafia do właściwego regulato
 
 \subsubsection{Regulator prądu silnika krokowego}
 
-Regulator prądu w przypadku silnika krokowego próbuje przez cały okres pracy maszyny utrzymywać w uzwojeniach taki prąd, aby spełnione było równanie \ref{eq:stepper2} (jako jedynkę podstawiany jest maksymalny prąd). W tym celu, sygnałem zadanym dla regulatora jest zawsze maksymalny prąd dla pojedynczego uzwojenia wprowadzony jako parametr do systemu przez użytkownika ({\it CUR MAX SET} na schemacie \ref{grafiki/pid_stepper.pdf}). \\
+Regulator prądu w przypadku silnika krokowego próbuje przez cały okres pracy maszyny utrzymywać w uzwojeniach taki prąd, aby spełnione było równanie \ref{eq:stepper2}. W tym celu, sygnałem zadanym dla regulatora jest zawsze maksymalny prąd dla pojedynczego uzwojenia wprowadzony jako parametr do systemu przez użytkownika ({\it CUR MAX SET} na schemacie \ref{grafiki/pid_stepper.pdf}). \\
 
 Prąd płynący w uzwojeniach nie ma bezpośredniego wpływu na pozycję i prędkość kątową wirnika, a jedynie na moment obrotowy.
 
