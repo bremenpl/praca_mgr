@@ -7,14 +7,14 @@ Procedury sterowania wysokopoziomowego dla obu rodzajów silników (krokowy i VC
 \clearpage
 
 \insertImgSetSize{grafiki/pid_vcm.pdf}
-	{200}
+	{225}
 	{Schemat blokowy sterowania wysokopoziomowego silnikiem VCM, zaimplementowanego w kodzie sterownika}
 	{oprWlasne}
 	
 \clearpage
 	
 \insertImgSetSize{grafiki/pid_stepper.pdf}
-	{180}
+	{220}
 	{Schemat blokowy sterowania wysokopoziomowego silnikiem krokowym, zaimplementowanego w kodzie sterownika}
 	{oprWlasne}
 	
@@ -153,8 +153,7 @@ Ostatnim krokiem jest odczytanie stałej silnika VCM ($ F_c $ -- {\it force cons
 	I = \frac{F}{F_c} \quad [ A = \frac{N}{\frac{N}{A}} ]
 \end{equation}
 	
-Na rys. \ref{grafiki/vcm_current.eps} widać wynik symulacji w postaci prądu w funkcji wysuwu cylindra. Obliczenia zostały przeprowadzone przy rzeczywistych wartościach parametrów układu napędowego. Wykres wskazuje na to, że w stanie spoczynku część ruchoma głowicy jest wysunięta na odległość ok. 6.7 mm. Charakterystyka ma charakter liniowy w swojej środkowej części, ze względu na kształt charakterystyki prądowej silnika wprowadzonej do algorytmu jako parametr (\ref{grafiki/vcm_force.eps}). \\
-
+Na rys. \ref{grafiki/vcm_current.eps} widać wynik symulacji w postaci prądu w funkcji wysuwu cylindra. Obliczenia zostały przeprowadzone przy rzeczywistych wartościach parametrów układu napędowego. Wykres wskazuje na to, że w stanie spoczynku część ruchoma głowicy jest wysunięta na odległość ok. 6.7 mm. Charakterystyka ma charakter liniowy w swojej środkowej części, ze względu na kształt charakterystyki prądowej silnika wprowadzonej do algorytmu jako parametr (\ref{grafiki/vcm_force.eps}). 
 Wyznaczony prąd zadany trafia do właściwego regulatora prądu typu PI. jego realizacja różni się od poprzednich regulatorów tym, że nie ma już członu różniczkującego, który w przypadku regulacji prądu nie dał by wielu korzyści. Ponadto stała czasowa pętli prądowej wynosi $ 100 \mu s $. Wartość prądu jest następnie zamieniana na odpowiednie wypełnienie impulsów w uzwojeniu-- więcej informacji na ten temat jest zawarte w sekcji \ref{sss:lowlevel}.
 
 \subsubsection{Regulator prądu silnika krokowego}
@@ -163,10 +162,8 @@ Regulatory prądu (dla uzwojeń A i B) w przypadku silnika krokowego próbują p
 
 \insertImgSetSize{grafiki/stepper_prady.png}
 	{110}
-	{Oscylogramy mierzonych prądów w uzwojeniach silnika krokowego poruszającego się ze stałą zadaną prędkością kątową}
+	{Oscylogramy mierzonych spadków napięć na rezystorach pomiarowych w mostkach H silnika krokowego poruszającego się ze stałą zadaną prędkością kątową}
 	{oprWlasne}
-
-
 
 
 

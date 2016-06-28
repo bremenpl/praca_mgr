@@ -1,9 +1,98 @@
 \subsection{Procedury sterowania niskopoziomowego}
 \label{sss:lowlevel}
 
-Cechą wspólną dla wszystkich rodzajów silników obsługiwanych przez sterownik jest korzystanie z modulacji unipolarnej  (sekcja \ref{sss:moduni}) przy zasilaniu uzwojeń. Uzyskanie potrzebnej wartości prądu dla poszczególnych silników (obecnie krokowego i VCM) przed podaniem go na uzwojenia wymaga zupełnie innego podejścia. 
+Cechą wspólną dla wszystkich rodzajów silników obsługiwanych przez sterownik, jest zasilanie uzwojeń korzystając z  modulacji unipolarnej (sekcja \ref{sss:moduni}) i pomiar prądu tą samą metodą. 
 
 \subsubsection{Modulacja szerokości impulsów}
+\label{sss:pwm_soft}
+
+Moduły PWM sterujące silnikami są skonfigurowanie w trybie symetrycznym ({\it Center aligned mode}). Oznacza to, że poszczególne kanały danego timer'a są względem siebie wyrównane do środka każdego impulsu (rys. \ref{grafiki/pwm_counter.eps}). Licznik w module inkrementuje i dekrementuje się co drugi okres. Fakt ten sprawia że maksymalna częstotliwość możliwa do uzyskania w tym trybie PWM jest dwa razy mniejsza od tej w trybie niesymetrycznym ({\it Edge aligned mode}).
+
+\insertImgSetSize{grafiki/pwm_counter.eps}
+	{102}
+	{Potencjały na zaciskach uzwojenia wraz z licznikiem danego timer'a}
+	{oprWlasne}
+	
+Tryb symetryczny pozwala jednak na implementację modulacji unipolarnej w bardzo prosty sposób. Na rys. (rys. \ref{grafiki/pwm_counter.eps}) widać przebiegi napięcia po obu stronach uzwojenia (A i B). W prezentowanym przykładzie wypełnienie impulsu przebiegów nie jest sobie równe, co oznacza że element wykonawczy porusza się. \\
+
+W momentach, w których potencjał A ma inną wartość niż B, prąd płynie przez uzwojenie poprzez naprzeciwnie otwarte tranzystory mostka H. Kiedy potencjały mają tą samą wartość, otwarte są te same tranzystory po obu stronach mostka (dwa górne lub dolne). Wtedy prąd przepływa przez uzwojenie, ale rozładowuje się. Aby przeliczyć zadany przez regulator prąd na wartość wypełnienia impulsu, w kontrolerze używane są następujące równania: 
+
+\begin{equation} \label{eq:lowlevel1}
+	K_{LR} = \frac{L_w F_{pwm}}{2 R_w}
+\end{equation}
+
+Równanie \ref{eq:lowlevel1} prezentuje wzór na stałą prądową uzwojenia. Poszczególne zmienne to:
+
+\begin{easylist}
+	& $ L_w $ : indukcyjność uzwojenia,
+	& $ R_w $ : rezystancja uzwojenia,
+	& $ F_pwm $ : częstotliwość przełączania kluczy,
+	\\
+\end{easylist} 
+
+Dwójka we wzorze jest uproszczeniem, według którego przyjmuje się że w jednej stałej czasowej $ \tau $ obwodu $ RL $  prąd uzwojenia osiąga 50\% swojej maksymalnej wartości (\ref{eq:lowlevel2}), wynikającej z prawa Ohm'a dla obwodu w stanie ustalonym.
+
+\begin{equation} \label{eq:lowlevel2}
+	I_{max} = \frac{V_{CC}}{R_L + R_{meas}}
+\end{equation}
+
+Spadki napięć na tranzystorach są w równaniu \ref{eq:lowlevel2} pomijane. Stała $ K_{LR} $ jest następnie używana do obliczenia współczynnika PWM dla danego uzwojenia \ref{eq:lowlevel3}.
+
+\begin{equation} \label{eq:lowlevel3}
+	r_{pwm} = I_{reg} \cdot K_{LR} \cdot \frac{R_L + R_{meas}}{V_{CC}} \cdot \frac{T_{pwm}}{2}
+\end{equation}
+
+$ V_{CC} $ jest napięciem zasilania mostka, a $ T_{pwm} $ okresem PWM dla danego silnika. Na końcu obliczane są wartości wypełnień impulsów dla potencjałów po obu stronach uzwojenia \ref{eq:lowlevel4}.
+
+\begin{equation} \label{eq:lowlevel4}
+	PWM_{V1} = \frac{T_{pwm}}{2} + r_{pwm} 	\qquad 	PWM_{V2} = \frac{T_{pwm}}{2} - r_{pwm}
+\end{equation}
+
+Dla silnika krokowego obliczane są odpowiednio cztery wypełnienia impulsów zamiast dwóch.
+
+\subsubsection{Pomiar prądu w uzwojeniu}
+
+Rysunek \ref{grafiki/prady_H.eps} prezentuje uproszczony mostek H ze schematu \ref{grafiki/mostki_vcm.pdf}. Cyframi zostały oznaczone kolejne sekwencje komutacyjne, w których układ znajduje się przy sterowaniu unipolarnym (sekcja \ref{sss:pwm_soft}). Litery oznaczają sekwencję dla ruchu (np. cylindra w silniku VCM) w przeciwnych kierunkach. Strzałki wyznaczają drogę przepływu prądu i jego kierunek, natomiast blok w dolnej lewej gałęzi mostka symbolizuje rezystor pomiarowy (schemat \ref{grafiki/cursens_ls.pdf}). \\
+
+Jak wynika z diagramu, prąd przepływa przez rezystor pomiarowy tylko w połowie możliwych konfiguracji. Fakt ten sprawia że prąd nie może być mierzony w dowolnym momencie, a wymaga synchronizacji z modułem timer'a, którego częścią są dane kanały PWM. Aby to zrobić, w kontrolerze posłużono się przerwaniami generowanymi w momencie, kiedy licznik danego timer'a zaczyna liczyć w dół lub w górę. Na rys. \ref{grafiki/pwm_counter.eps} są to momenty w których wypełnienie impulsów jest w 50\% swojej całkowitej szerokości. Te przerwania następnie uruchamiają przetwornik analogowo-cyfrowy (moduł skonfigurowany sprzętowo), który odczytuje wartość spadku napięcia na rezystorze. W przypadku silnika krokowego, jest to robione dwa razy (kolejno z obu rezystorów) ze względu na to że uzwojenia są dwa. \\
+
+Rys. \ref{grafiki/stepper_prady_zoom.png} prezentuje oscylogram napięć odkładających się na rezystorach pomiarowych w obwodzie silnika krokowego.
+
+\insertImgSetSize{grafiki/prady_H.eps}
+	{105}
+	{Przepływ prądu w mostku H dla kolejnych komutacji (1, 2, 3, 4) przy ruchu elementu wykonawczego. a) Ruch w elementu wykonawczego w prawo, b) ruch w lewo}
+	{oprWlasne}
+	
+Można na nim zaobserwować poprawną pracę obwodu CSLS (schemat \ref{grafiki/cursens_ls.pdf}). W co drugim okresie timer'a, spadki napięć na rezystorach pomiarowych wynoszą ok. 1.2 V co sugerowało by że w tym czasie przez uzwojenie nie płynie prąd (napięcie referencyjne). Powodem tego zjawiska jest jednak to, że tak jak pokazano na rys. \ref{grafiki/prady_H.eps} w połowie okresów prąd jest dla przetwornika ADC ,,niewidoczny''-- punkt pomiarowy jest dla niego w stanie wysokiej impedancji (nie ma różnicy napięć). \\
+
+Mimo tego w oprogramowaniu mierzone są napięcia we wszystkich okresach, nawet tych niewidocznych. Implementacja mechanizmu synchronizującego przetwornik z okresami, zarówno jak jego działanie było by bardziej czasochłonne niż zastosowany obecnie algorytm. Mianowicie, w programie sprawdzane jest w którym okresie dla danej pary (wysoki--niski) amplituda jest większa i tylko ją stosuje się do obliczeń. Okres z napięciem referencyjnym jest odrzucany. \\
+
+Prąd płynący w uzwojeniu jest liczony ze wzoru \ref{eq:lowlevel5}.
+
+\begin{equation} \label{eq:lowlevel5}
+	I_{meas} = \frac{V_{ref} \cdot ADC}{G \cdot RES_{ADC} \cdot R_{meas}}
+\end{equation}
+
+Gdzie:
+\begin{easylist}
+	& $ V_{ref} $ : napięcie źródła odniesienia,
+	& $ ADC $ : wartość z przetwornika ADC,
+	& $ RES_{ADC} $ : Rozdzielczość przetwornika (12 bitów),
+\end{easylist} 
+
+\insertImgSetSize{grafiki/stepper_prady_zoom.png}
+	{140}
+	{Oscylogramy mierzonych spadków napięć na rezystorach pomiarowych w mostku H silnika krokowego z rys. \ref{grafiki/stepper_prady.png} w przybliżeniu}
+	{oprWlasne}
+
+
+
+
+
+
+
+
+
 
 
 
