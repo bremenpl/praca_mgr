@@ -1,0 +1,17 @@
+\section*{Podsumowanie}
+
+Będący tematem pracy \paperTitleSmallPl{} nie został jeszcze ukończony, ale jest już funkcjonalny. Ze sprzętowego punktu widzenia kontroler jest gotowy dla głowicy układającej do automatów typu Pick and Place. W przypadku potrzeby zastosowania go w innej aplikacji, należy zaprojektować nową płytkę bazując na podzespołach zastosowanych w tym projekcie. \\
+
+Pod względem oprogramowania wszystkie bazowe moduły sterowanie są napisane, ale tylko dla obsługi silników VCM i krokowych. Następnym krokiem będzie dodanie procedur dla maszyn BLDC/ PMSM i komutatorowych. Dużej zmiany w oprogramowaniu wymaga moduł wyższego poziomu, wykonujący poszczególne funkcje (np. podnoszenie komponentu). Są to funkcjonalności charakterystyczne dla danej aplikacji i nie powinny być częścią kodu bazowego uniwersalnego sterownika. Docelowo należy zaprojektować dedykowany język skryptowy, pozwalający użytkownikowi na pisanie kodu wysokiego poziomu i zapisywanie go w pamięci kontrolera. Sterownik powinien potrafić interpretować skrypt i wykonywać sekwencyjnie wykonywać zaszyte w nim instrukcje. Na chwilę obecną poszczególne skrypty zostały zaimplementowane w kodzie kontrolera na stałe. \\
+
+W celu napisania skryptu potrzebne jest specjalne środowisko-- Dedykowana aplikacja napisana na platformę PC. Po za pisaniem funkcji dla kontrolera, program musi także umożliwiać konfigurację parametrów danego sterownika, takich jak np. rodzaj podłączonych silników czy enkoderów. Dodatkowo, musi pozwalać na dostrajanie regulatorów i filtrów oraz odczytywanie parametrów chwilowych (np. prądy w uzwojeniach) w czasie rzeczywistym. Moduł logger'a (sekcja \ref{ss:hwrs232}) nie jest w stanie zapewnić takiej funkcjonalności, gdyż jego priorytet jest bardzo niski i nie można go zwiększyć nie zaburzając pracy sterownika. Z tego powodu potrzebny jest dodatkowy moduł pozwalający na zapis danych do pamięci RAM mikrokontrolera, a następnie wysłanie ich po zakończeniu skryptu. \\
+
+Ostatnim elementem (po zakończeniu zadań o wyższym priorytecie) potrzebnym w projekcie jest wyposażenie aplikacji konfiguracyjnej i samego sterownika w elementy sztucznej inteligencji. Zastosowanie np. sieci neuronowej mogło by pozwolić na automatyczne dostosowanie optymalnych współczynników dla regulatorów.
+
+
+
+
+
+
+
+

@@ -3,6 +3,7 @@
 Gotowe do obsługi programowej w urządzeniu są dwie magistrale szeregowe (patrz \ref{sss:hardware_komunikacja}). W tej sekcji znajduje się opis zastosowania każdej z nich na obecnym poziomie rozwoju.
 
 \subsubsection{Magistrala CAN}
+\label{ss:hwcan}
 
 Magistrala pracuje w protokole CAN 2.0B (rozszerzona ramka: 29 bitowy identyfikator i 64 bitowe pole danych) z prędkością 1 Mbit/s. Używany protokół to TML CAN, który jest używany przed dotychczas używane w maszynach sterowniki firmy Technosoft. Jak zostało wcześniej wspomniane, projektowane urządzenie ma za zadanie zastąpić w maszynie dwa dotychczasowe, dlatego z punktu widzenia sieci są to dwa kontrolery (rys. \ref{grafiki/can_nodes.pdf}).
 

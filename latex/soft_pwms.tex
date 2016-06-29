@@ -6,14 +6,14 @@ Cechą wspólną dla wszystkich rodzajów silników obsługiwanych przez sterown
 \subsubsection{Modulacja szerokości impulsów}
 \label{sss:pwm_soft}
 
-Moduły PWM sterujące silnikami są skonfigurowanie w trybie symetrycznym ({\it Center aligned mode}). Oznacza to, że poszczególne kanały danego timer'a są względem siebie wyrównane do środka każdego impulsu (rys. \ref{grafiki/pwm_counter.eps}). Licznik w module inkrementuje i dekrementuje się co drugi okres. Fakt ten sprawia że maksymalna częstotliwość możliwa do uzyskania w tym trybie PWM jest dwa razy mniejsza od tej w trybie niesymetrycznym ({\it Edge aligned mode}).
+Moduły PWM sterujące silnikami są skonfigurowanie w trybie symetrycznym ({\it Center aligned mode}). Oznacza to, że poszczególne kanały danego timer'a są względem siebie wyrównane do środka każdego impulsu (rys. \ref{grafiki/pwm_counter.eps}). Licznik w module inkrementuje i dekrementuje się co drugi okres. Fakt ten sprawia że maksymalna częstotliwość możliwa do uzyskania w tym trybie PWM jest dwa razy mniejsza od tej w trybie niesymetrycznym ({\it Edge aligned mode}). \\
+	
+Tryb symetryczny pozwala jednak na implementację modulacji unipolarnej w bardzo prosty sposób. Na rys. (rys. \ref{grafiki/pwm_counter.eps}) widać przebiegi napięcia po obu stronach uzwojenia (A i B). W prezentowanym przykładzie wypełnienie impulsu przebiegów nie jest sobie równe, co oznacza że element wykonawczy porusza się. 
 
 \insertImgSetSize{grafiki/pwm_counter.eps}
-	{102}
+	{100}
 	{Potencjały na zaciskach uzwojenia wraz z licznikiem danego timer'a}
 	{oprWlasne}
-	
-Tryb symetryczny pozwala jednak na implementację modulacji unipolarnej w bardzo prosty sposób. Na rys. (rys. \ref{grafiki/pwm_counter.eps}) widać przebiegi napięcia po obu stronach uzwojenia (A i B). W prezentowanym przykładzie wypełnienie impulsu przebiegów nie jest sobie równe, co oznacza że element wykonawczy porusza się. \\
 
 W momentach, w których potencjał A ma inną wartość niż B, prąd płynie przez uzwojenie poprzez naprzeciwnie otwarte tranzystory mostka H. Kiedy potencjały mają tą samą wartość, otwarte są te same tranzystory po obu stronach mostka (dwa górne lub dolne). Wtedy prąd przepływa przez uzwojenie, ale rozładowuje się. Aby przeliczyć zadany przez regulator prąd na wartość wypełnienia impulsu, w kontrolerze używane są następujące równania: 
 
@@ -52,15 +52,20 @@ Dla silnika krokowego obliczane są odpowiednio cztery wypełnienia impulsów za
 
 \subsubsection{Pomiar prądu w uzwojeniu}
 
-Rysunek \ref{grafiki/prady_H.eps} prezentuje uproszczony mostek H ze schematu \ref{grafiki/mostki_vcm.pdf}. Cyframi zostały oznaczone kolejne sekwencje komutacyjne, w których układ znajduje się przy sterowaniu unipolarnym (sekcja \ref{sss:pwm_soft}). Litery oznaczają sekwencję dla ruchu (np. cylindra w silniku VCM) w przeciwnych kierunkach. Strzałki wyznaczają drogę przepływu prądu i jego kierunek, natomiast blok w dolnej lewej gałęzi mostka symbolizuje rezystor pomiarowy (schemat \ref{grafiki/cursens_ls.pdf}). \\
-
-Jak wynika z diagramu, prąd przepływa przez rezystor pomiarowy tylko w połowie możliwych konfiguracji. Fakt ten sprawia że prąd nie może być mierzony w dowolnym momencie, a wymaga synchronizacji z modułem timer'a, którego częścią są dane kanały PWM. Aby to zrobić, w kontrolerze posłużono się przerwaniami generowanymi w momencie, kiedy licznik danego timer'a zaczyna liczyć w dół lub w górę. Na rys. \ref{grafiki/pwm_counter.eps} są to momenty w których wypełnienie impulsów jest w 50\% swojej całkowitej szerokości. Te przerwania następnie uruchamiają przetwornik analogowo-cyfrowy (moduł skonfigurowany sprzętowo), który odczytuje wartość spadku napięcia na rezystorze. W przypadku silnika krokowego, jest to robione dwa razy (kolejno z obu rezystorów) ze względu na to że uzwojenia są dwa. \\
-
-Rys. \ref{grafiki/stepper_prady_zoom.png} prezentuje oscylogram napięć odkładających się na rezystorach pomiarowych w obwodzie silnika krokowego.
+Rysunek \ref{grafiki/prady_H.eps} prezentuje uproszczony mostek H ze schematu \ref{grafiki/mostki_vcm.pdf}. Cyframi zostały oznaczone kolejne sekwencje komutacyjne, w których układ znajduje się przy sterowaniu unipolarnym (sekcja \ref{sss:pwm_soft}). Litery oznaczają sekwencję dla ruchu (np. cylindra w silniku VCM) w przeciwnych kierunkach. Strzałki wyznaczają drogę przepływu prądu i jego kierunek, natomiast blok w dolnej lewej gałęzi mostka symbolizuje rezystor pomiarowy (schemat \ref{grafiki/cursens_ls.pdf}). 
 
 \insertImgSetSize{grafiki/prady_H.eps}
 	{105}
 	{Przepływ prądu w mostku H dla kolejnych komutacji (1, 2, 3, 4) przy ruchu elementu wykonawczego. a) Ruch w elementu wykonawczego w prawo, b) ruch w lewo}
+	{oprWlasne}
+
+Jak wynika z diagramu, prąd przepływa przez rezystor pomiarowy tylko w połowie możliwych konfiguracji. Fakt ten sprawia że prąd nie może być mierzony w dowolnym momencie, a wymaga synchronizacji z modułem timer'a, którego częścią są dane kanały PWM. Aby to zrobić, w kontrolerze posłużono się przerwaniami generowanymi w momencie, kiedy licznik danego timer'a zaczyna liczyć w dół lub w górę. Na rys. \ref{grafiki/pwm_counter.eps} są to momenty w których wypełnienie impulsów jest w 50\% swojej całkowitej szerokości. Te przerwania następnie uruchamiają przetwornik analogowo-cyfrowy (moduł skonfigurowany sprzętowo), który odczytuje wartość spadku napięcia na rezystorze. W przypadku silnika krokowego, jest to robione dwa razy (kolejno z obu rezystorów) ze względu na to że uzwojenia są dwa. \\
+
+Rys. \ref{grafiki/stepper_prady_zoom.png} prezentuje oscylogram napięć odkładających się na rezystorach pomiarowych w obwodzie silnika krokowego. 
+
+\insertImgSetSize{grafiki/stepper_prady_zoom.png}
+	{140}
+	{Oscylogramy mierzonych spadków napięć na rezystorach pomiarowych w mostku H silnika krokowego z rys. \ref{grafiki/stepper_prady.png} w przybliżeniu}
 	{oprWlasne}
 	
 Można na nim zaobserwować poprawną pracę obwodu CSLS (schemat \ref{grafiki/cursens_ls.pdf}). W co drugim okresie timer'a, spadki napięć na rezystorach pomiarowych wynoszą ok. 1.2 V co sugerowało by że w tym czasie przez uzwojenie nie płynie prąd (napięcie referencyjne). Powodem tego zjawiska jest jednak to, że tak jak pokazano na rys. \ref{grafiki/prady_H.eps} w połowie okresów prąd jest dla przetwornika ADC ,,niewidoczny''-- punkt pomiarowy jest dla niego w stanie wysokiej impedancji (nie ma różnicy napięć). \\
@@ -80,20 +85,7 @@ Gdzie:
 	& $ RES_{ADC} $ : Rozdzielczość przetwornika (12 bitów),
 \end{easylist} 
 
-\insertImgSetSize{grafiki/stepper_prady_zoom.png}
-	{140}
-	{Oscylogramy mierzonych spadków napięć na rezystorach pomiarowych w mostku H silnika krokowego z rys. \ref{grafiki/stepper_prady.png} w przybliżeniu}
-	{oprWlasne}
 
 
 
 
-
-
-
-
-
-
-
-
-\clearpage
