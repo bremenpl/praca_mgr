@@ -86,9 +86,9 @@ Gdzie $ t $ oznacza aktualny okres pętli. Korzystając z uzyskanej chwilowej pr
 \begin{equation} \label{eq:pid9}
 	s_{set} =  \left\{
   \begin{array}{ll}
-    \int_{t_0}^{t} v_0 dt - \int_{t_0}^{t_n} (v_0 - v_{set}(t)) dt & : type = decel \\
-    \int_{t_0}^{t} s_{set}(t) dt + v_{set}(t) dt & : type = const \\
-    \int_{t_0}^{t} v_0 dt + \int_{t_0}^{t_n} (v_{set}(t) - v_0) dt & : type = accel \\
+    \int_{t_0}^{t} v_0 dt - \int_{t_0}^{t} (v_0 - v_{set}(t)) dt & : type = decel \\
+    s_{set}(t - 1) + v_{set}(t) dt & : type = const \\
+    \int_{t_0}^{t} v_0 dt + \int_{t_0}^{t} (v_{set}(t) - v_0) dt & : type = accel \\
   \end{array}
 \right.
 \end{equation}
@@ -223,4 +223,30 @@ Regulatory prądu (dla uzwojeń A i B) w przypadku silnika krokowego próbują p
 	{110}
 	{Oscylogramy mierzonych spadków napięć na rezystorach pomiarowych w mostkach H silnika krokowego poruszającego się ze stałą zadaną prędkością kątową}
 	{oprWlasne}
+	
+\clearpage
+	
+\subsubsection{Sprawdzenie systemu sterowania}
+
+W celu zaprezentowania poprawności działania systemu sterowania, wykonano kilka przejazdów (dla obu silników) i zarejestrowano zmienne operacyjne w czasie rzeczywistym używając modułu logger'a ( sekcja \ref{ss:hwrs232}). \\
+
+Pierwszy przebieg (rys. \ref{grafiki/reg_odp_stepper.eps}) prezentuje odpowiedzi regulatorów pozycji oraz prędkości na czterokrotną zmianę pozycji kątowej wału silnika krokowego o 180\degree. Do uzyskania zadanych pozycji posłużył generator trajektorii, który w każdym okresie głównej pętli sterowania oblicza kolejne wartości docelowe dla regulatorów. \\
+ 
+Na wykresie pozycji w funkcji czasu z rys. \ref{grafiki/reg_odp_stepper.eps} można zaobserwować niewielkie opóźnienie sygnału mierzonego względem zadanego. Wynika ono z faktu zastosowania algorytmów filtrujących w module enkodera (sekcja \ref{ss:encalg}). Wykres prędkości jest przykładem trajektorii typu trapezoidalnego, w której nie udało się osiągnąć maksymalnej możliwej prędkości, stąd kształt jest trójkątny.
+
+\insertImgSetSize{grafiki/reg_odp_stepper.eps}
+	{105}
+	{Przykładowe odpowiedzi regulatorów pozycji i prędkości silnika krokowego, z zastosowaniem generatora trajektorii}
+	{oprWlasne}
+	
+Na rysunku \ref{grafiki/reg_odp_vcm.eps} widać podobne przebiegi dla silnika VCM. Opóźnienie pozycji w funkcji czasu już nie występuje gdyż zastosowany jest enkoder liniowy (sekcja \ref{ss:encopt}). Zmiany odpowiedzi prędkości są dla tego silnika duże, ze względu na wysoki współczynnik $ K_p $ ustawiony w regulatorze prędkości.
+
+\clearpage
+	
+\insertImgSetSize{grafiki/reg_odp_vcm.eps}
+	{105}
+	{Przykładowe odpowiedzi regulatorów pozycji i prędkości silnika liniowego VCM, z zastosowaniem generatora trajektorii}
+	{oprWlasne}
+	
+Stała czasowa regulatora jest jednak na tyle niska, że w praktyce cylinder porusza się bardzo płynnie, bez żadnych zacięć. Podsumowując, cały mechanizm działa dobrze. Testy dowodzą że wszystkie niedogodności związane z pracą danej maszyny są możliwe do wyeliminowania przy pomocy odpowiednich nastaw regulatorów.
 
