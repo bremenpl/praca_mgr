@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TexmakerSession quickmode="12">
-    <document master="false" file="M:/Github/praca_mgr/latex/motors_step.tex" line="130" bookmark1="0" bookmark2="0" bookmark3="0" hasfocus="false"/>
-    <document master="false" file="M:/Github/praca_mgr/latex/summary.tex" line="16" bookmark1="0" bookmark2="0" bookmark3="0" hasfocus="true"/>
-    <document master="false" file="M:/Github/praca_mgr/latex/motors_vcm.tex" line="31" bookmark1="0" bookmark2="0" bookmark3="0" hasfocus="false"/>
-    <document master="true" file="M:\Github\praca_mgr\latex\main.tex" line="102" bookmark1="0" bookmark2="0" bookmark3="0" hasfocus="false"/>
-    <document master="false" file="M:/Github/praca_mgr/latex/soft_system.tex" line="13" bookmark1="0" bookmark2="0" bookmark3="0" hasfocus="false"/>
-    <document master="false" file="M:/Github/praca_mgr/latex/bib_database.bib" line="180" bookmark1="0" bookmark2="0" bookmark3="0" hasfocus="false"/>
-    <document master="false" file="M:/Github/praca_mgr/latex/soft_comm.tex" line="26" bookmark1="0" bookmark2="0" bookmark3="0" hasfocus="false"/>
-    <document master="false" file="M:/Github/praca_mgr/latex/software.tex" line="35" bookmark1="0" bookmark2="0" bookmark3="0" hasfocus="false"/>
-    <document master="false" file="M:/Github/praca_mgr/latex/hardware.tex" line="4" bookmark1="0" bookmark2="0" bookmark3="0" hasfocus="false"/>
-    <document master="false" file="M:/Github/praca_mgr/latex/motors.tex" line="0" bookmark1="0" bookmark2="0" bookmark3="0" hasfocus="false"/>
-    <document master="false" file="M:/Github/praca_mgr/latex/mainboard.tex" line="324" bookmark1="0" bookmark2="0" bookmark3="0" hasfocus="false"/>
-    <document master="false" file="M:/Github/praca_mgr/latex/soft_encoderalg.tex" line="22" bookmark1="0" bookmark2="0" bookmark3="0" hasfocus="false"/>
-    <document master="false" file="M:/Github/praca_mgr/latex/soft_pwms.tex" line="65" bookmark1="0" bookmark2="0" bookmark3="0" hasfocus="false"/>
-    <document master="false" file="M:/Github/praca_mgr/latex/soft_pids.tex" line="226" bookmark1="0" bookmark2="0" bookmark3="0" hasfocus="false"/>
-    <document master="false" file="M:/Github/praca_mgr/latex/bibliography.tex" line="14" bookmark1="0" bookmark2="0" bookmark3="0" hasfocus="false"/>
-    <document master="false" file="M:/Github/praca_mgr/latex/soft_pc.tex" line="21" bookmark1="0" bookmark2="0" bookmark3="0" hasfocus="false"/>
-    <document master="false" file="M:/Github/praca_mgr/latex/intro.tex" line="0" bookmark1="0" bookmark2="0" bookmark3="0" hasfocus="false"/>
-    <document master="false" file="M:/Github/praca_mgr/latex/tableofcontents.tex" line="0" bookmark1="0" bookmark2="0" bookmark3="0" hasfocus="false"/>
-    <document master="false" file="M:/Github/praca_mgr/latex/attachments.tex" line="4" bookmark1="0" bookmark2="0" bookmark3="0" hasfocus="false"/>
+    <document bookmark1="0" bookmark2="0" bookmark3="0" master="false" hasfocus="false" file="M:/Github/praca_mgr/latex/motors_dc.tex" line="25"/>
+    <document bookmark1="0" bookmark2="0" bookmark3="0" master="false" hasfocus="false" file="M:/Github/praca_mgr/latex/motors_step.tex" line="187"/>
+    <document bookmark1="0" bookmark2="0" bookmark3="0" master="false" hasfocus="false" file="M:/Github/praca_mgr/latex/motors_vcm.tex" line="38"/>
+    <document bookmark1="0" bookmark2="0" bookmark3="0" master="true" hasfocus="false" file="M:\Github\praca_mgr\latex\main.tex" line="253"/>
+    <document bookmark1="0" bookmark2="0" bookmark3="0" master="false" hasfocus="false" file="M:/Github/praca_mgr/latex/soft_comm.tex" line="26"/>
+    <document bookmark1="0" bookmark2="0" bookmark3="0" master="false" hasfocus="false" file="M:/Github/praca_mgr/latex/bib_database.bib" line="180"/>
+    <document bookmark1="0" bookmark2="0" bookmark3="0" master="false" hasfocus="false" file="M:/Github/praca_mgr/latex/soft_pc.tex" line="21"/>
+    <document bookmark1="0" bookmark2="0" bookmark3="0" master="false" hasfocus="false" file="M:/Github/praca_mgr/latex/soft_system.tex" line="13"/>
+    <document bookmark1="0" bookmark2="0" bookmark3="0" master="false" hasfocus="false" file="M:/Github/praca_mgr/latex/intro.tex" line="6"/>
+    <document bookmark1="0" bookmark2="0" bookmark3="0" master="false" hasfocus="false" file="M:/Github/praca_mgr/latex/software.tex" line="35"/>
+    <document bookmark1="0" bookmark2="0" bookmark3="0" master="false" hasfocus="false" file="M:/Github/praca_mgr/latex/hardware.tex" line="98"/>
+    <document bookmark1="0" bookmark2="0" bookmark3="0" master="false" hasfocus="false" file="M:/Github/praca_mgr/latex/abstract.tex" line="3"/>
+    <document bookmark1="0" bookmark2="0" bookmark3="0" master="false" hasfocus="false" file="M:/Github/praca_mgr/latex/motors.tex" line="100"/>
+    <document bookmark1="0" bookmark2="0" bookmark3="0" master="false" hasfocus="false" file="M:/Github/praca_mgr/latex/mainboard.tex" line="324"/>
+    <document bookmark1="0" bookmark2="0" bookmark3="0" master="false" hasfocus="false" file="M:/Github/praca_mgr/latex/soft_encoderalg.tex" line="1"/>
+    <document bookmark1="0" bookmark2="0" bookmark3="0" master="false" hasfocus="false" file="M:/Github/praca_mgr/latex/soft_pids.tex" line="0"/>
+    <document bookmark1="0" bookmark2="0" bookmark3="0" master="false" hasfocus="false" file="M:/Github/praca_mgr/latex/soft_pwms.tex" line="65"/>
+    <document bookmark1="0" bookmark2="0" bookmark3="0" master="false" hasfocus="false" file="M:/Github/praca_mgr/latex/bibliography.tex" line="14"/>
+    <document bookmark1="0" bookmark2="0" bookmark3="0" master="false" hasfocus="false" file="M:/Github/praca_mgr/latex/statement.tex" line="0"/>
+    <document bookmark1="0" bookmark2="0" bookmark3="0" master="false" hasfocus="false" file="M:/Github/praca_mgr/latex/tableofcontents.tex" line="0"/>
+    <document bookmark1="0" bookmark2="0" bookmark3="0" master="false" hasfocus="false" file="M:/Github/praca_mgr/latex/attachments.tex" line="6"/>
+    <document bookmark1="0" bookmark2="0" bookmark3="0" master="false" hasfocus="false" file="M:/Github/praca_mgr/latex/summary.tex" line="6"/>
+    <document bookmark1="0" bookmark2="0" bookmark3="0" master="false" hasfocus="true" file="M:/Github/praca_mgr/latex/motors_bldc.tex" line="28"/>
 </TexmakerSession>

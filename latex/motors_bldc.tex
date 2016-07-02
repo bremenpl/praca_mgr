@@ -10,12 +10,12 @@ Konstrukcja silnika synchronicznego z magnesami trwałymi jest odwrotnością si
 Silniki synchroniczne z magnesami trwałymi są produkowane w dwóch odmianach konstrukcyjnych, różniących się rozkładem indukcji w szczelinie powietrznej oraz przebiegiem prądu i SEM (rys. \ref{grafiki/przebiegi_bldc_pmsm.png}):
 
 \begin{easylist}
-	& PMBLDC ({\it Permanent Magnet Brushless DC Motor})-- Silnik z trapezoidalnym przebiegiem SEM, zasilany prądem o przebiegu w przybliżeniu prostokątnym,
-	& PMSM ({\it Permanent Magnet Synchronous Motor})-- Silnik z sinusoidalnym przebiegiem SEM, zasilany prądem o przebiegu sinusoidalnym.
+	& PMBLDC ({\it Permanent Magnet Brushless DC Motor})-- silnik z trapezoidalnym przebiegiem SEM, zasilany prądem o przebiegu w przybliżeniu prostokątnym,
+	& PMSM ({\it Permanent Magnet Synchronous Motor})-- silnik z sinusoidalnym przebiegiem SEM, zasilany prądem o przebiegu sinusoidalnym.
 	\\
 \end{easylist} 
 		
-Silniki BLDC są konstrukcyjnie bardzo podobne do silników krokowych- można przyjąć że silniki BLDC są pewną podgrupą silników krokowych o kroku 180\degree (silniki 2-fazowe) lub 120\degree (3-fazowe). Kryterium odróżniające silniki krokowe od BLDC może być takie, że w większości aplikacji dla poprawnej pracy silnika BLDC jego sterownik musi dysponować sygnałem zwrotnym o aktualnym położeniu kątowym wirnika z czujników Hall'a. Silniki krokowe natomiast mogą pracować w otwartej pętli sprzężenia zwrotnego. \\
+Silniki BLDC są konstrukcyjnie bardzo podobne do silników krokowych-- można przyjąć, że silniki BLDC są pewną podgrupą silników krokowych o kroku 180\degree (silniki 2-fazowe) lub 120\degree (3-fazowe). Kryterium odróżniające silniki krokowe od BLDC może być takie, że w większości aplikacji dla poprawnej pracy silnika BLDC jego sterownik musi dysponować sygnałem zwrotnym o aktualnym położeniu kątowym wirnika z czujników Hall'a. Silniki krokowe natomiast mogą pracować w otwartej pętli sprzężenia zwrotnego. \\
 
 PMSM wymagają ciągłego pomiaru położenia wirnika np. przy pomocy enkodera, który im ma większą rozdzielczość, tym dokładniejsze sterowanie umożliwia.
 
@@ -26,7 +26,7 @@ PMSM wymagają ciągłego pomiaru położenia wirnika np. przy pomocy enkodera, 
 
 Z tego powodu najczęściej spotyka się rozwiązanie, w którym czujnik położenia wirnika jest zintegrowany z silnikiem we wspólnej obudowie. Wymaganą siłę elektromotoryczną uzyskuje się przez odpowiednie rozmieszczenie uzwojeń w żłobkach stojana i ukształtowanie rozkładu pola magnesów w szczelinie powietrznej. Obie wersje konstrukcyjne w teorii dają stałą moc, a więc stały moment wzdłuż szczeliny powietrznej. W rzeczywistości jednak moment silnika zawiera pulsacje powodujące nierównomierny ruch wirnika, zwłaszcza w przedziale bardzo małych prędkości \cite{zawirski_pmsm}. \\
 		
-Uzwojenia silnika synchronicznego z magnesami trwałymi dla maszyny 3-fazowej są układane w gwiazdę (rys. \ref{grafiki/bldc_gwiazda.jpg}). Prąd z układu sterującego jest doprowadzany do wyprowadzeń A1, B1 i C1 podczas gdy pozostałe końce uzwojeń (A2, B2, C2) są ze sobą zwarte. Oznacza to że w tym rodzaju maszyny, prąd przepływa zawsze przez co najmniej dwa uzwojenia, w jednym z dwóch możliwych kierunków (np. kiedy wyższy potencjał jest na C1, a niższy na A1 wtedy od C1 do A1). \\
+Uzwojenia silnika synchronicznego z magnesami trwałymi dla maszyny 3-fazowej są układane w gwiazdę (rys. \ref{grafiki/bldc_gwiazda.jpg}). Prąd z układu sterującego jest doprowadzany do wyprowadzeń A1, B1 i C1 podczas gdy pozostałe końce uzwojeń (A2, B2, C2) są ze sobą zwarte. Oznacza to, że w tym rodzaju maszyny prąd przepływa zawsze przez co najmniej dwa uzwojenia, w jednym z dwóch możliwych kierunków (np. kiedy wyższy potencjał jest na C1, a niższy na A1 wtedy od C1 do A1). \\
 		
 Zmiany momentu obrotowego w funkcji kąta obrotu są w silniku trójfazowym niewielkie i można je jeszcze bardziej zredukować stosując impulsy prądowe o kształcie trapezowym. 
 Tak jak zaprezentowano na rys. \ref{grafiki/bldc_przekroj.jpg} silniki bezszczotkowe mogą mieć różną konstrukcję wirnika. W przypadku budowy klasycznej wirnik w kształcie walca jest umieszczony wewnątrz stojana z uzwojeniami. W silniku z wirnikiem zewnętrznym magnetyczny wirnik ma kształt kubka i obraca się wokół nieruchomego stojana. 

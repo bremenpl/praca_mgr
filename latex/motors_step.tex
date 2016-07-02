@@ -1,6 +1,6 @@
 \subsection{Silnik krokowy}
 
-Silniki krokowe są maszynami elektrycznymi bez komutatorowymi. Zazwyczaj wszystkie uzwojenia silnika są częścią stojana, podczas gdy rotor jest magnesem trwałym lub w przypadku silników VRM ({\em Variable Reluctance Motor}) zębatym blokiem z materiału magnetycznie miękkiego (patrz sekcja \ref{subsec:materialy_fer}). Komutacja (czyli zmiana kierunku/ uzwojenia w którym następuje przepływ prądu elektrycznego) musi być wymuszona poprzez zewnętrzne urządzenie sterujące maszyną. Takie sterowniki są zazwyczaj projektowane w taki sposób, aby zapewnić możliwość utrzymania wirnika w niemal dowolnej pozycji kątowej, oraz obracać nim w obu kierunkach. 
+Silniki krokowe są maszynami elektrycznymi bez-komutatorowymi. Zazwyczaj wszystkie uzwojenia silnika są częścią stojana, podczas gdy rotor jest magnesem trwałym lub w przypadku silników VRM ({\em Variable Reluctance Motor}) zębatym blokiem z materiału magnetycznie miękkiego. Komutacja (czyli zmiana kierunku/ uzwojenia w którym następuje przepływ prądu elektrycznego) musi być wymuszona poprzez zewnętrzne urządzenie sterujące maszyną. Takie sterowniki są zazwyczaj projektowane w taki sposób, aby zapewnić możliwość utrzymania wirnika w niemal dowolnej pozycji kątowej oraz obracać nim w obu kierunkach. 
 
 \subsubsection{Rodzaje silników krokowych}
 
@@ -63,7 +63,7 @@ W pierwszej kolejności należy rozróżnić sposób zasilania silnika krokowego
 		{Sposób sterowania (zasilania) silnika krokowego dwufazowego- z lewej unipolarnie, z prawej bipolarnie.}
 		{hackaday}
 
-Przy zasilaniu unipolarnym, dla pojedynczego uzwojenia na zewnątrz silnika wyprowadzone są trzy przewody- Oba końce cewki i odczep w połowie jej długości. Podłączając do odczepu ,,+'' zasilania można sterować połówkami uzwojeń zwierając w odpowiedniej kolejności i na odpowiedni czas końcówki do masy. W zasilaniu bipolarnym, prąd płynie zawsze przez całe uzwojenie (z silnika wyprowadzone są tylko dwa przewody na cewkę). Zaletą wariantu unipolarnego jest możliwość znacznego uproszczenia układu sterowania. Poważną wadą natomiast jest to, że prąd podawany jest zawsze tylko na połowę danego uzwojenia, co ma negatywne przełożenie na moment obrotowy. 
+Przy zasilaniu unipolarnym, dla pojedynczego uzwojenia na zewnątrz silnika wyprowadzone są trzy przewody-- oba końce cewki i odczep w połowie jej długości. Podłączając do odczepu ,,+'' zasilania można sterować połówkami uzwojeń zwierając w odpowiedniej kolejności i na odpowiedni czas końcówki do masy. W zasilaniu bipolarnym, prąd płynie zawsze przez całe uzwojenie (z silnika wyprowadzone są tylko dwa przewody na cewkę). Zaletą wariantu unipolarnego jest możliwość znacznego uproszczenia układu sterowania. Poważną wadą natomiast jest to, że prąd podawany jest zawsze tylko na połowę danego uzwojenia, co ma negatywne przełożenie na moment obrotowy. 
 
 \insertImg{grafiki/stepper_simple.png}
 		{Uproszczony model silnika krokowego dwufazowego o kroku 90\degree.}
@@ -72,10 +72,10 @@ Przy zasilaniu unipolarnym, dla pojedynczego uzwojenia na zewnątrz silnika wypr
 Oddzielną sprawą jest sposób/ sekwencja podawania impulsów prądowych do uzwojeń silnika. Sterowanie pod tym względem dzieli się na:
 
 \begin{easylist}
-	& Falowe, 
-	& Pełnokrokowe, 
-	& Półkrokowe,
-	& Mikrokrokowe.
+	& falowe, 
+	& pełnokrokowe, 
+	& półkrokowe,
+	& mikrokrokowe.
 	\\
 \end{easylist}
 
@@ -116,7 +116,7 @@ Tryb półkrokowy jest połączeniem sterowania falowego i pełnokrokowego. Rozd
 		{Sekwencja zasilania uzwojeń przy sterowaniu półkrokowym (obrót wirnika z rys. \ref{grafiki/stepper_simple.png} według wskazówek zegara).}
 		{oprWlasne}
 		
-Wadą takiego rozwiązania jest to że w co drugim kroku moment obrotowy będzie mniejszy. Może to spowodować szarpanie wirnika przy dużych prędkościach obrotowych. Przy niskich prędkościach i obciążeniach natomiast, efekt ten rzadko występuje i można uzyskać polepszoną płynność ruchu, w porównaniu do poprzednich trybów. Aby uniknąć efektu zmiennego momentu, można zastosować sterowanie półkrokowe ze zmiennym prądem (rys. \ref{grafiki/stepper_sterowanie_polkrokowe_zmienne.eps}). Na rysunku widać że w momentach kiedy różnica potencjałów występuje tylko na jednym z uzwojeń, jest ona dwa razy większa niż w przypadku kiedy zasilane są obie cewki. Prąd płynący w uzwojeniach jest proporcjonalny do przyłożonego do nich napięcia, dlatego moment się wyrównuje i silnik nie jest narażony na szarpanie. Rozwiązanie te ma jednak wady- Zakładając że dla momentu w czasie, w którym przez oba uzwojenia płynie prąd, wartość tego prądu jest maksymalna (nominalna) dla danego modelu silnika w każdym z uzwojeń, oznacza to że w chwilach kiedy kiedy napięcie jest podawane na tylko jedno uzwojenie, prąd w nim płynący jest większy od nominalnego (tak jak na rys. \ref{grafiki/stepper_sterowanie_polkrokowe_zmienne.eps}). To naraża silnik na nadmierne grzanie, a nawet na uszkodzenie. Z drugiej strony można założyć że nominalny prąd ma płynąć w momencie zasilania jednego uzwojenia, a mniejszy przy zasilaniu dwóch. Ten tryb jest bezpieczny, ale optymalny moment obrotowy nie jest uzyskiwany.
+Wadą takiego rozwiązania jest to, że w co drugim kroku moment obrotowy będzie mniejszy. Może to spowodować szarpanie wirnika przy dużych prędkościach obrotowych. Przy niskich prędkościach i obciążeniach efekt ten rzadko występuje i można uzyskać polepszoną płynność ruchu, w porównaniu do poprzednich trybów. Aby uniknąć efektu zmiennego momentu, można zastosować sterowanie półkrokowe ze zmiennym prądem (rys. \ref{grafiki/stepper_sterowanie_polkrokowe_zmienne.eps}). Na rysunku widać że w momentach kiedy różnica potencjałów występuje tylko na jednym z uzwojeń, jest ona dwa razy większa niż w przypadku kiedy zasilane są obie cewki. Prąd płynący w uzwojeniach jest proporcjonalny do przyłożonego do nich napięcia, dlatego moment się wyrównuje i silnik nie jest narażony na szarpanie. Rozwiązanie te ma jednak wady-- zakładając, że dla momentu w czasie, w którym przez oba uzwojenia płynie prąd wartość tego prądu jest maksymalna (nominalna) dla danego modelu silnika w każdym z uzwojeń, oznacza to, że w chwilach kiedy napięcie jest podawane na tylko jedno uzwojenie, prąd w nim płynący jest większy od nominalnego (tak jak na rys. \ref{grafiki/stepper_sterowanie_polkrokowe_zmienne.eps}). To naraża silnik na nadmierne grzanie, a nawet na uszkodzenie. Z drugiej strony można założyć, że nominalny prąd ma płynąć w momencie zasilania jednego uzwojenia, a mniejszy przy zasilaniu dwóch. Ten tryb jest bezpieczny, ale optymalny moment obrotowy nie jest uzyskiwany.
 
 \insertImgSetSize{grafiki/stepper_sterowanie_polkrokowe_zmienne.eps}
 		{100}
@@ -125,13 +125,13 @@ Wadą takiego rozwiązania jest to że w co drugim kroku moment obrotowy będzie
 		
 \tocLessLeftNorm{Sterowanie mikrokrokowe}
 
-Największą rozdzielczość ruchu (teoretycznie nieograniczoną, a praktycznie ograniczoną możliwościami układu sterującego) można uzyskać przy zastosowaniu trybu mikrokrokowego. Aby obrócić wirnik z rys. \ref{grafiki/stepper_simple.png} w najpłynniejszy możliwy sposób, kształt prądu podawany na uzwojenia powinien być naturalny dla danej konstrukcji silnika, czy też dla ruchu który wykonuje element ruchomy- W tym wypadku jest to ruch obrotowy. 
+Największą rozdzielczość ruchu (teoretycznie nieograniczoną, a praktycznie ograniczoną możliwościami układu sterującego) można uzyskać przy zastosowaniu trybu mikrokrokowego. Aby obrócić wirnik z rys. \ref{grafiki/stepper_simple.png} w najpłynniejszy możliwy sposób, kształt prądu podawany na uzwojenia powinien być naturalny dla danej konstrukcji silnika, czy też dla ruchu, który wykonuje element ruchomy-- w tym wypadku jest to ruch obrotowy. 
 
 \begin{equation} \label{eq:stepper2}
 	\sin^2\theta + \cos^2\theta = 1
 \end{equation}
 
-Równanie \ref{eq:stepper2} prezentuje wzór na jedynkę trygonometryczną. Można go użyć, aby uzyskać dowolną pozycję wirnika pomiędzy kolejnymi naturalnymi ułożeniami wirnika. W tym momencie należy rozróżnić dwa rodzaje pozycji kątowych wirnika silnika krokowego- magnetyczną oraz fizyczną. W przypadku silnika z rys. \ref{grafiki/stepper_simple.png} obie pozycje będą się zawsze pokrywać, ze względu na to że potrzeba jedynie czterech pełnych kroków aby uzyskać pełen obrót- kąt ,,magnetyczny'' 45\degree odpowiada obrotowi wirnika o 45\degree. Dla rzeczywistej sytuacji, w której silnik posiada np. 200 kroków na obrót, jeden stopień magnetyczny odpowiadałby już jedynie $ \frac{1}{50} $ stopnia w obrocie. Innymi słowy potrzeba 50 obrotów magnetycznych na 1 obrót fizyczny wirnika.
+Równanie \ref{eq:stepper2} prezentuje wzór na jedynkę trygonometryczną. Można go użyć, aby uzyskać dowolną pozycję wirnika pomiędzy kolejnymi naturalnymi ułożeniami wirnika. W tym momencie należy rozróżnić dwa rodzaje pozycji kątowych wirnika silnika krokowego-- magnetyczną oraz fizyczną. W przypadku silnika z rys. \ref{grafiki/stepper_simple.png} obie pozycje będą się zawsze pokrywać ze względu na to, że potrzeba jedynie czterech pełnych kroków, aby uzyskać pełen obrót-- kąt ,,magnetyczny'' 45\degree odpowiada obrotowi wirnika o 45\degree. Dla rzeczywistej sytuacji, w której silnik posiada np. 200 kroków na obrót, jeden stopień magnetyczny odpowiadałby już jedynie $ \frac{1}{50} $ stopnia w obrocie. Innymi słowy potrzeba 50 obrotów magnetycznych na 1 obrót fizyczny wirnika.
 
 \insertImg{grafiki/circle_sine.eps}
 		{Ćwiartki okręgu i funkcji $ \sin x $ w kartezjańskim układzie współrzędnych}
@@ -169,15 +169,15 @@ Tabela \ref{tab:stepper_sterowanie} prezentuje podsumowanie omówionych trybów 
 
 \subsubsection{Zalety i wady silników krokowych}
 
-Możliwość sterowania silnikiem krokowym za pomocą impulsów jest dużą zaletą- Przy odpowiednio dobranym układzie napędowym, do pracy w ograniczonym obszarze dokładności silnik krokowy nie potrzebuje żadnego sprzężenia zwrotnego (praca w otwartej pętli sprzężenia zwrotnego). Teoretycznie pozycja wirnika jest znana po każdej komutacji wykonanej przez układ sterujący. Niestety, wirnik i jego obciążenie posiadają pewną bezwładność co sprawia że przed osiągnięciem ustalonej pozycji występują drgania. \\
+Możliwość sterowania silnikiem krokowym za pomocą impulsów jest dużą zaletą- Przy odpowiednio dobranym układzie napędowym, do pracy w ograniczonym obszarze dokładności silnik krokowy nie potrzebuje żadnego sprzężenia zwrotnego (praca w otwartej pętli sprzężenia zwrotnego). Teoretycznie pozycja wirnika jest znana po każdej komutacji wykonanej przez układ sterujący. Niestety, wirnik i jego obciążenie posiadają pewną bezwładność, co sprawia, że przed osiągnięciem ustalonej pozycji występują drgania. \\
 		
 W przypadkach kiedy wymagana jest duża precyzja sterowania, tak duże drgania są bardzo niekorzystne. Wybrane sposoby eliminacji tych problemów to:
 
 \begin{easylist}
-	& Tłumienie mechaniczne poprzez zwiększenie momentu tarcia.
-	& Sprzęgła elastyczne i przekładnie paskowe zastosowane w układzie napędowym, w celu redukcji przenoszonych drgań do obciążenia.
-	& Wybór pracy półkrokowej lub mikrokrokowej- Im bardziej przebieg prądu jest zbliżony do sinusoidalnego, tym ciszej i stabilniej pracuje silnik krokowy.
-	& Zastosowanie silnika krokowego o mniejszym skoku.
+	& tłumienie mechaniczne poprzez zwiększenie momentu tarcia;
+	& sprzęgła elastyczne i przekładnie paskowe zastosowane w układzie napędowym, w celu redukcji przenoszonych drgań do obciążenia;
+	& wybór pracy półkrokowej lub mikrokrokowej: im bardziej przebieg prądu jest zbliżony do sinusoidalnego, tym ciszej i stabilniej pracuje silnik krokowy;
+	& zastosowanie silnika krokowego o mniejszym skoku.
 	\\
 \end{easylist} 
 
@@ -186,7 +186,7 @@ W przypadkach kiedy wymagana jest duża precyzja sterowania, tak duże drgania s
 		{Wykres czasowy ilusytujący położenie wirnika podczas wykonywania skoku}
 		{edw_sierpien_2002}
 
-Należy pamiętać o wielkości i częstotliwości oscylacji decyduje głównie masa wirnika oraz wielkość i rodzaj obciążenia.
+Należy pamiętać, że o wielkości i częstotliwości oscylacji decyduje głównie masa wirnika oraz wielkość i rodzaj obciążenia.
 
 
 

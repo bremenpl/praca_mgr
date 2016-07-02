@@ -6,10 +6,10 @@ Pierwszym z silników obsługiwanych przez projektowany sterownik jest silnik li
 	{Budowa cylindrycznego silnika VCM}
 	{przepiorkowski}
 
-Nazwa silnika pochodzi od jego zasady działania- identycznie jak w zwykłym głośniku jest to cewka poruszająca się w szczelinie magnesu. Zgodnie z regułą Lorentza:
+Nazwa silnika pochodzi od jego zasady działania-- identycznie jak w zwykłym głośniku jest to cewka poruszająca się w szczelinie magnesu. Zgodnie z regułą Lorentza:
 
 \begin{defn}
-	Jeżeli przez cewkę znajdującą się w polu magnetycznym przepływa prąd, to na cewkę działa siła proporcjonalna do natężenia prądu, a napięcie samoindukcji jest proporcjonalne do szybkości poruszania się cewki. \cite{przepiorkowski}.
+	Jeżeli przez cewkę znajdującą się w polu magnetycznym przepływa prąd, to na cewkę działa siła proporcjonalna do natężenia prądu, a napięcie samoindukcji jest proporcjonalne do szybkości poruszania się cewki \cite{przepiorkowski}.
 \end{defn}
 
 Podstawowe części składowe silnika VCM to:
@@ -20,7 +20,7 @@ Podstawowe części składowe silnika VCM to:
 	\\
 \end{easylist}
 
-Zmieniając natężenie i kierunek przepływającego prądu, możliwe jest bardzo precyzyjne sterowanie położeniem cewki. Z tego powodu układ elektroniczny sterujący silnikiem nie wymaga wielu komponentów, a algorytm sterowania nie jest skomplikowany to VCM ma jednak jeszcze jedną zaletę, która sprawia że jest on wybierany do niektórych aplikacji zamiast np. tańszego silnika krokowego z przekładnią śrubową- pozwala wykonywać bardzo dynamiczne ruchy i posiada wysoką zwrotność. ,,Liniowy'' silnik krokowy o podobnej mocy nawet z zastosowaniem śruby o dużym skoku, nie będzie w stanie osiągnąć podobnych prędkości przy zachowaniu korzystnego momentu. Brak konieczności zamiany ruchu obrotowego na posuwisto-zwrotny eliminuje błędy pozycji (które mogą wynikać np. z luzów w przekładni). Silniki VCM stosowane są wszędzie tam, gdzie potrzebne jest dokładne i szybkie ustawienie pozycji, np. w precyzyjnych urządzeniach mechanicznych i optycznych. \\
+Zmieniając natężenie i kierunek przepływającego prądu, możliwe jest bardzo precyzyjne sterowanie położeniem cewki. Z tego powodu układ elektroniczny sterujący silnikiem nie wymaga wielu komponentów, a algorytm sterowania nie jest skomplikowany, to VCM ma jednak jeszcze jedną zaletę, która sprawia że jest on wybierany do niektórych aplikacji zamiast np. tańszego silnika krokowego z przekładnią śrubową-- pozwala wykonywać bardzo dynamiczne ruchy i posiada wysoką zwrotność. ,,Liniowy'' silnik krokowy o podobnej mocy, nawet z zastosowaniem śruby o dużym skoku nie będzie w stanie osiągnąć podobnych prędkości przy zachowaniu korzystnego momentu. Brak konieczności zamiany ruchu obrotowego na posuwisto-zwrotny eliminuje błędy pozycji (które mogą wynikać np. z luzów w przekładni). Silniki VCM stosowane są wszędzie tam, gdzie potrzebne jest dokładne i szybkie ustawienie pozycji, np. w precyzyjnych urządzeniach mechanicznych i optycznych. \\
 
 Aby efektywnie i bezpiecznie korzystać z silników VCM w danej aplikacji, należy mieć na uwadze kilka ważnych cech tych urządzeń:
 
@@ -36,7 +36,7 @@ Aby efektywnie i bezpiecznie korzystać z silników VCM w danej aplikacji, nale�
 	
 Graf \ref{grafiki/vcm_force_current_plot.eps} prezentuje zależność między siłą silnika a położeniem jego cewki. Jak widać największa i stała siła ($ 2 \frac{N}{A} $) występuje dopiero kiedy korpus jest trochę wysunięty i zaczyna lawinowo spadać przy końcowym wysuwie. Jeżeli układ mechaniczny, którego częścią jest silnik, nie zostanie wyposażony w odpowiednią blokadę, korpus może wypaść z cylindra ponieważ silnik nie będzie już w stanie go utrzymać.
 
-	& Producent w karcie katalogowej silnika podaje parametr maksymalnej ciągłej mocy ({\em Max continuous power}) i odpowiada ona zazwyczaj prądowi, który płynie przez cewkę w momencie niepełnego wysunięcia (należy oczywiście wziąć pod uwagę fizyczne obciążenie części ruchomej- masę obudowy lub korpusu, w zależności od tego która z części jest przymocowana, a która jest w ruchu). Przy dużym wysunięciu zależność siły do płynącego przez cewkę prądu drastycznie spada i utrzymując korpus długo w takiej pozycji można w bardzo łatwy sposób spalić uzwojenie silnika. \\
+	& Producent w karcie katalogowej silnika podaje parametr maksymalnej ciągłej mocy ({\em Max continuous power}) i odpowiada ona zazwyczaj prądowi, który płynie przez cewkę w momencie niepełnego wysunięcia (należy oczywiście wziąć pod uwagę fizyczne obciążenie części ruchomej-- masę obudowy lub korpusu, w zależności od tego która z części jest przymocowana, a która jest w ruchu). Przy dużym wysunięciu zależność siły do płynącego przez cewkę prądu drastycznie spada i utrzymując korpus długo w takiej pozycji można w bardzo łatwy sposób spalić uzwojenie silnika. \\
 	
 \end{easylist}
 
