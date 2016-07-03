@@ -1,6 +1,6 @@
 \subsection{Procedury sterowania wysokopoziomowego}
 
-Sterowanie wyższego poziomu w kontrolerze polega na manipulacji, czy też operacjach na danych, które nie mają jeszcze bezpośredniego wpływu prąd w uzwojeniach czy pozycję kątową wału silnika. Odzwierciedlają one jedynie różne wielkości, które następnie są przekazywane do niższej warstwy oprogramowania, która ma steruje silnikami (\ref{sss:lowlevel}). \\
+Sterowanie wyższego poziomu w kontrolerze polega na manipulacji, czy też operacjach na danych, które nie mają jeszcze bezpośredniego wpływu prąd w uzwojeniach czy pozycję kątową wału silnika. Odzwierciedlają one jedynie różne wielkości, które następnie są przekazywane do niższej warstwy oprogramowania, która steruje silnikami (\ref{sss:lowlevel}). \\
 
 Procedury sterowania wysokopoziomowego dla obu rodzajów silników (krokowy i VCM) w większości są identyczne. Odmiennie wyglądają moduły sterowania prądem w uzwojeniach, ze względu na odmienną konstrukcję silników. Rys. \ref{grafiki/pid_vcm.pdf} prezentuje poglądowy diagram sterowania silnika VCM, a rys. \ref{grafiki/pid_stepper.pdf} silnika krokowego.
 
@@ -52,6 +52,7 @@ Funkcja zawiera dodatkowo mechanizm zabezpieczający regulator przed zmagazynowa
 Regulator prędkości działa w ten sam sposób co regulator pozycji, z tą różnicą że sygnał wyjściowy z regulatora jest wielkością tego samego typu co sygnał wejściowy (w uproszczeniu, bo tylko regulator typu P daje na wyjściu sygnał tej samej wielkości co na wejściu). Suma (lub różnica w zależności od znaku zmiennej zwracanej z funkcji) tych dwóch sygnałów tworzy regulowaną prędkość zadaną. Zastosowanie oddzielnych regulatorów dla pozycji i prędkości pozwala w bardzo precyzyjny sposób konfigurować pracę danego silnika przy pomocy współczynników $ K_p $, $ K_i $ i $ K_d $ ({\it tunning}). Kolejne bloki różnią się w zależności od zastosowanego silnika.
 
 \subsubsection{Generator trajektorii}
+\label{sss:trajgen}
 
 W celu większej kontroli nad zadanym położeniem i prędkością, oraz aby usprawnić ogólną pracę silników w procedurze sterowania został dodany generator trajektorii. Moduł ten ma za zadanie doprowadzić element czynny maszyny do zadanej pozycji w optymalny sposób.
 
@@ -119,7 +120,7 @@ W modelu sterowania, który został zaimplementowany w oprogramowaniu kontrolera
 	\\
 \end{easylist} 
 
-Wartości wymienionych parametrów są automatycznie obliczane w pętli sterowania dla zadanej prędkości obrotowej. W celu   inicjalizacji algorytmu, należy podać następujące parametry:
+Wartości wymienionych parametrów są automatycznie obliczane w pętli sterowania dla zadanej prędkości obrotowej. W celu   inicjalizacji algorytmu należy podać następujące parametry:
 
 \begin{easylist}
 	& ilość pełnych kroków na obrót dla danego silnika,
@@ -138,7 +139,7 @@ Relacja między ilością biegów i rozdzielczością przy pracy mikrokrokowej j
 W pierwszej kolejności algorytm oblicza wartości progowe prędkości obrotowych dla których następuje ,,automatyczna zmiana biegu''. Wartości te są nieco inne dla przypadku w którym silnik jest rozpędzany i hamowany, dzięki czemu bieg nie jest zmieniany zbyt często przy wartościach skrajnych (działanie bazujące na histerezie, podobnie jak w przerzutniku {\it Shmitta}). 
 
 \insertImgSetSize{grafiki/freq_gear_stepper.eps}
-	{100}
+	{110}
 	{Wizualizacja algorytmu obliczającego częstotliwość komutacji i bieg dla zadanej prędkości obrotowej wału}
 	{oprWlasne}
 
@@ -146,7 +147,7 @@ Dla przypadku rozpędzania wirnika z bezruchu, wirtualna przekładnia rozpoczyna
 
 Po osiągnięciu maksymalnej częstotliwości następuje zmiana biegu, czyli dwukrotne zmniejszenie rozdzielczości mikrokroków. Częstotliwość komutacji także dwukrotnie maleje. Działanie to jest powtarzane aż do osiągnięcia maksymalnej ustalonej prędkości obrotowej (i jednocześnie maksymalnego biegu i częstotliwości komutacji). Algorytm pozwala zoptymalizować pracę silnika poprzez korzystanie z największej rozdzielczości tylko wtedy, kiedy jest potrzebna (rozpędzanie wirnika i precyzyjne hamowanie). Rys. \ref{grafiki/freq_gear_stepper.eps} prezentuje w graficzny sposób działanie układu. \\
 
-Można zauważyć że praca na najwyższym biegu (1 mikrokrok na 1 pełny krok) to tak naprawdę tryb falowy (sekcja \ref{sss:sterowanie_krokowy}, rys. \ref{grafiki/stepper_sterowanie_falowe.eps}). Układ przechodzi do niego w naturalny sposób z trybu mikrokrokowego. W aplikacji takiej jak głowica układająca duży moment obrotowy nie jest wymagany, dlatego nie ma potrzeby implementacji trybu pełnokrokowego na ostatnim biegu. Docelowo jednak, funkcjonalność ta będzie musiała być dodana (np. sterowanie ruchu portalu w osi X i Y).
+Można zauważyć, że praca na najwyższym biegu (1 mikrokrok na 1 pełny krok) to tak naprawdę tryb falowy (sekcja \ref{sss:sterowanie_krokowy}, rys. \ref{grafiki/stepper_sterowanie_falowe.eps}). Układ przechodzi do niego w naturalny sposób z trybu mikrokrokowego. W aplikacji takiej jak głowica układająca duży moment obrotowy nie jest wymagany, dlatego nie ma potrzeby implementacji trybu pełnokrokowego na ostatnim biegu. Docelowo jednak, funkcjonalność ta będzie musiała być dodana (np. sterowanie ruchu portalu w osi X i Y).
 
 \subsubsection{Regulator prądu silnika VCM}
 
@@ -205,30 +206,35 @@ Ostatnim krokiem jest odczytanie stałej silnika VCM ($ F_c $ -- {\it force cons
 	I = \frac{F}{F_c} \quad [ A = \frac{N}{\frac{N}{A}} ]
 \end{equation}
 	
-Na rys. \ref{grafiki/vcm_current.eps} widać wynik symulacji w postaci prądu w funkcji wysuwu cylindra. Obliczenia zostały przeprowadzone przy rzeczywistych wartościach parametrów układu napędowego. Wykres wskazuje na to, że w stanie spoczynku część ruchoma głowicy jest wysunięta na odległość ok. 6.7 mm. Charakterystyka ma charakter liniowy w swojej środkowej części, ze względu na kształt charakterystyki prądowej silnika wprowadzonej do algorytmu jako parametr (\ref{grafiki/vcm_force.eps}). \\
-
-
-Wyznaczony prąd zadany trafia do właściwego regulatora prądu typu PI. jego realizacja różni się od poprzednich regulatorów tym, że nie ma już członu różniczkującego, który w przypadku regulacji prądu nie dał by wielu korzyści. Ponadto stała czasowa pętli prądowej wynosi $ 100 \mu s $. Wartość prądu jest następnie zamieniana na odpowiednie wypełnienie impulsów w uzwojeniu-- więcej informacji na ten temat jest zawarte w sekcji \ref{sss:lowlevel}.
+Na rys. \ref{grafiki/vcm_current.eps} widać wynik symulacji w postaci prądu w funkcji wysuwu cylindra. Obliczenia zostały przeprowadzone przy rzeczywistych wartościach parametrów układu napędowego. Wykres wskazuje na to, że w stanie spoczynku część ruchoma głowicy jest wysunięta na odległość ok. 6.7 mm. Charakterystyka ma charakter liniowy w swojej środkowej części, ze względu na kształt charakterystyki prądowej silnika wprowadzonej do algorytmu jako parametr (\ref{grafiki/vcm_force.eps}). 
 
 \insertImgSetSize{grafiki/vcm_force.eps}
 	{100}
 	{Charakterystyka prądowa zastosowanego silnika VCM odtworzona w programie używając charakterystyki z karty katalogowej}
 	{oprWlasne}
 
+Wyznaczony prąd zadany trafia do właściwego regulatora prądu typu PI. jego realizacja różni się od poprzednich regulatorów tym, że nie ma już członu różniczkującego, który w przypadku regulacji prądu nie dał by wielu korzyści. Ponadto stała czasowa pętli prądowej wynosi $ 100 \mu s $. \\
+
+Wartość prądu jest następnie zamieniana na odpowiednie wypełnienie impulsów w uzwojeniu-- więcej informacji na ten temat jest zawarte w sekcji \ref{sss:lowlevel}.
+	
+\clearpage
+
 \subsubsection{Regulator prądu silnika krokowego}
 
-Regulatory prądu (dla uzwojeń A i B) w przypadku silnika krokowego próbują przez cały okres pracy maszyny utrzymywać w uzwojeniach taki prąd, aby spełnione było równanie \ref{eq:stepper2}. Prąd maksymalny ($ \theta = 90\degree $) jest przemnażany przez odpowiednie współczynniki (zmienne dla danej pozycji) dla obu uzwojeń (rys. \ref{grafiki/pid_stepper.pdf}). Iloczynami są zadane prądy uzwojeń, które następnie trafiają do wspomnianych regulatorów. Poprawność działania układu potwierdza oscylogram \ref{grafiki/stepper_prady.png}.
+Regulatory prądu (dla uzwojeń A i B) w przypadku silnika krokowego próbują przez cały okres pracy maszyny utrzymywać w uzwojeniach taki prąd, aby spełnione było równanie \ref{eq:stepper2}. 
 
 \insertImgSetSize{grafiki/stepper_prady.png}
 	{110}
 	{Oscylogramy mierzonych spadków napięć na rezystorach pomiarowych w mostkach H silnika krokowego poruszającego się ze stałą zadaną prędkością kątową}
 	{oprWlasne}
+
+Prąd maksymalny ($ \theta = 90\degree $) jest przemnażany przez odpowiednie współczynniki (zmienne dla danej pozycji) dla obu uzwojeń (rys. \ref{grafiki/pid_stepper.pdf}). Iloczynami są zadane prądy uzwojeń, które następnie trafiają do wspomnianych regulatorów. Poprawność działania układu potwierdza oscylogram \ref{grafiki/stepper_prady.png}.
 	
 \clearpage
 	
 \subsubsection{Sprawdzenie systemu sterowania}
 
-W celu zaprezentowania poprawności działania systemu sterowania, wykonano kilka przejazdów (dla obu silników) i zarejestrowano zmienne operacyjne w czasie rzeczywistym używając modułu logger'a ( sekcja \ref{ss:hwrs232}). \\
+W celu zaprezentowania poprawności działania systemu sterowania wykonano kilka przejazdów (dla obu silników) i zarejestrowano zmienne operacyjne w czasie rzeczywistym używając modułu logger'a ( sekcja \ref{ss:hwrs232}). \\
 
 Pierwszy przebieg (rys. \ref{grafiki/reg_odp_stepper.eps}) prezentuje odpowiedzi regulatorów pozycji oraz prędkości na czterokrotną zmianę pozycji kątowej wału silnika krokowego o 180\degree. Do uzyskania zadanych pozycji posłużył generator trajektorii, który w każdym okresie głównej pętli sterowania oblicza kolejne wartości docelowe dla regulatorów. \\
  
@@ -239,7 +245,7 @@ Na wykresie pozycji w funkcji czasu z rys. \ref{grafiki/reg_odp_stepper.eps} mo�
 	{Przykładowe odpowiedzi regulatorów pozycji i prędkości silnika krokowego, z zastosowaniem generatora trajektorii}
 	{oprWlasne}
 	
-Na rysunku \ref{grafiki/reg_odp_vcm.eps} widać podobne przebiegi dla silnika VCM. Opóźnienie pozycji w funkcji czasu już nie występuje gdyż zastosowany jest enkoder liniowy (sekcja \ref{ss:encopt}). Zmiany odpowiedzi prędkości są dla tego silnika duże, ze względu na wysoki współczynnik $ K_p $ ustawiony w regulatorze prędkości.
+Na rysunku \ref{grafiki/reg_odp_vcm.eps} widać podobne przebiegi dla silnika VCM. Opóźnienie pozycji w funkcji czasu już nie występuje, gdyż zastosowany jest enkoder liniowy (sekcja \ref{ss:encopt}). Zmiany odpowiedzi prędkości są dla tego silnika duże, ze względu na wysoki współczynnik $ K_p $ ustawiony w regulatorze prędkości.
 
 \clearpage
 	

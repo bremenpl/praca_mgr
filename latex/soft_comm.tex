@@ -26,14 +26,14 @@ W warstwie tłumaczenia ramek TML dokonywanych jest wiele różnych operacji. W 
 \subsubsection{Magistrala RS232}
 \label{ss:hwrs232}
 
-Docelowo interfejs RS232 ma umożliwiać alternatywną metodę komunikacji z urządzeniem w celu programowania i sterowania. Obecnie jednak jest to kanał typowo serwisowy. Korzysta z niego moduł logera (rys. \ref{grafiki/Soft_architecture.pdf}) aby wysyłać do aplikacji komputerowej informacje o zdarzeniach w HRF ({\it Human Readable Format}). Typowa ramka tego typu zawiera informacje o czasie wystąpienia zdarzenia, poziomie logowanie (np. informacja o priorytecie normalnym lub krytycznym) oraz tekst dowolny (listing \ref{kody/rs232.txt}). 
+Docelowo interfejs RS232 ma umożliwiać alternatywną metodę komunikacji z urządzeniem w celu programowania i sterowania. Obecnie jednak jest to kanał typowo serwisowy. Korzysta z niego moduł logera (rys. \ref{grafiki/Soft_architecture.pdf}) aby wysyłać do aplikacji komputerowej informacje o zdarzeniach w HRF ({\it Human Readable Format}). Typowa ramka tego typu zawiera informacje o czasie wystąpienia zdarzenia, poziomie logowania (np. informacja o priorytecie normalnym lub krytycznym) oraz tekst dowolny (listing \ref{kody/rs232.txt}). 
 
 \insertCode{kody/rs232.txt}
 		   {}
 		   {Przykładowe logi informujące o wywołaniu funkcji poprzez CAN}
 		   {oprWlasne}
 		   
-Innym trybem logowania jest format CSV ({\it Comma Separated Values}), który pozwala na zbieranie danych w czasie rzeczywistym w celu ich dalszej analizy w programach MATLAB lub Excel. Obsługa modułu logera nie pochłania dużej ilości czasu procesora ze względu na to, że wątek ściągający kolejne logi z kolejki oraz kanał DMA przez które są one wysyłane mają najniższe priorytety-- procedury wykonują się tylko wtedy, kiedy pozostałe procesy są uśpione.
+Innym trybem logowania jest format CSV ({\it Comma Separated Values}), który pozwala na zbieranie danych w czasie rzeczywistym w celu ich dalszej analizy w programach MATLAB lub Excel. Obsługa modułu logera nie pochłania dużej ilości czasu procesora ze względu na to, że wątek ściągający kolejne logi z kolejki oraz kanał DMA, przez które są one wysyłane mają najniższe priorytety-- procedury wykonują się tylko wtedy, kiedy pozostałe procesy są uśpione.
 
 
 

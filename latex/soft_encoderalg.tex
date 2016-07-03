@@ -6,15 +6,15 @@ W odróżnieniu do enkodera liniowego, dane odczytywane ze skonstruowanego modu�
 Aby umożliwić pracę enkodera z rozdzielczością do 0.05\degree{} w sterowniku zostały zaimplementowane następujące algorytmy:
 
 \begin{easylist}
-	& Uśrednianie bazujące na średniej arytmetycznej,
-	& Filtr Kalmana (opracowany na podstawie \cite{kalman} i \cite{forbot}),
-	& Filtr dolnoprzepustowy jednobiegunowy, rekursywny (opracowany na podstawie \cite{smith}).
+	& uśrednianie bazujące na średniej arytmetycznej,
+	& filtr Kalmana (opracowany na podstawie \cite{kalman} i \cite{forbot}),
+	& filtr dolnoprzepustowy jednobiegunowy, rekursywny (opracowany na podstawie \cite{smith}).
 	\\
 \end{easylist} 
 
 \subsubsection{Uśrednianie}
 
-Pierwszy z wymienionych algorytmów wykonywany jest zawsze. Pozostałe dwa natomiast są uruchamiane naprzemiennie, w zależności od konfiguracji użytkownika. Uśrednianie działa na prostej zasadzie. Wykonywanych jest kilka odczytów pozycji z enkodera (ilość odczytów zależy od konfiguracji, najczęściej cztery), z których następnie obliczana jest średnia arytmetyczna (wzór \ref{eq:alg1}). W kolejnym kroku odczyt jest normalizowany (wzór \ref{eq:alg2})-- mechanizm jest wymagany kiedy pozycja waha się między 359-tym a zerowym stopniem.
+Pierwszy z wymienionych algorytmów wykonywany jest zawsze. Pozostałe dwa natomiast są uruchamiane naprzemiennie, w zależności od konfiguracji użytkownika. Uśrednianie działa na prostej zasadzie. Wykonywanych jest kilka odczytów pozycji z enkodera (ilość odczytów zależy od konfiguracji, najczęściej cztery), z których następnie obliczana jest średnia arytmetyczna (wzór \ref{eq:alg1}). W kolejnym kroku odczyt jest normalizowany (wzór \ref{eq:alg2})-- mechanizm jest wymagany, kiedy pozycja waha się między 359-tym, a zerowym stopniem.
 
 \begin{equation} \label{eq:alg1}
 	pos = \frac{a_0 + a_1 + a_2 + ... + a_n}{n} 
@@ -60,7 +60,7 @@ Proces można przedstawić za pomocą dyskretnego modelu w przestrzeni stanu:
 	y(t) = Cx(t) + w(t) 
 \end{equation}
 
-Gdzie:
+gdzie:
 \begin{easylist}
 	& $ x(t) $ : stan w chwili czasu $ t = 0, 1,... $,
 	& $ y(t) $ : wyjście układu,
@@ -68,7 +68,7 @@ Gdzie:
 	& $ B $ : macierz wejścia,
 	& $ C $ : macierz wyjścia,
 	& $ v(t) $ : szum procesowy,
-	& $ w(t) $ : szum pomiarowy,
+	& $ w(t) $ : szum pomiarowy.
 \end{easylist} 
 
 \insertImgSetSize{grafiki/przebieg_kf.eps}
@@ -76,7 +76,7 @@ Gdzie:
 	{Przebieg czasowy prezentujący pozycję wału silnika krokowego: zadaną, mierzoną i mierzoną przefiltrowaną przez {\it KF}}
 	{oprWlasne}
 
-Zastosowany filtr jest dwuwymiarowy.Oznacza to że estymacji są poddawane dwa parametry: pozycja i prędkość. Model stanowy wygląda następująco:
+Zastosowany filtr jest dwuwymiarowy. Oznacza to że estymacji są poddawane dwa parametry: pozycja i prędkość. Model stanowy wygląda następująco:
 
 \begin{equation} \label{eq:alg6}
 	x = \begin{bmatrix}
@@ -105,16 +105,16 @@ Zastosowany filtr jest dwuwymiarowy.Oznacza to że estymacji są poddawane dwa p
      	\end{bmatrix}
 \end{equation}
 
-Implementacja dwuwymiarowa zapewnia dokładniejszą estymatę pozycji niż w przypadku kiedy pod uwagę brane było by tylko położenie. Jeszcze lepsze wyniki można by otrzymać stosując estymatę trójwymiarową (dodatkowo dodac parametr przyspieszenia). Niestety operacje na macierzach 3 x 3 pochłaniały za dużo zasobów procesora i z tego rozwiązania w sterowniku zrezygnowano. \\
+Implementacja dwuwymiarowa zapewnia dokładniejszą estymatę pozycji niż w przypadku, kiedy pod uwagę brane byłoby tylko położenie. Jeszcze lepsze wyniki możnaby otrzymać stosując estymatę trójwymiarową (dodatkowo dodać parametr przyspieszenia). Niestety operacje na macierzach 3 x 3 pochłaniały za dużo zasobów procesora i z tego rozwiązania w sterowniku zrezygnowano. \\
 
-Rys. \ref{grafiki/przebieg_kf.eps} prezentuje różne pozycje kątowe w funkcji czasu odczytane ze sterownika w trybie CSV (patrz sekcja \ref{ss:hwrs232}). Wstępnie widać że algorytm działa poprawnie, lecz jego zalety i wady można dokładniej zaobserwować na przebiegu z rys. \ref{grafiki/przebieg_kf_zoom.eps}.
+Rys. \ref{grafiki/przebieg_kf.eps} prezentuje różne pozycje kątowe w funkcji czasu odczytane ze sterownika w trybie CSV (patrz sekcja \ref{ss:hwrs232}). Wstępnie widać, że algorytm działa poprawnie, lecz jego zalety i wady można dokładniej zaobserwować na przebiegu z rys. \ref{grafiki/przebieg_kf_zoom.eps}.
 
 \insertImgSetSize{grafiki/przebieg_kf_zoom.eps}
 	{110}
 	{Przebieg czasowy (powiększenie przy impulsie skokowym) prezentujący pozycję wału silnika krokowego: zadaną, mierzoną i mierzoną przefiltrowaną przez {\it KF}}
 	{oprWlasne}
 	
-Po doświadczalnym dostosowaniu parametrów $ v $ i $ w $ algorytm tłumi zakłócenia bardzo dobrze. Charakterystyczną cechą filtru Kalmana jest jednak to że wraz ze wzrostem poziomu filtracji rośnie także opóźnienie sygnału. Parametr ten diametralnie wpływa na działanie regulatorów pozycji i prędkości (sekcja \ref{sss:posvelregs}). Pomimo tego że estymowana pozycja jest bardzo blisko zadanej, to czas potrzebny na jej osiągnięcie (w końcowym odcinku) jest zbyt długi. Z tego powodu został zaimplementowany dodatkowy, szybszy algorytm stosowany w czasowo krytycznych sytuacjach.
+Po doświadczalnym dostosowaniu parametrów $ v $ i $ w $ algorytm tłumi zakłócenia bardzo dobrze. Charakterystyczną cechą filtru Kalmana jest jednak to, że wraz ze wzrostem poziomu filtracji rośnie także opóźnienie sygnału. Parametr ten diametralnie wpływa na działanie regulatorów pozycji i prędkości (sekcja \ref{sss:posvelregs}). Pomimo tego, że estymowana pozycja jest bardzo blisko zadanej, to czas potrzebny na jej osiągnięcie (w końcowym odcinku) jest zbyt długi. Z tego powodu został zaimplementowany dodatkowy, szybszy algorytm stosowany w czasowo krytycznych sytuacjach.
 
 \clearpage
 
@@ -147,7 +147,7 @@ $ f_{CR} $ jest częstotliwością odcięcia dobieraną w sterowniku doświadcza
 	{Przebieg czasowy (powiększenie przy impulsie skokowym) prezentujący pozycję wału silnika krokowego: zadaną,   mierzoną nieprzefiltrowaną i mierzoną przefiltrowaną przez filtr dolnoprzepustowy trzeciego rzędu}
 	{oprWlasne}
 	
-Rząd filtru jest ustalany przez użytkownika. Rys. \ref{grafiki/przebieg_lowpass_zoom.eps} prezentuje odczyt pozycji wału silnika krokowego. Algorytm ten działa szybciej od zaimplementowanego filtru Kalmana-- obrót o 18\degree{} w ok. 1 s przy zastosowaniu KF i ok. 170 ms przy filtrze dolnoprzepustowym trzeciego rzędu. Ponadto, algorytm jest bardzo prosty i kod potrzebny do jego wykonania nie wymaga dużej ilości zasobów mikrokontrolera (listing \ref{kody/low_pass.c}).
+Rząd filtru jest ustalany przez użytkownika. Rys. \ref{grafiki/przebieg_lowpass_zoom.eps} prezentuje odczyt pozycji wału silnika krokowego. Algorytm ten działa szybciej od zaimplementowanego filtru Kalmana-- obrót o 18\degree{} w ok. 1 s przy zastosowaniu KF i ok. 170 ms przy filtrze dolnoprzepustowym trzeciego rzędu. Ponadto algorytm jest bardzo prosty i kod potrzebny do jego wykonania nie wymaga dużej ilości zasobów mikrokontrolera (listing \ref{kody/low_pass.c}).
 
 \insertCode{kody/low_pass.c}
 	{C}

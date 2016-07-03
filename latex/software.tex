@@ -3,7 +3,7 @@
 
 Program wykonywany w mikroprocesorze sterującym został napisany w języku c i w nielicznych częściach w assemblerze. Jądrem całej architektury jest system operacyjny czasu rzeczywistego FreeRTOS™. Wszystkie procedury wysokiego poziomu wykonywane w kodzie są umieszczone w wątkach o odpowiednich priorytetach, które porozumiewają się między sobą za pomocą kolejek, semaforów oraz obszarów pamięci współdzielonej. Zadania najniższego poziomu są wykonywane w procedurach obsługi przerwań, np. komutacja lub kolejkowanie ramek CAN. \\
 
-Rysunek \ref{grafiki/Soft_architecture.pdf} przedstawia poglądowy schemat blokowy architektury systemu. Pomarańczowymi blokami zostały oznaczone procedury wykonywane na poziomie sprzętowym, lub programowym na warstwie znajdującej się niżej od wątków systemu FreeRTOS™. Kolor zielony oznacza wątki/ procesy w systemie FreeRTOS™. Strzałki z paskami symbolizują komunikaty przychodzące do kontrolera ze świata zewnętrznego, a bez nich komunikaty wewnątrz systemowe. Dokładniejszy opis poszczególnych bloków znajduje się w korespondujących z nimi sekcjach.
+Rysunek \ref{grafiki/Soft_architecture.pdf} przedstawia poglądowy schemat blokowy architektury systemu. Pomarańczowymi blokami zostały oznaczone procedury wykonywane na poziomie sprzętowym lub programowym, na warstwie znajdującej się niżej od wątków systemu FreeRTOS™. Kolor zielony oznacza wątki/ procesy w systemie FreeRTOS™. Strzałki z paskami symbolizują komunikaty przychodzące do kontrolera ze świata zewnętrznego, a bez nich komunikaty wewnątrz systemowe. Dokładniejszy opis poszczególnych bloków znajduje się w korespondujących z nimi sekcjach.
 
 \insertImgSetSize{grafiki/peryferia.png}
 	{110}

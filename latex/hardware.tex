@@ -10,13 +10,13 @@ Pierwszym zastosowaniem projektowanego sterownika jest nowa, zoptymalizowana pod
 Rysunek \ref{grafiki/glowica.png} prezentuje sterownik zamontowany w miejscu pracy. Poszczególne elementy urzadzenia to:
 
 \begin{enumerate}
-	\item płytka sterownika główna,
-	\item płytka sterownika pośrednia zasilająca,
-	\item płytka sterownika z układem enkodera dla silnika w osi Z,
-	\item płytka sterownika z układem enkodera dla silnika w osi R,
-	\item silnik liniowy VCM odpowiedzialny za ruch posuwisto-zwrotny w osi Z,
-	\item silnik hybrydowy krokowy odpowiedzialny za obrót w osi R,
-	\item pinola głowicy służąca do podnoszenia i odkładania komponentów SMD.
+	\item Płytka sterownika główna.
+	\item Płytka sterownika pośrednia zasilająca.
+	\item Płytka sterownika z układem enkodera dla silnika w osi Z.
+	\item Płytka sterownika z układem enkodera dla silnika w osi R.
+	\item Silnik liniowy VCM odpowiedzialny za ruch posuwisto-zwrotny w osi Z.
+	\item Silnik hybrydowy krokowy odpowiedzialny za obrót w osi R.
+	\item Pinola głowicy służąca do podnoszenia i odkładania komponentów SMD.
 \end{enumerate}
 
 Ze względu na konstrukcję mechaniczną głowicy, w celu wykorzystania jak największej przestrzeni na PCB, kontroler składa się z czterech płytek. Jak widać na rysunku \ref{grafiki/glowica.png} b), elementy 1, 3, 4, 6 i 7 znajdują się w części ruchomej głowicy, a 2 i 5 w części nieruchomej (korpus silnika VCM jest ruchomy, a jego cylinder statyczny-- dokładna budowa tego silnika przedstawiona jest na rysunku \ref{grafiki/vcm_budowa.png}). Część ruchoma porusza się po prowadnicy, która zapewnia równoległy względem cylindra ruch korpusu. Zasilanie i sygnały magistrali komunikacyjnej do części ruchomej doprowadzane są elastyczną tasiemką typu {\it Flex} widoczną na zdjęciu głowicy bez obudowy (\ref{grafiki/glowica.png} c)). Silnik krokowy służy do obracania przyssanych do pinoli (podnoszenie przez podciśnienie) komponentów. \\
@@ -49,12 +49,12 @@ Wszystkie powyższe sygnały są następnie przekazywane na złącze {\it CON2},
 	{Widok ortogonalny modelu 3D płytki zasilającej, a) z widokiem warstwy dolnej, b) z widokiem warstwy górnej}
 	{mechsyspcb}
 
-Kolejnymi elementami PCB są dwa kondensatory elektrolityczne o dużej pojemności. Ostatni komponent to zworka zwierająca rezystor terminujący na magistrali CAN. W zależności od topologii magistrali można ją załączyć lub zostawić rozwartą. Terminator został umieszczony dosyć daleko od układu sterownika CAN. Odległość ta jest jednak wystarczająco niska do poprawnego działania układu.
+Kolejnymi elementami PCB są dwa kondensatory elektrolityczne o dużej pojemności. Ostatni komponent to zworka zwierająca rezystor terminujący na magistrali CAN. W zależności od topologii magistrali można ją załączyć lub zostawić rozwartą. Terminator został umieszczony dosyć daleko od układu sterownika CAN. Odległość ta jest jednak wystarczająco niska dla poprawnego działania układu.
 
 \subsection{Płytka enkodera magnetycznego}
 \label{ss:encmag}
 
-Płytka z enkoderem dla osi R jest zamontowana za silnikiem krokowym (numer 4 na rysunku \ref{grafiki/glowica.png}). Jako enkoder magnetyczny został zastosowany układ scalony AS5048A firmy AMS. Rozwiązanie to przypomina te wykorzystane przez Tropical Labs w swoim sterowniku Mechaduino (\ref{ss:mechaduino}). Należy jednak wspomnieć że koncept został zastosowany przed opublikowaniem wpisu o ich sterowniku na stronie \url{hackaday.io} i nie jest na nim wzorowany ani nim inspirowany. AS5048A jest enkoderem absolutnym, który dostarcza informację o aktualnej pozycji kątowej między innymi poprzez interfejs SPI {\it Serial Peripheral Interface}). Używając go można uzyskać pozycję z dokładnością do 0.05\degree{} po zastosowaniu algorytmów uśredniających (\cite{AS5048}). Więcej informacji o zastosowanych w sterowniku algorytmach uśredniających dla tego enkodera jest zawarte w sekcji <dodac referencje>. Obracając magnesem w sąsiedztwie układu scalonego, zmienne pole magnetyczne wpływa na matrycę czujników Hall'a. 
+Płytka z enkoderem dla osi R jest zamontowana za silnikiem krokowym (numer 4 na rysunku \ref{grafiki/glowica.png}). Jako enkoder magnetyczny został zastosowany układ scalony AS5048A firmy AMS. Rozwiązanie to przypomina te wykorzystane przez Tropical Labs w swoim sterowniku Mechaduino (\ref{ss:mechaduino}). Należy jednak wspomnieć, że koncept został zastosowany przed opublikowaniem wpisu o ich sterowniku na stronie \url{hackaday.io} i nie jest na nim wzorowany, ani nim inspirowany. AS5048A jest enkoderem absolutnym, który dostarcza informację o aktualnej pozycji kątowej między innymi poprzez interfejs SPI {\it Serial Peripheral Interface}). Używając go można uzyskać pozycję z dokładnością do 0.05\degree{} po zastosowaniu algorytmów uśredniających \cite{AS5048}. Więcej informacji o zastosowanych w sterowniku algorytmach uśredniających dla tego enkodera jest zawarte w sekcji <dodac referencje>. Obracając magnesem w sąsiedztwie układu scalonego, zmienne pole magnetyczne wpływa na matrycę czujników Hall'a. 
 
 \insertImgSetSize{grafiki/AS5048A_diagram.eps}
 	{75}
@@ -68,7 +68,7 @@ Przetwornik analogowo cyfrowy zawarty w urządzeniu przetwarza analogową inform
 	{Schemat ideowy płytki z enkoderem magnetycznym dla osi R w głowicy układającej}
 	{mechsyspcb}
 	
-Sygnały magistrali SPI są wyprowadzone na pionowe złącze CON1 o rastrze 1.27 mm, przez które dalej idą na płytkę główną kontrolera. Elementy oznaczone jako FID1 i FID2 to punkty referencyjne dla górnej kamery automatu Pick and Place (tzw. {\it Fidutial'e}). Są one widoczne na płytce PCB z rys. \ref{grafiki/pcb3d_plytka_encmag.png} a), w lewym górnym i prawym dolnym rogu. Ten sam rysunek (obiekt b)) przedstawia płytkę enkodera zamocowaną na elemencie aluminiowym frezowanym, który z kolei jest przykręcony do silnika krokowego. Duży czarny element to mikro zawór doprowadzający podciśnienie, sterowany z głównej płytki kontrolera (opis w sekcji \ref{ss:mainboard}). \\
+Sygnały magistrali SPI są wyprowadzone na pionowe złącze CON1 o rastrze 1.27 mm, przez które dalej idą na płytkę główną kontrolera. Elementy oznaczone jako FID1 i FID2 to punkty referencyjne dla górnej kamery automatu Pick and Place (tzw. {\it Fidutial'e}). Są one widoczne na płytce PCB z rys. \ref{grafiki/pcb3d_plytka_encmag.png} a), w lewym górnym i prawym dolnym rogu. Ten sam rysunek (obiekt b) przedstawia płytkę enkodera zamocowaną na elemencie aluminiowym frezowanym, który z kolei jest przykręcony do silnika krokowego. Duży czarny element to mikro zawór doprowadzający podciśnienie, sterowany z głównej płytki kontrolera (opis w sekcji \ref{ss:mainboard}). \\
 
 Oś poprzeczna układu scalonego musi się idealnie pokrywać z osią obracającego się magnesu w celu jak najlepszego odczytu natężenia pola przez enkoder.
 
@@ -80,12 +80,12 @@ Oś poprzeczna układu scalonego musi się idealnie pokrywać z osią obracając
 Na rysunku \ref{grafiki/przekroj_silnik.png} widać dokładnie co znajduje się w aluminiowej kostce do której zamocowana jest płytka:
 
 \begin{enumerate}
-	\item płytka z enkoderem magnetycznym AS5048A,
-	\item płytka sterownika główna, połączona przez CON1 (\ref{grafiki/schemat_enkoder_magnetyczny.eps}),
-	\item magnes trwały namagnesowany poprzecznie z otworem w środku, zamocowany na końcu wału silnika,
-	\item przelotowy wał silnika krokowego,
-	\item silnik krokowy hybrydowy,
-	\item element aluminiowy (na modelu przezroczysty) łączący wymienione komponenty.
+	\item Płytka z enkoderem magnetycznym AS5048A.
+	\item Płytka sterownika główna, połączona przez CON1 (\ref{grafiki/schemat_enkoder_magnetyczny.eps}).
+	\item Magnes trwały namagnesowany poprzecznie z otworem w środku, zamocowany na końcu wału silnika.
+	\item Przelotowy wał silnika krokowego.
+	\item Silnik krokowy hybrydowy.
+	\item Element aluminiowy (na modelu przezroczysty) łączący wymienione komponenty.
 \end{enumerate}
 	
 \insertImgSetSize{grafiki/przekroj_silnik.png}
@@ -128,7 +128,7 @@ W danym momencie przylutowany jest tylko jeden z rezystorów dla danej lini konf
 	{Część schematu ideowego płytki enkodera liniowego osi Z, prezentująca zworki konfiguracyjne}
 	{mechsyspcb}
 	
-Ostatnim elementem pozostałym do omówienia na schemacie jest U1. SFH9245 to układ elektroniczny działający w podobny sposób do AEDR-8313 (\ref{grafiki/AEDR-8320.pdf}), który jest jednak o wiele prostszy i tańszy. Składa się on z diody emitującej światło podczerwone i z fototranzystora z przerzutnikiem Shmitt'a (\ref{grafiki/sfh9245_schemat_blokowy.pdf}). Światło zamiast odbijać się od liniału, odbija się od wydrukowanego na drukarce laserowej paska, przyklejonego koło liniału. Pasek składa się z dwóch ,,stref''- czarnej i białej.
+Ostatnim elementem pozostałym do omówienia na schemacie jest U1. SFH9245 to układ elektroniczny działający w podobny sposób do AEDR-8313 (\ref{grafiki/AEDR-8320.pdf}), który jest jednak o wiele prostszy i tańszy. Składa się on z diody emitującej światło podczerwone i z fototranzystora z przerzutnikiem Shmitt'a (\ref{grafiki/sfh9245_schemat_blokowy.pdf}). Światło zamiast odbijać się od liniału, odbija się od wydrukowanego na drukarce laserowej paska, przyklejonego koło liniału. Pasek składa się z dwóch ,,stref''-- czarnej i białej.
 
 \insertImgSetSize{grafiki/sfh9245_schemat_blokowy.pdf}
 	{50}

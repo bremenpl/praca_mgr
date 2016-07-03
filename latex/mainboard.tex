@@ -20,9 +20,9 @@ Kształt i rozmiar PCB został wybrany tak, aby wykorzystać maksymalnie całą 
 	{Zdjęcie głównej płytki sterującej głowicy układającej (warstwa górna)}
 	{oprWlasne}
 
-Dwie wewnętrzne warstwy płytki to tzw. {\it Plane Layers} i służą głównie do doprowadzania zasilania. Na warstwie górnej ({\it Component layer}) jest ułożonych ok. 80\% komponentów. Pozostałe znajdują się na warstwie dolnej ({\it Solder side}). W momencie kiedy wszystkie komponenty elektroniczne znajdują się tylko po jednej stronie płytki, znacząco upraszcza się jej technologia produkcji. W tym wypadku, aby zmontować płytkę przy pomocy automatu typu Pick and Place, należy po za pastą lutowniczą użyć też kleju (dozowanego np. z dyspensera) aby przykleić komponenty po jednej stronie płytki. Dzięki temu kiedy ta trafi do pieca rozpływowego w celu zlutowania, elementy po dolnej stronie nie pospadają. Taka forma projektowania ma jeszcze jedną zaletę- można użyć jednej z warstw tylko do prowadzenia ścieżek, które inaczej było by trudno doprowadzić w niektóre miejsca. W tym wypadku jednak trzeba było pójść na kompromis; ścieżki (prowadzone lokalnie ,,na krzyż'') i komponenty musiały się znaleźć po obu stronach. Ścieżki sygnałowe nie są prowadzone na wewnętrznych warstwach, aby uniknąć pojemności które mogły by się pojawiać pomiędzy nimi.   \\
+Dwie wewnętrzne warstwy płytki to tzw. {\it Plane Layers} i służą głównie do doprowadzania zasilania. Na warstwie górnej ({\it Component layer}) jest ułożonych ok. 80\% komponentów. Pozostałe znajdują się na warstwie dolnej ({\it Solder side}). W momencie kiedy wszystkie komponenty elektroniczne znajdują się tylko po jednej stronie płytki, znacząco upraszcza się jej technologia produkcji. W tym wypadku, aby zmontować płytkę przy pomocy automatu typu Pick and Place, należy poza pastą lutowniczą użyć też kleju (dozowanego np. z dyspensera), aby przykleić komponenty po jednej stronie płytki. Dzięki temu, kiedy ta trafi do pieca rozpływowego w celu zlutowania, elementy po dolnej stronie nie pospadają. Taka forma projektowania ma jeszcze jedną zaletę- można użyć jednej z warstw tylko do prowadzenia ścieżek, które inaczej byłoby trudno doprowadzić w niektóre miejsca. W tym wypadku jednak trzeba było pójść na kompromis; ścieżki (prowadzone lokalnie ,,na krzyż'') i komponenty musiały się znaleźć po obu stronach. Ścieżki sygnałowe nie są prowadzone na wewnętrznych warstwach, aby uniknąć pojemności, które mogły by się pojawiać pomiędzy nimi.   \\
 
-Zastosowanie lementów THD (przewlekane- {\it Through Hole Device}) zostało ograniczone do minimum w celu optymalizacji czasu montażu. Są to:
+Zastosowanie lementów THD (przewlekane-- {\it Through Hole Device}) zostało ograniczone do minimum w celu optymalizacji czasu montażu. Są to: \\
 
 \begin{easylist}
 	& złącze łączące płytkę główną z płytką enkodera magnetycznego (sekcja \ref{ss:encmag}),
@@ -31,14 +31,14 @@ Zastosowanie lementów THD (przewlekane- {\it Through Hole Device}) zostało ogr
 	\\
 \end{easylist}
 
-Na górnej warstwie pomiędzy złączami znajduje się dużo wolnej przestrzeni na której nie ma umiejscowionych żadnych komponentów. Jest to obszar rozbiegowy dla elastycznej tasiemki łączącej PCB z płytką zasilania (sekcja \ref{ss:power_board} i rysunek \ref{grafiki/glowica.png} c)).
+Na górnej warstwie pomiędzy złączami znajduje się dużo wolnej przestrzeni, na której nie ma umiejscowionych żadnych komponentów. Jest to obszar rozbiegowy dla elastycznej tasiemki łączącej PCB z płytką zasilania (sekcja \ref{ss:power_board} i rysunek \ref{grafiki/glowica.png} c).
 
 \insertImgSetSize{grafiki/plytka_glowna_warstwy.png}
 	{155}
 	{Poszczególne warstwy płytki głównej sterownika, od lewej górna, dolna, warstwa zasilania ({\it power plane}), warstwa masy ({\it ground plane})}
 	{mechsyspcb}
 
-W następnych sekcjach tego rozdziału zostaną szczegółowo opisane poszczególne moduły elektroniczne płytki głównej. Zostaną zaprezentowane tylko części schematów niezbędne do opisu poszczególnych funkcjonalności. Kompletny schemat płytki znajduję się w załączniku \ref{dac zalacznik}. \\
+W następnych sekcjach tego rozdziału zostaną szczegółowo opisane poszczególne moduły elektroniczne płytki głównej. Zostaną zaprezentowane tylko części schematów niezbędne do opisu poszczególnych funkcjonalności. Kompletny schemat płytki znajduję się w załączniku \ref{s:attachmenta}. \\
 	
 Struktura schematu ideowego ma charakter obiektowy- podobnie jak w programowaniu wysokopoziomowym, zdeklarowane są klasy i tworzone są ich egzemplarze. Pozwala to na separację modułów niskiego poziomu i powielanie ich w prosty sposób tylko na PCB, co przyspiesza projektowanie i zwiększa czytelność schematów.
 
@@ -51,14 +51,16 @@ Struktura schematu ideowego ma charakter obiektowy- podobnie jak w programowaniu
 
 W układzie sterownika potrzebne jest wiele poziomów napięć ze względu na różnorodność zastosowanych układów scalonych. Aby je wszystkie uzyskać zostały zastosowane różne rozwiązania, zarówno bazujące na regulatorach impulsowych jak i liniowych. Wszystkie tory napięciowe są poprowadzone na jednej z warstw wewnętrznych PCB. \\
 
-Do głowicy jest doprowadzone tylko jedno napięcie, z którego uzyskiwane są pozostałe, niższe poziomy. To napięcie 24 V  jest także używane do zasilania uzwojeń obu silników. ,,Logika'' urządzenia jest na poziomie 3.3 V i z tego względu większość elementów na płytce zasilana jest właśnie tym napięciem. Część układów natomiast wymaga do działania napięcia 5 V. W celu efektywnego uzyskania obu napięć został użyty obwód z rys. \ref{grafiki/power_5v_3v.pdf}.
+Do głowicy jest doprowadzone tylko jedno napięcie, z którego uzyskiwane są pozostałe, niższe poziomy. To napięcie 24 V  jest także używane do zasilania uzwojeń obu silników. ,,Logika'' urządzenia jest na poziomie 3.3 V i z tego względu większość elementów na płytce zasilana jest właśnie tym napięciem. Część układów natomiast wymaga do działania napięcia 5 V. W celu efektywnego uzyskania obu napięć został użyty obwód z rys. \ref{grafiki/power_5v_3v.pdf}. \\
+
+W pierwszej kolejności napięcie główne trafia na przetwornicę A8498 (Allegro Microsystems) typu {\it Buck-converter}, która redukuje je do 5V na wyjściu. Układ jest w stanie dostarczyć prąd o wartości 3A, ale ze względu na niewielką przestrzeń dostępna na płytce elementy mocy przetwornicy (Cewka L1 i dioda D6) zostały dobrane tak, aby być w stanie dostarczyć tylko 400 mA prądu. 
 
 \insertImgSetSize{grafiki/power_5v_3v.pdf}
 	{52}
 	{Część schematu zasilania prezentująca sposób uzyskania napięć 5 i 3.3V na płytce sterownika}
 	{mechsyspcb}
 
-W pierwszej kolejności napięcie główne trafia na przetwornicę A8498 (Allegro Microsystems) typu {\it Buck-converter}, która redukuje je do 5V na wyjściu. Układ jest w stanie dostarczyć prąd o wartości 3A, ale ze względu na niewielką przestrzeń dostępna na płytce elementy mocy przetwornicy (Cewka L1 i dioda D6) zostały dobrane tak, aby być w stanie dostarczyć tylko 400 mA prądu. Natężenie to jest w zupełności wystarczające do zasilania układów logicznych i analogowych sterownika, także tych pracujących przy napięciu 3.3 V-- do wyjścia przetwornicy podłączony jest liniowy stabilizator napięcia LM3940 (Texas Instruments).
+Natężenie to jest w zupełności wystarczające do zasilania układów logicznych i analogowych sterownika, także tych pracujących przy napięciu 3.3 V-- do wyjścia przetwornicy podłączony jest liniowy stabilizator napięcia LM3940 (Texas Instruments).
 
 \insertImgSetSize{grafiki/power_12_25.pdf}
 	{60}
@@ -67,14 +69,12 @@ W pierwszej kolejności napięcie główne trafia na przetwornicę A8498 (Allegr
 	
 Urządzenia LM4040 i LM4041 (rys. \ref{grafiki/power_12_25.pdf}) to diody zenera pracujące jako precyzyjne układy napięcia odniesienia, których napięcie wyjściowe jest odporne na wpływ zmian temperatury otoczenia. Są używane do zasilania układów analogowych stosowanych w obwodzie sterowania silnikami. Więcej na ten temat jest zawarte w sekcji \ref{sss:sterowanie_silnikami}. Ostatnie napięcie to 12V, które jest także uzyskiwane z przetwornicy A8498, w nieco zmienionej konfiguracji (rys. \ref{grafiki/power_12v.pdf}). \\
 
-Zmianie względem poprzedniego obwodu z tą przetwornicą uległy wartości rezystorów tworzących dzielnik napięcia między wyjściem przetwornicy a jej wejściem FB ({\it Feedback}), oraz połączenie do wejścia VBIAS, którego na tym schemacie już nie ma. Rezystory R9/ R11 na schemacie \ref{grafiki/power_12v.pdf} i R1/ R3 na schemacie \ref{grafiki/power_5v_3v.pdf} ustalają wartość napięcia wyjściowego głowicy. Zwierając VBIAS do wyjścia można zasilić układ logiczny w środku A8498. Wtedy wewnętrzny układ zasilający logikę może być wyłączony i chip wydziela mniej ciepła. Niestety można tak zrobić tylko do napięcia 5 V. 
+Zmianie względem poprzedniego obwodu z tą przetwornicą uległy wartości rezystorów tworzących dzielnik napięcia między wyjściem przetwornicy a jej wejściem FB ({\it Feedback}), oraz połączenie do wejścia VBIAS, którego na tym schemacie już nie ma. Rezystory R9/ R11 na schemacie \ref{grafiki/power_12v.pdf} i R1/ R3 na schemacie \ref{grafiki/power_5v_3v.pdf} ustalają wartość napięcia wyjściowego głowicy. Zwierając VBIAS do wyjścia można zasilić układ logiczny w środku A8498. Wtedy wewnętrzny układ zasilający logikę może być wyłączony i chip wydziela mniej ciepła. Niestety można tak zrobić tylko do napięcia 5 V. Napięcie wyjściowe przetwornicy jest potrzebne do zasilania bramek górnych tranzystorów tworzących mostki H w obwodach silników (sekcja \ref{sss:sterowanie_silnikami}). Wartość tego napięcia może wynosić od 10 do 20 V, gdyż jest to wartość $ V_{GS} $ (napięcie między bramką a źródłem) zastosowanych tranzystorów mocy. Przyłożenie powyżej 20 V do bramki tranzystora może spowodować jego uszkodzenie.  
 
 \insertImgSetSize{grafiki/power_12v.pdf}
 	{60}
 	{Przetwornica typu Buck-converter dająca na wyjściu 12V, zasilająca sterowniki typu {\it High-Side}}
 	{mechsyspcb}
-
-Napięcie wyjściowe przetwornicy jest potrzebne do zasilania bramek górnych tranzystorów tworzących mostki H w obwodach silników (sekcja \ref{sss:sterowanie_silnikami}). Wartość tego napięcia może wynosić od 10 do 20 V, gdyż jest to wartość $ V_{GS} $ (napięcie między bramką a źródłem) zastosowanych tranzystorów mocy. Przyłożenie powyżej 20 V do bramki tranzystora może spowodować jego uszkodzenie.  \\
 
 Użycie liniowego stabilizatora napięcia zamiast obwodu z rys. \ref{grafiki/power_12v.pdf}, dającego na wyjściu poniżej 20 V spowodowało by zaoszczędzenie dużej ilości miejsca na płytce. W zamian jednak wydzielała by się na nim duża moc, przez co generowałby więcej ciepła:
 
@@ -82,7 +82,7 @@ Użycie liniowego stabilizatora napięcia zamiast obwodu z rys. \ref{grafiki/pow
 	P = (V_{we} - V_{out})I
 \end{equation}
 
-Rys. \ref{grafiki/pcb_zasilanie.png} prezentuje model 3D części płytki na której widać oba omówione obwody zasilania. Aby maksymalnie wykorzystać dostępną przestrzeń na PCB, moduły zostały między sobą przedzielone obwodem sterowania silnikami.
+Rys. \ref{grafiki/pcb_zasilanie.png} prezentuje model 3D części płytki, na której widać oba omówione obwody zasilania. Aby maksymalnie wykorzystać dostępną przestrzeń na PCB, moduły zostały między sobą przedzielone obwodem sterowania silnikami.
 
 \insertImgSetSize{grafiki/pcb_zasilanie.png}
 	{36}
@@ -101,7 +101,7 @@ Głównym elementem sterującym peryferiami w urządzeniu jest 32 bitowy mikroko
 	\\
 \end{easylist} 
 
-Używając wspomnianego mikrokontrolera udało się zaimplementować wszystkie dotychczasowo działające funkcjonalności i na razie nie są znane żadne przeciwwskazania, które mogłyby by się pojawić w przyszłości. Nie było to jednak prostym zadaniem- urządzenie jest typowym procesorem ,,ogólnego użytku'' i nie posiada zaawansowanych peryferiów tak bardzo przydatnych przy sterowaniu silnikami, jak procesory ku temu dedykowane. 
+Używając wspomnianego mikrokontrolera udało się zaimplementować wszystkie dotychczasowo działające funkcjonalności i na razie nie są znane żadne przeciwwskazania, które mogłyby by się pojawić w przyszłości. Nie było to jednak prostym zadaniem- urządzenie jest typowym procesorem ,,ogólnego użytku'' i nie posiada zaawansowanych peryferiów tak bardzo przydatnych przy sterowaniu silnikami jak procesory ku temu dedykowane. 
 
 \insertTab{|c|c|c|}
 {%
@@ -127,23 +127,21 @@ Używając wspomnianego mikrokontrolera udało się zaimplementować wszystkie d
 	{xiawu}
 
 	
-W dalszej części tego rozdziału zostały opisane w szczegółach sposoby w jaki poradzono sobie z ograniczeniami mikrokontrolera. W tabeli \ref{tab:mcu_porownanie} przedstawiono porównanie zastosowanego układu z mikrokontrolerem dedykowanym pod sterowanie silnikami. Mimo gorszych parametrów, STM ma jedną ważną zaletę, przez którą zadecydowano o jego wyborze-- Jego współczynnik ceny do możliwości jakie posiada jest bardzo wysoki. Ponadto jest łatwo dostępny. Jest to spowodowane tym że na jego bazie powstała płytka ewaluacyjna {\it STM32-DISCOVERY}, która cieszy się bardzo wysoką popularnością wśród hobbystów i profesjonalistów. 
+W dalszej części tego rozdziału zostały opisane w szczegółach sposoby w jaki poradzono sobie z ograniczeniami mikrokontrolera. W tabeli \ref{tab:mcu_porownanie} przedstawiono porównanie zastosowanego układu z mikrokontrolerem dedykowanym pod sterowanie silnikami. Mimo gorszych parametrów, STM ma jedną ważną zaletę, przez którą zadecydowano o jego wyborze-- jego współczynnik ceny do możliwości jakie posiada jest bardzo wysoki. Ponadto jest łatwo dostępny. Jest to spowodowane tym, że na jego bazie powstała płytka ewaluacyjna {\it STM32-DISCOVERY}, która cieszy się bardzo wysoką popularnością wśród hobbystów i profesjonalistów. 
 
 \insertImgSetSize{grafiki/pcb_mcu.png}
 	{65}
 	{Widok 3D mikrokontrolera sterującego i otaczających go komponentów}
 	{mechsyspcb}
 
-Układy STM32 są bardzo proste w programowaniu i debugowaniu dzięki dostępnym interfejsom {\it JTAG} i {\it SWD} (złącze CON3 na rys. \ref{grafiki/pcb_mcu.png}). JTAG jest interfejsem szybszym i bardziej stabilnym od SWD, ale wymaga większej ilości połączeń. W tym projekcie nie mógł zostać zastosowany gdyż część z pinów, które są potrzebne do jego pracy została użyta przy innych modułach. Źródłem zegarowym dla układu jest zewnętrzny mikro oscylator (Y1) o częstotliwości 16 Mhz. Używając wewnętrznych pętli PLL ({\it Phase Locked Loop}) uzyskiwana jest główna częstotliwość taktowania procesora 168 Mhz. Rysunek \ref{grafiki/clock_pll.png} przedstawia konfigurację wewnętrznych zegarów w mikrokontrolerze. Szybkie działanie mikrokontrolera jest parametrem kluczowym dla konstruowanego sterownika ze względu na to że silniki są maszynami wymagającymi obsługi w czasie rzeczywistym.
+Układy STM32 są bardzo proste w programowaniu i debugowaniu dzięki dostępnym interfejsom {\it JTAG} i {\it SWD} (złącze CON3 na rys. \ref{grafiki/pcb_mcu.png}). JTAG jest interfejsem szybszym i bardziej stabilnym od SWD, ale wymaga większej ilości połączeń. W tym projekcie nie mógł zostać zastosowany, gdyż część z pinów, które są potrzebne do jego pracy została użyta przy innych modułach. Źródłem zegarowym dla układu jest zewnętrzny mikro oscylator (Y1) o częstotliwości 16 Mhz. Używając wewnętrznych pętli PLL ({\it Phase Locked Loop}) uzyskiwana jest główna częstotliwość taktowania procesora 168 Mhz. Rysunek \ref{grafiki/clock_pll.png} przedstawia konfigurację wewnętrznych zegarów w mikrokontrolerze. Szybkie działanie mikrokontrolera jest parametrem kluczowym dla konstruowanego sterownika ze względu na to, że silniki są maszynami wymagającymi obsługi w czasie rzeczywistym. W celu zapewnienia filtracji zakłóceń na liniach zasilania powodowanych głównie pracą silników, każde z wejść zasilających mikrokontrolera jest odprzęgnięte poprzez kondensator 100 nF (w obudowach 0402 tak jak większość komponentów pasywnych na płytce). 
 
 \insertImgSetSize{grafiki/clock_pll.png}
 	{65}
 	{Konfiguracja pętli PLL dla częstotliwości maksymalnej 168 Mhz}
 	{oprWlasne}
 
-W celu zapewnienia filtracji zakłóceń na liniach zasilania powodowanych głównie pracą silników, każde z wejść zasilających mikrokontrolera jest odprzęgnięte poprzez kondensator 100 nF (w obudowach 0402 tak jak większość komponentów pasywnych na płytce). \\
-
-Dodatkowo na rysunku \ref{grafiki/pcb_mcu.png} widać złącza CON4 (z lewej) i CON7 (na dole), które łączą płytkę główną kolejno z enkoderem magnetycznym (\ref{ss:encmag}) i optycznym (\ref{ss:encopt}). Połączenie z tym drugim jest zrealizowane tasiemką tego samego typu co doprowadzane jest zasilanie do głównej PCB.
+Dodatkowo na rysunku \ref{grafiki/pcb_mcu.png} widać złącza CON4 (z lewej) i CON7 (na dole), które łączą płytkę główną kolejno z enkoderem magnetycznym (\ref{ss:encmag}) i optycznym (\ref{ss:encopt}). Połączenie z tym drugim jest zrealizowane tasiemką tego samego typu, co doprowadzane jest zasilanie do głównej PCB.
 
 \subsubsection{Komunikacja}
 \label{sss:hardware_komunikacja}
@@ -162,36 +160,36 @@ W większości aplikacji w celu uzyskania poziomów logicznych odpowiednich dla 
 	{Komponenty używane przez moduł RS232 zajmują jedynie ok. $ 20 mm^2 $}
 	{mechsyspcb}
 
-Obwód magistrali RS232 pełni w sterowniku rolę drugorzędną. Główną drogą dla komend sterujących jest CAN, którego zaletą jest to że bazując na LVDS ({\it Low-voltage differential signaling}) jest odporny na zakłócenia. W celu zwiększenia impedancji składowej wspólnej od strony sieci został zastosowany dławik (L3 na schemacie \ref{grafiki/can_schemat.pdf}). Ponadto, korzystając z tej magistrali sterownik można podpiąć pod istniejącą sieć, bez potrzeby odłączania pracujących na niej urządzeń.
+Obwód magistrali RS232 pełni w sterowniku rolę drugorzędną. Główną drogą dla komend sterujących jest CAN, którego zaletą jest to, że bazując na LVDS ({\it Low-voltage differential signaling}) jest odporny na zakłócenia. W celu zwiększenia impedancji składowej wspólnej od strony sieci został zastosowany dławik (L3 na schemacie \ref{grafiki/can_schemat.pdf}). Ponadto, korzystając z tej magistrali sterownik można podpiąć pod istniejącą sieć, bez potrzeby odłączania pracujących na niej urządzeń.
 
 \insertImgSetSize{grafiki/can_schemat.pdf}
 	{40}
 	{Moduł CAN korzystający z układu SN65HVD230D (Texas Instruments) w celu translacji sygnałów z magistrali}
 	{mechsyspcb}
 	
-Etykietą $ DIFF_{CAN1} $ (rys. \ref{grafiki/can_schemat.pdf}) oznaczone są linie będące parą różnicową. Daje to możliwość projektując płytkę PCB na prowadzenie ścieżek danej pary w taki sposób, aby miały tą samą, lub bardzo podobną długość.
+Etykietą $ DIFF_{CAN1} $ (rys. \ref{grafiki/can_schemat.pdf}) oznaczone są linie będące parą różnicową. Daje to możliwość projektując płytkę PCB na prowadzenie ścieżek danej pary w taki sposób, aby miały tą samą lub bardzo podobną długość.
 
 \insertImgSetSize{grafiki/pcb_can.png}
-	{50}
+	{65}
 	{Widok 3D na moduł CAN}
 	{mechsyspcb}
 	
 \subsubsection{Czujnik podciśnienia}
 \label{sss:pressure_sensor}
 
-Głowica której częścią jest sterownik, do podnoszenia komponentów elektronicznych używa ssawki podciśnieniowej. Możliwość pomiaru wartości aktualnego podciśnienia zapewnia czujnik z serii XFHM firmy Fujikura. 
+Głowica, której częścią jest sterownik, do podnoszenia komponentów elektronicznych używa ssawki podciśnieniowej. Możliwość pomiaru wartości aktualnego podciśnienia zapewnia czujnik z serii XFHM firmy Fujikura. 
 
 \insertImgSetSize{grafiki/pcb_czujnik.png}
-	{60}
+	{75}
 	{Czujnik podciśnienia XFHM-100KPGWRH znajdujący się na płytce głównej}
 	{mechsyspcb}
 
-Jest to element, którego gabaryty są największe na opisywanej płytce. Ponadto, w wersji z mocowaniem przewodu pneumatycznego poziomo, występuje tylko w w obudowie przewlekanej. Czujnik jest pneumatycznie sprzężony z aluminiową kostką (rys. \ref{grafiki/pcb3d_plytka_encmag.png} i \ref{grafiki/przekroj_silnik.png}) w której panuje ciśnienie niższe niż atmosferyczne. Jego wartość spada tym bardziej im szczelniej zatkany jest wylot pinoli przez podnoszony komponent. Na wyjściu układu XFHM-100KPGWRH pojawia się potencjał którego amplituda odzwierciedla wartość mierzonego podciśnienia. Dla różnicy ciśnień 0 kPa amplituda wynosi 2.5 V (połowa maksymalnego zakresu, którym jest zapięcie zasilania) i spada do 0 V dla -100 kPa lub rośnie do 5V dla 100 kPa. Dodatnia wartość różnicy ciśnienia w normalnej aplikacji nie występuje, kiedy element jest odkładany zawór zamyka dopływ powietrza i komponent przestaje być zasysany. W niektórych aplikacjach specjalizowanych jednak podnoszone elementy muszą być wydmuchiwane i wtedy mierzona jest dodatkowo wartość dodatnia.
+Jest to element, którego gabaryty są największe na opisywanej płytce. Ponadto, w wersji z mocowaniem przewodu pneumatycznego poziomo, występuje tylko w w obudowie przewlekanej. Czujnik jest pneumatycznie sprzężony z aluminiową kostką (rys. \ref{grafiki/pcb3d_plytka_encmag.png} i \ref{grafiki/przekroj_silnik.png}), w której panuje ciśnienie niższe niż atmosferyczne. Jego wartość spada tym bardziej, im szczelniej zatkany jest wylot pinoli przez podnoszony komponent. Na wyjściu układu XFHM-100KPGWRH pojawia się potencjał którego amplituda odzwierciedla wartość mierzonego podciśnienia. Dla różnicy ciśnień 0 kPa amplituda wynosi 2.5 V (połowa maksymalnego zakresu, którym jest zapięcie zasilania) i spada do 0 V dla -100 kPa lub rośnie do 5V dla 100 kPa. Dodatnia wartość różnicy ciśnienia w normalnej aplikacji nie występuje, kiedy element jest odkładany, zawór zamyka dopływ powietrza i komponent przestaje być zasysany. W niektórych aplikacjach specjalizowanych jednak podnoszone elementy muszą być wydmuchiwane i wtedy mierzona jest dodatkowo wartość dodatnia. \\
 
 Aby umieścić czujnik w dogodnym miejscu na PCB należało go pozbawić jednego z wyprowadzeń (nr 5) zaznaczonych na rysunku \ref{grafiki/pcb_czujnik.png}. Wewnętrznie ten pin nie jest do niczego podłączony, a z racji tego że jest środkowym pinem w danym rzędzie, to pozbycie się go nie zmniejsza stabilności układu.
 
 \insertImgSetSize{grafiki/upress_sensor.pdf}
-	{60}
+	{70}
 	{Schemat ideowy obwodu czujnika podciśnienia}
 	{mechsyspcb}
 
@@ -220,9 +218,9 @@ Schemat \ref{grafiki/motor_circuit.pdf} prezentuje opisywany moduł używając z
 
 \tocLessLeftNorm{HS - Standardowy sterownik pół-mostka}
 
-W urządzeniu jest zastosowanych 5 obwodów HS (\textit{\textbf{H}igh Side with \textbf{S}oftware Deadtime}). Służą do tego aby dostarczać prąd do uzwojeń silników. Pojedynczy moduł HS jest widoczny na schemacie \ref{grafiki/high_side_swdt.pdf}. Na wejścia układu IR2101 (firma International Rectifier) wchodzą komplementarne sygnały PWM z mikrokontrolera sterującego. \\
+W urządzeniu jest zastosowanych 5 obwodów HS (\textit{\textbf{H}igh Side with \textbf{S}oftware Deadtime}). Służą do tego, aby dostarczać prąd do uzwojeń silników. Pojedynczy moduł HS jest widoczny na schemacie \ref{grafiki/high_side_swdt.pdf}. Na wejścia układu IR2101 (firma International Rectifier) wchodzą komplementarne sygnały PWM z mikrokontrolera sterującego. \\
 
-IR2101 jest układem scalonym służącym do sterowania tranzystorami w półmostku po stronie niskiej i wysokiej. Aby otworzyć górny tranzystor typu N, używane jest napięcie zasilania 12 V z przetwornicy U8 (schemat \ref{grafiki/power_12v.pdf}). Podczas kiedy dolny tranzystor Q1B jest otwarty, Q1A jest zamknięty a kondensator C11 ładowany przez diodę Shotkiego D5. Kiedy następuje zmiana wymuszenia kierunku przepływającego w uzwojeniu prądu Q1B się zamyka, a następnie po odczekaniu ustalonego czasu martwego Q1A może zostać otwarty dzięki dodatkowemu napięciu na kondensatorze C11. Tym sposobem potencjał na bramce górnego tranzystora jest o wyższy o 12 V od potencjału na jego źródle (minus spadek na diodzie D5 i R15)\\
+IR2101 jest układem scalonym służącym do sterowania tranzystorami w półmostku po stronie niskiej i wysokiej. Aby otworzyć górny tranzystor typu N, używane jest napięcie zasilania 12 V z przetwornicy U8 (schemat \ref{grafiki/power_12v.pdf}). Podczas kiedy dolny tranzystor Q1B jest otwarty, Q1A jest zamknięty, a kondensator C11 ładowany przez diodę Shotkiego D5. Kiedy następuje zmiana wymuszenia kierunku przepływającego w uzwojeniu prądu Q1B się zamyka, a następnie po odczekaniu ustalonego czasu martwego Q1A może zostać otwarty dzięki dodatkowemu napięciu na kondensatorze C11. Tym sposobem potencjał na bramce górnego tranzystora jest wyższy o 12 V od potencjału na jego źródle (minus spadek na diodzie D5 i R15)\\
 	
 IR2101 nie ma zabezpieczenia przed otwarciem dwóch tranzystorów jednocześnie. Czas martwy, który temu zapobiega jest ustawiany w module PWM mikrokontrolera. W celu zapewnienia odpowiedniego kluczowania tranzystorów, w tej aplikacji czas martwy dla wszystkich końcówek mocy został ustawiony na 100 ns.
 
@@ -238,7 +236,7 @@ Kondensatory ceramiczne C9 (obudowa 1206) i C14 (2220) zapewniają pojemność, 
 	{Schemat funkcjonalny {\it High/ Low side} driver'a IR2101 firmy International Rectifier (obecnie Infineon)}
 	{irf}
 
-Rezystory w szeregu z bramkami tranzystorów (R15 i R16) służą do ograniczenia prądów bramek. Ponadto zapewniają ochronę układu scalonego IR2101 w przypadku uszkodzenia jednego z tranzystorów, które może doprowadzić do przebicia izolacji między bramką a drenem i źródłem. \\
+Rezystory w szeregu z bramkami tranzystorów (R15 i R16) służą do ograniczenia prądów bramek. Ponadto zapewniają ochronę układu scalonego IR2101 w przypadku uszkodzenia jednego z tranzystorów, które może doprowadzić do przebicia izolacji między bramką, a drenem i źródłem. \\
 
 Etykieta MOT oznacza miejsce podłączenia jednego z końców uzwojenia, HIS i LOS to wyprowadzenia z obwodów pomiaru prądu po stronie górnej i dolnej. W obwodzie silnika VCM znajdują się dwa moduły HS, natomiast w module krokowego trzy moduły HS i jeden HH.
 
@@ -251,17 +249,17 @@ Przyczyną dla której w urządzeniu został zastosowany jeden moduł HH (\texti
 	{Schemat blokowy zaawansowanego Timer'a 1 i 8 w mikrokontrolerach STM32F4 firmy ST Microelectronic}
 	{st}
 
-Schemat blokowy \ref{grafiki/tim18.pdf} prezentuje architekturę pojedynczego zaawansowanego timer'a w STM32F4. Używany mikroprocesor posiada dwa takie peryferia o numerach 1 i 8. Timer 1 służy do sterowania silnikiem pierwszym (krokowym) a timer 8 drugim (VCM). Jak widać na schemacie, czwarty z kanałów PWM jest uboższy od pozostałych trzech. Nie posiada wyprowadzenia komplementarnego, a co za tym idzie tez modułu czasu martwego przez co urządzenie wymaga zastosowania dodatkowego obwodu, który rozszerza możliwości czwartego kanału. Pomimo tego że timer silnika VCM posiada jeszcze jeden wolny kanał ,,bogaty'', to nie mógł on zostać zastosowany w obwodzie silnika krokowego. Burzyło by to koncepcje uniwersalnego sterownika pod względem programowym, która wymaga aby moduły sterujące silnikami były całkowicie oddzielne. W takim łączonym rozwiązaniu nie było by możliwości między np. zaprogramowania różniej częstotliwości dla każdego silnika. Ponadto, chcąc w przyszłości zastosować obecny kod kontrolera dla nieco odmienionej płytki sterownika, będzie trzeba dokonywać dodatkowych zmian w oprogramowaniu.
+Schemat blokowy \ref{grafiki/tim18.pdf} prezentuje architekturę pojedynczego zaawansowanego timer'a w STM32F4. Używany mikroprocesor posiada dwa takie peryferia o numerach 1 i 8. Timer 1 służy do sterowania silnikiem pierwszym (krokowym), a timer 8 drugim (VCM). Jak widać na schemacie, czwarty z kanałów PWM jest uboższy od pozostałych trzech. Nie posiada wyprowadzenia komplementarnego, a co za tym idzie modułu czasu martwego, przez co urządzenie wymaga zastosowania dodatkowego obwodu, który rozszerza możliwości czwartego kanału. Pomimo tego, że timer silnika VCM posiada jeszcze jeden wolny kanał ,,bogaty'', to nie mógł on zostać zastosowany w obwodzie silnika krokowego. Burzyłoby to koncepcje uniwersalnego sterownika pod względem programowym, która wymaga aby moduły sterujące silnikami były całkowicie oddzielne. W takim łączonym rozwiązaniu nie byłoby możliwości między np. zaprogramowania różniej częstotliwości dla każdego silnika. Ponadto, chcąc w przyszłości zastosować obecny kod kontrolera dla nieco odmienionej płytki sterownika, będzie trzeba dokonywać dodatkowych zmian w oprogramowaniu.
 
 \insertImgSetSize{grafiki/high_side_hwdt.pdf}
 	{70}
 	{Schemat ideowy modułu HH ({\it High Side driver}) ze sprzętowym czasem martwym i kanałem komplementarnym}
 	{mechsyspcb}
 
-Aby zapewnić czas martwy i dodatkowy kanał komplementarny na kanale czwartym został zastosowany obwód ze schematu \ref{grafiki/high_side_hwdt.pdf}. Sygnał z etykietą HIN jest opisywanym czwartym kanałem. Aby utworzyć z niego dodatkowy sygnał komplementarny została zastosowana bramka XOR (U6) na której jedno z wejść wchodzi HIN. Na drugie wejście U6 jest doprowadzane wyjście z bramki AND (U7). Jej wejścia to z kolei sygnał odblokowujący moduł (etykieta $ VLIN_{EN} $) i {\it BREAK}, który zmienia stan na niski w przypadku wystąpienia przeciążenia prądowego (rys. \ref{grafiki/cursens_hs.pdf}). 
+Aby zapewnić czas martwy i dodatkowy kanał komplementarny na kanale czwartym został zastosowany obwód ze schematu \ref{grafiki/high_side_hwdt.pdf}. Sygnał z etykietą HIN jest opisywanym czwartym kanałem. Aby utworzyć z niego dodatkowy sygnał komplementarny została zastosowana bramka XOR (U6), na której jedno z wejść wchodzi HIN. Na drugie wejście U6 jest doprowadzane wyjście z bramki AND (U7). Jej wejścia to z kolei sygnał odblokowujący moduł (etykieta $ VLIN_{EN} $) i {\it BREAK}, który zmienia stan na niski w przypadku wystąpienia przeciążenia prądowego (rys. \ref{grafiki/cursens_hs.pdf}). 
 
 \insertImgSetSize{grafiki/bramki.png}
-	{40}
+	{50}
 	{Część PCB w której znajdują się dyskretne bramki U7 i U6 tworzące kanał komplementarny}
 	{mechsyspcb}
 	
@@ -272,7 +270,7 @@ Bramka AND zapewnia możliwość całkowitego wyłączenia danego półmostka, a
 	{Schemat funkcjonalny {\it High/ Low side} driver'a IR25601 firmy International Rectifier (obecnie Infineon)}
 	{irf}
 
-Dlatego pomimo tego że na wejścia układu są podawane komplementarne sygnały bez żadnych opóźnień, to same bramki tranzystorów są przełączane z uwzględnieniem 100 ns czasu martwego (wewnętrzne opóźnienie w układzie). 
+Dlatego pomimo tego, że na wejścia układu są podawane komplementarne sygnały bez żadnych opóźnień, to same bramki tranzystorów są przełączane z uwzględnieniem 100 ns czasu martwego (wewnętrzne opóźnienie w układzie). 
 
 \insertTab{|c|c|c|c|c|}
 {% 
@@ -288,26 +286,26 @@ Dlatego pomimo tego że na wejścia układu są podawane komplementarne sygnały
 {oprWlasne}
 {tab:tabela_prawdy}
 
-Obwód w takiej konfiguracji działa bez zarzutu dlatego, że nie wszystkie możliwe stany linii wejściowych są dozwolone. Tabela \ref{tab:tabela_prawdy} prezentuje cztery możliwe tryby w których może znajdować się obwód. Kiedy sygnał BRK zmienia swój stan na niski, wszystkie wyjścia PWM danego modułu w mikrokontrolerze zmieniają swój stan także na niski (zwykłe i komplementarne). To oznacza zamknięcie wszystkich tranzystorów. Dlatego kiedy BRK jest nisko, HIN też musi i stan na linii $ VLIN_{EN} $ nie ma wtedy znaczenia- VLIN i tak będzie w stanie niskim.
+Obwód w takiej konfiguracji działa bez zarzutu dlatego, że nie wszystkie możliwe stany linii wejściowych są dozwolone. Tabela \ref{tab:tabela_prawdy} prezentuje cztery możliwe tryby w których może znajdować się obwód. Kiedy sygnał BRK zmienia swój stan na niski, wszystkie wyjścia PWM danego modułu w mikrokontrolerze zmieniają swój stan także na niski (zwykłe i komplementarne). To oznacza zamknięcie wszystkich tranzystorów. Dlatego, kiedy BRK jest nisko, HIN też musi i stan na linii $ VLIN_{EN} $ nie ma wtedy znaczenia- VLIN i tak będzie w stanie niskim.
 
 \clearpage
 
 \tocLessLeftNorm{CSHS - Bezpiecznik prądu krytycznego}
 
-Moduły zaawansowanych timerów w mikrokontrolerach STM32F4 posiadają konfigurowalne wejścia zabezpieczające ,,BREAK'' (odpowiednio $ TIM1_{BKIN} $ i $ TIM8_{BKIN} $, patrz schemat \ref{grafiki/tim18.pdf}). Dla zastosowanych w sterowniku ustawień, podanie na pin Break stanu niskiego spowoduje wyłączenie końcówek mocy skojarzonego silnika. Urządzenie korzysta z tej funkcjonalności w taki sposób, że kiedy prąd w uzwojeniu przekroczy zadany poziom, silniki przestają działać niezależnie od tego jakie procedury są akurat wykonywane w oprogramowaniu. Jest to zabezpieczenie ostateczne zapobiegające uszkodzeniu uzwojeń silników.
+Moduły zaawansowanych timerów w mikrokontrolerach STM32F4 posiadają konfigurowalne wejścia zabezpieczające ,,BREAK'' (odpowiednio $ TIM1_{BKIN} $ i $ TIM8_{BKIN} $, patrz schemat \ref{grafiki/tim18.pdf}). Dla zastosowanych w sterowniku ustawień podanie na pin Break stanu niskiego spowoduje wyłączenie końcówek mocy skojarzonego silnika. Urządzenie korzysta z tej funkcjonalności w taki sposób, że kiedy prąd w uzwojeniu przekroczy zadany poziom, silniki przestają działać niezależnie od tego, jakie procedury są akurat wykonywane w oprogramowaniu. Jest to zabezpieczenie ostateczne zapobiegające uszkodzeniu uzwojeń silników.
 
 \insertImgSetSize{grafiki/cursens_hs.pdf}
 	{75}
 	{Schemat ideowy modułu CSHS ({\it Current Sense at High Side}) zabezpieczającego uzwojenia przed przeciążeniem prądowym}
 	{mechsyspcb}
 	
-W celu uzyskania opisywanej funkcjonalności został zastosowany obwód z modułu HSCS (rys. \ref{grafiki/cursens_hs.pdf}). Etykieta DAC to sygnał z przetwornika cyfrowo-analogowego mikrokontrolera sterującego. W taki sposób ustawiany jest zakres na wejściu nieodwracającym komparatora napięcia MCP6561R. Na jego wejście odwracające doprowadzane jest napięcie z wzmacniacza pomiarowego TSC101 (\ref{grafiki/tsc101.pdf}), które odzwierciedla poprzez napięcie wartość płynącego prądu w uzwojeniach danego silnika. Zasada działania układu scalonego TSC101 bazuje na zwierciadle prądowym. Może on być zasilany z napięcia niższego niż te które trafia na jego wejścia. Napięcie na wyprowadzeniu OUT układu można wyliczyć z wzoru:
+W celu uzyskania opisywanej funkcjonalności został zastosowany obwód z modułu HSCS (rys. \ref{grafiki/cursens_hs.pdf}). Etykieta DAC to sygnał z przetwornika cyfrowo-analogowego mikrokontrolera sterującego. W taki sposób ustawiany jest zakres na wejściu nieodwracającym komparatora napięcia MCP6561R. Na jego wejście odwracające doprowadzane jest napięcie z wzmacniacza pomiarowego TSC101 (\ref{grafiki/tsc101.pdf}), które odzwierciedla poprzez napięcie wartość płynącego prądu w uzwojeniach danego silnika. Zasada działania układu scalonego TSC101 bazuje na zwierciadle prądowym. Może on być zasilany z napięcia niższego niż te, które trafia na jego wejścia. Napięcie na wyprowadzeniu OUT układu można wyliczyć z wzoru:
 
 \begin{equation} \label{eq:mainboard1}
 	V_{OUT} = R8 \cdot I_{R8} \cdot G
 \end{equation}
 
-Gdzie G to wzmocnienie typowe dla danego modelu TSC101, układ stosowany w sterownika ma końcówkę ,,A'', która oznacza $ G = 20 $.
+gdzie $ G $ to wzmocnienie typowe dla danego modelu TSC101, układ stosowany w sterowniku ma końcówkę ,,A'', która oznacza $ G = 20 $. \\
 
 Kiedy prąd płynący w uzwojeniach danego silnika (i jednocześnie przez rezystor R8) jest wystarczająco wysoki, aby napięcie na wyjściu U12 przekroczyło te zadane przez mikrokontroler poprzez DAC, to wyjście komparatora U3 przechodzi w stan niski uruchamiając zabezpieczenie prądowe. Poprzez wyjście DAC istnieje możliwość ustawienia prądu odłączenia z bardzo wysoką dokładnością (rozdzielczość przetwornika to 12 bitów). Nie ma jednak możliwości pomiaru prądu. Tą funkcjonalność zapewnia moduł CSLS.
 
@@ -318,7 +316,7 @@ Kiedy prąd płynący w uzwojeniach danego silnika (i jednocześnie przez rezyst
 
 \tocLessLeftNorm{CSHS - Obwód pomiaru prądu}
 
-Każdy z mostków H posiada jeden moduł CSLS (dwa w obwodzie silnika krokowego i jeden w VCM). Moduł służy to cyklicznego pomiaru spadku napięcia na rezystorze pomiarowym znajdującym się w dolnej części mostka. Po przeliczeniu daje to dokładną informację o natężeniu prądu znajdującym się w uzwojeniu, która jest używana w celu programowego zabezpieczenia przed przeciążeniem (zanim zadziała zabezpieczenie krytyczne) i w procedurze regulacji prądu w sterowaniu momentem obrotowym. \\
+Każdy z mostków H posiada jeden moduł CSLS (dwa w obwodzie silnika krokowego i jeden w VCM). Moduł służy do cyklicznego pomiaru spadku napięcia na rezystorze pomiarowym, znajdującym się w dolnej części mostka. Po przeliczeniu daje to dokładną informację o natężeniu prądu znajdującym się w uzwojeniu, która jest używana w celu programowego zabezpieczenia przed przeciążeniem (zanim zadziała zabezpieczenie krytyczne) i w procedurze regulacji prądu w sterowaniu momentem obrotowym. \\
 
 Rysunek \ref{grafiki/cursens_ls.pdf} przedstawia schemat ideowy obwodu CSLS. Do pomiaru spadku na rezystorze pomiarowym został zastosowany specjalizowany wzmacniacz pomiarowy INA826 firmy Texas Instruments. Do regulacji wzmocnienia używany jest rezystor $ 1 k\Omega $ o dokładności 0.1 \% podłączony do zacisków RG. W prezentowanej aplikacji wzmocnienie wynosi $ G = 50.4 $. Napięcie odniesienia 1.2 V (schemat \ref{grafiki/power_12_25.pdf}) jest używane do ustawienia punktu pracy wzmacniacza ({\it Bias voltage}). W tej konfiguracji napięcie spoczynkowe na wyjściu wzmacniacza wynosi 1.2 V i obniża się (min. 0 V) lub wzrasta (max 3.3 V) w zależności od kierunku przepływu prądu przez rezystor pomiarowy R13. Użyteczny zakres na przetwornika ADC mikrokontrolera to od 0 do 2.5 V (napięcie odniesienia ADC).
 
@@ -334,7 +332,7 @@ Schematy blokowe \ref{grafiki/mostki_krokowy.pdf} i \ref{grafiki/mostki_vcm.pdf}
 	{Schemat blokowy obwodu silnika krokowego}
 	{oprWlasne}
 	
-Silnik krokowy wymaga pomiaru natężenia prądu w dwóch miejscach ze względu na to że posiada dwa uzwojenia. Bezpiecznik prądu jest wymagany tylko jeden, gdyż liczy się dla niego tylko prąd całkowity, bez względu na to w którym uzwojeniu nastąpiło przeciążenie. 
+Silnik krokowy wymaga pomiaru natężenia prądu w dwóch miejscach ze względu na to, że posiada dwa uzwojenia. Bezpiecznik prądu jest wymagany tylko jeden, gdyż liczy się dla niego tylko prąd całkowity, bez względu na to w którym uzwojeniu nastąpiło przeciążenie. 
 
 \insertImgSetSize{grafiki/mostki_vcm.pdf}
 	{75}

@@ -7,12 +7,12 @@ Istnieje wiele powodów które mogły by warunkować zaprojektowanie kompletnego
 	{Przykładowy produkt firmy \firma{}: Automat P10- maszyna typu {\it Pick and Place} (układająca komponenty elektroniczne na płytkach PCB) z wbudowanym dyspenserem pasty lutowniczej/ kleju.}
 	{mechsys}
 	
-Firma \firma{} zajmująca się dostarczaniem produktów i rozwiązań z dziedziny technologii SMT ({\it Surface Mount Technology}), dla której konstruowany jest sterownik stanowiący temat niniejszej pracy używa w swoich konstrukcjach sterowników Plug-in firmy Technosoft, prezentowanych w sekcji \ref{technosoft}. Postanowiono zastąpić je własnym rozwiązaniem dlatego że:
+Firma \firma{} zajmująca się dostarczaniem produktów i rozwiązań z dziedziny technologii SMT ({\it Surface Mount Technology}), dla której konstruowany jest sterownik stanowiący temat niniejszej pracy używa w swoich konstrukcjach sterowników Plug-in firmy Technosoft, prezentowanych w sekcji \ref{technosoft}. Postanowiono zastąpić je własnym rozwiązaniem, dlatego że:
 
 \begin{easylist}
-	& Po dokonaniu rachunku kosztów okazało się że długoterminowo opracowanie własnego kontrolera będzie z ekonomicznego punktu widzenia bardziej opłacalne niż regularny zakup gotowych sterowników.
-	& Technologia dostarczana przez Technosoft przestała spełniać wymagania dynamicznie rozwijających się aplikacji w firmie \firma{}.
-	& Tworząc własny sterownik uzyskuje się bardzo duże doświadczenie z dziedziny napędów i sterowania.
+	& po dokonaniu rachunku kosztów okazało się, że długoterminowo opracowanie własnego kontrolera będzie z ekonomicznego punktu widzenia bardziej opłacalne niż regularny zakup gotowych sterowników;
+	& technologia dostarczana przez Technosoft przestała spełniać wymagania dynamicznie rozwijających się aplikacji w firmie \firma{};
+	& tworząc własny sterownik uzyskuje się bardzo duże doświadczenie z dziedziny napędów i sterowania;
 	\\
 \end{easylist}
 
@@ -26,7 +26,7 @@ Zostaną dalej przedstawione najważniejsze wymagania i warunki brzegowe, które
 {%
 \hline Maszyna & Stosowane silniki & Stosowane sterowniki \\
 \hline \makecell{Automaty pick and place \\ i dyspensery}  & krokowe, VCM, DC & Technosoft \\
-\hline Drukarki szablonowe & BLDC & \makecell{Inne pełnowymiarowe \\ dedykowane} \\
+\hline Drukarki szablonowe & BLDC & \makecell{inne pełnowymiarowe \\ dedykowane} \\
 \hline Podajniki automatyczne & DC, krokowe & własne dedykowane \\
 \hline Konwejery & DC, BLCD & własne dedykowane \\
 \hline
@@ -35,7 +35,7 @@ Zostaną dalej przedstawione najważniejsze wymagania i warunki brzegowe, które
 {oprWlasne}
 {tab:maszyny_silniki}
 
-Na obecnym etapie, w części urządzeń stosowane są uniwersalne sterowniki Technosoft'u, które są odpowiednio zaprogramowane do pracy z określonym rodzajem silnika lub własne proste sterowniki, dedykowane pod konkretną maszynę elektryczną (np. silnik komutatorowy DC).
+Na obecnym etapie w części urządzeń stosowane są uniwersalne sterowniki Technosoft'u, które są odpowiednio zaprogramowane do pracy z określonym rodzajem silnika lub własne proste sterowniki, dedykowane pod konkretną maszynę elektryczną (np. silnik komutatorowy DC).
 	
 Rysunek \ref{grafiki/maszyna_osie.png} prezentuje automat P30 z oznaczonymi osiami. Poprzez pojedynczą oś należy rozumieć jeden układ napędowy w którym zastosowany jest jeden silnik i jeden kontroler sterujący. W tego rodzaju maszyny jest aż sześć układów napędowych, a co za tym idzie sześć zastosowanych sterowników typu Plug-in Technosoft'u.
 
@@ -61,27 +61,27 @@ Fakt zastosowania tak dużej ilości sterowników znacząco podwyższa koszt jed
 	{Model 3D maszyny P30 typu Pick and Place z wbudowanym dyspenserem z oznaczonymi osiami, a) widok lufy i głowic od przodu maszyny, b) Cała maszyna w rzucie ortogonalnym}
 	{mechsys3d}
 
-Dodatkowo, sterownikowi zostało postawione jeszcze jedno wymaganie, którego nie spełnia żaden z prezentowanych kontrolerów dostępnych na rynku- praca z dwoma dowolnymi silnikami równolegle (patrz sekcja \ref{ss:axis_virtualisation}). Ta cecha sprawia, że gotowe rozwiązania pozostają daleko w tyle pod względem funkcjonalnym. Koszt jednostkowy maszyny obniży się nie tylko przez to że każdy ze sterowników zostanie zastąpiony własnym, ale dodatkowo dlatego że będzie trzeba zastosować dwa razy mniej kontrolerów. \\
+Dodatkowo, sterownikowi zostało postawione jeszcze jedno wymaganie, którego nie spełnia żaden z prezentowanych kontrolerów dostępnych na rynku- praca z dwoma dowolnymi silnikami równolegle (patrz sekcja \ref{ss:axis_virtualisation}). Ta cecha sprawia, że gotowe rozwiązania pozostają daleko w tyle pod względem funkcjonalnym. Koszt jednostkowy maszyny obniży się nie tylko przez to, że każdy ze sterowników zostanie zastąpiony własnym, ale dodatkowo dlatego, że będzie trzeba zastosować dwa razy mniej kontrolerów. \\
 
-Dodatkowo należy zaznaczyć że krótkoterminowo i w przypadku niewielu wyprodukowanych maszyn, projektowanie własnego kontrolera nie jest opłacalne, gdyż koszt projektu będzie przekraczać koszt zastosowania gotowego rozwiązania. Z perspektywy czasu jednak, sytuacja się odwraca. Cena za komponenty elektroniczne i wyprodukowanie PCB w zewnętrznej firmie jest niewielka przy zamówieniach w dużych ilościach. Głównym kosztem jest praca wykonana przez projektanta PCB i programistę w celu opracowania rozwiązania. Zalet tego typu podejścia jest jeszcze więcej i zostaną one w większych szczegółach przytoczone w dalszych rozdziałach i sekcjach.
+Dodatkowo należy zaznaczyć że krótkoterminowo i w przypadku niewielu wyprodukowanych maszyn, projektowanie własnego kontrolera nie jest opłacalne, gdyż koszt projektu będzie przekraczać koszt zastosowania gotowego rozwiązania. Z perspektywy czasu jednak sytuacja się odwraca. Cena za komponenty elektroniczne i wyprodukowanie PCB w zewnętrznej firmie jest niewielka przy zamówieniach w dużych ilościach. Głównym kosztem jest praca wykonana przez projektanta PCB i programistę w celu opracowania rozwiązania. Zalet tego typu podejścia jest jeszcze więcej i zostaną one w większych szczegółach przytoczone w dalszych rozdziałach i sekcjach.
 
 \subsection{Zgodność protokołu komunikacyjnego}
 
-Budowany sterownik musi zastąpić kontroler Technosoft' zachowując przy tym możliwie wysoki poziom zgodności. W przypadku nie spełnienia tego wymagania, pozostałe moduły (urządzenia) będące częścią całego automatu obarczone były by potrzebą aktualizacji ich oprogramowania lub nawet sprzętu, w celu możliwości komunikacji z nowymi sterownikami. 
+Budowany sterownik musi zastąpić kontroler Technosoft' zachowując przy tym możliwie wysoki poziom zgodności. W przypadku nie spełnienia tego wymagania, pozostałe moduły (urządzenia) będące częścią całego automatu obarczone byłyby potrzebą aktualizacji ich oprogramowania lub nawet sprzętu, w celu możliwości komunikacji z nowymi sterownikami. 
 
 \insertImgSetSize{grafiki/struktura_sterownikow.eps}
 	{150}
 	{Struktura zastosowanych sterowników w maszynie P30 obecnie i w przyszłości po pełnej implementacji opracowywanego rozwiązania}
 	{oprWlasne}
 
-To wprowadziło by do przedsięwzięcia bardzo wysokie koszty związane z dodatkowym czasem pracy inżynierów i potrzebą zamówienia nowych przerobionych modułów. Dlatego też warstwa odpowiedzialna za komunikację musi odpowiadać tej zastosowanej przez firmę Technosoft. Specyfikacja do tego protokołu ({\it TML CAN- Technosoft Motion Language}) jest udostępniana przez producenta aby umożliwić użytkownikom ich produktów komunikację z nimi. W tym wypadku zostanie ona zastosowana w celu  ograniczenia czasu potrzebnego na wdrożenie nowego, własnego rozwiązania.
+To wprowadziłoby do przedsięwzięcia bardzo wysokie koszty związane z dodatkowym czasem pracy inżynierów i potrzebą zamówienia nowych przerobionych modułów. Dlatego też warstwa odpowiedzialna za komunikację musi odpowiadać tej zastosowanej przez firmę Technosoft. Specyfikacja do tego protokołu ({\it TML CAN- Technosoft Motion Language}) jest udostępniana przez producenta aby umożliwić użytkownikom ich produktów komunikację z nimi. W tym wypadku zostanie ona zastosowana w celu  ograniczenia czasu potrzebnego na wdrożenie nowego, własnego rozwiązania.
 
 \subsection{Wirtualizacja osi}
 \label{ss:axis_virtualisation}
 
-Chcąc zastosować kontroler, który ma możliwość sterowania dwoma silnikami w miejsce takiego, który mógł pracować tylko z jednym, trzeba pójść na pewne ustępstwa. Mianowicie, pozostałe urządzenia muszą dalej postrzegać sterownik jako dwa osobne urządzenia. W tym celu kontroler musi przedstawiać się na magistrali komunikacyjnej jako dwa osobne urządzenia, pomimo tego że posiada tylko jedno oprogramowanie i są do niego podłączone dwa silniki. Taki koncept wydaje się być rozwiązaniem typu {\it work-around} (na około), ale ma także swoje plusy z punktu widzenia architektury oprogramowania kontrolera (patrz rozdział \ref{s:oprogramowanie}). \\
+Chcąc zastosować kontroler, który ma możliwość sterowania dwoma silnikami w miejsce takiego, który mógł pracować tylko z jednym, trzeba pójść na pewne ustępstwa. Mianowicie, pozostałe urządzenia muszą dalej postrzegać sterownik jako dwa osobne urządzenia. W tym celu kontroler musi przedstawiać się na magistrali komunikacyjnej jako dwa osobne urządzenia, pomimo tego, że posiada tylko jedno oprogramowanie i są do niego podłączone dwa silniki. Taki koncept wydaje się być rozwiązaniem typu {\it work-around} (na około), ale ma także swoje plusy z punktu widzenia architektury oprogramowania kontrolera (patrz rozdział \ref{s:oprogramowanie}). \\
 
-Na chwilę obecną, nowy sterownik jest ciągle w fazie projektowania. W jego pierwotnej formie jest wdrażany do zoptymalizowanej mechanicznie głowicy układającej w automatach Pick and Place. W dalszych rozdziałach i sekcjach, kontroler będzie opisywany w odniesieniu właśnie do tej implementacji. Pomimo tego że układ może przyjmować nieco zmienioną sprzętową formę w zależności zastosowania w różnych aplikacjach, to jego oprogramowanie i on sam dalej pozostaje uniwersalny. W celu optymalizacji zajmowanego przez układ miejsca, hardware może być przystosowany np. tylko do silników krokowych lub tylko DC. Nie oznacza to jednak że potrzebne są jakiekolwiek zmiany w oprogramowaniu, lub duży wysiłek w przeprojektowaniu płytki PCB. 
+Na chwilę obecną, nowy sterownik jest ciągle w fazie projektowania. W jego pierwotnej formie jest wdrażany do zoptymalizowanej mechanicznie głowicy układającej w automatach Pick and Place. W dalszych rozdziałach i sekcjach, kontroler będzie opisywany w odniesieniu właśnie do tej implementacji. Pomimo tego, że układ może przyjmować nieco zmienioną sprzętową formę w zależności zastosowania w różnych aplikacjach, to jego oprogramowanie i on sam dalej pozostaje uniwersalny. W celu optymalizacji zajmowanego przez układ miejsca, hardware może być przystosowany np. tylko do silników krokowych lub tylko DC. Nie oznacza to jednak, że potrzebne są jakiekolwiek zmiany w oprogramowaniu, lub duży wysiłek w przeprojektowaniu płytki PCB. \\ 
 
 Dalsze rozdziały przedstawiają rozwiązania techniczne sprzętowe i programowe w formie szczegółowej.
 
