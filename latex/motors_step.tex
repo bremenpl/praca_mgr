@@ -15,39 +15,39 @@ Silniki krokowe ze względu na konstrukcję można podzielić na trzy główne g
 		{Powstawanie reluktancyjnego momentu obrotowego.}
 		{przepiorkowski}
 
-Reluktancja jest parametrem analogicznym do rezystancji elektrycznej, lecz odniesionym do strumienia magnetycznego. Jest to inaczej ,,rezystancja magnetyczna''.
-
-Obrócenie ruchomego elementu o kąt $ \alpha $ spowoduje że będzie on próbował powrócić do położenia $ \alpha = 0 $, w którym reluktancja obwodu jest najmniejsza. W silnikach VRM przepływ prądu stałego przez uzwojenia powoduje, że zęby wirnika ustawiają się naprzeciw zasilanego uzwojenia.
-
-\insertImg{grafiki/vrm_przekroj.png}
-		{Silnik o zmiennej reluktancji (VRM)- Przekrój.}
-		{przepiorkowski}
+Obrócenie ruchomego elementu o kąt $ \alpha $ spowoduje że będzie on próbował powrócić do położenia $ \alpha = 0 $, w którym reluktancja obwodu jest najmniejsza. W silnikach VRM przepływ prądu stałego przez uzwojenia powoduje, że zęby wirnika ustawiają się naprzeciw zasilanego uzwojenia. \\
 
 W odróżnieniu od VRM, wirnik silnika krokowego PM ({\em Permanent Magnet}- Magnes trwały) nie posiada zębów. Jest wykonany w postaci walca naprzemiennie namagnesowanego biegunami N i S. Specyficzny rodzaj zębów ma rdzeń stojana. \newline
-W zależności od kierunku przepływu prądu w uzwojeniu przyciągane są odpowiednie bieguny wirnika (resunek \ref{grafiki/pm_stepper.png}).
+W zależności od kierunku przepływu prądu w uzwojeniu przyciągane są odpowiednie bieguny wirnika (resunek \ref{grafiki/pm_stepper.png}). Główną zaletą silnika krokowego PM jest niska cena. Wadą tego typu maszyny jest relatywnie niski moment obrotowy i brak możliwości rozwijania dużych prędkości obrotowych. 
 
-\insertImg{grafiki/pm_stepper.png}
-		{Zasada działania silnika PM.}
-		{ni}
-		
-Główną zaletą silnika krokowego PM jest zastosowanie magnesów trwałych w stojanie, dzięki czemu nie ma potrzeby stosowanie szczotek (jak w silnikach DC) oraz jego niska cena. Wadą tego typu maszyny jest relatywnie niski moment obrotowy i brak możliwości rozwijania dużych prędkości obrotowych. \\
+\clearpage
+	
+
+\insertImgSetSize{grafiki/vrm_przekroj.png}
+		{60}
+		{Silnik o zmiennej reluktancji (VRM)- Przekrój.}
+		{przepiorkowski}
 
 Silnik hybrydowy łączy w sobie cechy obu rozwiązań, dzięki czemu zostały poprawione takie parametry jak:
 \begin{easylist}
 	& moment obrotowy, 
 	& maksymalna prędkość obrotowa, 
 	& rozdzielczość kroku.
-	\\
 \end{easylist}
 
-Niestety silniki hybrydowe są około 2-3 razy droższe od silników PM. Wirnik silnika HB ({\em Hybrid Motor}) jest zbudowany z uzębionych nabiegunników i magnesu trwałego, powodującego naprzemienne magnesowanie zębów biegunami N i S. Uzębiony stojan konstrukcją przypomina ten z silnika VRM. 
+\insertImgSetSize{grafiki/pm_stepper.png}
+		{60}
+		{Zasada działania silnika PM.}
+		{ni}
 
-\insertImgSetSize{grafiki/stepper_budowa.png}
-		{70}
-		{Konstrukcja dwufazowego silnika krokowego hybrydowego.}
-		{enggarage}
+Niestety silniki hybrydowe są około 2-3 razy droższe od silników PM. Wirnik silnika HB ({\em Hybrid Motor}) jest zbudowany z uzębionych nabiegunników i magnesu trwałego, powodującego naprzemienne magnesowanie zębów biegunami N i S. Uzębiony stojan konstrukcją przypomina ten z silnika VRM. \\
 		
 W silniku HB wirujące pole stojana obraca wirnik z jednego położenia do drugiego na zasadzie jak w silniku VRM. Jest to możliwe dzięki przesunięciu ,,północnej'' i ,,południowej'' części wirnika o pół ząbka. Silniki HB dzięki poprawionym parametrom są obecnie najbardziej popularnymi silnikami krokowymi, pomimo niskiej ceny silników PM.
+		
+\insertImgSetSize{grafiki/stepper_budowa.png}
+		{60}
+		{Konstrukcja dwufazowego silnika krokowego hybrydowego.}
+		{enggarage}		
 		
 \insertImgSetSize{grafiki/stepper_rotor.png}
 		{70}
@@ -57,19 +57,21 @@ W silniku HB wirujące pole stojana obraca wirnik z jednego położenia do drugi
 \subsubsection{Sterowanie}
 \label{sss:sterowanie_krokowy}
 
-W pierwszej kolejności należy rozróżnić sposób zasilania silnika krokowego, który może być unipolarny lub bipolarny (rys. \ref{grafiki/stepper_zasilanie_uni_bi.png}).
-
-\insertImg{grafiki/stepper_zasilanie_uni_bi.png}
-		{Sposób sterowania (zasilania) silnika krokowego dwufazowego- z lewej unipolarnie, z prawej bipolarnie.}
-		{hackaday}
+W pierwszej kolejności należy rozróżnić sposób zasilania silnika krokowego, który może być unipolarny lub bipolarny (rys. \ref{grafiki/stepper_zasilanie_uni_bi.png}). \\
 
 Przy zasilaniu unipolarnym, dla pojedynczego uzwojenia na zewnątrz silnika wyprowadzone są trzy przewody-- oba końce cewki i odczep w połowie jej długości. Podłączając do odczepu ,,+'' zasilania można sterować połówkami uzwojeń zwierając w odpowiedniej kolejności i na odpowiedni czas końcówki do masy. W zasilaniu bipolarnym, prąd płynie zawsze przez całe uzwojenie (z silnika wyprowadzone są tylko dwa przewody na cewkę). Zaletą wariantu unipolarnego jest możliwość znacznego uproszczenia układu sterowania. Poważną wadą natomiast jest to, że prąd podawany jest zawsze tylko na połowę danego uzwojenia, co ma negatywne przełożenie na moment obrotowy. 
 
-\insertImg{grafiki/stepper_simple.png}
+\insertImgSetSize{grafiki/stepper_zasilanie_uni_bi.png}
+		{55}
+		{Sposób sterowania (zasilania) silnika krokowego dwufazowego- z lewej unipolarnie, z prawej bipolarnie.}
+		{hackaday}
+		
+Oddzielną sprawą jest sposób/ sekwencja podawania impulsów prądowych do uzwojeń silnika. Sterowanie pod tym względem dzieli się na:
+
+\insertImgSetSize{grafiki/stepper_simple.png}
+		{55}
 		{Uproszczony model silnika krokowego dwufazowego o kroku 90\degree.}
 		{howtomecha}
-
-Oddzielną sprawą jest sposób/ sekwencja podawania impulsów prądowych do uzwojeń silnika. Sterowanie pod tym względem dzieli się na:
 
 \begin{easylist}
 	& falowe, 
@@ -137,7 +139,7 @@ Równanie \ref{eq:stepper2} prezentuje wzór na jedynkę trygonometryczną. Moż
 		{Ćwiartki okręgu i funkcji $ \sin x $ w kartezjańskim układzie współrzędnych}
 		{wikimedia}
 		
-Tak więc, podając na uzwojenia silnika prąd o kształcie funkcji {\it sinus} (na pierwsze uzwojenie) i {\it cosinus} (na drugie), suma ich kwadratów powinna zawsze wynosić jeden. 
+Tak więc, podając na uzwojenia silnika prąd o kształcie funkcji {\it sinus} (na pierwsze uzwojenie) i {\it cosinus} (na drugie), suma ich kwadratów powinna wynosić jeden. Pozwala to na uzyskanie płynnego ruchu wirnika.
 
 \insertImgSetSize{grafiki/stepper_sin_cos.eps}
 		{85}

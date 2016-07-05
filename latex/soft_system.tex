@@ -14,11 +14,11 @@ Rysunek \ref{grafiki/uml_homing.pdf} przedstawia przykładową procedurę (homin
 Pierwszym etapem działania skryptu jest zamknięcie zaworu podciśnienia. Następnie sprawdza na którym polu paska referencyjnego znajduje się część ruchoma głowicy (sekcja \ref{ss:encopt}). Jeśli jest to pole czarne (cylinder silnika VCM wsunięty), następuje wejście w pierwsze rozwidlenie w skrypcie (Black strip). Procedura homing'u służy do kalibracji pozycji. Zanim zostanie wykonana, absolutna pozycja cylindra nie jest znana. Po włączeniu zasilania przyjmuje się że pozycja w której aktualnie znajduje się cylinder to zero. Wiedząc tylko że cylinder jest w polu czarnym paska, następuje wysuw cylindra według określonej trajektorii (sekcja \ref{sss:trajgen}). Od razu po tym, funkcja oczekuje na zejście z czarnej strefy paska na białą (wiadomość {\it EXTI} na diagramie). Kiedy to nastąpi, zostaje ustalona absolutna pozycja cylindra. Od tej chwili można swobodnie sterować wysuwem głowicy. Na końcu cylinder wraca do ustalonej pozycji startowej.
 
 \insertImgSetSize{grafiki/uml_homing.pdf}
-	{150}
+	{130}
 	{Diagram interakcji prezentujący wykonanie przez system procedury bazowania ({\it homing}) w osi Z}
 	{oprWlasne}
 
-Jeśli z jakiegoś powodu podczas uruchomienia procedury homing'u cylinder nie jest wsunięty (np. rozciągnięta lub uszkodzona sprężyna) i głowica znajduje się nad polem białym, najpierw następuje jej wsunięcie, aby homing zawsze następował w ten sam sposób (zejście z pola czarnego na białe). Potwierdzenie wykonania zadania jest wysyłane do urządzenia wywołującego funkcję, w tym wypadku do kontrolera systemu. \\
+Jeśli z jakiegoś powodu podczas uruchomienia procedury homing'u cylinder nie jest wsunięty (np. rozciągnięta lub uszkodzona sprężyna) i głowica znajduje się nad polem białym, najpierw następuje jej wsunięcie, aby homing zawsze następował \linebreak w ten sam sposób (zejście z pola czarnego na białe). Potwierdzenie wykonania zadania jest wysyłane do urządzenia wywołującego funkcję, w tym wypadku do kontrolera systemu. \\
 
 Wszystkie zadania obecnie obsługiwane przez sterownik są wykonywane na prezentowanej na rys. \ref{grafiki/uml_homing.pdf} zasadzie (np. podniesienie komponentu, położenie go lub obrócenie). 
 

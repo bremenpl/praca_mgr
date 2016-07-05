@@ -61,7 +61,7 @@ W celu większej kontroli nad zadanym położeniem i prędkością, oraz aby usp
 	{Wygenerowana trajektoria w kształcie trapezu}
 	{oprWlasne}
 	
-Sposób optymalny w rozumieniu algorytmu jest to próba uzyskania przebiegu prędkości w zadanym odcinku w kształcie trapezu, co pozwala na płynny start i hamowanie (rys. \ref{grafiki/traj_trapez.eps}). W celu oszczędzenia pamięci operacyjnej mikrokontrolera kolejne punkty trajektorii są liczone na bieżąco podczas ,,podążania'' za trajektorią. Do jej wyznaczenia potrzebne są następujące dane:
+Sposób optymalny w rozumieniu algorytmu jest to próba uzyskania przebiegu prędkości w zadanym odcinku w kształcie trapezu, co pozwala na płynny start \linebreak i hamowanie (rys. \ref{grafiki/traj_trapez.eps}). W celu oszczędzenia pamięci operacyjnej mikrokontrolera kolejne punkty trajektorii są liczone na bieżąco podczas ,,podążania'' za trajektorią. Do jej wyznaczenia potrzebne są następujące dane:
 
 \begin{easylist}
 	& $ v_{max} $ : Maksymalna prędkość do jakiej element czynny może być rozpędzony. Jednostka: $[\frac{m}{s}] $ lub  $ [\frac{deg}{s}] $,
@@ -145,7 +145,7 @@ W pierwszej kolejności algorytm oblicza wartości progowe prędkości obrotowyc
 
 Dla przypadku rozpędzania wirnika z bezruchu, wirtualna przekładnia rozpoczyna pracę przy największej rozdzielczości mikrokroków. Wraz ze wzrostem prędkości obrotowej częstotliwość komutacji jest zwiększana. Im większa częstotliwość komutacji, tym częściej system musi przerywać pozostałe prace, dlatego maksymalną częstotliwość należy dobrać w taki sposób, aby nie zagłodzić pozostałych procesów w systemie. \\
 
-Po osiągnięciu maksymalnej częstotliwości następuje zmiana biegu, czyli dwukrotne zmniejszenie rozdzielczości mikrokroków. Częstotliwość komutacji także dwukrotnie maleje. Działanie to jest powtarzane aż do osiągnięcia maksymalnej ustalonej prędkości obrotowej (i jednocześnie maksymalnego biegu i częstotliwości komutacji). Algorytm pozwala zoptymalizować pracę silnika poprzez korzystanie z największej rozdzielczości tylko wtedy, kiedy jest potrzebna (rozpędzanie wirnika i precyzyjne hamowanie). Rys. \ref{grafiki/freq_gear_stepper.eps} prezentuje w graficzny sposób działanie układu. \\
+Po osiągnięciu maksymalnej częstotliwości następuje zmiana biegu, czyli dwukrotne zmniejszenie rozdzielczości mikrokroków. Częstotliwość komutacji także dwukrotnie maleje. Działanie to jest powtarzane aż do osiągnięcia maksymalnej ustalonej prędkości obrotowej (i jednocześnie maksymalnego biegu i częstotliwości komutacji). Algorytm pozwala zoptymalizować pracę silnika poprzez korzystanie \linebreak z największej rozdzielczości tylko wtedy, kiedy jest potrzebna (rozpędzanie wirnika i precyzyjne hamowanie). Rys. \ref{grafiki/freq_gear_stepper.eps} prezentuje w graficzny sposób działanie układu. \\
 
 Można zauważyć, że praca na najwyższym biegu (1 mikrokrok na 1 pełny krok) to tak naprawdę tryb falowy (sekcja \ref{sss:sterowanie_krokowy}, rys. \ref{grafiki/stepper_sterowanie_falowe.eps}). Układ przechodzi do niego w naturalny sposób z trybu mikrokrokowego. W aplikacji takiej jak głowica układająca duży moment obrotowy nie jest wymagany, dlatego nie ma potrzeby implementacji trybu pełnokrokowego na ostatnim biegu. Docelowo jednak, funkcjonalność ta będzie musiała być dodana (np. sterowanie ruchu portalu w osi X i Y).
 

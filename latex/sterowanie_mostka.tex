@@ -16,18 +16,24 @@ Widoczne na schemacie połączenia i zastosowana bramka NOT jest tylko obrazowym
 Przy sterowaniu bipolarnym maszyna pracuje częściowo w czwartym kwadrancie charakterystyki (rys. \ref{grafiki/ch_statyczne.eps}). Tak długo, jak przyłożone do silnika średnie napięcie jest tej samej polaryzacji co SEM generowana w uzwojeniu, i jego amplituda jest wyższa od amplitudy tej SEM, wtedy maszyna pracuje w trybie silnikowym. W przypadku kiedy, napięcie zasilania i SEM mają tą samą polaryzację, lecz SEM ma wyższą amplitudę, to maszyna pracuje w trybie generatorowym. 
 
 \insertImgSetSize{grafiki/modulacja_bipolarna.png}
-	{120}
+	{100}
 	{Przebiegi napięć w modulacji bipolarnej}
 	{namboodiri_wani}
 	
 Rys. \ref{grafiki/modulacja_bipolarna.png} prezentuje przebiegu towarzyszące modulacji bipolarnej, zastosowanej w do przykładu mostka z rys. \ref{grafiki/sterowanie_bipolarne.png}. Zadany jest sygnał sinusoidalny $ V_m $, a PWM jest taktowany przebiegiem $ V_{cr} $. $ V_{AG} $ i $ V_{BG} $ to napięcia odpowiednio między potencjałami A i B a masą, natomiast $ V_{AB} $ to spadek na silniku. \\
 
-Zaletą sterowania bipolarnego jest to, że ze sprzętowego punktu widzenia wymaga bardzo niewiele zasobów. W przypadku najprostszego sterowania wymagany jest tylko jeden sygnał PWM. Oznacza to, że nawet najtańszy mikroprocesor może posłużyć do zbudowania sterownika do silnika DC. Ważniejszą zaleta jednak jest to, że używając tylko jednego rezystora pomiarowego ($ R_m $ na rys. \ref{grafiki/sterowanie_bipolarne.png}) istnieje możliwość pomiaru prądu płynącego w uzwojeniu w dowolnym momencie. Daje to możliwość swobodnego doboru sposobu próbkowania prądu i upraszcza układ sterujący. Najpoważniejszą wadą sterowania bipolarnego jest większa pulsacja prądu w stosunku do metod opisanych w dalszej części pracy.
+Zaletą sterowania bipolarnego jest to, że ze sprzętowego punktu widzenia wymaga bardzo niewiele zasobów. W przypadku najprostszego sterowania wymagany jest tylko jeden sygnał PWM. Oznacza to, że nawet najtańszy mikroprocesor może posłużyć do zbudowania sterownika do silnika DC. Ważniejszą zaleta jednak jest to, że używając tylko jednego rezystora pomiarowego ($ R_m $ na rys. \ref{grafiki/sterowanie_bipolarne.png}) istnieje możliwość pomiaru prądu płynącego w uzwojeniu w dowolnym momencie. Daje to możliwość swobodnego doboru sposobu próbkowania prądu i upraszcza układ sterujący. \\
+
+Najpoważniejszą wadą sterowania bipolarnego jest większa pulsacja prądu w stosunku do metod opisanych w dalszej części pracy.
+
+\clearpage
 
 \subsubsection{Sterowanie unipolarne}
 \label{sss:moduni}
 
-Zasadę działania sterowania unipolarnego można zaprezentować bazując na rysunku \ref{grafiki/sterowanie_unipolarne.png}. Przy jego pomocy możliwe jest wysterowanie silnika w taki sposób, aby jego wirnik mógł obracać się w obu kierunkach (kwadranty I i III). Aby pracować w pierwszym kwadrancie, tranzystor Q1 jest włączony, a na bramkę Q4 podawany jest sygnał PWM. Kiedy Q4 jest otwarty, prąd płynie od $ V_d $ przez Q1, dalej przez uzwojenie i przez Q4 do masy poprzez rezystor $ R_m $. Kiedy Q4 się zamyka w uzwojeniu dalej jest prąd ze względu na jego indukcyjność. Zwiększający się potencjał w punkcie połączenia drenu Q4 i źródła Q3 sprawia że dioda tranzystora Q3 zaczyna przewodzić. Z racji tego, że Q1 jest cały czas otwarty, obwód prądowy zamknie się właśnie przez ten tranzystor, a nie przez obwód zasilania. Aby obracać wirnikiem w drugą stronę należy otworzyć Q3 i kluczować Q2. W takim wypadku silnik pracuje w trzecim kwadrancie charakterystyki statycznej (negatywna prędkość i moment. Niezależnie od kierunku przepływu prądu w silniku, napięcie na niego podawane zawsze zmienia się w graniczy od $ V_d $ do GND, a nie jak w schemacie obrazującym sterowanie bipolarne (rys. \ref{grafiki/sterowanie_bipolarne.png}) od $ V_d $ do $ -V_d $. Sprawia to, że w takim układzie silnik nie może oddawać energii do zasilania, bo prąd jest ,,zamknięty'' w oczku utworzonym z uzwojenia, Q1 i Q3. 
+Zasadę działania sterowania unipolarnego można zaprezentować bazując na rysunku \ref{grafiki/sterowanie_unipolarne.png}. Przy jego pomocy możliwe jest wysterowanie silnika w taki sposób, aby jego wirnik mógł obracać się w obu kierunkach (kwadranty I i III). Aby pracować w pierwszym kwadrancie, tranzystor Q1 jest włączony (otwarty, wprowadzony w stan nasycenia), a na bramkę Q4 podawany jest sygnał PWM. Kiedy Q4 jest otwarty, prąd płynie od $ V_d $ przez Q1, dalej przez uzwojenie i przez Q4 do masy poprzez rezystor $ R_m $. Kiedy Q4 się zamyka w uzwojeniu dalej jest prąd ze względu na jego indukcyjność. Zwiększający się potencjał w punkcie połączenia drenu Q4 i źródła Q3 sprawia że dioda tranzystora Q3 zaczyna przewodzić. Z racji tego, że Q1 jest cały czas otwarty, obwód prądowy zamknie się właśnie przez ten tranzystor, a nie przez obwód zasilania. \\
+
+Aby obracać wirnikiem w drugą stronę należy otworzyć Q3 i kluczować (zasilać impulsowo) Q2. W takim wypadku silnik pracuje w trzecim kwadrancie charakterystyki statycznej (negatywna prędkość i moment. Niezależnie od kierunku przepływu prądu w silniku, napięcie na niego podawane zawsze zmienia się w graniczy od $ V_d $ do GND, a nie jak w schemacie obrazującym sterowanie bipolarne (rys. \ref{grafiki/sterowanie_bipolarne.png}) od $ V_d $ do $ -V_d $. Sprawia to, że w takim układzie silnik nie może oddawać energii do zasilania, bo prąd jest ,,zamknięty'' w oczku utworzonym z uzwojenia, Q1 i Q3. 
 
 \insertImgSetSize{grafiki/sterowanie_unipolarne.png}
 	{80}
@@ -35,16 +41,17 @@ Zasadę działania sterowania unipolarnego można zaprezentować bazując na rys
 	{ti_motors}
 
 
-Zaletą prezentowanej topologii jest to, że wymagany jest tylko jeden sygnał PWM do sterowania pojedynczym mostkiem (oraz linia wejściowa ustalająca kierunek obrotów). Ponadto, w danym momencie kluczowany jest tylko jeden tranzystor, a więc co za tym idzie, straty spowodowane przełączaniem są mniejsze niż w sterowaniu bipolarnym. Modulacja unipolarna wywołuje mniejszą amplitudę tętnień prądu niż modulacja bipolarna przy tej samej częstotliwości modulacji \cite{zawirski}. 
+Zaletą prezentowanej topologii jest to, że wymagany jest tylko jeden sygnał PWM do sterowania pojedynczym mostkiem (oraz linia wejściowa ustalająca kierunek obrotów). Ponadto, w danym momencie kluczowany jest tylko jeden tranzystor, a więc co za tym idzie, straty spowodowane przełączaniem są mniejsze niż w sterowaniu bipolarnym. \\
+
+Modulacja unipolarna wywołuje mniejszą amplitudę tętnień prądu niż modulacja bipolarna przy tej samej częstotliwości modulacji \cite{zawirski}. Z tych przyczyn sterownik korzysta właśnie z tego typu sterowania.
 
 \insertImgSetSize{grafiki/modulacja_unipolarna.png}
-	{120}
+	{100}
 	{Przebiegi napięć w modulacji unipolarnej}
 	{namboodiri_wani}
 
-Bez względu na zastosowaną technikę modulacji, do wszystkich silników zasilanych napięciem stałym można użyć mostka typu ,,H'' w celu realizacji tej modulacji. \\
+Bez względu na zastosowaną technikę modulacji, do wszystkich silników zasilanych napięciem stałym można użyć mostka typu ,,H'' w celu realizacji tej modulacji. 
 
-Konstruowany sterownik korzysta z modulacji unipolarnej, ze względu na to że przynosi o wiele więcej korzyści niż bipolarna. Wadą modulacji unipolarnej jest brak możliwości aktywnego hamowania. Dla urządzenia nie jest to jednak żadnym problemem, ponieważ sposób w jaki uzwojenia są sterowane wyklucza takie sytuacje (więcej informacji na ten temat znajduje się w rozdziale \ref{s:oprogramowanie}.
 
 
 

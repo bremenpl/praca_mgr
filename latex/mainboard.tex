@@ -57,10 +57,10 @@ W pierwszej kolejności napięcie główne trafia na przetwornicę A8498 (Allegr
 
 \insertImgSetSize{grafiki/power_5v_3v.pdf}
 	{52}
-	{Część schematu zasilania prezentująca sposób uzyskania napięć 5 i 3.3V na płytce sterownika}
+	{Część schematu zasilania prezentująca sposób uzyskania napięć 3.3 i 5 V na płytce sterownika}
 	{mechsyspcb}
 
-Natężenie to jest w zupełności wystarczające do zasilania układów logicznych i analogowych sterownika, także tych pracujących przy napięciu 3.3 V-- do wyjścia przetwornicy podłączony jest liniowy stabilizator napięcia LM3940 (Texas Instruments).
+Natężenie to jest w zupełności wystarczające do zasilania układów logicznych \linebreak i analogowych sterownika, także tych pracujących przy napięciu 3.3 V-- do wyjścia przetwornicy podłączony jest liniowy stabilizator napięcia LM3940 (Texas Instruments).
 
 \insertImgSetSize{grafiki/power_12_25.pdf}
 	{60}
@@ -146,14 +146,14 @@ Dodatkowo na rysunku \ref{grafiki/pcb_mcu.png} widać złącza CON4 (z lewej) i 
 \subsubsection{Komunikacja}
 \label{sss:hardware_komunikacja}
 
-Do urządzenia poprzez gniazdo w płytce zasilającej podłączanych jest razem sześć przewodów (CON6 na schemacie \ref{grafiki/schemat_plytka_zasilajaca.eps}). Cztery z nich służą do komunikacji ze sterownikiem poprzez dwie magistrale szeregowe: CAN ({\it Controller Area Network}) i RS232.
+Do urządzenia poprzez gniazdo w płytce zasilającej podłączanych jest razem sześć przewodów (CON6 na schemacie \ref{grafiki/schemat_plytka_zasilajaca.eps}). Cztery z nich służą do komunikacji ze sterownikiem poprzez dwie magistrale szeregowe: CAN ({\it Controller Area Network}) \linebreak i RS232.
 
 \insertImgSetSize{grafiki/rs232_schemat.pdf}
 	{70}
 	{Zastosowany w kontrolerze układ MAX331 firmy Maxim, służący do translacji poziomów logicznych RS232 na TTL/ CMOS}
 	{mechsyspcb}
 
-W większości aplikacji w celu uzyskania poziomów logicznych odpowiednich dla RS232 (+12/ -12 V) stosowane są tanie układy typu MAX3232 lub MAX232 (oraz ich odpowiedniki). Najmniejsza obudowa w jakiej są produkowane te układy to TSSOP16 (typ. 5 x 4.4 mm). Dla płytki głównej sterownika jest to za dużo, dlatego został zastosowany mniejszy   MAX3311 (rys. \ref{grafiki/rs232_schemat.pdf}) w obudowie UMAX10 o wymiarach 3 x 3 mm. Układ jest trochę droższy od wspominanych układów i mniej dostępny u popularnych dystrybutorów. Ponadto, musi być zasilany z napięcia 5V, a nie z 3.3 V. Wejścia zastosowanego mikrokontrolera jednak są zabezpieczone przed napięciami na tym poziomie (tzw. {\it 5V compatible}). Wyjściowe 3.3 V z mikrokontrolera wystarczy zmiany stanu w układzie (TTL).
+W większości aplikacji w celu uzyskania poziomów logicznych odpowiednich dla RS232 (+12/ -12 V) stosowane są tanie układy typu MAX3232 lub MAX232 (oraz ich odpowiedniki). Najmniejsza obudowa w jakiej są produkowane te układy to TSSOP16 (typ. 5 x 4.4 mm). Dla płytki głównej sterownika jest to za dużo, dlatego został zastosowany mniejszy   MAX3311 (rys. \ref{grafiki/rs232_schemat.pdf}) w obudowie UMAX10 o wymiarach 3 x 3 mm. Urządzenie jest trochę droższe od wspominanych układów i mniej dostępny \linebreak u popularnych dystrybutorów. Ponadto, musi być zasilany z napięcia 5V, a nie z 3.3 V. Wejścia zastosowanego mikrokontrolera jednak są zabezpieczone przed napięciami na tym poziomie (tzw. {\it 5V compatible}). Wyjściowe 3.3 V z mikrokontrolera wystarczy zmiany stanu w układzie (TTL).
 
 \insertImgSetSize{grafiki/pcb_rs232.png}
 	{60}
@@ -184,7 +184,7 @@ Głowica, której częścią jest sterownik, do podnoszenia komponentów elektro
 	{Czujnik podciśnienia XFHM-100KPGWRH znajdujący się na płytce głównej}
 	{mechsyspcb}
 
-Jest to element, którego gabaryty są największe na opisywanej płytce. Ponadto, w wersji z mocowaniem przewodu pneumatycznego poziomo, występuje tylko w w obudowie przewlekanej. Czujnik jest pneumatycznie sprzężony z aluminiową kostką (rys. \ref{grafiki/pcb3d_plytka_encmag.png} i \ref{grafiki/przekroj_silnik.png}), w której panuje ciśnienie niższe niż atmosferyczne. Jego wartość spada tym bardziej, im szczelniej zatkany jest wylot pinoli przez podnoszony komponent. Na wyjściu układu XFHM-100KPGWRH pojawia się potencjał którego amplituda odzwierciedla wartość mierzonego podciśnienia. Dla różnicy ciśnień 0 kPa amplituda wynosi 2.5 V (połowa maksymalnego zakresu, którym jest zapięcie zasilania) i spada do 0 V dla -100 kPa lub rośnie do 5V dla 100 kPa. Dodatnia wartość różnicy ciśnienia w normalnej aplikacji nie występuje, kiedy element jest odkładany, zawór zamyka dopływ powietrza i komponent przestaje być zasysany. W niektórych aplikacjach specjalizowanych jednak podnoszone elementy muszą być wydmuchiwane i wtedy mierzona jest dodatkowo wartość dodatnia. \\
+Jest to element, którego gabaryty są największe na opisywanej płytce. Ponadto, w wersji z mocowaniem przewodu pneumatycznego poziomo, występuje tylko w obudowie przewlekanej. Czujnik jest pneumatycznie sprzężony z aluminiową kostką (rys. \ref{grafiki/pcb3d_plytka_encmag.png} i \ref{grafiki/przekroj_silnik.png}), w której panuje ciśnienie niższe niż atmosferyczne. Jego wartość spada tym bardziej, im szczelniej zatkany jest wylot pinoli przez podnoszony komponent. Na wyjściu układu XFHM-100KPGWRH pojawia się potencjał którego amplituda odzwierciedla wartość mierzonego podciśnienia. Dla zerowej różnicy ciśnień amplituda wynosi 2.5 V (połowa maksymalnego zakresu, którym jest zapięcie zasilania) i spada do 0 V dla -100 kPa lub rośnie do 5V dla 100 kPa. Dodatnia wartość różnicy ciśnienia w normalnej aplikacji nie występuje, kiedy element jest odkładany, zawór zamyka dopływ powietrza i komponent przestaje być zasysany. \linebreak W niektórych aplikacjach specjalizowanych jednak podnoszone elementy muszą być wydmuchiwane i wtedy mierzona jest dodatkowo wartość dodatnia. \\
 
 Aby umieścić czujnik w dogodnym miejscu na PCB należało go pozbawić jednego z wyprowadzeń (nr 5) zaznaczonych na rysunku \ref{grafiki/pcb_czujnik.png}. Wewnętrznie ten pin nie jest do niczego podłączony, a z racji tego że jest środkowym pinem w danym rzędzie, to pozbycie się go nie zmniejsza stabilności układu.
 
@@ -216,7 +216,7 @@ Schemat \ref{grafiki/motor_circuit.pdf} prezentuje opisywany moduł używając z
 	{Schemat ideowy modułu MOTCIR ze schematu nadrzędnego \ref{grafiki/top_level.pdf}}
 	{mechsyspcb}
 
-\tocLessLeftNorm{HS - Standardowy sterownik pół-mostka}
+\tocLessLeftNorm{HS - Standardowy sterownik półmostka}
 
 W urządzeniu jest zastosowanych 5 obwodów HS (\textit{\textbf{H}igh Side with \textbf{S}oftware Deadtime}). Służą do tego, aby dostarczać prąd do uzwojeń silników. Pojedynczy moduł HS jest widoczny na schemacie \ref{grafiki/high_side_swdt.pdf}. Na wejścia układu IR2101 (firma International Rectifier) wchodzą komplementarne sygnały PWM z mikrokontrolera sterującego. \\
 
@@ -238,9 +238,9 @@ Kondensatory ceramiczne C9 (obudowa 1206) i C14 (2220) zapewniają pojemność, 
 
 Rezystory w szeregu z bramkami tranzystorów (R15 i R16) służą do ograniczenia prądów bramek. Ponadto zapewniają ochronę układu scalonego IR2101 w przypadku uszkodzenia jednego z tranzystorów, które może doprowadzić do przebicia izolacji między bramką, a drenem i źródłem. \\
 
-Etykieta MOT oznacza miejsce podłączenia jednego z końców uzwojenia, HIS i LOS to wyprowadzenia z obwodów pomiaru prądu po stronie górnej i dolnej. W obwodzie silnika VCM znajdują się dwa moduły HS, natomiast w module krokowego trzy moduły HS i jeden HH.
+Etykieta MOT oznacza miejsce podłączenia jednego z końców uzwojenia, HIS i LOS to wyprowadzenia z obwodów pomiaru prądu po stronie górnej i dolnej. W \linebreak obwodzie silnika VCM znajdują się dwa moduły HS, natomiast w module krokowego trzy moduły HS i jeden HH.
 
-\tocLessLeftNorm{HH - modyfikowany sterownik pół-mostka}
+\tocLessLeftNorm{HH - modyfikowany sterownik półmostka}
 
 Przyczyną dla której w urządzeniu został zastosowany jeden moduł HH (\textit{\textbf{H}igh Side with \textbf{H}ardware Deadtime}) i pięć HS, zamiast sześciu HS jest to że sterujący mikrokontroler STM32F407VTG6 nie posiada wystarczającej ilości komplementarnych modułów PWM.
 
@@ -249,21 +249,21 @@ Przyczyną dla której w urządzeniu został zastosowany jeden moduł HH (\texti
 	{Schemat blokowy zaawansowanego Timer'a 1 i 8 w mikrokontrolerach STM32F4 firmy ST Microelectronic}
 	{st}
 
-Schemat blokowy \ref{grafiki/tim18.pdf} prezentuje architekturę pojedynczego zaawansowanego timer'a w STM32F4. Używany mikroprocesor posiada dwa takie peryferia o numerach 1 i 8. Timer 1 służy do sterowania silnikiem pierwszym (krokowym), a timer 8 drugim (VCM). Jak widać na schemacie, czwarty z kanałów PWM jest uboższy od pozostałych trzech. Nie posiada wyprowadzenia komplementarnego, a co za tym idzie modułu czasu martwego, przez co urządzenie wymaga zastosowania dodatkowego obwodu, który rozszerza możliwości czwartego kanału. Pomimo tego, że timer silnika VCM posiada jeszcze jeden wolny kanał ,,bogaty'', to nie mógł on zostać zastosowany w obwodzie silnika krokowego. Burzyłoby to koncepcje uniwersalnego sterownika pod względem programowym, która wymaga aby moduły sterujące silnikami były całkowicie oddzielne. W takim łączonym rozwiązaniu nie byłoby możliwości między np. zaprogramowania różniej częstotliwości dla każdego silnika. Ponadto, chcąc w przyszłości zastosować obecny kod kontrolera dla nieco odmienionej płytki sterownika, będzie trzeba dokonywać dodatkowych zmian w oprogramowaniu.
+Schemat blokowy \ref{grafiki/tim18.pdf} prezentuje architekturę pojedynczego zaawansowanego timer'a w STM32F4. Używany mikroprocesor posiada dwa takie peryferia o numerach 1 i 8. Timer 1 służy do sterowania silnikiem pierwszym (krokowym), a timer 8 drugim (VCM). Jak widać na schemacie, czwarty z kanałów PWM jest uboższy od pozostałych trzech. Nie posiada wyprowadzenia komplementarnego, a co za tym idzie modułu czasu martwego, przez co urządzenie wymaga zastosowania dodatkowego obwodu, który rozszerza możliwości czwartego kanału. Pomimo tego, że timer silnika VCM posiada jeszcze jeden wolny kanał ,,bogaty'', to nie mógł on zostać zastosowany w obwodzie silnika krokowego. Burzyłoby to koncepcje uniwersalnego sterownika pod względem programowym, która wymaga aby moduły sterujące silnikami były całkowicie oddzielne. W takim łączonym rozwiązaniu nie byłoby możliwości między np. zaprogramowania różniej częstotliwości dla każdego silnika. Ponadto, chcąc w przyszłości zastosować obecny kod kontrolera dla nieco odmienionej płytki sterownika, będzie trzeba dokonywać dodatkowych zmian \linebreak w oprogramowaniu.
 
 \insertImgSetSize{grafiki/high_side_hwdt.pdf}
 	{70}
 	{Schemat ideowy modułu HH ({\it High Side driver}) ze sprzętowym czasem martwym i kanałem komplementarnym}
 	{mechsyspcb}
 
-Aby zapewnić czas martwy i dodatkowy kanał komplementarny na kanale czwartym został zastosowany obwód ze schematu \ref{grafiki/high_side_hwdt.pdf}. Sygnał z etykietą HIN jest opisywanym czwartym kanałem. Aby utworzyć z niego dodatkowy sygnał komplementarny została zastosowana bramka XOR (U6), na której jedno z wejść wchodzi HIN. Na drugie wejście U6 jest doprowadzane wyjście z bramki AND (U7). Jej wejścia to z kolei sygnał odblokowujący moduł (etykieta $ VLIN_{EN} $) i {\it BREAK}, który zmienia stan na niski w przypadku wystąpienia przeciążenia prądowego (rys. \ref{grafiki/cursens_hs.pdf}). 
+Aby zapewnić czas martwy i dodatkowy kanał komplementarny na kanale czwartym został zastosowany obwód ze schematu \ref{grafiki/high_side_hwdt.pdf}. Sygnał z etykietą HIN jest opisywanym czwartym kanałem. Aby utworzyć z niego dodatkowy sygnał komplementarny została zastosowana bramka XOR (U6), na której jedno z wejść wchodzi HIN. Na drugie wejście U6 jest doprowadzane wyjście z bramki AND (U7). Jej wejścia to \linebreak z kolei sygnał odblokowujący moduł (etykieta $ VLIN_{EN} $) i {\it BREAK}, który zmienia stan na niski w przypadku wystąpienia przeciążenia prądowego (rys. \ref{grafiki/cursens_hs.pdf}). 
 
 \insertImgSetSize{grafiki/bramki.png}
 	{50}
 	{Część PCB w której znajdują się dyskretne bramki U7 i U6 tworzące kanał komplementarny}
 	{mechsyspcb}
 	
-Bramka AND zapewnia możliwość całkowitego wyłączenia danego półmostka, a czas martwy jest generowany w samym sterowniku, który w obwodzie HH został zamieniony z IR2101 na IR25601 tego samego producenta. 
+Bramka AND zapewnia możliwość całkowitego wyłączenia danego półmostka, \linebreak a czas martwy jest generowany w samym sterowniku, który w obwodzie HH został zamieniony z IR2101 na IR25601 tego samego producenta. 
 
 \insertImgSetSize{grafiki/IR25601.pdf}
 	{85}
@@ -286,7 +286,7 @@ Dlatego pomimo tego, że na wejścia układu są podawane komplementarne sygnał
 {oprWlasne}
 {tab:tabela_prawdy}
 
-Obwód w takiej konfiguracji działa bez zarzutu dlatego, że nie wszystkie możliwe stany linii wejściowych są dozwolone. Tabela \ref{tab:tabela_prawdy} prezentuje cztery możliwe tryby w których może znajdować się obwód. Kiedy sygnał BRK zmienia swój stan na niski, wszystkie wyjścia PWM danego modułu w mikrokontrolerze zmieniają swój stan także na niski (zwykłe i komplementarne). To oznacza zamknięcie wszystkich tranzystorów. Dlatego, kiedy BRK jest nisko, HIN też musi i stan na linii $ VLIN_{EN} $ nie ma wtedy znaczenia- VLIN i tak będzie w stanie niskim.
+Obwód w takiej konfiguracji działa bez zarzutu dlatego, że nie wszystkie możliwe stany linii wejściowych są dozwolone. Tabela \ref{tab:tabela_prawdy} prezentuje cztery możliwe tryby w których może znajdować się obwód. Kiedy sygnał BRK zmienia swój stan na niski, wszystkie wyjścia PWM danego modułu w mikrokontrolerze zmieniają swój stan także na niski (zwykłe i komplementarne). To oznacza zamknięcie wszystkich tranzystorów. Dlatego, kiedy BRK jest nisko, HIN też musi i stan na linii $ VLIN_{EN} $ nie ma wtedy znaczenia bo VLIN i tak będzie w stanie niskim.
 
 \clearpage
 

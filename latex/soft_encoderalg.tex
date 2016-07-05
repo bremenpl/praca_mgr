@@ -105,7 +105,7 @@ Zastosowany filtr jest dwuwymiarowy. Oznacza to że estymacji są poddawane dwa 
      	\end{bmatrix}
 \end{equation}
 
-Implementacja dwuwymiarowa zapewnia dokładniejszą estymatę pozycji niż w przypadku, kiedy pod uwagę brane byłoby tylko położenie. Jeszcze lepsze wyniki możnaby otrzymać stosując estymatę trójwymiarową (dodatkowo dodać parametr przyspieszenia). Niestety operacje na macierzach 3 x 3 pochłaniały za dużo zasobów procesora i z tego rozwiązania w sterowniku zrezygnowano. \\
+Implementacja dwuwymiarowa zapewnia dokładniejszą estymatę pozycji niż \linebreak w przypadku, kiedy pod uwagę brane byłoby tylko położenie. Jeszcze lepsze wyniki możnaby otrzymać stosując estymatę trójwymiarową (dodatkowo dodać parametr przyspieszenia). Niestety operacje na macierzach 3 x 3 pochłaniały za dużo zasobów procesora i z tego rozwiązania w sterowniku zrezygnowano. \\
 
 Rys. \ref{grafiki/przebieg_kf.eps} prezentuje różne pozycje kątowe w funkcji czasu odczytane ze sterownika w trybie CSV (patrz sekcja \ref{ss:hwrs232}). Wstępnie widać, że algorytm działa poprawnie, lecz jego zalety i wady można dokładniej zaobserwować na przebiegu z rys. \ref{grafiki/przebieg_kf_zoom.eps}.
 
@@ -114,13 +114,15 @@ Rys. \ref{grafiki/przebieg_kf.eps} prezentuje różne pozycje kątowe w funkcji 
 	{Przebieg czasowy (powiększenie przy impulsie skokowym) prezentujący pozycję wału silnika krokowego: zadaną, mierzoną i mierzoną przefiltrowaną przez {\it KF}}
 	{oprWlasne}
 	
-Po doświadczalnym dostosowaniu parametrów $ v $ i $ w $ algorytm tłumi zakłócenia bardzo dobrze. Charakterystyczną cechą filtru Kalmana jest jednak to, że wraz ze wzrostem poziomu filtracji rośnie także opóźnienie sygnału. Parametr ten diametralnie wpływa na działanie regulatorów pozycji i prędkości (sekcja \ref{sss:posvelregs}). Pomimo tego, że estymowana pozycja jest bardzo blisko zadanej, to czas potrzebny na jej osiągnięcie (w końcowym odcinku) jest zbyt długi. Z tego powodu został zaimplementowany dodatkowy, szybszy algorytm stosowany w czasowo krytycznych sytuacjach.
+Po doświadczalnym dostosowaniu parametrów $ v $ i $ w $ algorytm tłumi zakłócenia bardzo dobrze. Charakterystyczną cechą filtru Kalmana jest jednak to, że wraz ze wzrostem poziomu filtracji rośnie także opóźnienie sygnału. Parametr ten diametralnie wpływa na działanie regulatorów pozycji i prędkości (sekcja \ref{sss:posvelregs}). Pomimo tego, że estymowana pozycja jest bardzo blisko zadanej, to czas potrzebny na jej osiągnięcie (w końcowym odcinku) jest zbyt długi. \\
+
+Z tego powodu został zaimplementowany dodatkowy, szybszy algorytm stosowany w czasowo krytycznych sytuacjach.
 
 \clearpage
 
 \subsubsection{Filtr dolnoprzepustowy}
 
-Drugim algorytmem stosowanym w celu minimalizacji wpływu szumów towarzyszących odczytywanej pozycji kątowej z enkodera magnetycznego jest rekursywny (lub też {\it NOI}-- o nieskończonej odpowiedzi impulsowej), jednobiegunowy filtr dolnoprzepustowy. Zastosowane zostały jedynie dwa współczynniki rekursywne $ a_0 $ i $ b1 $:
+Drugim algorytmem stosowanym w celu minimalizacji wpływu szumów towarzyszących odczytywanej pozycji kątowej z enkodera magnetycznego jest rekursywny (lub też {\it NOI}-- o nieskończonej odpowiedzi impulsowej), jednobiegunowy filtr dolnoprzepustowy. Zastosowane zostały jedynie dwa współczynniki rekursywne $ a_0 $ \linebreak i $ b1 $:
 
 \begin{equation} \label{eq:alg10}
 	a_0 = 1 - x

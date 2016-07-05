@@ -1,6 +1,6 @@
 \section{Wybrane metody sterowania i zasilania silników elektrycznych}
 
-Z praktycznego punktu widzenia najwygodniej byłoby, aby wyprowadzenia silnika były zasilane ze źródła prądowego. Tym sposobem można wymusić przepływ zadanego prądu w uzwojeniu bez większego problemu. W praktyce niestety zbudowanie takiego falownika byłoby bardzo trudne, w szczególności jeśli miałby on pracować z silnikami dużej mocy. Dzięki indukcyjnej naturze uzwojeń silników, kluczując napięcie zasilania (w określonych interwałach czasowych) możliwe jest wymuszenie przepływu prądu w uzwojeniu o wartości bliskiej z góry założonej w sterowniku, jednocześnie zasilając maszynę ze źródła napięciowego.
+Dzięki indukcyjności w uzwojeniach silników załączając impulsowo napięcie zasilania (w określonych interwałach czasowych) możliwe jest wymuszenie przepływu prądu w uzwojeniu o wartości bliskiej z góry założonej w sterowniku, jednocześnie zasilając maszynę ze źródła napięciowego.
 
 \insertImgSetSize{grafiki/mostek_h_pn.eps}
 	{80}
@@ -9,7 +9,7 @@ Z praktycznego punktu widzenia najwygodniej byłoby, aby wyprowadzenia silnika b
 
 Rys. \ref{grafiki/mostek_h_pn.eps} prezentuje konfigurację mostka typu H, zbudowanego z czterech tranzystorów polowych. Tak skonstruowany układ może posłużyć do wymuszenia przepływu prądu w uzwojeniu silnika (które symbolizuje gałąź z rezystorem R1 i cewką L1) w dowolnym kierunku, w zależności od tego które z tranzystorów są aktualnie otwarte/ zamknięte. Jedna połowa mostka (półmostek) tworzy układ {\it Push-Pull}, który może w punkcie połączenie dwóch tranzystorów (V1 i V2) zapewnić potenciał o wartości przybliżonej do VCC lub GND. \\
 
-W zależności od aplikacji w mostku są wykorzystywane różne półprzewodniki takie, jak tranzystory bipolarne, polowe czy tranzystory IGBT ({\it Insulated-gate bipolar transistor}). W komercyjnych sterownikach małej mocy najczęściej są to tranzystory polowe, z tą różnicą, że górne tranzystory mostka są także tranzystorami typu N ze względu na ich lepsze względem typu P właściwości (Mobilność elektronów jest większa niż dziur, a to te pierwsze są nośnikami ładunków w tranzystorze typu N \cite{tietze}). W takim wypadku jednak do wysterowania górnych tranzystorów potrzebne są dodatkowe układy elektroniczne lub dodatkowe źródło zasilania ze względu na to, że napięcie na bramce musi być wyższe od napięcia na źródle tranzystora, w celu jego pełnego wysterowania. \\
+W zależności od aplikacji w mostku są wykorzystywane różne półprzewodniki takie, jak tranzystory bipolarne, polowe czy tranzystory IGBT ({\it Insulated-gate bipolar transistor}). W komercyjnych sterownikach małej mocy najczęściej są to tranzystory polowe- typu N ze względu na ich lepsze względem typu P właściwości (Mobilność elektronów jest większa niż dziur, a to te pierwsze są nośnikami ładunków w tranzystorze typu N \cite{tietze}). W takim wypadku jednak do wysterowania górnych tranzystorów potrzebne są dodatkowe układy elektroniczne lub dodatkowe źródło zasilania ze względu na to, że napięcie na bramce musi być wyższe od napięcia na źródle tranzystora, w celu jego pełnego wysterowania. \\
 
 Diody połączone równolegle do tranzystorów są niezbędne ze względu na indukcyjny charakter uzwojenia. W przypadku ich braku energia zgromadzona na indukcyjności może rozładować się na dwa sposoby: 
 

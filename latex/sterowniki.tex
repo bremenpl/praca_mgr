@@ -12,7 +12,7 @@ Pierwszą grupą sterowników są urządzenia, które dostarczają użytkownikow
 	{Przykładowe typy obudów w jakich są produkowane układy scalone do sterowania silnikami. Na górze obudowy TSSOP ({\it Thin Shrink Small Outline Package}) i SSOP ({\it Shrink small outline package}) na dole}
 	{oprWlasne}
 
-Funkcjonalność danego układu mocno zależy od jego ceny- wraz z jej wzrostem algorytmy zaimplementowane w sterowniku są coraz lepsze, a dodatkowych potrzebnych komponentów elektronicznych do ich poprawnego działania potrzeba coraz mniej (np. końcówki mocy takie jak mostki H są zintegrowane w układzie). Ponadto sterowniki do obsługi silników, które wymagają bardziej skomplikowanego sterowania (np. krokowe lub BLDC) są droższe od tych, które służą do zasilania prostych maszyn (np. silniki komutatorowe DC). 
+Funkcjonalność danego układu mocno zależy od jego ceny. Wraz z jej wzrostem algorytmy zaimplementowane w sterowniku są coraz lepsze, a dodatkowych potrzebnych komponentów elektronicznych do ich poprawnego działania potrzeba coraz mniej (np. końcówki mocy takie jak mostki H są zintegrowane w układzie). Ponadto sterowniki do obsługi silników, które wymagają bardziej skomplikowanego sterowania (np. krokowe lub BLDC) są droższe od tych, które służą do zasilania prostych maszyn (np. silniki komutatorowe DC). 
 
 \subsubsection{AD3950 - Allegro MicroSystems}
 \label{ss:allegro}
@@ -39,7 +39,7 @@ Największa zaleta urządzenia jest taka, że odciąża on sterujący nim układ
 
 \subsubsection{TMCC160 - Trinamic}
 
-Trzecim prezentowanym układem jest sterownik do zasilania silników BLDC i PMSM firmy Trinamic-- TMCC160. Poziom integracji tego urządzenia jest o wiele wyższy niż w przypadku dwóch pozostałych chipów. W jego strukturze znajduje się wydajny mikrokontroler typu Cortex® M4 z rodziny ARM, dzięki czemu komunikacja z może odbywać się poprzez jeden z dostępnych protokołów szeregowych. W układzie jest też zintegrowana przetwornica DC-DC przez co uproszczona zostaje sekcja zasilania układu. 
+Trzecim prezentowanym układem jest sterownik do zasilania silników BLDC i PMSM firmy Trinamic-- TMCC160. Poziom integracji tego urządzenia jest o wiele wyższy niż w przypadku dwóch pozostałych chipów. W jego strukturze znajduje się wydajny mikrokontroler typu Cortex® M4 z rodziny ARM, dzięki czemu komunikacja z może odbywać się poprzez jeden z dostępnych protokołów szeregowych. \linebreak W układzie jest też zintegrowana przetwornica DC-DC przez co uproszczona zostaje sekcja zasilania układu. 
 
 \insertImgSetSize{grafiki/TMCC160_SBD.eps}
 	{70}
@@ -57,7 +57,7 @@ Druga grupa sterowników to urządzenia samodzielnie, które do pracy potrzebuj�
 \subsubsection{Simplexmotion 100A - Simplex Motion AB}
 \label{sss:simplex}
 
-Urządzenie Simplexmotion 100A jest sterownikiem o najwyższym poziomie integracji, ze względu na to, że nawet sterowany silnik znajduje się w obudowie układu. Maszyna znajdująca się w urządzeniu to bezszczotkowy silnik BLDC prądu stałego o mocy 100 W (wartość szczytowa 400 W) i maksymalnej rozwijanej prędkości obrotowej 6000 rpm. Umieszczając w jednej obudowie silnik i układ sterowania, producent odciążył użytkownika z konieczności dokonywania wielu niezbędnych połączeń potrzebnych do poprawnej pracy samego silnika. Wyprowadzone na zewnątrz zostały jedynie zaciski:
+Urządzenie Simplexmotion 100A jest sterownikiem o wysokim poziomie integracji, ze względu na to, że nawet sterowany silnik znajduje się w obudowie układu. Maszyna znajdująca się w urządzeniu to bezszczotkowy silnik BLDC prądu stałego o mocy 100 W (wartość szczytowa 400 W) i maksymalnej rozwijanej prędkości obrotowej 6000 rpm. Umieszczając w jednej obudowie silnik i układ sterowania, producent odciążył użytkownika z konieczności dokonywania wielu niezbędnych połączeń potrzebnych do poprawnej pracy samego silnika. Wyprowadzone na zewnątrz zostały jedynie zaciski:
 
 \begin{easylist}
 	& interfejs usb do zmiany nastaw kluczowych parametrów,
@@ -133,7 +133,7 @@ Rozwiązania oferowane przez tego producenta cechuje możliwość szybkiego wdro
 
 Na rynku jest dostępnych bardzo wiele rozwiązań pozwalających na sterowanie wszelkiego rodzaju silnikami elektrycznymi. Przedstawione przykładowe kontrolery stanowią tylko małą część dostępnych na rynku produktów, ale ukazują formy w jakich buduje się sterowniki. Najtańszymi układami są jedno-chipowe urządzenia, które do poprawnej pracy potrzebują bardzo wielu elementów dodatkowych. Wraz z poziomem integracji cena rośnie, a dodatkowo trzeba dopłacić za możliwość szybkiego wdrożenia produktu do swojej aplikacji i uniwersalność (pod względem wykonywanych programów i obsługi silników). \\
 
-Pomimo wszystkich zalet jakie posiadają zaprezentowane w rozdziale \ref{s:sterowniki} urządzenia, żadne z nich nie jest idealne- najmniejsze układy mają za małe możliwości, a wysoko zintegrowane sterowniki są za drogie (i jak na swoją cenę, także mają za małe możliwości). Z tych właśnie powodów powstaje uniwersalny sterownik do silników, którego dokładny opis znajduje się w dalszych rozdziałach pracy.
+Pomimo wszystkich zalet jakie posiadają zaprezentowane w rozdziale \ref{s:sterowniki} urządzenia, żadne z nich nie jest idealne- najmniejsze układy mają za małe możliwości, a wysoko zintegrowane sterowniki są za drogie (i jak na swoją cenę, także mają małe możliwości). Z tych właśnie powodów powstaje uniwersalny sterownik do silników, którego dokładny opis znajduje się w dalszych rozdziałach pracy.
 
 
 
