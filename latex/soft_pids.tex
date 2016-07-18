@@ -151,7 +151,7 @@ Można zauważyć, że praca na najwyższym biegu (1 mikrokrok na 1 pełny krok)
 
 \subsubsection{Regulator prądu silnika VCM}
 
-Wartość prądu zadanego dla uzwojenia maszyny VCM uzyskuje się poprzez jego estymatę, biorąc pod uwagę właściwości fizyczne układu napędowego (blok {\it VCM CURRENT ESTIMATOR} na schemacie \ref{grafiki/pid_vcm.pdf}). Na wejście estymatora trafia wartość absolutnego (względem obudowy), aktualnego wysuwu cylindra silnika. Zadana wartość wysuwu jest uzyskiwana poprzez pomnożenie stałej czasowej układu przez scałkowaną po czasie prędkość z jaką porusza się cylinder (\ref{eq:pid2}).
+Wartość prądu zadanego dla uzwojenia maszyny VCM uzyskuje się poprzez jego estymatę, biorąc pod uwagę właściwości fizyczne układu napędowego (blok {\it VCM CURRENT ESTIMATOR} na schemacie \ref{grafiki/pid_vcm.pdf}). Na wejście estymatora trafia wartość absolutnego (względem obudowy), aktualnego wysuwu cylindra silnika. Zadana wartość wysuwu jest uzyskiwana poprzez pomnożenie stałej czasowej układu przez scałkowaną po czasie prędkość z jaką porusza się korpus (\ref{eq:pid2}).
 
 \begin{equation} \label{eq:pid2}
 	stroke(t) = \int_0^t v(t) dt
@@ -194,7 +194,7 @@ Następnie należy obliczyć siłę $ F_m $ z jaką oddziałuje na ciało grawit
 	{Przebieg teoretycznego prądu (oś Y) wymaganego w uzwojeniu do wysuwu cylindra na zadaną odległość (oś X)}
 	{oprWlasne}
 
-Potem liczona jest wypadkowa siła $ F $ (\ref{eq:pid5}) działająca na ciało $ A $. Im cięższa jest część ruchoma głowicy, tym bardziej jest wysunięty cylinder w stanie spoczynku (bezprądowym). 
+Potem liczona jest wypadkowa siła $ F $ (\ref{eq:pid5}) działająca na ciało $ A $. Im cięższa jest część ruchoma głowicy, tym bardziej jest wysunięty korpus w stanie spoczynku (bezprądowym). 
 
 \begin{equation} \label{eq:pid5}
 	F = F_s - F_m \quad [ N = N - N ]
@@ -254,5 +254,5 @@ Na rysunku \ref{grafiki/reg_odp_vcm.eps} widać podobne przebiegi dla silnika VC
 	{Przykładowe odpowiedzi regulatorów pozycji i prędkości silnika liniowego VCM, z zastosowaniem generatora trajektorii}
 	{oprWlasne}
 	
-Stała czasowa regulatora jest jednak na tyle niska, że w praktyce cylinder porusza się bardzo płynnie, bez żadnych zacięć. Podsumowując, cały mechanizm działa dobrze. Testy dowodzą że wszystkie niedogodności związane z pracą danej maszyny są możliwe do wyeliminowania przy pomocy odpowiednich nastaw regulatorów.
+Stała czasowa regulatora jest jednak na tyle niska, że w praktyce korpus porusza się bardzo płynnie, bez żadnych zacięć. Podsumowując, cały mechanizm działa dobrze. Testy dowodzą że wszystkie niedogodności związane z pracą danej maszyny są możliwe do wyeliminowania przy pomocy odpowiednich nastaw regulatorów.
 
